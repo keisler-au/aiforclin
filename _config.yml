@@ -1,0 +1,22 @@
+title: AI for Clinicians
+description: Professional AI resources for clinicians. Compare AI scribes, access compliance packs, standards, and expert consulting.
+url: https://aiforclin.com
+permalink: pretty
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+author:
+  name: AI for Clinicians
+  email: david@psychologysquared.com.au
+
+# logo: /assets/img/logo.png         # used in JSON-LD Organization if present
+# image: /assets/img/og-default.jpg  # default social share image
+social:
+  name: AI for Clinicians
+  links:
+    - https://www.linkedin.com/in/davidlopis/
+#     - https://twitter.com/your-handle
+# twitter:
+#   username: your-handle  
