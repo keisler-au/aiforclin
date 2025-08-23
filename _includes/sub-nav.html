@@ -1,0 +1,82 @@
+{% assign items = include.items | default: page.subnav %}
+{% if items and items.size > 0 %}
+<nav class="sub-nav" id="subNav" aria-label="Section navigation">
+  <div class="sub-nav-container">
+    <ul class="sub-nav-list">
+      {% for item in items %}
+        {% comment %}
+          If you pass `section_id` instead of `href`, we build the hash.
+        {% endcomment %}
+        {% assign href = item.href | default: ("#" | append: item.section_id) %}
+        <li class="sub-nav-item">
+          <a
+            href="{{ href }}"
+            class="sub-nav-link"
+            data-section="{{ item.section_id | default: href | replace: '#', '' }}"
+          >
+            {{ item.label }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
+{% endif %}
+
+<script>
+    // Handle scroll effects and active states
+    const subNav = document.getElementById('subNav');
+    const navLinks = document.querySelectorAll('.sub-nav-link');
+    const sections = document.querySelectorAll('.section');
+
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY > 50;
+        
+        // Toggle border appearance
+        if (scrolled) {
+            subNav.classList.add('scrolled');
+        } else {
+            subNav.classList.remove('scrolled');
+        }
+        
+        // Update active navigation item
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (window.scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        // Update active states
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Smooth scroll behavior for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const headerOffset = 120; // Account for both main header and sub nav
+                    const elementPosition = targetSection.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+            }
+        });
+    });
+</script>

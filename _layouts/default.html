@@ -21,6 +21,10 @@
         {% include header-nav.html %}
     {% endif %}
 
+    {% if page.subnav %}
+        {% include sub-nav.html %}
+    {% endif %}
+
   <main id="main" role="main">
     {{ content }}
   </main>
