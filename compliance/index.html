@@ -3,307 +3,6 @@ layout: default
 title: AI Compliance Pack
 description: Essential AI compliance materials for Australian psychologists.
 ---
-    
-<style>
-    /* Contents Grid */
-
-
-    /* Pricing Section */
-    .pricing {
-        background: rgba(20, 34, 58, 0.3);
-        border-top: 1px solid var(--border-color);
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .pricing-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .pricing-card {
-        padding: 2.5rem 2rem;
-        background: rgba(212, 175, 55, 0.08);
-        border: 2px solid var(--border-color);
-        border-radius: 0.5rem;
-        text-align: center;
-        transition: var(--transition);
-    }
-
-    .pricing-card.featured {
-        border-color: var(--primary-gold);
-        background: rgba(212, 175, 55, 0.12);
-        transform: scale(1.05);
-    }
-
-    .pricing-card:hover {
-        background: var(--hover-bg);
-        border-color: var(--primary-gold);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
-    }
-
-    .pricing-card.featured:hover {
-        transform: scale(1.05) translateY(-2px);
-    }
-
-    .pricing-card h3 {
-        color: var(--primary-gold);
-        font-size: 1.4rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-
-    .price {
-        margin: 1.5rem 0;
-    }
-
-    .price .current {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--primary-gold);
-    }
-
-    .price .contact-text {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-    }
-
-    .pricing-card p {
-        color: var(--text-muted);
-        margin-bottom: 1rem;
-    }
-
-    .contact-btn {
-        display: inline-block;
-        padding: 0.8rem 1.5rem;
-        background: rgba(212, 175, 55, 0.1);
-        color: var(--primary-gold);
-        text-decoration: none;
-        border: 1px solid var(--border-color);
-        border-radius: 0.3rem;
-        transition: var(--transition);
-        font-weight: 500;
-    }
-
-    .contact-btn:hover {
-        background: var(--hover-bg);
-        border-color: var(--primary-gold);
-        color: var(--gold-light);
-    }
-
-    .pricing-note {
-        text-align: center;
-        color: var(--text-muted);
-        font-size: 0.9rem;
-    }
-
-    .pricing-note a {
-        color: var(--primary-gold);
-        text-decoration: none;
-    }
-
-    .pricing-note a:hover {
-        text-decoration: underline;
-    }
-
-    /* Legal Section */
-    .legal {
-        background: rgba(15, 26, 46, 0.5);
-    }
-
-    .legal-content {
-        display: grid;
-        gap: 2.5rem;
-    }
-
-    .legal-section {
-        padding: 2rem;
-        background: rgba(212, 175, 55, 0.05);
-        border: 1px solid var(--border-color);
-        border-radius: 0.5rem;
-    }
-
-    .legal-section h3 {
-        color: var(--primary-gold);
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-
-    .legal-section p {
-        color: var(--text-secondary);
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-bottom: 1rem;
-    }
-
-    .legal-section a {
-        color: var(--primary-gold);
-        text-decoration: none;
-    }
-
-    .legal-section a:hover {
-        text-decoration: underline;
-    }
-
-    /* Contact Section */
-    .contact {
-        background: rgba(20, 34, 58, 0.3);
-        border-top: 1px solid var(--border-color);
-    }
-
-    .contact-content {
-        text-align: center;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .contact-content p {
-        color: var(--text-secondary);
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-    }
-
-    .contact-details {
-        display: grid;
-        gap: 1rem;
-    }
-
-    .contact-item {
-        padding: 1rem;
-        background: rgba(212, 175, 55, 0.08);
-        border: 1px solid var(--border-color);
-        border-radius: 0.3rem;
-        color: var(--text-secondary);
-    }
-
-    .contact-item strong {
-        color: var(--primary-gold);
-    }
-
-    .contact-item a {
-        color: var(--primary-gold);
-        text-decoration: none;
-    }
-
-    .contact-item a:hover {
-        text-decoration: underline;
-    }
-
-    /* Footer */
-    .footer {
-        background: var(--navy-deepest);
-        border-top: 1px solid var(--border-color);
-        padding: 2rem 0;
-        text-align: center;
-    }
-
-    .footer p {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-    }
-
-
-
-    /* Animations */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .fade-in {
-        animation: fadeInUp 0.6s ease forwards;
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 768px) {
-        .hero-content {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .about-content {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .compliance-symbols {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .contents-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .pricing-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .nav {
-            display: none;
-        }
-
-        section {
-            padding: 2rem 0;
-        }
-
-        .hero {
-            padding: 4rem 0;
-        }
-
-        .hero-title {
-            font-size: 2.5rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .container {
-            padding: 0 15px;
-        }
-
-        .compliance-symbols {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .symbol {
-            padding: 1rem;
-        }
-
-        .pricing-card {
-            padding: 2rem 1.5rem;
-        }
-
-        .legal-section {
-            padding: 1.5rem;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
-        }
-    }
-</style>
 
 <!-- Hero Section -->
 <header id="home" class="title-container container">
@@ -348,22 +47,22 @@ description: Essential AI compliance materials for Australian psychologists.
                 <div class="badge">
                     <div class="badge-icon">🛡️</div>
                     <div class="badge-text">
-                        <h4>Legal Compliance</h4>
-                        <p>Drafted by PGC Legal Pty Ltd</p>
+                        <h4 class="content-info-header-alt">Legal Compliance</h4>
+                        <p class="section-text-alt">Drafted by PGC Legal Pty Ltd</p>
                     </div>
                 </div>
                 <div class="badge">
                     <div class="badge-icon">📋</div>
                     <div class="badge-text">
-                        <h4>Ready to Use</h4>
-                        <p>Immediately available</p>
+                        <h4 class="content-info-header-alt-alt">Ready to Use</h4>
+                        <p class="section-text-alt">Immediately available</p>
                     </div>
                 </div>
                 <div class="badge">
                     <div class="badge-icon">🇦🇺</div>
                     <div class="badge-text">
-                        <h4>Australian Standards</h4>
-                        <p>Consistent with regulations</p>
+                        <h4 class="content-info-header-alt-alt">Australian Standards</h4>
+                        <p class="section-text-alt">Consistent with regulations</p>
                     </div>
                 </div>
             </div>
@@ -372,145 +71,115 @@ description: Essential AI compliance materials for Australian psychologists.
 </section>
 
 <!-- Pack Contents Section -->
-<section id="contents" class="contents section">
+<section id="contents" class="section">
     <div class="container">
         <h2 class="section-title">Pack Contents</h2>
         <div class="contents-grid">
             <div class="content-item">
                 <div class="content-icon">📄</div>
                 <h3 class="content-info-header">AI Policy Template</h3>
-                <p>drafted by PGC Legal Pty Ltd</p>
+                <p class="section-text">drafted by PGC Legal Pty Ltd</p>
             </div>
             <div class="content-item">
                 <div class="content-icon">🔒</div>
                 <h3 class="content-info-header">Privacy Policy Template</h3>
-                <p>drafted by PGC Legal Pty Ltd</p>
+                <p class="section-text">drafted by PGC Legal Pty Ltd</p>
             </div>
             <div class="content-item">
                 <div class="content-icon">✅</div>
                 <h3 class="content-info-header">Consent Form for AI use</h3>
-                <p>drafted by PGC Legal Pty Ltd</p>
+                <p class="section-text">drafted by PGC Legal Pty Ltd</p>
             </div>
             <div class="content-item">
                 <div class="content-icon">📋</div>
                 <h3 class="content-info-header">AI Implementation Checklist</h3>
-                <p>drafted by PGC Legal Pty Ltd</p>
+                <p class="section-text">drafted by PGC Legal Pty Ltd</p>
             </div>
             <div class="content-item">
                 <div class="content-icon">📝</div>
                 <h3 class="content-info-header">Session Transcript Recommendation</h3>
-                <p>Guidance on inclusion of session transcript/audio file in clinical notes drafted by PGC Legal Pty Ltd</p>
+                <p class="section-text">Guidance on inclusion of session transcript/audio file in clinical notes drafted by PGC Legal Pty Ltd</p>
             </div>
         </div>
     </div>
 </section>
 
-    <!-- Pricing Options -->
-    <section class="pricing">
-        <div class="container">
-            <h2 class="section-title">Pricing Options</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card featured">
-                    <h3>Individual Pack</h3>
-                    <div class="price">
-                        <span class="current">$199 (inc GST)</span>
-                    </div>
-                    <p>Single purchaser access only</p>
-                </div>
-                <div class="pricing-card contact-card">
-                    <h3>Medium Practice Bundle</h3>
-                    <div class="price">
-                        <span class="contact-text">Contact for Quote</span>
-                    </div>
-                    <p>2-5 Practitioners</p>
-                    <a href="mailto:david@psychologysquared.com.au?subject=Medium Practice Bundle Quote" class="contact-btn">Get Quote</a>
-                </div>
-                <div class="pricing-card contact-card">
-                    <h3>Large Practice Package</h3>
-                    <div class="price">
-                        <span class="contact-text">Contact for Quote</span>
-                    </div>
-                    <p>6-10 Practitioners</p>
-                    <a href="mailto:david@psychologysquared.com.au?subject=Large Practice Package Quote" class="contact-btn">Get Quote</a>
-                </div>
+<!-- Pricing Options -->
+<section id="pricing"class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">Pricing Options</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card featured">
+                <h3 class="pricing-card-header">Individual Pack <br /> $199 (inc GST)</h3>
+                <p class="section-text">Single purchaser access only</p>
             </div>
-            <p class="pricing-note">
-                Contact us for larger group discounts: <a href="mailto:david@psychologysquared.com.au">david@psychologysquared.com.au</a>
-            </p>
-        </div>
-    </section>
+            <div class="pricing-card featured">
+                <h3 class="pricing-card-header">Medium Practice Bundle</h3>
+                <p class="section-text">2-5 Practitioners</p>
+                <a href="mailto:david@psychologysquared.com.au?subject=Medium Practice Bundle Quote" class="cta">Get Quote</a>
+            </div>
+            <div class="pricing-card featured">
+                <h3 class="pricing-card-header">Large Practice Package</h3>
+                <p class="section-text">6-10 Practitioners</p>
 
-    <!-- Legal Disclaimers -->
-    <section class="legal">
-        <div class="container">
-            <h2 class="section-title">Important Legal Information</h2>
-            <div class="legal-content">
-                <div class="legal-section">
-                    <h3>Information is Not Legal Advice</h3>
-                    <p>
-                        The above information, content and template documents (together <strong>'the content'</strong>) are the intellectual property of PGC Legal Pty Ltd and the provision of them by Psychology Squared does not constitute legal advice, and is provided for information only.
-                    </p>
-                    <p>
-                        The content is intended only to provide a summary and general overview on matters of interest. It is not intended to be comprehensive. It is not intended to be a substitute for legal advice, and should not be relied upon as such. You should seek independent legal advice or other professional advice in relation to any particular matters you or your organisation may have. The content is current as at the date of initial publication.
-                    </p>
-                </div>
-
-                <div class="legal-section">
-                    <h3>Limitation of Liability</h3>
-                    <p>
-                        Neither PGC Legal Pty Ltd nor Psychology Squared are responsible to you or anyone else for any loss suffered in connection with the use of the content.
-                    </p>
-                    <p>
-                        PGC Legal Pty Ltd and Psychology Squared makes no warranties or representations about the content. We exclude, to the maximum extent permitted by law, any liability which may arise as a result of the use of this content. Where liability cannot be excluded, any liability incurred by use in relation to the use of this content is limited to the extent provided for by the Australian Consumer Law (Schedule 2 of the Competition and Consumer Act 2010). To the extent permitted by law, we will not be liable for any indirect, incidental, special or consequential loss.
-                    </p>
-                </div>
-
-                <div class="legal-section">
-                    <h3>No Solicitor / Client relationship</h3>
-                    <p>
-                        Your use of this content is not intended to create, nor does it create, a solicitor-client relationship between you and PGC Legal Pty Ltd.
-                    </p>
-                    <p>
-                        Liability limited by a scheme approved under Professional Standards Legislation.
-                    </p>
-                </div>
-
-                <div class="legal-section">
-                    <h3>Terms and Conditions</h3>
-                    <p>
-                        By purchasing you agree to the terms and conditions available here: 
-                        <a href="https://psychologysquared.com.au/termsandconditions" target="_blank">https://psychologysquared.com.au/termsandconditions</a>
-                    </p>
-                    <p>
-                        By purchasing you agree to the AI standards: 
-                        <a href="https://psychologysquared.com.au/ai-standards" target="_blank">https://psychologysquared.com.au/ai-standards</a>
-                    </p>
-                </div>
+                <a href="mailto:david@psychologysquared.com.au?subject=Large Practice Package Quote" class="cta">Get Quote</a>
             </div>
         </div>
-    </section>
+        <p class="section-subtitle">
+            Contact us for larger group discounts: <a class="section-text muted" href="mailto:david@psychologysquared.com.au">david@psychologysquared.com.au</a>
+        </p>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Contact Information</h2>
-            <div class="contact-content">
-                <p>This is a product by <strong>Psychology Squared</strong></p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <strong>Mobile:</strong> <a href="tel:0423048009">0423 048 009</a>
-                    </div>
-                    <div class="contact-item">
-                      <strong>Email:</strong> <a href="mailto:hello@psychologysquared.com.au">hello@psychologysquared.com.au</a>
-                  </div>
-                    <div class="contact-item">
-                        <strong>Facebook Group:</strong> <a href="https://www.facebook.com/groups/austpsychai" target="_blank">Australian Psychology AI Community</a>
-                    </div>
-                </div>
+<!-- Legal Disclaimers -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Important Legal Information</h2>
+        <div class="legal-content">
+            <div class="legal-section">
+                <h3 class="content-info-header">Information is Not Legal Advice</h3>
+                <p class="legal-section-text">
+                    The above information, content and template documents (together <strong>'the content'</strong>) are the intellectual property of PGC Legal Pty Ltd and the provision of them by Psychology Squared does not constitute legal advice, and is provided for information only.
+                </p>
+                <p class="legal-section-text">
+                    The content is intended only to provide a summary and general overview on matters of interest. It is not intended to be comprehensive. It is not intended to be a substitute for legal advice, and should not be relied upon as such. You should seek independent legal advice or other professional advice in relation to any particular matters you or your organisation may have. The content is current as at the date of initial publication.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>Limitation of Liability</h3>
+                <p class="legal-section-text">
+                    Neither PGC Legal Pty Ltd nor Psychology Squared are responsible to you or anyone else for any loss suffered in connection with the use of the content.
+                </p>
+                <p class="legal-section-text">
+                    PGC Legal Pty Ltd and Psychology Squared makes no warranties or representations about the content. We exclude, to the maximum extent permitted by law, any liability which may arise as a result of the use of this content. Where liability cannot be excluded, any liability incurred by use in relation to the use of this content is limited to the extent provided for by the Australian Consumer Law (Schedule 2 of the Competition and Consumer Act 2010). To the extent permitted by law, we will not be liable for any indirect, incidental, special or consequential loss.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>No Solicitor / Client relationship</h3>
+                <p class="legal-section-text">
+                    Your use of this content is not intended to create, nor does it create, a solicitor-client relationship between you and PGC Legal Pty Ltd.
+                </p>
+                <p class="legal-section-text">
+                    Liability limited by a scheme approved under Professional Standards Legislation.
+                </p>
+            </div>
+
+            <div class="legal-section">
+                <h3>Terms and Conditions</h3>
+                <p class="legal-section-text">
+                    By purchasing you agree to the terms and conditions available here: 
+                    <a class="legal-section-links" href="https://psychologysquared.com.au/termsandconditions" target="_blank">https://psychologysquared.com.au/termsandconditions</a>
+                </p>
+                <p class="legal-section-text">
+                    By purchasing you agree to the AI standards: 
+                    <a class="legal-section-links" href="https://psychologysquared.com.au/ai-standards" target="_blank">https://psychologysquared.com.au/ai-standards</a>
+                </p>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>  
 
     <script>
         'use strict';
