@@ -10,6 +10,8 @@
     --text-muted: #C4B078;
     --border-color: rgba(212, 175, 55, 0.3);
     --hover-bg: rgba(212, 175, 55, 0.15);
+    --card-bg: rgba(212, 175, 55, 0.08);
+    --card-bg-alt: rgba(212, 175, 55, 0.12);
     --transition: all 0.3s ease;
     --font-family: 'Lora', serif;
     --container-max-width: 1400px;
@@ -51,14 +53,11 @@ body {
     text-decoration: none;
     border-radius: 4px;
     transition: top 0.2s;
-  }
-  
-  .skip-link:focus {
-    top: 10px;
-  }
-  
+}
 
-/* Header */
+.skip-link:focus {
+    top: 10px;
+}
 
 .container {
     max-width: 1200px;
@@ -66,6 +65,7 @@ body {
     padding: 0 20px;
 }
 
+/* Header */
 .site-header {
     background: rgba(15, 26, 46, 0.95);
     backdrop-filter: blur(10px);
