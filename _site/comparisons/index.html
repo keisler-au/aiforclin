@@ -49,296 +49,105 @@
     
 
   <main id="main" role="main">
-    <style>
-    /* Skip link for accessibility */
-    .section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .table-section {
-        max-width: 1500px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .table-iframe {
-        width: 100%;
-        max-height: 80vh;
-        border: none;
-        border-radius: var(--border-radius);
-        margin-bottom: var(--spacing-lg);
-    }
-
-    /* Company links section */
-    .company-links {
-        background: var(--white);
-        border-radius: var(--border-radius-large);
-        padding: var(--spacing-lg);
-        box-shadow: var(--shadow-heavy);
-        width: 100%;
-        animation: fadeInUp 1s ease-out 0.6s both;
-    }
-
-    .company-links h2 {
-        color: var(--primary-color);
-        font-size: clamp(1.5rem, 3vw, 1.8rem);
-        margin-bottom: var(--spacing-md);
-        text-align: center;
-    }
-
-    /* Company grid */
-    .company-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-        gap: var(--spacing-md);
-    }
-
-    /* Company cards */
-    .company-card {
-        background: var(--light-bg);
-        padding: var(--spacing-md);
-        border-radius: var(--border-radius);
-        border-left: 4px solid var(--primary-color);
-        transition: var(--transition);
-        position: relative;
-    }
-
-    .company-card:hover,
-    .company-card:focus-within {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-light);
-    }
-
-    .company-card h3 {
-        color: var(--primary-color);
-        margin-bottom: var(--spacing-xs);
-        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-    }
-
-    .company-card p {
-        color: var(--text-light);
-        margin-bottom: var(--spacing-sm);
-        line-height: 1.6;
-    }
-
-    /* Company link buttons */
-    .company-button {
-        background: var(--primary-color);
-        color: var(--white);
-        padding: var(--spacing-xs) var(--spacing-md);
-        border-radius: 25px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.9rem;
-        transition: var(--transition);
-        display: inline-block;
-        border: 2px solid transparent;
-    }
-
-    .company-button:hover,
-    .company-button:focus {
-        background: var(--primary-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        outline: none;
-    }
-
-    .company-button:focus {
-        border-color: var(--white);
-    }
-
-    /* Footer */
-    .footer {
-        text-align: center;
-        padding: var(--spacing-md);
-        color: var(--white);
-        opacity: 0.8;
-        font-size: 0.9rem;
-        margin-top: auto;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Reduced motion support */
-    @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-        
-        html {
-            scroll-behavior: auto;
-        }
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-        .container {
-            padding: var(--spacing-sm);
-        }
-        
-        .company-links {
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .company-links {
-            padding: var(--spacing-sm);
-            border-radius: var(--spacing-xs);
-        }
-    }
-
-    /* High contrast mode support */
-    @media (prefers-contrast: high) {
-        :root {
-            --primary-color: #000080;
-            --primary-dark: #000060;
-            --text-dark: #000000;
-            --text-light: #333333;
-        }
-    }
-
-    /* Print styles */
-    @media print {
-        body {
-            background: white;
-            color: black;
-        }
-        
-        .company-button {
-            background: white;
-            color: black;
-            border: 1px solid black;
-        }
-        
-        .table-iframe {
-            display: none;
-        }
-    }
-</style>
-  
-
-<header class="title-container-alt">
-    <div class="container">
-        <h1 class="main-title">AI Scribe Company <span style="text-decoration: underline;">Comparisons</span></h1>
-        <p class="main-subtitle">Compare AI scribe companies and find the best fit for your therapy and clinical documentation needs.</p>
-    </div>
+    <header class="title-container-alt container">
+    <h1 class="main-title">AI Scribe Company <span style="text-decoration: underline;">Comparisons</span></h1>
+    <p class="main-subtitle">Compare AI scribe companies and find the best fit for your therapy and clinical documentation needs.</p>
 </header>   
 
 <section class="section table-section">
-        <h2 id="comparison-table" class="sr-only">Comparison Table</h2>
-        <iframe 
-            src="table.html" 
-            class="table-iframe"
-            title="AI Scribe Company Comparison Table"
-            loading="lazy"
-            id="comparisonTable"
-            aria-describedby="table-description"
-            scrolling="no"
-            ></iframe>
-        <p id="table-description" class="sr-only">Interactive comparison table showing features, pricing, and trial information for various AI scribe companies.</p>
+    <h2 id="comparison-table" class="sr-only">Comparison Table</h2>
+    <iframe 
+        src="table.html" 
+        class="table-iframe"
+        title="AI Scribe Company Comparison Table"
+        loading="lazy"
+        id="comparisonTable"
+        aria-describedby="table-description"
+        scrolling="no"
+        ></iframe>
+    <p id="table-description" class="sr-only">Interactive comparison table showing features, pricing, and trial information for various AI scribe companies.</p>
 </section>
 
-<section class="company-links" aria-labelledby="company-details">
-    <div class="container">
-        <h2 id="company-details">AI Scribe Company Details</h2>
-        <div class="company-grid" role="list">
-            <article class="company-card" role="listitem">
-                <h3>AllyScribe</h3>
-                <p>AI-generated documentation with seamless EHR integration. Direct integration with Cliniko and Nookal, eco-certified infrastructure. Use SQUARED20/30 for discounts.</p>
-                <a href="companies/allyscribe.html" class="company-button" aria-describedby="ally-desc">See Full Response</a>
-                <span id="ally-desc" class="sr-only">Learn more about AllyScribe's EHR-integrated AI documentation</span>
-            </article>
+<section class="company-links container" aria-labelledby="company-details">
+    <h2 id="company-details">AI Scribe Company Details</h2>
+    <div class="company-grid" role="list">
+    <article class="company-card" role="listitem">
+        <h3>AllyScribe</h3>
+        <p>AI-generated documentation with seamless EHR integration. Direct integration with Cliniko and Nookal, eco-certified infrastructure. Use SQUARED20/30 for discounts.</p>
+        <a href="companies/allyscribe.html" class="company-button" aria-describedby="ally-desc">See Full Response</a>
+        <span id="ally-desc" class="sr-only">Learn more about AllyScribe's EHR-integrated AI documentation</span>
+    </article>
 
-            <article class="company-card" role="listitem">
-                <h3>ANTSA</h3>
-                <p>AI-powered therapy and clinical scribe tools with jAImee chatbot. Features 30-day free trial, Australian privacy compliance, and $59/month unlimited access.</p>
-                <a href="companies/antsa.html" class="company-button" aria-describedby="antsa-desc">See Full Response</a>
-                <span id="antsa-desc" class="sr-only">Learn more about ANTSA's AI scribe services and pricing</span>
-            </article>
-            
-            <article class="company-card" role="listitem">
-                <h3>BastionGPT</h3>
-                <p>AI assistant with ChatGPT ease but tailored for psychologists. 200+ healthcare use cases, evidence-based output, Australian privacy compliant. 30-day trial via Psychology Squared.</p>
-                <a href="companies/bastiongpt.html" class="company-button" aria-describedby="bastion-desc">See Full Response</a>
-                <span id="bastion-desc" class="sr-only">Learn more about BastionGPT's AI assistant for psychology professionals</span>
-            </article>
+    <article class="company-card" role="listitem">
+        <h3>ANTSA</h3>
+        <p>AI-powered therapy and clinical scribe tools with jAImee chatbot. Features 30-day free trial, Australian privacy compliance, and $59/month unlimited access.</p>
+        <a href="companies/antsa.html" class="company-button" aria-describedby="antsa-desc">See Full Response</a>
+        <span id="antsa-desc" class="sr-only">Learn more about ANTSA's AI scribe services and pricing</span>
+    </article>
+    
+    <article class="company-card" role="listitem">
+        <h3>BastionGPT</h3>
+        <p>AI assistant with ChatGPT ease but tailored for psychologists. 200+ healthcare use cases, evidence-based output, Australian privacy compliant. 30-day trial via Psychology Squared.</p>
+        <a href="companies/bastiongpt.html" class="company-button" aria-describedby="bastion-desc">See Full Response</a>
+        <span id="bastion-desc" class="sr-only">Learn more about BastionGPT's AI assistant for psychology professionals</span>
+    </article>
 
-            <article class="company-card" role="listitem">
-                <h3>Everbility</h3>
-                <p>Clinical documentation with extensive context and research integration. Supports long reports, PDF uploads, and unlimited customer support. $10 off first 3 months.</p>
-                <a href="companies/everbility.html" class="company-button" aria-describedby="ever-desc">See Full Response</a>
-                <span id="ever-desc" class="sr-only">Learn more about Everbility's research-integrated clinical documentation</span>
-            </article>
-        
-            <article class="company-card" role="listitem">
-                <h3>Heidi Health</h3>
-                <p>AI-powered medical documentation with SOC2 and ISO27001 security. Multi-language support, PMS integrations, and dedicated telehealth platform. Free tier to $1299/year.</p>
-                <a href="companies/heidih.html" class="company-button" aria-describedby="heidi-desc">See Full Response</a>
-                <span id="heidi-desc" class="sr-only">Learn more about Heidi Health's secure AI medical documentation</span>
-            </article>
+    <article class="company-card" role="listitem">
+        <h3>Everbility</h3>
+        <p>Clinical documentation with extensive context and research integration. Supports long reports, PDF uploads, and unlimited customer support. $10 off first 3 months.</p>
+        <a href="companies/everbility.html" class="company-button" aria-describedby="ever-desc">See Full Response</a>
+        <span id="ever-desc" class="sr-only">Learn more about Everbility's research-integrated clinical documentation</span>
+    </article>
 
-            <article class="company-card" role="listitem">
-                <h3>Mentalyc</h3>
-                <p>AI-powered notes and insights for deeper therapy. Trusted by 30,000+ mental health professionals with SMART Treatment Plans and Alliance Ginie feedback system. 15 free notes trial.</p>
-                <a href="companies/mentalyc.html" class="company-button" aria-describedby="mentalyc-desc">See Full Response</a>
-                <span id="mentalyc-desc" class="sr-only">Learn more about Mentalyc's AI-powered notes and insights for deeper therapy</span>
-            </article>
+    <article class="company-card" role="listitem">
+        <h3>Heidi Health</h3>
+        <p>AI-powered medical documentation with SOC2 and ISO27001 security. Multi-language support, PMS integrations, and dedicated telehealth platform. Free tier to $1299/year.</p>
+        <a href="companies/heidih.html" class="company-button" aria-describedby="heidi-desc">See Full Response</a>
+        <span id="heidi-desc" class="sr-only">Learn more about Heidi Health's secure AI medical documentation</span>
+    </article>
 
-            <article class="company-card" role="listitem">
-                <h3>NovoPsych (NovoNote)</h3>
-                <p>Mental health-specific AI scribe with psychometrics integration. 3-month free trial, template library by psychologists. Free until March 2025!</p>
-                <a href="companies/novopsych.html" class="company-button" aria-describedby="novo-desc">See Full Response</a>
-                <span id="novo-desc" class="sr-only">Learn more about NovoPsych's NovoNote AI scribe for mental health</span>
-            </article>
+    <article class="company-card" role="listitem">
+        <h3>Mentalyc</h3>
+        <p>AI-powered notes and insights for deeper therapy. Trusted by 30,000+ mental health professionals with SMART Treatment Plans and Alliance Ginie feedback system. 15 free notes trial.</p>
+        <a href="companies/mentalyc.html" class="company-button" aria-describedby="mentalyc-desc">See Full Response</a>
+        <span id="mentalyc-desc" class="sr-only">Learn more about Mentalyc's AI-powered notes and insights for deeper therapy</span>
+    </article>
 
-            <article class="company-card" role="listitem">
-                <h3>Lyrebird Health</h3>
-                <p>AI medical scribe with advanced clinical documentation. Real-time transcription, clinical intelligence, and seamless workflow integration. 14-day free trial available.</p>
-                <a href="companies/lyrebird.html" class="company-button" aria-describedby="lyrebird-desc">See Full Response</a>
-                <span id="lyrebird-desc" class="sr-only">Learn more about Lyrebird Health's AI medical scribe with real-time transcription</span>
-            </article>
-        
-            <article class="company-card" role="listitem">
-                <h3>Patient Notes</h3>
-                <p>AI-powered clinical documentation and note generation. Real-time transcription, clinical templates, and quality assurance features. 14-day free trial available.</p>
-                <a href="companies/patientnotes.html" class="company-button" aria-describedby="patient-desc">See Full Response</a>
-                <span id="patient-desc" class="sr-only">Learn more about Patient Notes' AI clinical documentation platform</span>
-            </article>
+    <article class="company-card" role="listitem">
+        <h3>NovoPsych (NovoNote)</h3>
+        <p>Mental health-specific AI scribe with psychometrics integration. 3-month free trial, template library by psychologists. Free until March 2025!</p>
+        <a href="companies/novopsych.html" class="company-button" aria-describedby="novo-desc">See Full Response</a>
+        <span id="novo-desc" class="sr-only">Learn more about NovoPsych's NovoNote AI scribe for mental health</span>
+    </article>
 
-            <article class="company-card" role="listitem">
-                <h3>UpliftGroup (UpLift AI)</h3>
-                <p>Fully AI-driven operating system combining AI therapy, practice management, and patient engagement. AI co-therapist for human-AI collaboration with open-ended early access.</p>
-                <a href="companies/upliftgroup.html" class="company-button" aria-describedby="uplift-desc">See Full Response</a>
-                <span id="uplift-desc" class="sr-only">Learn more about UpliftGroup's comprehensive AI therapy platform</span>
-            </article>
+    <article class="company-card" role="listitem">
+        <h3>Lyrebird Health</h3>
+        <p>AI medical scribe with advanced clinical documentation. Real-time transcription, clinical intelligence, and seamless workflow integration. 14-day free trial available.</p>
+        <a href="companies/lyrebird.html" class="company-button" aria-describedby="lyrebird-desc">See Full Response</a>
+        <span id="lyrebird-desc" class="sr-only">Learn more about Lyrebird Health's AI medical scribe with real-time transcription</span>
+    </article>
 
-            <article class="company-card" role="listitem">
-                <h3>Zanda Health (BizzyAI)</h3>
-                <p>AI-powered practice management with BizzyAI: Scribe for live session transcription. Thoughtfully-built for allied health practices with 14-day free trial including 3 hours of AI scribe.</p>
-                <a href="companies/zanda.html" class="company-button" aria-describedby="zanda-desc">See Full Response</a>
-                <span id="zanda-desc" class="sr-only">Learn more about Zanda Health's BizzyAI AI scribe services and pricing</span>
-            </article>
-        </div>
-    </div>
+    <article class="company-card" role="listitem">
+        <h3>Patient Notes</h3>
+        <p>AI-powered clinical documentation and note generation. Real-time transcription, clinical templates, and quality assurance features. 14-day free trial available.</p>
+        <a href="companies/patientnotes.html" class="company-button" aria-describedby="patient-desc">See Full Response</a>
+        <span id="patient-desc" class="sr-only">Learn more about Patient Notes' AI clinical documentation platform</span>
+    </article>
+
+    <article class="company-card" role="listitem">
+        <h3>UpliftGroup (UpLift AI)</h3>
+        <p>Fully AI-driven operating system combining AI therapy, practice management, and patient engagement. AI co-therapist for human-AI collaboration with open-ended early access.</p>
+        <a href="companies/upliftgroup.html" class="company-button" aria-describedby="uplift-desc">See Full Response</a>
+        <span id="uplift-desc" class="sr-only">Learn more about UpliftGroup's comprehensive AI therapy platform</span>
+    </article>
+
+    <article class="company-card" role="listitem">
+        <h3>Zanda Health (BizzyAI)</h3>
+        <p>AI-powered practice management with BizzyAI: Scribe for live session transcription. Thoughtfully-built for allied health practices with 14-day free trial including 3 hours of AI scribe.</p>
+        <a href="companies/zanda.html" class="company-button" aria-describedby="zanda-desc">See Full Response</a>
+        <span id="zanda-desc" class="sr-only">Learn more about Zanda Health's BizzyAI AI scribe services and pricing</span>
+    </article>
+</div>
 </section>
 
 <script>

@@ -1,0 +1,84 @@
+---
+layout: default
+title: Get in Contact
+description: Get in touch with AI for Clinicians for speaking engagements, AI consultations, and joining the Psychology Squared community.
+---
+
+
+<header class="title-container-alt container">
+    <div class="title-content-alt">
+        <h1 class="section-title">
+            Get In <span class="section-title-accent">Touch</span>
+        </h1>
+        <p class="section-subtitle">Ready to transform your clinical practice with responsible AI integration?</p>
+    </div>
+</header>
+<!-- Contact Section -->
+<section id="contact" class="section section-alt">
+    <div class="container"> 
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="window.open('mailto:david@psychologysquared.com.au?subject=Speaking Engagement Inquiry', '_blank')">
+                <span style="margin-right: 0.5rem;">&#128483;</span> Book Speaking Engagement
+            </button>
+            <button class="btn" onclick="window.open('mailto:david@psychologysquared.com.au?subject=AI Consultation Request', '_blank')">
+                <span style="margin-right: 0.5rem;">&#128197;</span> Schedule AI Consultation
+            </button>
+            <button class="btn" onclick="window.open('https://psychologysquared.com', '_blank')">
+                <span style="margin-right: 0.5rem;">&#128101;</span> Join 3,500+ Clinicians
+            </button>
+        </div>
+        
+        <div class="two-col-grid">
+            <div>
+                <h3 class="section-title" style="font-size: 1.5rem; text-align: left; margin-bottom: 1.5rem;">Contact Information</h3>
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <span style="color: var(--primary-gold); font-size: 1.5rem;">✉</span>
+                        <span class="section-text" style="margin: 0; text-align: left;">Contact for pricing and availability</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <span style="color: var(--primary-gold); font-size: 1.5rem;">&#128197;</span>
+                        <span class="section-text" style="margin: 0; text-align: left;">Flexible scheduling for all time zones</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <span style="color: var(--primary-gold); font-size: 1.5rem;">&#128101;</span>
+                        <span class="section-text" style="margin: 0; text-align: left;">Individual and group consultations available</span>
+                    </div>
+                </div>
+                
+                <h4 class="card-title" style="margin-bottom: 1rem;">Follow Our Work</h4>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn" onclick="window.open('https://www.linkedin.com/in/davidlopis/', '_blank')">
+                        <span style="margin-right: 0.5rem;">in</span> LinkedIn
+                    </button>
+                    <!-- <button class="btn" onclick="window.open('https://twitter.com/davidlopis', '_blank')">
+                        <span style="margin-right: 0.5rem;">&#120143;</span> Twitter
+                    </button> -->
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title" style="margin-bottom: 1.5rem;">Send a Message</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" required class="form-input" placeholder="Your full name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" required class="form-input" placeholder="your.email@example.com" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Organization</label>
+                        <input type="text" name="organization" class="form-input" placeholder="Your organization or practice" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea name="message" required class="form-textarea" placeholder="Tell us about your AI integration needs..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
