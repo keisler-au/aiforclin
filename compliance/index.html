@@ -1,0 +1,802 @@
+---
+layout: default
+title: AI Compliance Pack
+description: Essential AI compliance materials for Australian psychologists.
+---
+    
+<style>
+
+    
+    /* Compliance Symbols */
+    .compliance-symbols {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .symbol {
+        font-size: 3rem;
+        padding: 1.5rem;
+        background: rgba(212, 175, 55, 0.08);
+        border: 2px solid var(--border-color);
+        border-radius: 1rem;
+        transition: var(--transition);
+        cursor: default;
+    }
+
+    .symbol:hover {
+        background: var(--hover-bg);
+        border-color: var(--primary-gold);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+    }
+
+    /* About Section */
+    .about {
+        background: rgba(20, 34, 58, 0.3);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+    }
+
+    .about-text h3 {
+        color: var(--primary-gold);
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .about-text p {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .trust-badges {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .badge {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: rgba(212, 175, 55, 0.08);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        transition: var(--transition);
+    }
+
+    .badge:hover {
+        background: var(--hover-bg);
+        border-color: var(--primary-gold);
+    }
+
+    .badge-icon {
+        font-size: 2rem;
+    }
+
+    .badge-text h4 {
+        color: var(--primary-gold);
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .badge-text p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    /* Contents Grid */
+    .contents-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .content-item {
+        padding: 2rem;
+        background: rgba(212, 175, 55, 0.08);
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+        text-align: center;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .content-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+        transition: left 0.5s ease;
+        pointer-events: none;
+    }
+
+    .content-item:hover::before {
+        left: 100%;
+    }
+
+    .content-item:hover {
+        background: var(--hover-bg);
+        border-color: var(--primary-gold);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+    }
+
+    .content-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .content-item h3 {
+        color: var(--primary-gold);
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .content-item p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Pricing Section */
+    .pricing {
+        background: rgba(20, 34, 58, 0.3);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .pricing-card {
+        padding: 2.5rem 2rem;
+        background: rgba(212, 175, 55, 0.08);
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+        text-align: center;
+        transition: var(--transition);
+    }
+
+    .pricing-card.featured {
+        border-color: var(--primary-gold);
+        background: rgba(212, 175, 55, 0.12);
+        transform: scale(1.05);
+    }
+
+    .pricing-card:hover {
+        background: var(--hover-bg);
+        border-color: var(--primary-gold);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+    }
+
+    .pricing-card.featured:hover {
+        transform: scale(1.05) translateY(-2px);
+    }
+
+    .pricing-card h3 {
+        color: var(--primary-gold);
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .price {
+        margin: 1.5rem 0;
+    }
+
+    .price .current {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-gold);
+    }
+
+    .price .contact-text {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+    }
+
+    .pricing-card p {
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+    }
+
+    .contact-btn {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background: rgba(212, 175, 55, 0.1);
+        color: var(--primary-gold);
+        text-decoration: none;
+        border: 1px solid var(--border-color);
+        border-radius: 0.3rem;
+        transition: var(--transition);
+        font-weight: 500;
+    }
+
+    .contact-btn:hover {
+        background: var(--hover-bg);
+        border-color: var(--primary-gold);
+        color: var(--gold-light);
+    }
+
+    .pricing-note {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .pricing-note a {
+        color: var(--primary-gold);
+        text-decoration: none;
+    }
+
+    .pricing-note a:hover {
+        text-decoration: underline;
+    }
+
+    /* Legal Section */
+    .legal {
+        background: rgba(15, 26, 46, 0.5);
+    }
+
+    .legal-content {
+        display: grid;
+        gap: 2.5rem;
+    }
+
+    .legal-section {
+        padding: 2rem;
+        background: rgba(212, 175, 55, 0.05);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+    }
+
+    .legal-section h3 {
+        color: var(--primary-gold);
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .legal-section p {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .legal-section a {
+        color: var(--primary-gold);
+        text-decoration: none;
+    }
+
+    .legal-section a:hover {
+        text-decoration: underline;
+    }
+
+    /* Contact Section */
+    .contact {
+        background: rgba(20, 34, 58, 0.3);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .contact-content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .contact-content p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .contact-details {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .contact-item {
+        padding: 1rem;
+        background: rgba(212, 175, 55, 0.08);
+        border: 1px solid var(--border-color);
+        border-radius: 0.3rem;
+        color: var(--text-secondary);
+    }
+
+    .contact-item strong {
+        color: var(--primary-gold);
+    }
+
+    .contact-item a {
+        color: var(--primary-gold);
+        text-decoration: none;
+    }
+
+    .contact-item a:hover {
+        text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+        background: var(--navy-deepest);
+        border-top: 1px solid var(--border-color);
+        padding: 2rem 0;
+        text-align: center;
+    }
+
+    .footer p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    /* Buy Button Styling */
+    .buy-button-container {
+        margin: 2rem 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .buy-button-container.secondary {
+        margin: 3rem 0;
+        padding: 2rem;
+        background: rgba(212, 175, 55, 0.08);
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+    }
+
+    /* Primary Buy Now button */
+    .buy-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.8rem;
+        background: var(--buy-green);
+        color: #ffffff;
+        text-decoration: none;
+        border: 2px solid transparent;
+        border-radius: 0.6rem;
+        font-family: 'Lora', serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        letter-spacing: 0.3px;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 8px 20px var(--buy-green-shadow);
+        justify-content: center;
+    }
+
+    .buy-button:hover,
+    .buy-button:focus {
+        background: var(--buy-green-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px var(--buy-green-shadow);
+        outline: none;
+        text-decoration: none;
+    }
+
+    .buy-button:active {
+        transform: translateY(0);
+        box-shadow: 0 6px 16px var(--buy-green-shadow);
+    }
+
+    /* Shopify button overrides */
+    .shopify-buy__btn {
+        background-color: var(--primary-gold) !important;
+        color: var(--navy-deepest) !important;
+        border: none !important;
+        border-radius: 0.5rem !important;
+        padding: 1rem 2rem !important;
+        font-family: 'Lora', serif !important;
+        font-weight: 600 !important;
+        font-size: 1.1rem !important;
+        transition: var(--transition) !important;
+        text-transform: none !important;
+    }
+
+    .shopify-buy__btn:hover {
+        background-color: var(--gold-dark) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3) !important;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fade-in {
+        animation: fadeInUp 0.6s ease forwards;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .hero-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .about-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .compliance-symbols {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .contents-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .pricing-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .nav {
+            display: none;
+        }
+
+        section {
+            padding: 2rem 0;
+        }
+
+        .hero {
+            padding: 4rem 0;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 0 15px;
+        }
+
+        .compliance-symbols {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .symbol {
+            padding: 1rem;
+        }
+
+        .pricing-card {
+            padding: 2rem 1.5rem;
+        }
+
+        .legal-section {
+            padding: 1.5rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<header id="home" class="title-container container">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1 class="main-title">
+                AI COMPLIANCE<br>
+                <span class="main-title-accent">PACK</span>
+            </h1>
+            <p class="main-subtitle">For Australian Psychologists</p>
+            <p class="hero-description">
+                Get your AI compliance essentials. NOW COMPLETED<br>
+                Presale now for AI compliance essentials for psychologists, consistent with Australian regulations.
+            </p>
+            
+            <div class="buy-button-container">
+                <a href="https://buy.stripe.com/aFa28r5UQaKL3Dvb764gg01?locale=en-GB&__embed_source=buy_btn_1RlLQPG4Ta88snSMeZy78BLb" class="buy-button" target="_blank" rel="noopener noreferrer" aria-label="Buy the AI Compliance Pack now via Stripe">
+                    Buy Now
+                </a>
+            </div>
+
+            
+            <div class="price-info">
+                <span class="current-price">$199 (inc GST)</span>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="compliance-symbols">
+                <div class="symbol shield">🛡️</div>
+                <div class="symbol document">📋</div>
+                <div class="symbol checkmark">✅</div>
+                <div class="symbol legal">⚖️</div>
+                <div class="symbol australia">🇦🇺</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About the AI Compliance Pack</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Now immediately available upon purchase</h3>
+                    <p>
+                        The <strong>AI Compliance Pack</strong> is part of your AI compliance essentials for psychologists who currently use or are planning to implement AI in their practices. It serves as a cost-effective alternative to independently developing compliance materials. This purchase item for a single purchaser for their own access <strong>only</strong>
+                    </p>
+                </div>
+                
+                <div class="trust-badges">
+                    <div class="badge">
+                        <div class="badge-icon">🛡️</div>
+                        <div class="badge-text">
+                            <h4>Legal Compliance</h4>
+                            <p>Drafted by PGC Legal Pty Ltd</p>
+                        </div>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon">📋</div>
+                        <div class="badge-text">
+                            <h4>Ready to Use</h4>
+                            <p>Immediately available</p>
+                        </div>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon">🇦🇺</div>
+                        <div class="badge-text">
+                            <h4>Australian Standards</h4>
+                            <p>Consistent with regulations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pack Contents Section -->
+    <section id="contents" class="contents">
+        <div class="container">
+            <h2 class="section-title">Pack Contents</h2>
+            <div class="contents-grid">
+                <div class="content-item">
+                    <div class="content-icon">📄</div>
+                    <h3>AI Policy Template</h3>
+                    <p>drafted by PGC Legal Pty Ltd</p>
+                </div>
+                <div class="content-item">
+                    <div class="content-icon">🔒</div>
+                    <h3>Privacy Policy Template</h3>
+                    <p>drafted by PGC Legal Pty Ltd</p>
+                </div>
+                <div class="content-item">
+                    <div class="content-icon">✅</div>
+                    <h3>Consent Form for AI use</h3>
+                    <p>drafted by PGC Legal Pty Ltd</p>
+                </div>
+                <div class="content-item">
+                    <div class="content-icon">📋</div>
+                    <h3>AI Implementation Checklist</h3>
+                    <p>drafted by PGC Legal Pty Ltd</p>
+                </div>
+                <div class="content-item">
+                    <div class="content-icon">📝</div>
+                    <h3>Session Transcript Recommendation</h3>
+                    <p>Guidance on inclusion of session transcript/audio file in clinical notes drafted by PGC Legal Pty Ltd</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Options -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Pricing Options</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card featured">
+                    <h3>Individual Pack</h3>
+                    <div class="price">
+                        <span class="current">$199 (inc GST)</span>
+                    </div>
+                    <p>Single purchaser access only</p>
+                </div>
+                <div class="pricing-card contact-card">
+                    <h3>Medium Practice Bundle</h3>
+                    <div class="price">
+                        <span class="contact-text">Contact for Quote</span>
+                    </div>
+                    <p>2-5 Practitioners</p>
+                    <a href="mailto:david@psychologysquared.com.au?subject=Medium Practice Bundle Quote" class="contact-btn">Get Quote</a>
+                </div>
+                <div class="pricing-card contact-card">
+                    <h3>Large Practice Package</h3>
+                    <div class="price">
+                        <span class="contact-text">Contact for Quote</span>
+                    </div>
+                    <p>6-10 Practitioners</p>
+                    <a href="mailto:david@psychologysquared.com.au?subject=Large Practice Package Quote" class="contact-btn">Get Quote</a>
+                </div>
+            </div>
+            <p class="pricing-note">
+                Contact us for larger group discounts: <a href="mailto:david@psychologysquared.com.au">david@psychologysquared.com.au</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Legal Disclaimers -->
+    <section class="legal">
+        <div class="container">
+            <h2 class="section-title">Important Legal Information</h2>
+            <div class="legal-content">
+                <div class="legal-section">
+                    <h3>Information is Not Legal Advice</h3>
+                    <p>
+                        The above information, content and template documents (together <strong>'the content'</strong>) are the intellectual property of PGC Legal Pty Ltd and the provision of them by Psychology Squared does not constitute legal advice, and is provided for information only.
+                    </p>
+                    <p>
+                        The content is intended only to provide a summary and general overview on matters of interest. It is not intended to be comprehensive. It is not intended to be a substitute for legal advice, and should not be relied upon as such. You should seek independent legal advice or other professional advice in relation to any particular matters you or your organisation may have. The content is current as at the date of initial publication.
+                    </p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>Limitation of Liability</h3>
+                    <p>
+                        Neither PGC Legal Pty Ltd nor Psychology Squared are responsible to you or anyone else for any loss suffered in connection with the use of the content.
+                    </p>
+                    <p>
+                        PGC Legal Pty Ltd and Psychology Squared makes no warranties or representations about the content. We exclude, to the maximum extent permitted by law, any liability which may arise as a result of the use of this content. Where liability cannot be excluded, any liability incurred by use in relation to the use of this content is limited to the extent provided for by the Australian Consumer Law (Schedule 2 of the Competition and Consumer Act 2010). To the extent permitted by law, we will not be liable for any indirect, incidental, special or consequential loss.
+                    </p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>No Solicitor / Client relationship</h3>
+                    <p>
+                        Your use of this content is not intended to create, nor does it create, a solicitor-client relationship between you and PGC Legal Pty Ltd.
+                    </p>
+                    <p>
+                        Liability limited by a scheme approved under Professional Standards Legislation.
+                    </p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>Terms and Conditions</h3>
+                    <p>
+                        By purchasing you agree to the terms and conditions available here: 
+                        <a href="https://psychologysquared.com.au/termsandconditions" target="_blank">https://psychologysquared.com.au/termsandconditions</a>
+                    </p>
+                    <p>
+                        By purchasing you agree to the AI standards: 
+                        <a href="https://psychologysquared.com.au/ai-standards" target="_blank">https://psychologysquared.com.au/ai-standards</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Information</h2>
+            <div class="contact-content">
+                <p>This is a product by <strong>Psychology Squared</strong></p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <strong>Mobile:</strong> <a href="tel:0423048009">0423 048 009</a>
+                    </div>
+                    <div class="contact-item">
+                      <strong>Email:</strong> <a href="mailto:hello@psychologysquared.com.au">hello@psychologysquared.com.au</a>
+                  </div>
+                    <div class="contact-item">
+                        <strong>Facebook Group:</strong> <a href="https://www.facebook.com/groups/austpsychai" target="_blank">Australian Psychology AI Community</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        'use strict';
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 100;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.content-item, .badge, .pricing-card, .legal-section');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('fade-in');
+                }
+            });
+        };
+
+        // Initialize animations
+        const initializeAnimations = () => {
+            const heroElements = document.querySelectorAll('.hero-title, .hero-subtitle, .hero-description');
+            heroElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    element.classList.add('fade-in');
+                    element.style.opacity = '';
+                    element.style.transform = '';
+                }, index * 200);
+            });
+        };
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeAnimations();
+            animateOnScroll();
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
