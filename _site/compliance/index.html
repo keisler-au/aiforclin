@@ -50,132 +50,8 @@
 
   <main id="main" role="main">
     <style>
-    /* About Section */
-    .about {
-        background: rgba(20, 34, 58, 0.3);
-        border-top: 1px solid var(--border-color);
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .about-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: start;
-    }
-
-    .about-text h3 {
-        color: var(--primary-gold);
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
-    }
-
-    .about-text p {
-        color: var(--text-secondary);
-        font-size: 1rem;
-        line-height: 1.7;
-    }
-
-    .trust-badges {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .badge {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.5rem;
-        background: rgba(212, 175, 55, 0.08);
-        border: 1px solid var(--border-color);
-        border-radius: 0.5rem;
-        transition: var(--transition);
-    }
-
-    .badge:hover {
-        background: var(--hover-bg);
-        border-color: var(--primary-gold);
-    }
-
-    .badge-icon {
-        font-size: 2rem;
-    }
-
-    .badge-text h4 {
-        color: var(--primary-gold);
-        font-size: 1.1rem;
-        margin-bottom: 0.3rem;
-    }
-
-    .badge-text p {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-    }
-
     /* Contents Grid */
-    .contents-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-bottom: 3rem;
-    }
 
-    .content-item {
-        padding: 2rem;
-        background: rgba(212, 175, 55, 0.08);
-        border: 2px solid var(--border-color);
-        border-radius: 0.5rem;
-        text-align: center;
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .content-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-        transition: left 0.5s ease;
-        pointer-events: none;
-    }
-
-    .content-item:hover::before {
-        left: 100%;
-    }
-
-    .content-item:hover {
-        background: var(--hover-bg);
-        border-color: var(--primary-gold);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
-    }
-
-    .content-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
-
-    .content-item h3 {
-        color: var(--primary-gold);
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        position: relative;
-        z-index: 1;
-    }
-
-    .content-item p {
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-        position: relative;
-        z-index: 1;
-    }
 
     /* Pricing Section */
     .pricing {
@@ -499,78 +375,80 @@
     </div>
 </header>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About the AI Compliance Pack</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Now immediately available upon purchase</h3>
-                    <p>
-                        The <strong>AI Compliance Pack</strong> is part of your AI compliance essentials for psychologists who currently use or are planning to implement AI in their practices. It serves as a cost-effective alternative to independently developing compliance materials. This purchase item for a single purchaser for their own access <strong>only</strong>
-                    </p>
+<!-- About Section -->
+<section id="about" class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">
+            About <span class="section-title-accent">the AI Compliance Pack</span>
+        </h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3 class="content-info-header">Now immediately available upon purchase</h3>
+                <p class="section-text">
+                    The <strong>AI Compliance Pack</strong> is part of your AI compliance essentials for psychologists who currently use or are planning to implement AI in their practices. It serves as a cost-effective alternative to independently developing compliance materials. This purchase item for a single purchaser for their own access <strong>only</strong>
+                </p>
+            </div>
+            
+            <div class="trust-badges">
+                <div class="badge">
+                    <div class="badge-icon">🛡️</div>
+                    <div class="badge-text">
+                        <h4>Legal Compliance</h4>
+                        <p>Drafted by PGC Legal Pty Ltd</p>
+                    </div>
                 </div>
-                
-                <div class="trust-badges">
-                    <div class="badge">
-                        <div class="badge-icon">🛡️</div>
-                        <div class="badge-text">
-                            <h4>Legal Compliance</h4>
-                            <p>Drafted by PGC Legal Pty Ltd</p>
-                        </div>
+                <div class="badge">
+                    <div class="badge-icon">📋</div>
+                    <div class="badge-text">
+                        <h4>Ready to Use</h4>
+                        <p>Immediately available</p>
                     </div>
-                    <div class="badge">
-                        <div class="badge-icon">📋</div>
-                        <div class="badge-text">
-                            <h4>Ready to Use</h4>
-                            <p>Immediately available</p>
-                        </div>
-                    </div>
-                    <div class="badge">
-                        <div class="badge-icon">🇦🇺</div>
-                        <div class="badge-text">
-                            <h4>Australian Standards</h4>
-                            <p>Consistent with regulations</p>
-                        </div>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">🇦🇺</div>
+                    <div class="badge-text">
+                        <h4>Australian Standards</h4>
+                        <p>Consistent with regulations</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Pack Contents Section -->
-    <section id="contents" class="contents">
-        <div class="container">
-            <h2 class="section-title">Pack Contents</h2>
-            <div class="contents-grid">
-                <div class="content-item">
-                    <div class="content-icon">📄</div>
-                    <h3>AI Policy Template</h3>
-                    <p>drafted by PGC Legal Pty Ltd</p>
-                </div>
-                <div class="content-item">
-                    <div class="content-icon">🔒</div>
-                    <h3>Privacy Policy Template</h3>
-                    <p>drafted by PGC Legal Pty Ltd</p>
-                </div>
-                <div class="content-item">
-                    <div class="content-icon">✅</div>
-                    <h3>Consent Form for AI use</h3>
-                    <p>drafted by PGC Legal Pty Ltd</p>
-                </div>
-                <div class="content-item">
-                    <div class="content-icon">📋</div>
-                    <h3>AI Implementation Checklist</h3>
-                    <p>drafted by PGC Legal Pty Ltd</p>
-                </div>
-                <div class="content-item">
-                    <div class="content-icon">📝</div>
-                    <h3>Session Transcript Recommendation</h3>
-                    <p>Guidance on inclusion of session transcript/audio file in clinical notes drafted by PGC Legal Pty Ltd</p>
-                </div>
+<!-- Pack Contents Section -->
+<section id="contents" class="contents section">
+    <div class="container">
+        <h2 class="section-title">Pack Contents</h2>
+        <div class="contents-grid">
+            <div class="content-item">
+                <div class="content-icon">📄</div>
+                <h3 class="content-info-header">AI Policy Template</h3>
+                <p>drafted by PGC Legal Pty Ltd</p>
+            </div>
+            <div class="content-item">
+                <div class="content-icon">🔒</div>
+                <h3 class="content-info-header">Privacy Policy Template</h3>
+                <p>drafted by PGC Legal Pty Ltd</p>
+            </div>
+            <div class="content-item">
+                <div class="content-icon">✅</div>
+                <h3 class="content-info-header">Consent Form for AI use</h3>
+                <p>drafted by PGC Legal Pty Ltd</p>
+            </div>
+            <div class="content-item">
+                <div class="content-icon">📋</div>
+                <h3 class="content-info-header">AI Implementation Checklist</h3>
+                <p>drafted by PGC Legal Pty Ltd</p>
+            </div>
+            <div class="content-item">
+                <div class="content-icon">📝</div>
+                <h3 class="content-info-header">Session Transcript Recommendation</h3>
+                <p>Guidance on inclusion of session transcript/audio file in clinical notes drafted by PGC Legal Pty Ltd</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Pricing Options -->
     <section class="pricing">
