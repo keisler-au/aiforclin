@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heidi Health - AI Scribe Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>        
+        :root {
+            --primary-gold: #D4AF37;
+            --gold-light: #F4E4BC;
+            --gold-dark: #B8941F;
+            --navy-dark: #1A2B44;
+            --navy-darker: #14223A;
+            --navy-deepest: #0F1A2E;
+            --text-primary: #D4AF37;
+            --text-secondary: #F4E4BC;
+            --text-muted: #C4B078;
+            --border-color: rgba(212, 175, 55, 0.3);
+            --hover-bg: rgba(212, 175, 55, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, var(--navy-deepest) 0%, var(--navy-darker) 50%, var(--navy-dark) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3.75rem;
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--primary-gold);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .content {
+            background: rgba(212, 175, 55, 0.08);
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 40px;
+            margin-bottom: 3.75rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+            transition: left 0.8s ease;
+            pointer-events: none;
+        }
+
+        .content:hover::before {
+            left: 100%;
+        }
+
+        .content:hover {
+            background: var(--hover-bg);
+            border-color: var(--primary-gold);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .company-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-section {
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-gold);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
+
+        .info-section:hover::before {
+            left: 100%;
+        }
+
+        .info-section:hover {
+            background: rgba(212, 175, 55, 0.18);
+            border-color: var(--primary-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.12);
+        }
+
+        .info-section h3 {
+            color: var(--primary-gold);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-gold);
+            padding-bottom: 0.5rem;
+            letter-spacing: 0.025em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-section p, .info-section li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-section strong {
+            color: var(--primary-gold);
+            font-weight: 700;
+        }
+
+        .highlight {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 700;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .warning {
+            background: rgba(184, 148, 31, 0.2);
+            color: var(--gold-dark);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 700;
+            border: 1px solid rgba(184, 148, 31, 0.3);
+        }
+
+        .navigation {
+            display: flex;
+            gap: 1.25rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-button {
+            display: inline-block;
+            text-decoration: none;
+            background: rgba(212, 175, 55, 0.08);
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.25rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Lora', serif;
+            letter-spacing: 0.025em;
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+            pointer-events: none;
+        }
+
+        .nav-button:hover::before,
+        .nav-button:focus::before {
+            left: 100%;
+        }
+
+        .nav-button:hover,
+        .nav-button:focus {
+            background: var(--hover-bg);
+            border-color: var(--primary-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+            outline: none;
+            color: var(--gold-light);
+        }
+
+        .nav-button:focus {
+            outline: 2px solid var(--primary-gold);
+            outline-offset: 2px;
+        }
+
+        .nav-button.primary {
+            background: rgba(212, 175, 55, 0.12);
+            border-color: var(--gold-dark);
+        }
+
+        .nav-button.primary:hover,
+        .nav-button.primary:focus {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--primary-gold);
+        }
+
+        .nav-button.special {
+            background: rgba(212, 175, 55, 0.15);
+            border: 2px solid var(--primary-gold);
+            color: var(--gold-light);
+        }
+
+        .nav-button.special:hover,
+        .nav-button.special:focus {
+            background: rgba(212, 175, 55, 0.25);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+        }
+
+        .check-mark {
+            color: var(--primary-gold);
+            font-weight: 700;
+            margin-right: 0.25rem;
+        }
+
+        .trial-info {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary-gold);
+        }
+
+        .trial-info h4 {
+            color: var(--primary-gold);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .trial-info ul {
+            margin-left: 1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.875rem 0.9375rem;
+            }
+
+            .header h1 {
+                font-size: clamp(2rem, 6vw, 2.5rem);
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .content {
+                padding: 1.25rem;
+            }
+
+            .info-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .info-section p, .info-section li {
+                font-size: 1rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.9375rem;
+            }
+
+            .nav-button {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .company-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .info-section ul {
+                margin-left: 1rem;
+            }
+
+            .nav-button {
+                padding: 0.875rem 1.25rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        @media (prefers-contrast: high) {
+            .content,
+            .info-section,
+            .nav-button,
+            .trial-info {
+                border-width: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Heidi Health</h1>
+            <p>AI-Powered Medical Documentation & Practice Management</p>
+        </header>
+
+        <article class="content">
+            <div class="company-info">
+                <section class="info-section">
+                    <h3>Company Overview</h3>
+                    <p><strong>Contact:</strong> Damian Attia</p>
+                    <p><strong>Role:</strong> Business Development Manager</p>
+                    <p><strong>Email:</strong> Damian@heidihealth.com</p>
+                    <p><strong>Specialization:</strong> AI-powered medical documentation and practice management</p>
+                </section>
+
+                <section class="info-section">
+                    <h3>Privacy & Compliance</h3>
+                    <p><strong>Australian Privacy Principles:</strong> <span class="warning">Not Sure</span></p>
+                    <p><strong>Data Storage:</strong> Australian AWS servers</p>
+                    <p><strong>Security:</strong> <span class="highlight">SOC2 and ISO27001 certified</span></p>
+                    <p><strong>Regulation:</strong> Multiple countries</p>
+                </section>
+
+                <section class="info-section">
+                    <h3>Trial & Pricing</h3>
+                    <p><strong>Free Level:</strong> <span class="highlight">Yes - Free tier available</span></p>
+                    <p><strong>Free Trial:</strong> <span class="highlight">Yes</span></p>
+                    
+                    <div class="trial-info">
+                        <h4>Trial Duration:</h4>
+                        <ul>
+                            <li>Pro tier: 7 days</li>
+                            <li>Together tier: 30 days</li>
+                            <li>Enterprise tier: varies</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>Pricing Range:</strong> Free tier to $1299 per user/year</p>
+                </section>
+
+                <section class="info-section">
+                    <h3>Core Features</h3>
+                    <ul>
+                        <li><strong>Transcription</strong> - Real-time medical transcription</li>
+                        <li><strong>Document/note generation</strong> - Automated clinical notes</li>
+                        <li><strong>Custom templates</strong> - Personalized documentation</li>
+                        <li><strong>Ask AI</strong> - AI-powered medical assistance</li>
+                        <li><strong>PMS integrations</strong> - Practice management connectivity</li>
+                        <li><strong>Team infrastructure</strong> - Multi-user support</li>
+                        <li><strong>Telehealth support</strong> - Remote consultation tools</li>
+                        <li><strong>Heidi Health App</strong> - Mobile accessibility</li>
+                    </ul>
+                </section>
+
+                <section class="info-section">
+                    <h3>Unique Features</h3>
+                    <ul>
+                        <li><strong>Medical language training</strong> - AI trained by clinicians</li>
+                        <li><strong>Enterprise security</strong> - SOC2 and ISO27001 compliance</li>
+                        <li><strong>Global regulation</strong> - Compliant in multiple countries</li>
+                        <li><strong>Dedicated tools</strong> - Seamless use cases</li>
+                        <li><strong>Multi-language support</strong> - Cantonese, French, German, Mandarin, Spanish, and more</li>
+                    </ul>
+                </section>
+
+                <section class="info-section">
+                    <h3>Technical Specifications</h3>
+                    <p><strong>Headphones Support:</strong> <span class="check-mark">✓</span> Yes</p>
+                    <p><strong>Phone Support:</strong> <span class="check-mark">✓</span> Yes</p>
+                    <p><strong>Telehealth Integration:</strong> <span class="check-mark">✓</span> Yes</p>
+                    <p><strong>Multi-note Reports:</strong> <span class="check-mark">✓</span> Yes</p>
+                    <p><strong>AI Training:</strong> <span class="check-mark">✓</span> Via user-created templates</p>
+                    <p><strong>Content Preferences:</strong> <span class="check-mark">✓</span> Customizable generation</p>
+                    <p><strong>Quality Sources:</strong> <span class="check-mark">✓</span> Evidence-based restrictions</p>
+                </section>
+
+                <section class="info-section">
+                    <h3>Practice Management Integration</h3>
+                    <p><strong>PMS Support:</strong> <span class="check-mark">✓</span> Yes</p>
+                    
+                    <div class="trial-info">
+                        <h4>Current Integrations:</h4>
+                        <ul>
+                            <li>Cliniko</li>
+                            <li>Best Practice</li>
+                            <li>Medirecords</li>
+                            <li>More integrations upcoming</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="info-section">
+                    <h3>User Experience & Sustainability</h3>
+                    <p><strong>User Interface:</strong> Intuitive UI with dedicated engineering support</p>
+                    <p><strong>Mobile Support:</strong> Available on all mobile platforms</p>
+                    <p><strong>Eco-Friendly:</strong> Remote work options, upcoming ESG report</p>
+                    <p><strong>Team Support:</strong> Dedicated engineering team</p>
+                </section>
+            </div>
+
+            <nav class="navigation" aria-label="Navigation links">
+                <a href="index.html" class="nav-button primary" aria-label="Return to comparison page">Back to Comparison</a>
+                <a href="https://bit.ly/psheaffiliate" class="nav-button special" target="_blank" rel="noopener noreferrer" aria-label="Start 30 days free trial">30 Days Free Trial</a>
+                <a href="mailto:Damian@heidihealth.com" class="nav-button" aria-label="Contact Heidi Health">Contact Heidi Health</a>
+            </nav>
+        </article>
+    </div>
+
+    <script>
+        'use strict';
+        
+        const animateElements = () => {
+            const elements = document.querySelectorAll('.header, .content');
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        element.classList.add('fade-in');
+                        element.style.opacity = '';
+                        element.style.transform = '';
+                    }, index * 150);
+                });
+            });
+        };
+
+        const addRippleEffect = (button, event) => {
+            const ripple = document.createElement('div');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            Object.assign(ripple.style, {
+                position: 'absolute',
+                borderRadius: '50%',
+                background: 'rgba(212, 175, 55, 0.6)',
+                transform: 'scale(0)',
+                animation: 'ripple 0.6s linear',
+                left: x + 'px',
+                top: y + 'px',
+                width: size + 'px',
+                height: size + 'px',
+                pointerEvents: 'none'
+            });
+            
+            button.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        };
+
+        const handleKeyNavigation = (event) => {
+            const navButtons = Array.from(document.querySelectorAll('.nav-button'));
+            const currentIndex = navButtons.indexOf(document.activeElement);
+            
+            switch(event.key) {
+                case 'ArrowLeft':
+                    if (currentIndex > 0) {
+                        event.preventDefault();
+                        navButtons[currentIndex - 1].focus();
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (currentIndex < navButtons.length - 1) {
+                        event.preventDefault();
+                        navButtons[currentIndex + 1].focus();
+                    }
+                    break;
+                case 'Enter':
+                case ' ':
+                    if (document.activeElement.classList.contains('nav-button')) {
+                        event.preventDefault();
+                        document.activeElement.click();
+                    }
+                    break;
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            animateElements();
+            
+            const navButtons = document.querySelectorAll('.nav-button');
+            navButtons.forEach(button => {
+                button.addEventListener('click', (e) => addRippleEffect(button, e), { passive: true });
+            });
+            
+            document.addEventListener('keydown', handleKeyNavigation);
+        });
+    </script>
+</body>
+</html>

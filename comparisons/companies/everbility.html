@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everbility - AI Scribe Company Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>        
+        :root {
+            --primary-gold: #D4AF37;
+            --gold-light: #F4E4BC;
+            --gold-dark: #B8941F;
+            --navy-dark: #1A2B44;
+            --navy-darker: #14223A;
+            --navy-deepest: #0F1A2E;
+            --text-primary: #D4AF37;
+            --text-secondary: #F4E4BC;
+            --text-muted: #C4B078;
+            --border-color: rgba(212, 175, 55, 0.3);
+            --hover-bg: rgba(212, 175, 55, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, var(--navy-deepest) 0%, var(--navy-darker) 50%, var(--navy-dark) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3.75rem;
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--primary-gold);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .company-details {
+            background: rgba(212, 175, 55, 0.08);
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 40px;
+            margin-bottom: 3.75rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .company-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+            transition: left 0.8s ease;
+            pointer-events: none;
+        }
+
+        .company-details:hover::before {
+            left: 100%;
+        }
+
+        .company-details:hover {
+            background: var(--hover-bg);
+            border-color: var(--primary-gold);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .detail-section {
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .detail-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-section h2 {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            border-bottom: 2px solid var(--primary-gold);
+            padding-bottom: 0.5rem;
+            letter-spacing: 0.025em;
+        }
+
+        .detail-section h3 {
+            color: var(--text-secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .detail-section p, .detail-section li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .detail-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-section strong {
+            color: var(--primary-gold);
+            font-weight: 700;
+        }
+
+        .highlight {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 700;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .navigation {
+            display: flex;
+            gap: 1.25rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            display: inline-block;
+            text-decoration: none;
+            background: rgba(212, 175, 55, 0.08);
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.25rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Lora', serif;
+            letter-spacing: 0.025em;
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+            pointer-events: none;
+        }
+
+        .nav-button:hover::before,
+        .nav-button:focus::before {
+            left: 100%;
+        }
+
+        .nav-button:hover,
+        .nav-button:focus {
+            background: var(--hover-bg);
+            border-color: var(--primary-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+            outline: none;
+            color: var(--gold-light);
+        }
+
+        .nav-button:focus {
+            outline: 2px solid var(--primary-gold);
+            outline-offset: 2px;
+        }
+
+        .nav-button.secondary {
+            background: rgba(212, 175, 55, 0.12);
+            border-color: var(--gold-dark);
+        }
+
+        .nav-button.secondary:hover,
+        .nav-button.secondary:focus {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--primary-gold);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.25rem;
+        }
+
+        .feature-item {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            border-left: 4px solid var(--primary-gold);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
+
+        .feature-item:hover::before {
+            left: 100%;
+        }
+
+        .feature-item:hover {
+            background: rgba(212, 175, 55, 0.16);
+            border-color: var(--primary-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.12);
+        }
+
+        .feature-item h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-item p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .special-offer {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--primary-gold);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.25rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-offer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.8s ease;
+            pointer-events: none;
+        }
+
+        .special-offer:hover::before {
+            left: 100%;
+        }
+
+        .special-offer p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .special-offer strong {
+            color: var(--primary-gold);
+            font-weight: 700;
+        }
+
+        .special-offer a {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px solid rgba(244, 228, 188, 0.3);
+            transition: var(--transition);
+        }
+
+        .special-offer a:hover {
+            border-color: var(--gold-light);
+            color: var(--primary-gold);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.875rem 0.9375rem;
+            }
+
+            .header h1 {
+                font-size: clamp(2rem, 6vw, 2.5rem);
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .company-details {
+                padding: 1.25rem;
+            }
+
+            .detail-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .detail-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .detail-section p, .detail-section li {
+                font-size: 1rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.9375rem;
+            }
+
+            .nav-button {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .detail-section ul {
+                margin-left: 1rem;
+            }
+
+            .nav-button {
+                padding: 0.875rem 1.25rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        @media (prefers-contrast: high) {
+            .company-details,
+            .nav-button,
+            .feature-item,
+            .special-offer {
+                border-width: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Everbility</h1>
+            <p>Clinical Documentation with Extensive Context and Research Integration</p>
+        </header>
+
+        <article class="company-details">
+            <section class="detail-section">
+                <h2>Company Overview</h2>
+                <p><strong>Contact:</strong> support@everbility.com</p>
+                
+                <div class="special-offer">
+                    <p><strong>Special Offer:</strong> $10 off the first 3 months via <a href="http://www.bit.ly/eveaffiliate" target="_blank" rel="noopener noreferrer">http://www.bit.ly/eveaffiliate</a></p>
+                </div>
+            </section>
+
+            <section class="detail-section">
+                <h2>Privacy & Compliance</h2>
+                <p><strong>Australian Privacy Principles:</strong> <span class="highlight">Yes</span></p>
+                <p><strong>Data Storage:</strong> <span class="highlight">Australia</span></p>
+                <p><strong>Security:</strong> Enterprise-grade security with Australian data sovereignty</p>
+            </section>
+
+            <section class="detail-section">
+                <h2>Trial & Pricing</h2>
+                <p><strong>Free Level Membership:</strong> <span class="highlight">Yes</span></p>
+                <p><strong>Free Trial:</strong> <span class="highlight">7 days</span></p>
+                <h3>Pricing Plans:</h3>
+                <ul>
+                    <li><strong>Single Plan:</strong> $50 AUD per month per clinician</li>
+                    <li><strong>Annual Plan:</strong> $420 AUD per year per clinician (30% discount)</li>
+                    <li><strong>Includes:</strong> No additional costs for template support or training calls</li>
+                </ul>
+            </section>
+
+            <section class="detail-section">
+                <h2>Core Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>Clinical Documentation</h4>
+                        <p>Supports clinicians to use any amount of context to write any length of documentation</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Transcription & Generation</h4>
+                        <p>From transcribing and generating notes to writing detailed, long reports</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Historical Context</h4>
+                        <p>Uses historical client information for comprehensive documentation</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="detail-section">
+                <h2>Unique Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>Extensive Context Reports</h4>
+                        <p>Ability to write very long reports using extensive context</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Research Integration</h4>
+                        <p>Features to find peer-reviewed research and additional NDIS knowledge</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>PDF Upload</h4>
+                        <p>Capability to upload PDFs, including handwriting</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Unlimited Support</h4>
+                        <p>Provides unlimited customer support without additional fees for template creation</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="detail-section">
+                <h2>Technical Specifications</h2>
+                <p><strong>Works with headphones:</strong> <span class="highlight">Coming Soon</span> - Headphone and phone support will be implemented soon</p>
+                <p><strong>Works over the phone:</strong> <span class="highlight">Loudspeaker</span> - Works on loudspeaker, headphone and phone support coming</p>
+                <p><strong>Multi-note reports:</strong> <span class="highlight">Yes</span></p>
+                <p><strong>Works with telehealth:</strong> <span class="highlight">Yes</span></p>
+                <p><strong>AI trainable:</strong> <span class="highlight">Yes</span> - Currently trainable through prompts in templates, plans to build more training options</p>
+                <p><strong>Content generation according to preferences:</strong> <span class="highlight">Yes</span></p>
+            </section>
+
+            <section class="detail-section">
+                <h2>Integration</h2>
+                <p><strong>Practice Management Software:</strong> Building integrations with many Australian practice management softwares</p>
+                <p><strong>Languages:</strong> Can be used in many other languages, offers support for any language issues</p>
+            </section>
+
+            <section class="detail-section">
+                <h2>User Experience</h2>
+                <p><strong>User-Friendliness:</strong> Information not specified</p>
+                <p><strong>Eco-Friendliness:</strong> Information not specified</p>
+                <p><strong>Training & Support:</strong> Unlimited customer support and template creation included</p>
+            </section>
+        </article>
+
+        <nav class="navigation" aria-label="Navigation links">
+            <a href="index.html" class="nav-button" aria-label="Return to comparison page">Back to Comparison</a>
+            <a href="http://www.bit.ly/eveaffiliate" class="nav-button secondary" target="_blank" rel="noopener noreferrer" aria-label="Get $10 off first 3 months">Get $10 Off First 3 Months</a>
+        </nav>
+    </div>
+
+    <script>
+        'use strict';
+        
+        const animateElements = () => {
+            const elements = document.querySelectorAll('.header, .company-details, .navigation');
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        element.classList.add('fade-in');
+                        element.style.opacity = '';
+                        element.style.transform = '';
+                    }, index * 150);
+                });
+            });
+        };
+
+        const addRippleEffect = (button, event) => {
+            const ripple = document.createElement('div');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            Object.assign(ripple.style, {
+                position: 'absolute',
+                borderRadius: '50%',
+                background: 'rgba(212, 175, 55, 0.6)',
+                transform: 'scale(0)',
+                animation: 'ripple 0.6s linear',
+                left: x + 'px',
+                top: y + 'px',
+                width: size + 'px',
+                height: size + 'px',
+                pointerEvents: 'none'
+            });
+            
+            button.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        };
+
+        const handleKeyNavigation = (event) => {
+            const navButtons = Array.from(document.querySelectorAll('.nav-button'));
+            const currentIndex = navButtons.indexOf(document.activeElement);
+            
+            switch(event.key) {
+                case 'ArrowLeft':
+                    if (currentIndex > 0) {
+                        event.preventDefault();
+                        navButtons[currentIndex - 1].focus();
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (currentIndex < navButtons.length - 1) {
+                        event.preventDefault();
+                        navButtons[currentIndex + 1].focus();
+                    }
+                    break;
+                case 'Enter':
+                case ' ':
+                    if (document.activeElement.classList.contains('nav-button')) {
+                        event.preventDefault();
+                        document.activeElement.click();
+                    }
+                    break;
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            animateElements();
+            
+            const navButtons = document.querySelectorAll('.nav-button');
+            navButtons.forEach(button => {
+                button.addEventListener('click', (e) => addRippleEffect(button, e), { passive: true });
+            });
+            
+            document.addEventListener('keydown', handleKeyNavigation);
+        });
+    </script>
+</body>
+</html>

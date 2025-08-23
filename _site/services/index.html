@@ -52,44 +52,16 @@
     <style>        
     /* Hero Section */
     .hero {
-        min-height: 70vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: row;
+        margin: 22vh auto;
     }
 
     .hero-content {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        align-items: center;
         width: 50%;
     }
 
     .hero-text {
         text-align: center;
-    }
-
-    .hero-title {
-        font-size: clamp(2.5rem, 6vw, 4.5rem);
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--text-secondary);
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        letter-spacing: 0.05em;
-        line-height: 1.2;
-    }
-
-    .hero-title-accent {
-        color: var(--primary-gold);
-    }
-
-    .hero-subtitle {
-        font-size: clamp(1.1rem, 3vw, 1.5rem);
-        color: var(--text-secondary);
-        margin-bottom: 2rem;
-        font-weight: 400;
-        font-style: italic;
     }
 
     .hero-cta {
@@ -662,14 +634,14 @@
 </style>
 
 <!-- Hero Section -->
-<section id="home" class="hero container">
+<header id="home" class="title-container container hero">
     <div class="hero-content">
         <div class="hero-text">
-            <h1 class="hero-title">
+            <h1 class="main-title">
                 AI FOR<br />
-                <span class="hero-title-accent">CLINICIANS</span>
+                <span class="main-title-accent">CLINICIANS</span>
             </h1>
-            <p class="hero-subtitle">Building effective and responsible AI use</p>
+            <p class="main-subtitle">Building effective and responsible AI use</p>
             <a href="#contact" class="hero-cta" onclick="scrollToSection('contact')">
                 GET IN TOUCH<br />
                 <small class="hero-cta-subtitle">Transform Your Practice</small>
@@ -679,7 +651,7 @@
     <div class="hero-image">
         <img src="../assets/images/professionalHeadshot.png" alt="David Lopis - AI Consultant" class="hero-img" />
     </div>
-</section>
+</header>
 
 <!-- About Section -->
 <section id="about" class="section section-alt">

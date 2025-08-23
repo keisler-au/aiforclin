@@ -130,6 +130,45 @@ body {
     padding: 0 20px;
 }
 
+.dashboard-header {
+    margin: 4rem 0;
+    text-align: center;
+}
+
+.title-container {
+    min-height: 100%;
+    margin-top: 22vh;
+    margin-bottom: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: var(--primary-gold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+}
+
+.main-title-accent {
+    color: var(--primary-gold);
+}
+
+.main-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 0.625rem;
+    font-style: italic;
+}
+
+
+
 /* Footer */
 .site-footer {
     background: var(--navy-deepest);
