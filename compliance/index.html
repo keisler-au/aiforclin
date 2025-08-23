@@ -5,34 +5,6 @@ description: Essential AI compliance materials for Australian psychologists.
 ---
     
 <style>
-
-    
-    /* Compliance Symbols */
-    .compliance-symbols {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        max-width: 400px;
-        margin: 0 auto;
-    }
-
-    .symbol {
-        font-size: 3rem;
-        padding: 1.5rem;
-        background: rgba(212, 175, 55, 0.08);
-        border: 2px solid var(--border-color);
-        border-radius: 1rem;
-        transition: var(--transition);
-        cursor: default;
-    }
-
-    .symbol:hover {
-        background: var(--hover-bg);
-        border-color: var(--primary-gold);
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
-    }
-
     /* About Section */
     .about {
         background: rgba(20, 34, 58, 0.3);
@@ -358,75 +330,7 @@ description: Essential AI compliance materials for Australian psychologists.
         font-size: 0.9rem;
     }
 
-    /* Buy Button Styling */
-    .buy-button-container {
-        margin: 2rem 0;
-        display: flex;
-        justify-content: center;
-    }
 
-    .buy-button-container.secondary {
-        margin: 3rem 0;
-        padding: 2rem;
-        background: rgba(212, 175, 55, 0.08);
-        border: 2px solid var(--border-color);
-        border-radius: 0.5rem;
-    }
-
-    /* Primary Buy Now button */
-    .buy-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.9rem 1.8rem;
-        background: var(--buy-green);
-        color: #ffffff;
-        text-decoration: none;
-        border: 2px solid transparent;
-        border-radius: 0.6rem;
-        font-family: 'Lora', serif;
-        font-weight: 700;
-        font-size: 1.05rem;
-        letter-spacing: 0.3px;
-        cursor: pointer;
-        transition: var(--transition);
-        box-shadow: 0 8px 20px var(--buy-green-shadow);
-        justify-content: center;
-    }
-
-    .buy-button:hover,
-    .buy-button:focus {
-        background: var(--buy-green-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 12px 28px var(--buy-green-shadow);
-        outline: none;
-        text-decoration: none;
-    }
-
-    .buy-button:active {
-        transform: translateY(0);
-        box-shadow: 0 6px 16px var(--buy-green-shadow);
-    }
-
-    /* Shopify button overrides */
-    .shopify-buy__btn {
-        background-color: var(--primary-gold) !important;
-        color: var(--navy-deepest) !important;
-        border: none !important;
-        border-radius: 0.5rem !important;
-        padding: 1rem 2rem !important;
-        font-family: 'Lora', serif !important;
-        font-weight: 600 !important;
-        font-size: 1.1rem !important;
-        transition: var(--transition) !important;
-        text-transform: none !important;
-    }
-
-    .shopify-buy__btn:hover {
-        background-color: var(--gold-dark) !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3) !important;
-    }
 
     /* Animations */
     @keyframes fadeInUp {
@@ -527,39 +431,26 @@ description: Essential AI compliance materials for Australian psychologists.
 
 <!-- Hero Section -->
 <header id="home" class="title-container container">
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1 class="main-title">
-                AI COMPLIANCE<br>
-                <span class="main-title-accent">PACK</span>
-            </h1>
-            <p class="main-subtitle">For Australian Psychologists</p>
-            <p class="hero-description">
-                Get your AI compliance essentials. NOW COMPLETED<br>
-                Presale now for AI compliance essentials for psychologists, consistent with Australian regulations.
-            </p>
-            
-            <div class="buy-button-container">
-                <a href="https://buy.stripe.com/aFa28r5UQaKL3Dvb764gg01?locale=en-GB&__embed_source=buy_btn_1RlLQPG4Ta88snSMeZy78BLb" class="buy-button" target="_blank" rel="noopener noreferrer" aria-label="Buy the AI Compliance Pack now via Stripe">
-                    Buy Now
-                </a>
-            </div>
-
-            
-            <div class="price-info">
-                <span class="current-price">$199 (inc GST)</span>
-            </div>
-        </div>
+    <div class="title-content title-content-centered">
+        <h1 class="main-title main-title-accent">
+            AI<br>COMPLIANCE<br>
+            <span class="main-title">PACK</span>
+        </h1>
+        <p class="main-subtitle">For Australian Psychologists</p>
         
-        <div class="hero-visual">
-            <div class="compliance-symbols">
-                <div class="symbol shield">🛡️</div>
-                <div class="symbol document">📋</div>
-                <div class="symbol checkmark">✅</div>
-                <div class="symbol legal">⚖️</div>
-                <div class="symbol australia">🇦🇺</div>
-            </div>
+        <div class="buy-button-container">
+            <a href="https://buy.stripe.com/aFa28r5UQaKL3Dvb764gg01?locale=en-GB&__embed_source=buy_btn_1RlLQPG4Ta88snSMeZy78BLb" class="buy-button" target="_blank" rel="noopener noreferrer" aria-label="Buy the AI Compliance Pack now via Stripe">
+                Buy Now
+            </a>
         </div>
+        <span class="hero-info">$199 (inc GST)</span>
+    </div>
+    <div class="compliance-symbols">
+        <div class="symbol shield">🛡️</div>
+        <div class="symbol document">📋</div>
+        <div class="symbol checkmark">✅</div>
+        <div class="symbol legal">⚖️</div>
+        <div class="symbol australia">🇦🇺</div>
     </div>
 </header>
 
