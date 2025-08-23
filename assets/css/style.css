@@ -130,10 +130,6 @@ body {
     padding: 0 20px;
 }
 
-.main {
-    padding-top: 4rem;
-}
-
 /* Footer */
 .site-footer {
     background: var(--navy-deepest);
