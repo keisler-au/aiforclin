@@ -59,13 +59,7 @@ body {
     top: 10px;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Header */
+/* Nav Header */
 .site-header {
     background: rgba(15, 26, 46, 0.95);
     backdrop-filter: blur(10px);
@@ -129,10 +123,18 @@ body {
     background: var(--hover-bg);
 }
 
-.main-content {
+/* Main */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main {
     padding-top: 4rem;
 }
 
+/* Footer */
 .site-footer {
     background: var(--navy-deepest);
     border-top: 1px solid var(--border-color);
