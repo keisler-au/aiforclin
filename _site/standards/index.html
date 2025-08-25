@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/main.js"></script>
 </head>
 <body>
     
@@ -34,15 +35,14 @@
         <a href="/" class="nav-brand" aria-label="AI for Clinicians home">
             AI FOR CLINICIANS
         </a>
-    
         <nav class="nav" aria-label="Primary">
-        <ul class="nav-list">
-            <li><a href="/services/" class="nav-link">Services</a></li>
-            <li><a href="/compliance/" class="nav-link">Compliance Pack</a></li>
-            <li><a href="/comparisons/" class="nav-link">Comparisons Table</a></li>
-            <li><a href="/standards/" class="nav-link">AI Ethical Standards</a></li>
-            <li><a href="/contact/" class="nav-link">Contact</a></li>
-        </ul>
+            <ul class="nav-list">
+                <li><a href="/services/" class="nav-link">Services</a></li>
+                <li><a href="/compliance/" class="nav-link">Compliance Pack</a></li>
+                <li><a href="/comparisons/" class="nav-link">Comparisons Table</a></li>
+                <li><a href="/standards/" class="nav-link">AI Ethical Standards</a></li>
+                <li><a href="/contact/" class="nav-link">Contact</a></li>
+            </ul>
         </nav>
     </div>
 </header>      
@@ -51,496 +51,288 @@
     
 
   <main id="main" role="main">
-      <!-- Header -->
-  <header class="title-container-alt">
-    <div class="title-content title-content-centered">
-      <h1 class="main-title">AI Ethical Standards</h1>
-      <button type="button" class="btn" id="download-btn" aria-label="Download PDF version">
+        <!-- Header -->
+    <header class="title-container-alt">
+      <div class="title-content title-content-centered">
+        <h1 class="main-title">AI Ethical Standards</h1>
+        <a class="btn" href="/assets/pdfs/ai-ethical-standards.pdf" aria-label="Download PDF version">
           <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 4v12"/>
           </svg>
           Download PDF
-      </button>
-    </div>
-  </header>
-
-  <!-- Introduction -->
-  <section class="container">
-    <header class="card-header">
-      <h2 class="card-title text-lg">
-        Ethical standards for psychologists and psychologists in training regarding the use of AI:
-      </h2>
-    </header>
-  </section>
-
-  <!-- Table of Contents -->
-  <nav class="card mb-8 container" aria-label="Standards navigation">
-    <header class="card-header">
-      <h2 class="card-title text-lg">Table of Contents</h2>
-    </header>
-    <div class="card-content">
-      <div class="toc-grid" id="toc-grid">
-        <!-- Table of contents will be populated by JavaScript -->
+        </a>
       </div>
-    </div>
-  </nav>
+    </header>
 
-  <!-- Standards Sections -->
-  <section id="standards-container" class="container">
-    <!-- Standards will be populated by JavaScript -->
-  </section>
+    <!-- Introduction -->
+    <section class="container">
+      <header class="card-header">
+        <h2 class="card-title text-lg">
+          Ethical standards for psychologists and psychologists in training regarding the use of AI:
+        </h2>
+      </header>
+    </section>
 
-  <!-- Attribution -->
-  <section class="card mt-8 container">
-    <div class="card-content pt-6">
-      <div class="text-center space-y-2">
-        <p class="font-medium text-secondary">Attribution: Psychology Squared Pty Ltd</p>
-        <div class="flex items-center justify-center gap-2">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
-          <a href="mailto:hello@psychologysquared.com.au">
-            hello@psychologysquared.com.au
-          </a>
+    <!-- Table of Contents -->
+    <nav class="card mb-8 container" aria-label="Standards navigation">
+      <header class="card-header">
+        <h2 class="card-title text-lg">Table of Contents</h2>
+      </header>
+      <div class="card-content">
+        <div class="toc-grid">
+          <a class="toc-button" href="#accountability">1. Accountability</a>
+          <a class="toc-button" href="#inaccuracy">2. Potential inaccuracy of AI Job Produced</a>
+          <a class="toc-button" href="#prohibited">3. Prohibited Uses</a>
+          <a class="toc-button" href="#bias">4. Data Bias</a>
+          <a class="toc-button" href="#confidentiality">5. Confidentiality</a>
+          <a class="toc-button" href="#transparency">6. Transparency</a>
+          <a class="toc-button" href="#education">7. Continued Education</a>
+          <a class="toc-button" href="#communication">8. Organisational communication</a>
+          <a class="toc-button" href="#copyright">9. Copyright</a>
+          <a class="toc-button" href="#welfare">10. Use of AI that prioritises client welfare, consent and privacy</a>
+          <a class="toc-button" href="#consistency">11. Consistent AI use with program policies</a>
+          <a class="toc-button" href="#australian-principles">12. Consistent with the Australian AI Ethics principles</a>
+          <a class="toc-button" href="#competencies">13. Compliant with professional competencies</a>
+          <a class="toc-button" href="#product-disclaimer">14. Product Disclaimer</a>
+          <a class="toc-button" href="#staff-disclaimer">15. Staff Recommendations Disclaimer</a>
+          <a class="toc-button" href="#ai-usage">16. AI Usage in Psychology Squared Resources</a>
         </div>
       </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- Organization Info -->
-  <footer class="text-center mb-8 container">
-    <p class="text-sm text-muted mb-2">
-      <time datetime="2023-11-30">Last updated on 30 November 2023</time>
-    </p>
-    <address class="text-sm text-muted mb-4 not-italic">
-      Psychology Squared Pty Ltd<br>
-      "Psychology Squared"<br>
-      ABN 16 638 041 719
-    </address>
-  </footer>
-
-<script>
-  // AI Standards Data
-      // Standards data (from App.jsx)
-      const aiStandards = [
-{
-  id: 'accountability',
-  title: '1. Accountability',
-  content: [
-    'Responsibility is taken by the user for any decisions made based on, or as a result of an AI-generated product.',
-    'The user ensures proper oversight of AI-generated products to avoid any potential harm or liabilities.',
-    'AI is not a suitable substitute for a trained professional service that psychologists provide. All intervention models/strategies should all be based on accepted industry standards to ensure quality of the services provided as per the relevant APS/AHPRA ethical guidelines and standards as appropriate your relevant profession.',
-    'Due to the risk of plagiarism, it is encouraged that user seek the sources of information and use plagiarism checkers where appropriate. It may also be required to recognise and reference your sources of information when using AI for research or information gathering.'
-  ]
-},
-{
-  id: 'inaccuracy',
-  title: '2. Potential inaccuracy of AI Job Produced',
-  content: [
-    'Recognise that AI may produce work which is low quality or whereby the quality is unclear.',
-    'AI-generated content requires repeated human review and validation.',
-    'Ensure that you update and educate yourself about the capabilities and limitations of AI tools.',
-    'Recognise that AI tools are still being developed and evaluated, and as such their use in professional settings is still considered highly experimental. It may make mistakes, at times convincingly.',
-    'Use AI tools only when they can be justified and the risks are understood. Ensure that ethical guidelines for AI usage are followed at all times.'
-  ]
-},
-{
-  id: 'prohibited',
-  title: '3. Prohibited Uses',
-  content: [
-    'Avoid using AI for academic tasks that would misrepresent one\'s own capabilities or be considered \'excessive\' (e.g. having the AI complete mandated psychology internship tasks fully for you when the intention is that you do these yourself).',
-    'Do not use AI tools to complete assignments, tests, or other evaluative measures in a way that would violate standards of academic integrity. If you are studying, you should ensure that you have checked your institution\'s policy around the use of AI prior to use',
-    'Recognise and analyse when there is significance in AI\'s role in achieving the overall objectives in particular tasks which may benefit from human involvement.'
-  ]
-},
-{
-  id: 'bias',
-  title: '4. Data Bias',
-  content: [
-    'Be aware of the potential biases in AI algorithms and datasets. Recognise the potential for AI to make biased and stereotyped responses based on flawed, limited or incomplete data.',
-    'Regularly review, fact check and update AI tools where possible to minimise biases'
-  ]
-},
-{
-  id: 'confidentiality',
-  title: '5. Confidentiality',
-  content: [
-    'Ensure that any personal or sensitive data (e.g. names, date of birth, addresses, names of family members) used in conjunction with AI tools is deidentified and if necessary kept confidential and secure.',
-    'Do not share confidential information without proper consent (ideally written where possible)',
-    'You acknowledge that there may be legal, ethical and moral risks with AI if you choose to use any confidential client information even with client consent.',
-    'It is encouraged that data be deleted from AI systems at the earliest reasonable opportunity.'
-  ]
-},
-{
-  id: 'transparency',
-  title: '6. Transparency',
-  content: [
-    'Ideally before any service begins and with consent, seek to be transparent to the reader, client, peer or stakeholder about the use of AI in research, practice, and professional decision-making.'
-  ]
-},
-{
-  id: 'education',
-  title: '7. Continued Education',
-  content: [
-    'As AI technology continues to evolve, it is important for psychologists, provisional psychologists and psychology students to stay informed about new developments and best practices in the field.',
-    'Engage in continued education and training to learn about AI.'
-  ]
-},
-{
-  id: 'communication',
-  title: '8. Organisational communication',
-  content: [
-    'Ensure that you receive permission to use AI by your management and that its use is consistent with your organsational policy.'
-  ]
-},
-{
-  id: 'copyright',
-  title: '9. Copyright',
-  content: [
-    'The user should not enter resources that are copyrighted into AI'
-  ]
-},
-{
-  id: 'welfare',
-  title: '10. Use of AI in ways that prioritise client welfare, consent and privacy',
-  content: []
-},
-{
-  id: 'consistency',
-  title: '11. Consistent AI use in line with the AI program\'s existing policies',
-  content: []
-},
-{
-  id: 'australian-principles',
-  title: '12. Your use of AI will be consistent with the 8 voluntary Australian AI Ethics principles',
-  subtitle: '(as of 30 November 2023) by the Department of Industry, Science and Resources:',
-  content: [
-    'a) Human, societal and environmental wellbeing; AI systems should benefit individuals, society and the environment.',
-    'b) Human-centred values; AI systems should respect human rights, diversity, and the autonomy of individuals.',
-    'c) Fairness; In that AI systems should be inclusive and accessible, and should not involve or result in unfair discrimination against individuals, communities or groups.',
-    'd) Privacy protection and security; AI systems should respect and uphold privacy rights and data protection, and ensure the security of data.',
-    'e) Reliability and safety; In that AI systems should reliably operate in accordance with their intended purpose.',
-    'f) Transparency and explainability; There should be transparency and responsible disclosure so people can understand when they are being significantly impacted by AI, and can find out when an AI system is engaging with them.',
-    'g) Contestability; When an AI system significantly impacts a person, community, group or environment, there should be a timely process to allow people to challenge the use or outcomes of the AI system.',
-    'h) Accountability; People responsible for the different phases of the AI system lifecycle should be identifiable and accountable for the outcomes of the AI systems, and human oversight of AI systems should be enabled.'
-  ]
-},
-{
-  id: 'competencies',
-  title: '13. Your AI use as a psychologist should be compliant with the professional competencies',
-  subtitle: '(i.e. you agree to use AI ethically in these contexts)',
-  content: [
-    'Competency 1: Applying scientific knowledge of psychology to inform safe and effective practice;',
-    'Competency 2: Practicing ethically and professionally;',
-    'Competency 3: Exercising professional reflexivity, deliberate practice and self-care;',
-    'Competency 4: Conducting psychological assessments',
-    'Competency 5: Conducting psychological interventions;',
-    'Competency 6: Communicating and relating to others effectively and appropriately;',
-    'Competency 7: Demonstrating a health equity and human rights approach when working with Aboriginal and Torres Strait Islander Peoples, families and communities; and',
-    'Competency 8: Demonstrating a health equity and human rights approach when working with people from diverse groups;'
-  ]
-},
-{
-  id: 'product-disclaimer',
-  title: '14. Product Disclaimer',
-  content: [
-    'If you purchase any Psychology Squared Product which utilises AI, you recognise that the product results may vary, be unpredictable and largely out of the control of Psychology Squared. Psychology Squared AI products may be considered at present to be experimental in nature and at all times you should check the quality for yourself. The quality of AI responses may not be assured, however the user may be encouraged to vary AI prompts strategically to get the desired result.'
-  ]
-},
-{
-  id: 'staff-disclaimer',
-  title: '15. Staff Recommendations Disclaimer',
-  content: [
-    'You understand that posts and recommendations by Psychology Squared staff reviewing AI products do not represent any endorsement of the legality or ethics of the use of this AI.'
-  ]
-},
-{
-  id: 'ai-usage',
-  title: '16. AI Usage in Psychology Squared Resources',
-  content: [
-    'AI including ChatGPT, Jasper and others may be used in the production of Psychology Squared Resources'
-  ]
-}
-]
-
-  // State management
-  const state = {
-    expandedSections: new Set(),
-    scrollProgress: 0,
-    showBackToTop: false
-  };
-
-  // DOM elements
-  const backToTopBtn = document.getElementById('back-to-top');
-  const downloadBtn = document.getElementById('download-btn');
-  const tocGrid = document.getElementById('toc-grid');
-  const standardsContainer = document.getElementById('standards-container');
-
-  // Utility functions
-  function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  }
-
-  function sanitizeHTML(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
-
-  // Back to top functionality
-  function updateBackToTopVisibility() {
-    const shouldShow = window.scrollY > 300;
-    if (shouldShow !== state.showBackToTop) {
-      state.showBackToTop = shouldShow;
-      backToTopBtn.classList.toggle('visible', shouldShow);
-      backToTopBtn.setAttribute('aria-hidden', !shouldShow);
-    }
-  }
-
-  // Scroll handler
-  const handleScroll = debounce(() => {
-    updateScrollProgress();
-    updateBackToTopVisibility();
-  }, 16);
-
-  // Section toggling
-  function toggleSection(sectionId) {
-    const content = document.getElementById(`content-${sectionId}`);
-    const chevron = document.getElementById(`chevron-${sectionId}`);
-    const button = document.getElementById(`btn-${sectionId}`);
-    
-    if (!content || !chevron || !button) return;
-
-    const isExpanded = state.expandedSections.has(sectionId);
-    
-    if (isExpanded) {
-      state.expandedSections.delete(sectionId);
-      content.classList.remove('expanded');
-      button.setAttribute('aria-expanded', 'false');
-      chevron.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>`;
-    } else {
-      state.expandedSections.add(sectionId);
-      content.classList.add('expanded');
-      button.setAttribute('aria-expanded', 'true');
-      chevron.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>`;
-    }
-  }
-
-  // Smooth scrolling
-  function scrollToSection(sectionId) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerHeight = document.querySelector('.header').offsetHeight;
-      const yOffset = -headerHeight - 20;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    <!-- AI Standards Section -->
+<section id="ai-standards" class="section">
+  <div class="container">
+    <h2 class="section-title">AI Standards</h2>
+    <div class="content-container">
       
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      
-      // Focus management for accessibility
-      setTimeout(() => {
-        element.focus();
-      }, 500);
-    }
-  }
-
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    // Focus management
-    setTimeout(() => {
-      document.getElementById('main-content').focus();
-    }, 500);
-  }
-
-  // PDF generation
-  function generatePDF() {
-    const printWindow = window.open('', '_blank');
-    const content = `
-<!DOCTYPE html>
-<html>
-<head>
-<title>AI Ethical Standards - Psychology Squared</title>
-<meta charset="UTF-8">
-<style>
-  body { font-family: 'Times New Roman', serif; margin: 40px; line-height: 1.6; color: #1A2B44; }
-  h1 { color: #D4AF37; border-bottom: 2px solid #D4AF37; padding-bottom: 10px; font-weight: 700; }
-  h2 { color: #D4AF37; margin-top: 30px; font-weight: 700; }
-  h3 { color: #1A2B44; margin-top: 20px; font-weight: 600; }
-  .header { text-align: center; margin-bottom: 40px; }
-  .content { margin-bottom: 20px; }
-  .standard { margin-bottom: 30px; page-break-inside: avoid; }
-  .contact { margin-top: 40px; padding-top: 20px; border-top: 1px solid #D4AF37; }
-  ul { margin: 10px 0; }
-  li { margin: 8px 0; line-height: 1.5; }
-  em { font-style: italic; color: #666; }
-</style>
-</head>
-<body>
-<div class="header">
-  <h1>AI Ethical Standards</h1>
-  <p><strong>Last updated on 30 November 2023</strong></p>
-  <p>Psychology Squared Pty Ltd<br>"Psychology Squared"<br>ABN 16 638 041 719</p>
-</div>
-
-<h2>AI Ethical Standards for the Facebook page "AI and Australian Psychology Internship and Early Career" or AI related products and services by Psychology Squared</h2>
-<p><strong>Here's a list of ethical standards for psychologists and psychologists in training regarding the use of AI:</strong></p>
-
-${aiStandards.map(standard => `
-  <div class="standard">
-    <h3>${sanitizeHTML(standard.title)}</h3>
-    ${standard.subtitle ? `<p><em>${sanitizeHTML(standard.subtitle)}</em></p>` : ''}
-    ${standard.content.length > 0 ? `
-      <ul>
-        ${standard.content.map(item => `<li>${sanitizeHTML(item)}</li>`).join('')}
-      </ul>
-    ` : ''}
-  </div>
-`).join('')}
-
-<div class="contact">
-  <p><strong>Attribution:</strong> Psychology Squared Pty Ltd</p>
-  <p><strong>Contact:</strong> hello@psychologysquared.com.au</p>
-</div>
-</body>
-</html>`;
-
-    printWindow.document.write(content);
-    printWindow.document.close();
-    
-    // Wait for content to load before printing
-    printWindow.onload = function() {
-      printWindow.print();
-    };
-  }
-
-  // Render functions
-  function renderTableOfContents() {
-    tocGrid.innerHTML = aiStandards.map(standard => `
-      <button type="button" class="toc-button" onclick="scrollToSection('${standard.id}')" 
-              aria-describedby="toc-desc-${standard.id}">
-        ${sanitizeHTML(standard.title)}
-        <span id="toc-desc-${standard.id}" class="sr-only">Jump to ${sanitizeHTML(standard.title)} section</span>
-      </button>
-    `).join('');
-  }
-
-  function renderStandards() {
-    standardsContainer.innerHTML = aiStandards.map(standard => `
-      <article class="card" id="${standard.id}" tabindex="-1">
-        <header class="card-header">
-          <button type="button" class="expandable-header" id="btn-${standard.id}" 
-                  onclick="toggleSection('${standard.id}')" 
-                  aria-expanded="false" 
-                  aria-controls="content-${standard.id}">
-            <div class="flex justify-between items-center">
-              <div>
-                <h3 class="card-title text-lg">${sanitizeHTML(standard.title)}</h3>
-                ${standard.subtitle ? `<p class="text-sm text-muted mt-1">${sanitizeHTML(standard.subtitle)}</p>` : ''}
-              </div>
-              <svg class="icon" id="chevron-${standard.id}" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </div>
-          </button>
-        </header>
-        <div class="expandable-content" id="content-${standard.id}">
-          <div class="card-content">
-            ${standard.content.length > 0 ? `
-              <ul class="content-list space-y-3">
-                ${standard.content.map(item => `<li class="text-sm leading-relaxed">${sanitizeHTML(item)}</li>`).join('')}
-              </ul>
-            ` : `
-              <p class="text-sm text-muted italic">
-                This standard is referenced but no additional details are provided.
-              </p>
-            `}
-          </div>
-        </div>
+      <article class="content-section" id="accountability">
+        <h3 class="content-info-header">1. Accountability</h3>
+        <p class="content-section-text">
+          Responsibility is taken by the user for any decisions made based on, or as a result of an AI-generated product.
+        </p>
+        <p class="content-section-text">
+          The user ensures proper oversight of AI-generated products to avoid any potential harm or liabilities.
+        </p>
+        <p class="content-section-text">
+          AI is not a suitable substitute for a trained professional service that psychologists provide. All intervention models/strategies should all be based on accepted industry standards to ensure quality of the services provided as per the relevant APS/AHPRA ethical guidelines and standards as appropriate your relevant profession.
+        </p>
+        <p class="content-section-text">
+          Due to the risk of plagiarism, it is encouraged that user seek the sources of information and use plagiarism checkers where appropriate. It may also be required to recognise and reference your sources of information when using AI for research or information gathering.
+        </p>
       </article>
-    `).join('');
-  }
 
-  // Animation utilities
-  function animateElements() {
-    const elements = document.querySelectorAll('.card, .header');
-    elements.forEach((element, index) => {
-      element.style.opacity = '0';
-      element.style.transform = 'translateY(20px)';
-      
-      setTimeout(() => {
-        element.classList.add('fade-in');
-        element.style.opacity = '';
-        element.style.transform = '';
-      }, index * 150);
-    });
-  }
+      <article class="content-section" id="inaccuracy">
+        <h3>2. Potential inaccuracy of AI Job Produced</h3>
+        <p class="content-section-text">
+          Recognise that AI may produce work which is low quality or whereby the quality is unclear.
+        </p>
+        <p class="content-section-text">
+          AI-generated content requires repeated human review and validation.
+        </p>
+        <p class="content-section-text">
+          Ensure that you update and educate yourself about the capabilities and limitations of AI tools.
+        </p>
+        <p class="content-section-text">
+          Recognise that AI tools are still being developed and evaluated, and as such their use in professional settings is still considered highly experimental. It may make mistakes, at times convincingly.
+        </p>
+        <p class="content-section-text">
+          Use AI tools only when they can be justified and the risks are understood. Ensure that ethical guidelines for AI usage are followed at all times.
+        </p>
+      </article>
 
-  // Keyboard navigation
-  function handleKeydown(event) {
-    // Handle escape key to close expanded sections
-    if (event.key === 'Escape' && state.expandedSections.size > 0) {
-      const lastExpanded = Array.from(state.expandedSections).pop();
-      toggleSection(lastExpanded);
-      document.getElementById(`btn-${lastExpanded}`).focus();
-    }
-  }
+      <article class="content-section" id="prohibited">
+        <h3>3. Prohibited Uses</h3>
+        <p class="content-section-text">
+          Avoid using AI for academic tasks that would misrepresent one's own capabilities or be considered 'excessive' (e.g. having the AI complete mandated psychology internship tasks fully for you when the intention is that you do these yourself).
+        </p>
+        <p class="content-section-text">
+          Do not use AI tools to complete assignments, tests, or other evaluative measures in a way that would violate standards of academic integrity. If you are studying, you should ensure that you have checked your institution's policy around the use of AI prior to use.
+        </p>
+        <p class="content-section-text">
+          Recognise and analyse when there is significance in AI's role in achieving the overall objectives in particular tasks which may benefit from human involvement.
+        </p>
+      </article>
 
-  // Initialize application
-  function init() {
-    // Render content
-    renderTableOfContents();
-    renderStandards();
-    
-    // Set up event listeners
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('keydown', handleKeydown);
-    
-    backToTopBtn.addEventListener('click', scrollToTop);
-    downloadBtn.addEventListener('click', generatePDF);
-    
-    // Initial state
-    updateScrollProgress();
-    updateBackToTopVisibility();
-    
-    // Animate elements after a short delay
-    setTimeout(animateElements, 100);
-    
-    // Set focus to main content for screen readers
-    document.getElementById('main-content').setAttribute('tabindex', '-1');
-  }
+      <article class="content-section" id="bias">
+        <h3>4. Data Bias</h3>
+        <p class="content-section-text">
+          Be aware of the potential biases in AI algorithms and datasets. Recognise the potential for AI to make biased and stereotyped responses based on flawed, limited or incomplete data.
+        </p>
+        <p class="content-section-text">
+          Regularly review, fact check and update AI tools where possible to minimise biases.
+        </p>
+      </article>
 
-  // Start the application when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+      <article class="content-section" id="confidentiality">
+        <h3>5. Confidentiality</h3>
+        <p class="content-section-text">
+          Ensure that any personal or sensitive data (e.g. names, date of birth, addresses, names of family members) used in conjunction with AI tools is deidentified and if necessary kept confidential and secure.
+        </p>
+        <p class="content-section-text">
+          Do not share confidential information without proper consent (ideally written where possible).
+        </p>
+        <p class="content-section-text">
+          You acknowledge that there may be legal, ethical and moral risks with AI if you choose to use any confidential client information even with client consent.
+        </p>
+        <p class="content-section-text">
+          It is encouraged that data be deleted from AI systems at the earliest reasonable opportunity.
+        </p>
+      </article>
 
-  // Add screen reader only class
-  const style = document.createElement('style');
-  style.textContent = `
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-  `;
-  document.head.appendChild(style);
-</script>
+      <article class="content-section" id="transparency">
+        <h3>6. Transparency</h3>
+        <p class="content-section-text">
+          Ideally before any service begins and with consent, seek to be transparent to the reader, client, peer or stakeholder about the use of AI in research, practice, and professional decision-making.
+        </p>
+      </article>
 
+      <article class="content-section" id="education">
+        <h3>7. Continued Education</h3>
+        <p class="content-section-text">
+          As AI technology continues to evolve, it is important for psychologists, provisional psychologists and psychology students to stay informed about new developments and best practices in the field.
+        </p>
+        <p class="content-section-text">
+          Engage in continued education and training to learn about AI.
+        </p>
+      </article>
+
+      <article class="content-section" id="communication">
+        <h3>8. Organisational communication</h3>
+        <p class="content-section-text">
+          Ensure that you receive permission to use AI by your management and that its use is consistent with your organsational policy.
+        </p>
+      </article>
+
+      <article class="content-section" id="copyright">
+        <h3>9. Copyright</h3>
+        <p class="content-section-text">
+          The user should not enter resources that are copyrighted into AI.
+        </p>
+      </article>
+
+      <article class="content-section" id="welfare">
+        <h3>10. Use of AI in ways that prioritise client welfare, consent and privacy</h3>
+        <p class="content-section-text">
+          <em>This standard is referenced but no additional details are provided.</em>
+        </p>
+      </article>
+
+      <article class="content-section" id="consistency">
+        <h3>11. Consistent AI use in line with the AI program's existing policies</h3>
+        <p class="content-section-text">
+          <em>This standard is referenced but no additional details are provided.</em>
+        </p>
+      </article>
+
+      <article class="content-section" id="australian-principles">
+        <h3>12. Your use of AI will be consistent with the 8 voluntary Australian AI Ethics principles</h3>
+        <p class="content-section-text">
+          <em>(as of 30 November 2023) by the Department of Industry, Science and Resources:</em>
+        </p>
+        <p class="content-section-text">
+          a) Human, societal and environmental wellbeing; AI systems should benefit individuals, society and the environment.
+        </p>
+        <p class="content-section-text">
+          b) Human-centred values; AI systems should respect human rights, diversity, and the autonomy of individuals.
+        </p>
+        <p class="content-section-text">
+          c) Fairness; In that AI systems should be inclusive and accessible, and should not involve or result in unfair discrimination against individuals, communities or groups.
+        </p>
+        <p class="content-section-text">
+          d) Privacy protection and security; AI systems should respect and uphold privacy rights and data protection, and ensure the security of data.
+        </p>
+        <p class="content-section-text">
+          e) Reliability and safety; In that AI systems should reliably operate in accordance with their intended purpose.
+        </p>
+        <p class="content-section-text">
+          f) Transparency and explainability; There should be transparency and responsible disclosure so people can understand when they are being significantly impacted by AI, and can find out when an AI system is engaging with them.
+        </p>
+        <p class="content-section-text">
+          g) Contestability; When an AI system significantly impacts a person, community, group or environment, there should be a timely process to allow people to challenge the use or outcomes of the AI system.
+        </p>
+        <p class="content-section-text">
+          h) Accountability; People responsible for the different phases of the AI system lifecycle should be identifiable and accountable for the outcomes of the AI systems, and human oversight of AI systems should be enabled.
+        </p>
+      </article>
+
+      <article class="content-section" id="competencies">
+        <h3>13. Your AI use as a psychologist should be compliant with the professional competencies</h3>
+        <p class="content-section-text">
+          <em>(i.e. you agree to use AI ethically in these contexts)</em>
+        </p>
+        <p class="content-section-text">
+          Competency 1: Applying scientific knowledge of psychology to inform safe and effective practice;
+        </p>
+        <p class="content-section-text">
+          Competency 2: Practicing ethically and professionally;
+        </p>
+        <p class="content-section-text">
+          Competency 3: Exercising professional reflexivity, deliberate practice and self-care;
+        </p>
+        <p class="content-section-text">
+          Competency 4: Conducting psychological assessments;
+        </p>
+        <p class="content-section-text">
+          Competency 5: Conducting psychological interventions;
+        </p>
+        <p class="content-section-text">
+          Competency 6: Communicating and relating to others effectively and appropriately;
+        </p>
+        <p class="content-section-text">
+          Competency 7: Demonstrating a health equity and human rights approach when working with Aboriginal and Torres Strait Islander Peoples, families and communities; and
+        </p>
+        <p class="content-section-text">
+          Competency 8: Demonstrating a health equity and human rights approach when working with people from diverse groups;
+        </p>
+      </article>
+
+      <article class="content-section" id="product-disclaimer">
+        <h3>14. Product Disclaimer</h3>
+        <p class="content-section-text">
+          If you purchase any Psychology Squared Product which utilises AI, you recognise that the product results may vary, be unpredictable and largely out of the control of Psychology Squared. Psychology Squared AI products may be considered at present to be experimental in nature and at all times you should check the quality for yourself. The quality of AI responses may not be assured, however the user may be encouraged to vary AI prompts strategically to get the desired result.
+        </p>
+      </article>
+
+      <article class="content-section" id="staff-disclaimer">
+        <h3>15. Staff Recommendations Disclaimer</h3>
+        <p class="content-section-text">
+          You understand that posts and recommendations by Psychology Squared staff reviewing AI products do not represent any endorsement of the legality or ethics of the use of this AI.
+        </p>
+      </article>
+
+      <article class="content-section" id="ai-usage">
+        <h3>16. AI Usage in Psychology Squared Resources</h3>
+        <p class="content-section-text">
+          AI including ChatGPT, Jasper and others may be used in the production of Psychology Squared Resources.
+        </p>
+      </article>
+
+      <article class="content-section">
+        <h3>Attribution</h3>
+        <p class="content-section-text">
+          <strong>Psychology Squared Pty Ltd</strong>
+        </p>
+        <p class="content-section-text">
+          <a class="content-section-text" href="mailto:hello@psychologysquared.com.au">hello@psychologysquared.com.au</a>
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+    <!-- Organization Info -->
+    <footer class="center mb-8 container">
+      <p class="text-sm text-muted mb-2">
+        <time datetime="2023-11-30">Last updated on 30 November 2023</time>
+      </p>
+      <address class="text-sm text-muted mb-4 not-italic">
+        Psychology Squared Pty Ltd<br>
+        "Psychology Squared"<br>
+        ABN 16 638 041 719
+      </address>
+    </footer>
   </main>
 
   <footer class="site-footer" role="contentinfo">

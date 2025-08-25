@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/main.js"></script>
 </head>
 <body>
     
@@ -34,15 +35,14 @@
         <a href="/" class="nav-brand" aria-label="AI for Clinicians home">
             AI FOR CLINICIANS
         </a>
-    
         <nav class="nav" aria-label="Primary">
-        <ul class="nav-list">
-            <li><a href="/services/" class="nav-link">Services</a></li>
-            <li><a href="/compliance/" class="nav-link">Compliance Pack</a></li>
-            <li><a href="/comparisons/" class="nav-link">Comparisons Table</a></li>
-            <li><a href="/standards/" class="nav-link">AI Ethical Standards</a></li>
-            <li><a href="/contact/" class="nav-link">Contact</a></li>
-        </ul>
+            <ul class="nav-list">
+                <li><a href="/services/" class="nav-link">Services</a></li>
+                <li><a href="/compliance/" class="nav-link">Compliance Pack</a></li>
+                <li><a href="/comparisons/" class="nav-link">Comparisons Table</a></li>
+                <li><a href="/standards/" class="nav-link">AI Ethical Standards</a></li>
+                <li><a href="/contact/" class="nav-link">Contact</a></li>
+            </ul>
         </nav>
     </div>
 </header>      
@@ -187,7 +187,7 @@
 </header>
 
 <!-- About Section -->
-<section id="about" class="section section-alt">
+<section id="about" class="section section-alt bg1">
     <div class="container">
         <h2 class="section-title">
             About <span class="section-title-accent">David Lopis</span>
@@ -207,7 +207,7 @@
         <div class="cards-grid">
             <div class="card">
                 <span class="card-icon">&#128483;</span>
-                <h3 class="card-title">Speaking & Training</h3>
+                <h3 class="card-title">Speaking and Training</h3>
                 <p class="card-text">Keynote speaker at major conferences including APS, AAPi, and ACPA events</p>
             </div>
             <div class="card">
@@ -225,7 +225,8 @@
 </section>
 
 <!-- Speaking & Events Section -->
-<section id="speaking" class="section container">
+<section id="speaking" class="section bg2">
+    <div class="container">
     <h2 class="section-title">
         Speaking & <span class="section-title-accent">Events</span>
     </h2>
@@ -274,11 +275,13 @@
             </div>
         </div>
     </div>
+    </div>
 </section>
 
 
 <!-- Media Section -->
-<section id="media" class="section container">
+<section id="media" class="section bg3">
+    <div class="container">
     <h2 class="section-title">
         Media & <span class="section-title-accent">Interviews</span>
     </h2>
@@ -326,10 +329,11 @@
             </div>
         </div>
     </div>
+</div>
 </section>
 
 <!-- Services Section -->
-<section id="services" class="section section-alt">
+<section id="services" class="section section-alt bg4">
     <div class="container">
         <h2 class="section-title">
             Our <span class="section-title-accent">Services</span>
@@ -382,7 +386,8 @@
 </section>
 
 <!-- Billing & Pricing Section -->
-<section id="pricing" class="section container">
+<section id="pricing" class="section bg5">
+    <div class="container">
     <h2 class="section-title">
         Billing & <span class="section-title-accent">Pricing</span>
     </h2>
@@ -414,7 +419,6 @@
             </button>
         </div>
     </div>
-
     <div class="card pricing-card">
         <div class="flex items-center gap-1 mb-2">
             <span class="card-icon m-0">&#128197;</span>
@@ -519,6 +523,7 @@
             </div>
         </div>
     </div>
+</div>
 </section>
 
 
@@ -629,249 +634,6 @@
         </div>
     </div>
 </div>
-
-
-<script>
-        function openBookingForm(service, type) {
-        selectedService = service;
-        selectedType = type;
-        
-        const serviceNames = {
-            'speaking': {
-                'general': 'Speaking Engagement (Pricing varies by group size)'
-            },
-            'consulting': {
-                'general': 'AI Consultation (Individual or Duo)'
-            },
-            'company': {
-                'product-review': 'Product Review ($770 Inc GST)',
-                'ongoing-assistance': 'Ongoing Assistance ($1,000-2,000/month)'
-            }
-        };
-        
-        document.getElementById('selected-service').value = serviceNames[service][type];
-        document.getElementById('booking-modal').style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        // Reset form
-        currentStep = 1;
-        showStep(1);
-        
-        // Adjust form based on service type
-        const groupSizeGroup = document.getElementById('group-size-group');
-        if (service === 'consulting' && type === 'individual') {
-            groupSizeGroup.style.display = 'none';
-        } else if (service === 'consulting' && type === 'duo') {
-            groupSizeGroup.style.display = 'none';
-        } else {
-            groupSizeGroup.style.display = 'block';
-        }
-    }
-
-    function closeBookingForm() {
-        document.getElementById('booking-modal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    function showStep(step) {
-        document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-        document.getElementById('step-' + step).classList.add('active');
-        currentStep = step;
-    }
-
-    function nextStep() {
-        if (currentStep < 4) {
-            // Basic validation
-            if (currentStep === 1) {
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                if (!name || !email) {
-                    alert('Please fill in all required fields.');
-                    return;
-                }
-            }
-            
-            showStep(currentStep + 1);
-        }
-    }
-
-    function prevStep() {
-        if (currentStep > 1) {
-            showStep(currentStep - 1);
-        }
-    }
-
-    function submitForm() {
-        // Collect form data
-        const formData = {
-            service: document.getElementById('selected-service').value,
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            organization: document.getElementById('organization').value,
-            role: document.getElementById('role').value,
-            groupSize: document.getElementById('group-size').value,
-            preferredDate: document.getElementById('preferred-date').value,
-            budget: document.getElementById('budget').value,
-            location: document.getElementById('location').value,
-            specificTopics: document.getElementById('specific-topics').value,
-            additionalInfo: document.getElementById('additional-info').value
-        };
-        
-        // Here you would normally send the data to your backend
-        // For now, we'll create a mailto link
-        const subject = encodeURIComponent(`Booking Request: ${formData.service}`);
-        const body = encodeURIComponent(`
-            Name: ${formData.name}
-            Email: ${formData.email}
-            Organization: ${formData.organization}
-            Role: ${formData.role}
-            Group Size: ${formData.groupSize}
-            Preferred Date(s): ${formData.preferredDate}
-            Budget Range: ${formData.budget}
-            Location/Format: ${formData.location}
-            Specific Topics: ${formData.specificTopics}
-            Additional Information: ${formData.additionalInfo}
-
-            Service Requested: ${formData.service}
-        `);
-        
-        window.location.href = `mailto:david@aiforclin.com?subject=${subject}&body=${body}`;
-        
-        // Close modal
-        closeBookingForm();
-        
-        // Show success message
-        alert('Thank you for your booking request! Your email client should open with a pre-filled message. Please send it to complete your booking request.');
-    }
-
-    // Close modal when clicking outside
-    document.getElementById('booking-modal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeBookingForm();
-        }
-    });
-
-        // Contact form handler
-        const handleContactForm = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const name = formData.get('name') || '';
-        const email = formData.get('email') || '';
-        const organization = formData.get('organization') || '';
-        const message = formData.get('message') || '';
-        
-        const subject = encodeURIComponent('Contact Form: ' + name + ' from ' + organization);
-        const body = encodeURIComponent(
-            'Name: ' + name + 
-            '\nEmail: ' + email + 
-            '\nOrganization: ' + organization + 
-            '\n\nMessage:\n' + message
-        );
-        
-        window.open('mailto:david@psychologysquared.com.au?subject=' + subject + '&body=' + body, '_blank');
-    };
-</script>
-
-<script>
-    'use strict';
-
-    // Mobile menu toggle
-    function toggleMobileMenu() {
-        const menu = document.getElementById('mobile-menu');
-        const icon = document.getElementById('mobile-menu-icon');
-        
-        if (menu.classList.contains('show')) {
-            menu.classList.remove('show');
-            icon.innerHTML = '&#9776;'; // hamburger icon
-        } else {
-            menu.classList.add('show');
-            icon.innerHTML = '&times;'; // close icon
-        }
-    }
-
-    // Animation on load
-    const animateElements = () => {
-        const elements = document.querySelectorAll('.section, .card, .hero-content');
-        elements.forEach((element, index) => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            
-            requestAnimationFrame(() => {
-                setTimeout(() => {
-                    element.classList.add('fade-in');
-                    element.style.opacity = '';
-                    element.style.transform = '';
-                }, index * 100);
-            });
-        });
-    };
-
-    // Close mobile menu on resize
-    const handleResize = () => {
-        const menu = document.getElementById('mobile-menu');
-        const icon = document.getElementById('mobile-menu-icon');
-        if (window.innerWidth >= 768 && menu) {
-            menu.classList.remove('show');
-            icon.innerHTML = '&#9776;';
-        }
-    };
-
-    // Smooth scroll helper for in-page links
-    function scrollToSection(id) {
-        const el = document.getElementById(id);
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    // Initialize on DOM load
-    document.addEventListener('DOMContentLoaded', () => {
-        animateElements();
-        
-        // Add event listeners
-        window.addEventListener('resize', handleResize);
-        
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', handleContactForm);
-        }
-    });
-
-    let currentStep = 1;
-    let selectedService = '';
-    let selectedType = '';
-
-    function toggleSection(sectionId) {
-        const content = document.getElementById(sectionId + '-content');
-        const icon = document.getElementById(sectionId + '-icon');
-        
-        if (content.classList.contains('expanded')) {
-            content.classList.remove('expanded');
-            icon.textContent = '▼';
-        } else {
-            // Close all other sections
-            document.querySelectorAll('.service-content').forEach(section => {
-                section.classList.remove('expanded');
-            });
-            document.querySelectorAll('.expand-icon').forEach(icon => {
-                icon.textContent = '▼';
-            });
-            
-            // Open selected section
-            content.classList.add('expanded');
-            icon.textContent = '▲';
-        }
-    }
-
-
-
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeBookingForm();
-        }
-    });
-</script>
 
   </main>
 
