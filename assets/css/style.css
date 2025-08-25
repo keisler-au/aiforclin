@@ -25,6 +25,12 @@
     --spacing-xl: 40px;
 }
 
+/* Prevent media from causing horizontal overflow */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -623,7 +629,7 @@ body {
 /* Speaker */ 
  .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
     gap: 2rem;
     margin-top: 3rem;
 }
@@ -1540,7 +1546,7 @@ a {
   /* ≤768px */
   @media (max-width: 768px) {
     .sub-nav { top: 70px; }
-  
+
     .sub-nav-container { padding: var(--spacing-xs) var(--spacing-lg); }
     .sub-nav-list {
       gap: var(--spacing-sm);
@@ -1590,6 +1596,17 @@ a {
         gap: 0.25rem;
     }
     .nav-link { display: block; }
+
+    /* Stack hero content and avoid overflow on small screens */
+    .title-container { 
+      flex-direction: column; 
+      text-align: center;
+    }
+    .hero-image { margin-top: 1rem; }
+
+    /* Allow common flex rows with gaps to wrap */
+    .flex.gap-2,
+    .flex.gap-1 { flex-wrap: wrap; }
   }
   
   /* ≤480px */
@@ -1640,6 +1657,10 @@ a {
       overflow-wrap: anywhere;
       word-break: break-word;
     }
+
+    /* Let tight price rows wrap on very small screens */
+    .row-between { flex-wrap: wrap; }
+    .row-between > * { min-width: 0; }
   }
 
 @media (min-width: 768px) {
