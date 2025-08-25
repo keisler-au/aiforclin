@@ -49,6 +49,135 @@
     
 
     
+        
+
+<nav class="sub-nav" id="subNav" aria-label="Section navigation">
+  <div class="sub-nav-container">
+    <ul class="sub-nav-list">
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#home"
+            class="sub-nav-link"
+            data-section="home"
+          >
+            Home
+          </a>
+        </li>
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#about"
+            class="sub-nav-link"
+            data-section="about"
+          >
+            About
+          </a>
+        </li>
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#contents"
+            class="sub-nav-link"
+            data-section="contents"
+          >
+            Contents
+          </a>
+        </li>
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#pricing"
+            class="sub-nav-link"
+            data-section="pricing"
+          >
+            Pricing
+          </a>
+        </li>
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#legal"
+            class="sub-nav-link"
+            data-section="legal"
+          >
+            Legal
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+
+<script>
+    // Handle scroll effects and active states
+    const subNav = document.getElementById('subNav');
+    const navLinks = document.querySelectorAll('.sub-nav-link');
+    const sections = document.querySelectorAll('.section');
+
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY > 50;
+        
+        // Toggle border appearance
+        if (scrolled) {
+            subNav.classList.add('scrolled');
+        } else {
+            subNav.classList.remove('scrolled');
+        }
+        
+        // Update active navigation item
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (window.scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        // Update active states
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Smooth scroll behavior for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const headerOffset = 120; // Account for both main header and sub nav
+                    const elementPosition = targetSection.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+            }
+        });
+    });
+</script>
+    
 
   <main id="main" role="main">
     <!-- Hero Section -->
@@ -179,7 +308,7 @@
 </section>
 
 <!-- Legal Disclaimers -->
-<section class="section">
+<section id="legal" class="section">
     <div class="container">
         <h2 class="section-title">Important Legal Information</h2>
         <div class="legal-content">
