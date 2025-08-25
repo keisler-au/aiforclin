@@ -209,6 +209,13 @@ body {
     width: 50%;
 }
 
+/* Header inner wrapper used on services page */
+.container-alt {
+    display: flex;
+    flex-direction: column; /* mobile default: stack */
+    gap: 2rem;
+}
+
 .title-content-centered {
     text-align: center;
 }
@@ -1439,6 +1446,14 @@ a {
     }
 }
 @media (min-width: 768px) {
+    .container-alt {
+        flex-direction: row; /* larger screens: side-by-side */
+        align-items: center;
+        justify-content: space-between;
+    }
+    .title-content { width: 55%; }
+    .hero-image { width: 45%; justify-content: flex-end; }
+
     .hero-text { text-align: left; }
   
     .two-col-grid { grid-template-columns: 1fr 1fr; }
