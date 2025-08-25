@@ -1,18 +1,28 @@
 <header class="site-header">
     <a class="skip-link" href="#main">Skip to main content</a>
-    
+  
     <div class="container">
-        <a href="{{ '/' | relative_url }}" class="nav-brand" aria-label="AI for Clinicians home">
-            AI FOR CLINICIANS
-        </a>
-        <nav class="nav" aria-label="Primary">
-            <ul class="nav-list">
-                <li><a href="{{ '/services/' | relative_url }}" class="nav-link">Services</a></li>
-                <li><a href="{{ '/compliance/' | relative_url }}" class="nav-link">Compliance Pack</a></li>
-                <li><a href="{{ '/comparisons/' | relative_url }}" class="nav-link">Comparisons Table</a></li>
-                <li><a href="{{ '/standards/' | relative_url }}" class="nav-link">AI Ethical Standards</a></li>
-                <li><a href="{{ '/contact/' | relative_url }}" class="nav-link">Contact</a></li>
-            </ul>
-        </nav>
+      <a href="{{ '/' | relative_url }}" class="nav-brand" aria-label="AI for Clinicians home">
+        AI FOR CLINICIANS
+      </a>
+      
+      <button id="mobile-menu-button"
+              class="mobile-menu-button"
+              aria-label="Toggle navigation menu"
+              aria-controls="primary-nav"
+              aria-expanded="false">
+        <span class="mobile-menu-icon" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary" hidden>
+        <ul class="nav-list">
+          <li><a href="{{ '/services/' | relative_url }}" class="nav-link">Services</a></li>
+          <li><a href="{{ '/compliance/' | relative_url }}" class="nav-link">Compliance Pack</a></li>
+          <li><a href="{{ '/comparisons/' | relative_url }}" class="nav-link">Comparisons Table</a></li>
+          <li><a href="{{ '/standards/' | relative_url }}" class="nav-link">AI Ethical Standards</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-</header>      
+  </header>

@@ -110,12 +110,15 @@ function submitForm() {
     alert('Thank you for your booking request! Your email client should open with a pre-filled message. Please send it to complete your booking request.');
 }
 
-// Close modal when clicking outside
-document.getElementById('booking-modal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeBookingForm();
-    }
-});
+// Close modal when clicking outside (guard if element not present)
+const bookingModalEl = document.getElementById('booking-modal');
+if (bookingModalEl) {
+    bookingModalEl.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeBookingForm();
+        }
+    });
+}
 
     // Contact form handler
 const handleContactForm = (event) => {
@@ -137,26 +140,46 @@ const handleContactForm = (event) => {
     window.open('mailto:david@psychologysquared.com.au?subject=' + subject + '&body=' + body, '_blank');
 };
 
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const icon = document.getElementById('mobile-menu-icon');
-    
-    if (menu.classList.contains('show')) {
-        menu.classList.remove('show');
-        icon.innerHTML = '&#9776;'; // hamburger icon
-    } else {
-        menu.classList.add('show');
-        icon.innerHTML = '&times;'; // close icon
-    }
-}
+// Setup mobile hamburger menu
+const setupMobileMenu = () => {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const primaryNav = document.getElementById('primary-nav');
+    if (!menuButton || !primaryNav) return;
+
+    // Toggle on button click
+    menuButton.addEventListener('click', () => {
+        const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!expanded));
+        primaryNav.hidden = expanded;
+    });
+
+    // Close menu on link click (mobile only)
+    primaryNav.querySelectorAll('a.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 768) {
+                primaryNav.hidden = true;
+                menuButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+};
+
+// (removed legacy toggleMobileMenu)
 
 // Close mobile menu on resize
 const handleResize = () => {
-    const menu = document.getElementById('mobile-menu');
-    const icon = document.getElementById('mobile-menu-icon');
-    if (window.innerWidth >= 768 && menu) {
-        menu.classList.remove('show');
-        icon.innerHTML = '&#9776;';
+    const primaryNav = document.getElementById('primary-nav');
+    const menuButton = document.getElementById('mobile-menu-button');
+    if (!primaryNav || !menuButton) return;
+
+    if (window.innerWidth >= 768) {
+        // Ensure desktop state
+        primaryNav.hidden = false;
+        menuButton.setAttribute('aria-expanded', 'true');
+    } else {
+        // Ensure mobile collapsed state by default
+        primaryNav.hidden = true;
+        menuButton.setAttribute('aria-expanded', 'false');
     }
 };
 
@@ -247,6 +270,8 @@ const init = () => {
     handleIframeResize();
     handleIframeError();
     enhanceFocusManagement();
+    setupMobileMenu();
+    handleResize();
 };
 
 if (document.readyState === 'loading') {
@@ -314,4 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     document.addEventListener('keydown', handleKeyNavigation);
+    // Initialize responsive state after content is ready
+    handleResize();
 });
+
