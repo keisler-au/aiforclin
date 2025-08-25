@@ -238,7 +238,7 @@ body {
 /* Sub-Nav */
 .sub-nav {
     position: fixed;
-    top: 80px;
+    top: 6rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 999;
@@ -1545,19 +1545,9 @@ a {
   
   /* ≤768px */
   @media (max-width: 768px) {
-    .sub-nav { top: 70px; }
+    .section { padding: 2rem; }
+    .sub-nav { display: none; }
 
-    .sub-nav-container { padding: var(--spacing-xs) var(--spacing-lg); }
-    .sub-nav-list {
-      gap: var(--spacing-sm);
-      flex-wrap: wrap;
-    }
-    .sub-nav-link {
-      padding: var(--spacing-xs) var(--spacing-sm);
-      font-size: 0.9rem;
-      white-space: normal;
-    }
-  
     .compliance-symbols {
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
@@ -1565,17 +1555,6 @@ a {
   
     .buy-button-container { margin: 2rem 0; }
     .pricing-card { padding: 2rem 1.5rem; }
-  
-    .sub-nav {
-      left: 0;
-      transform: none;
-      width: 100%;
-    }
-  
-    .sub-nav-container {
-      max-width: 100%;
-      margin: 0 8px;
-    }
 
     .mobile-menu-button { display: inline-flex; }
     .nav {
@@ -1597,14 +1576,12 @@ a {
     }
     .nav-link { display: block; }
 
-    /* Stack hero content and avoid overflow on small screens */
     .title-container { 
       flex-direction: column; 
       text-align: center;
     }
     .hero-image { margin-top: 1rem; }
 
-    /* Allow common flex rows with gaps to wrap */
     .flex.gap-2,
     .flex.gap-1 { flex-wrap: wrap; }
   }
