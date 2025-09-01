@@ -16,7 +16,14 @@ function openBookingForm(service, type) {
     };
     
     document.getElementById('selected-service').value = serviceNames[service][type];
-    document.getElementById('booking-modal').style.display = 'block';
+    document.getElementById('booking-modal-container').style.display = 'flex';
+    if (service === 'consulting') {
+        document.getElementById('booking-modal-cliniko-1hr').style.display = 'block';
+        document.getElementById('booking-modal-form').style.display = 'none';
+    } else {
+        document.getElementById('booking-modal-form').style.display = 'block';
+        document.getElementById('booking-modal-cliniko-1hr').style.display = 'none';
+    }
     document.body.style.overflow = 'hidden';
     
     // Reset form
@@ -24,18 +31,18 @@ function openBookingForm(service, type) {
     showStep(1);
     
     // Adjust form based on service type
-    const groupSizeGroup = document.getElementById('group-size-group');
-    if (service === 'consulting' && type === 'individual') {
-        groupSizeGroup.style.display = 'none';
-    } else if (service === 'consulting' && type === 'duo') {
-        groupSizeGroup.style.display = 'none';
-    } else {
-        groupSizeGroup.style.display = 'block';
-    }
+    // const groupSizeGroup = document.getElementById('group-size-group');
+    // if (service === 'consulting' && type === 'individual') {
+    //     groupSizeGroup.style.display = 'none';
+    // } else if (service === 'consulting' && type === 'duo') {
+    //     groupSizeGroup.style.display = 'none';
+    // } else {
+    //     groupSizeGroup.style.display = 'block';
+    // }
 }
 
 function closeBookingForm() {
-    document.getElementById('booking-modal').style.display = 'none';
+    document.getElementById('booking-modal-container').style.display = 'none';
     document.body.style.overflow = 'auto';
 }
 
@@ -111,7 +118,7 @@ function submitForm() {
 }
 
 // Close modal when clicking outside (guard if element not present)
-const bookingModalEl = document.getElementById('booking-modal');
+const bookingModalEl = document.getElementById('booking-modal-container');
 if (bookingModalEl) {
     bookingModalEl.addEventListener('click', function(e) {
         if (e.target === this) {

@@ -537,10 +537,14 @@
     </section>
 
 <!-- Contact Form Modal -->
-<dialog id="booking-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; padding: 20px; overflow-y: auto;">
-    <div style="max-width: 600px; margin: 50px auto; position: relative;">
+<dialog id="booking-modal-container" class="booking-modal-container">
+    <div id="booking-modal" class="booking-modal">
         <button onclick="closeBookingForm()" style="position: absolute; top: -40px; right: 0; background: none; border: none; color: #f6e05e; font-size: 2rem; cursor: pointer;">×</button>
-        <form class="contact-form">
+        <div id="booking-modal-cliniko-1hr" style="display: none; position: relative;">
+            <iframe id="cliniko-1hr" src="https://psychology-squared.au2.cliniko.com/bookings?appointment_type_id=1672953693663665044&amp;embedded=true#service"
+            frameborder="0" scrolling="auto" width="876px" height="1000" class="rounded" style="pointer-events: auto; height: 364px;"></iframe>
+        </div>
+        <form id="booking-modal-form" class="contact-form" style="display: block; width: 100%;">
             <h3 style="color: #f6e05e; margin-bottom: 20px; text-align: center;">Book Your Service</h3>
 
             <!-- Step 1: Service Selection -->
