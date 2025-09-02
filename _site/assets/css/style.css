@@ -766,7 +766,7 @@ body {
 .booking-modal {
     display: block; 
     width: 100%; 
-    margin: 250px auto; 
+    margin-top: 2.5rem;
     position: relative; 
 }
 
@@ -809,6 +809,12 @@ body {
 .form-textarea {
     resize: vertical;
     min-height: 120px;
+}
+
+.booking-status {
+    margin: 1rem 5rem;
+    font-size: 0.9rem;
+    text-align: center;
 }
 
 .media-link {

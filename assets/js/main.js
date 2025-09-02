@@ -1,3 +1,7 @@
+const EMAIL_API_URL_PROD = "https://api.aiforclin.com/contact"
+const EMAIL_API_URL_DEV = "http://localhost:10000/contact"
+const EMAIL_API_URL = ["localhost", "127.0.0.1", "127.0.0.0", "0.0.0.0"].includes(window.location.hostname) ? EMAIL_API_URL_DEV : EMAIL_API_URL_PROD;
+
 function openBookingForm(service, type) {
     selectedService = service;
     selectedType = type;
@@ -25,6 +29,9 @@ function openBookingForm(service, type) {
         document.getElementById('booking-modal-cliniko-1hr').style.display = 'none';
     }
     document.body.style.overflow = 'hidden';
+    // Remove any previous status message
+    const prevStatus = document.getElementById('email-status');
+    if (prevStatus) prevStatus.textContent = '';
     
     // Reset form
     currentStep = 1;
@@ -74,47 +81,64 @@ function prevStep() {
     }
 }
 
-function submitForm() {
-    // Collect form data
-    const formData = {
-        service: document.getElementById('selected-service').value,
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        organization: document.getElementById('organization').value,
-        role: document.getElementById('role').value,
-        groupSize: document.getElementById('group-size').value,
-        preferredDate: document.getElementById('preferred-date').value,
-        budget: document.getElementById('budget').value,
-        location: document.getElementById('location').value,
-        specificTopics: document.getElementById('specific-topics').value,
-        additionalInfo: document.getElementById('additional-info').value
-    };
-    
-    // Here you would normally send the data to your backend
-    // For now, we'll create a mailto link
-    const subject = encodeURIComponent(`Booking Request: ${formData.service}`);
-    const body = encodeURIComponent(`
-        Name: ${formData.name}
-        Email: ${formData.email}
-        Organization: ${formData.organization}
-        Role: ${formData.role}
-        Group Size: ${formData.groupSize}
-        Preferred Date(s): ${formData.preferredDate}
-        Budget Range: ${formData.budget}
-        Location/Format: ${formData.location}
-        Specific Topics: ${formData.specificTopics}
-        Additional Information: ${formData.additionalInfo}
+function showSendStatus(type, message) {
+    const status = document.getElementById('email-status');
+    if (!status) return;
+    status.textContent = message;
+    status.style.color = type === 'success' ? '#48bb78' : '#f56565';
+}
 
-        Service Requested: ${formData.service}
-    `);
+async function submitForm(formOrigin) {
+    const formData = new FormData();
+    formData.append("email_address", document.getElementById('email').value);
+    formData.append("name", document.getElementById('name').value);
+    if (formOrigin === 'contactPage') {
+        formData.append("message", JSON.stringify({
+            message: document.getElementById('message').value,
+            organization: document.getElementById('organization').value
+        }));
+    } else if (formOrigin === 'bookingPage') {
+        formData.append("message", JSON.stringify({
+            service: document.getElementById('selected-service').value,
+            organization: document.getElementById('organization').value,
+            role: document.getElementById('role').value,
+            groupSize: document.getElementById('group-size').value,
+            preferredDate: document.getElementById('preferred-date').value,
+            budget: document.getElementById('budget').value,
+            location: document.getElementById('location').value,
+            specificTopics: document.getElementById('specific-topics').value,
+            additionalInfo: document.getElementById('additional-info').value
+        }));
+    }
+    // Find and disable submit button
+    const submitBtn = document.querySelector('#step-4 .form-navigation button.btn:not(.btn-secondary)');
+    const originalBtnText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+    }
     
-    window.location.href = `mailto:david@aiforclin.com?subject=${subject}&body=${body}`;
-    
-    // Close modal
-    closeBookingForm();
-    
-    // Show success message
-    alert('Thank you for your booking request! Your email client should open with a pre-filled message. Please send it to complete your booking request.');
+    try {
+        const res = await fetch(EMAIL_API_URL, {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!res.ok) {
+            const errorText = await res.text().catch(() => '');
+            throw new Error(errorText || `Request failed (${res.status})`);
+        }
+
+        showSendStatus('success', 'Thank you! Your booking request was submitted successfully. We\'ll be in touch shortly.');
+    } catch (err) {
+        console.error('Booking submission error:', err);
+        showSendStatus('error', 'Sorry, there was a problem submitting your request. Please try again later or email david@psychologysquared.com.au');
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText || 'Submit Request';
+        }
+    }
 }
 
 // Close modal when clicking outside (guard if element not present)
@@ -126,26 +150,6 @@ if (bookingModalEl) {
         }
     });
 }
-
-    // Contact form handler
-const handleContactForm = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const name = formData.get('name') || '';
-    const email = formData.get('email') || '';
-    const organization = formData.get('organization') || '';
-    const message = formData.get('message') || '';
-    
-    const subject = encodeURIComponent('Contact Form: ' + name + ' from ' + organization);
-    const body = encodeURIComponent(
-        'Name: ' + name + 
-        '\nEmail: ' + email + 
-        '\nOrganization: ' + organization + 
-        '\n\nMessage:\n' + message
-    );
-    
-    window.open('mailto:david@psychologysquared.com.au?subject=' + subject + '&body=' + body, '_blank');
-};
 
 // Setup mobile hamburger menu
 const setupMobileMenu = () => {
@@ -170,8 +174,6 @@ const setupMobileMenu = () => {
         });
     });
 };
-
-// (removed legacy toggleMobileMenu)
 
 // Close mobile menu on resize
 const handleResize = () => {
@@ -334,11 +336,6 @@ const handleKeyNavigation = (event) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', handleResize);
-    
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleContactForm);
-    }
 
     const linkButtons = document.querySelectorAll('.link-button');
     linkButtons.forEach(button => {
@@ -346,7 +343,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     document.addEventListener('keydown', handleKeyNavigation);
-    // Initialize responsive state after content is ready
-    handleResize();
 });
 
