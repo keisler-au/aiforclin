@@ -119,10 +119,10 @@ async function submitForm(formOrigin) {
     }
     
     try {
-        const res = await fetch(EMAIL_API_URL, {
-            method: 'POST',
-            body: formData,
-        });
+        // const res = await fetch(EMAIL_API_URL, {
+        //     method: 'POST',
+        //     body: formData,
+        // });
 
         if (!res.ok) {
             const errorText = await res.text().catch(() => '');
