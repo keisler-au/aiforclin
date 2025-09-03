@@ -263,6 +263,15 @@ const handleKeyNavigation = (event) => {
             break;
     }
 };
+  
+
+const downloadPDF = () => {
+    const printWindow = window.open('', '_blank');
+    const content = `<!DOCTYPE html><html><head><title>AI Ethical Standards - Psychology Squared</title><style>body{font-family:Arial,sans-serif;margin:40px;line-height:1.6;}h1{color:#1e40af;border-bottom:2px solid #1e40af;padding-bottom:10px;}h2{color:#1e40af;margin-top:30px;}h3{color:#374151;margin-top:20px;}.header{text-align:center;margin-bottom:40px;}.content{margin-bottom:20px;}.standard{margin-bottom:30px;page-break-inside:avoid;}.contact{margin-top:40px;padding-top:20px;border-top:1px solid #ccc;}ul{margin:10px 0;}li{margin:5px 0;}</style></head><body><div class='header'><h1>AI Ethical Standards</h1><p><strong>Last updated on 30 November 2023</strong></p><p>Psychology Squared Pty Ltd<br/>ABN 16 638 041 719</p></div><h2>AI Ethical Standards for the Facebook page \"AI and Australian Psychology Internship and Early Career\" or AI related products and services by Psychology Squared</h2><p><strong>Here's a list of ethical standards for psychologists and psychologists in training regarding the use of AI:</strong></p>${aiStandards.map(standard => `<div class='standard'><h3>${standard.title}</h3>${standard.subtitle ? `<p><em>${standard.subtitle}</em></p>` : ''}${standard.content.length > 0 ? `<ul>${standard.content.map(item => `<li>${item}</li>`).join('')}</ul>` : ''}</div>`).join('')}<div class='contact'><p><strong>Attribution:</strong> Psychology Squared Pty Ltd</p><p><strong>Contact:</strong> hello@psychologysquared.com.au</p></div></body></html>`;
+    printWindow.document.write(content);
+    printWindow.document.close();
+    printWindow.print();
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     const linkButtons = document.querySelectorAll('.link-button');
@@ -274,3 +283,143 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMobileMenu();
 });
 
+const aiStandards = [
+    {
+      id: 'accountability',
+      title: '1. Accountability',
+      content: [
+        'Responsibility is taken by the user for any decisions made based on, or as a result of an AI-generated product.',
+        'The user ensures proper oversight of AI-generated products to avoid any potential harm or liabilities.',
+        'AI is not a suitable substitute for a trained professional service that psychologists provide. All intervention models/strategies should all be based on accepted industry standards to ensure quality of the services provided as per the relevant APS/AHPRA ethical guidelines and standards as appropriate your relevant profession.',
+        'Due to the risk of plagiarism, it is encouraged that user seek the sources of information and use plagiarism checkers where appropriate. It may also be required to recognise and reference your sources of information when using AI for research or information gathering.'
+      ]
+    },
+    {
+      id: 'inaccuracy',
+      title: '2. Potential inaccuracy of AI Job Produced',
+      content: [
+        'Recognise that AI may produce work which is low quality or whereby the quality is unclear.',
+        'AI-generated content requires repeated human review and validation.',
+        'Ensure that you update and educate yourself about the capabilities and limitations of AI tools.',
+        'Recognise that AI tools are still being developed and evaluated, and as such their use in professional settings is still considered highly experimental. It may make mistakes, at times convincingly.',
+        'Use AI tools only when they can be justified and the risks are understood. Ensure that ethical guidelines for AI usage are followed at all times.'
+      ]
+    },
+    {
+      id: 'prohibited',
+      title: '3. Prohibited Uses',
+      content: [
+        'Avoid using AI for academic tasks that would misrepresent one\'s own capabilities or be considered \'excessive\' (e.g. having the AI complete mandated psychology internship tasks fully for you when the intention is that you do these yourself).',
+        'Do not use AI tools to complete assignments, tests, or other evaluative measures in a way that would violate standards of academic integrity. If you are studying, you should ensure that you have checked your institution\'s policy around the use of AI prior to use',
+        'Recognise and analyse when there is significance in AI\'s role in achieving the overall objectives in particular tasks which may benefit from human involvement.'
+      ]
+    },
+    {
+      id: 'bias',
+      title: '4. Data Bias',
+      content: [
+        'Be aware of the potential biases in AI algorithms and datasets. Recognise the potential for AI to make biased and stereotyped responses based on flawed, limited or incomplete data.',
+        'Regularly review, fact check and update AI tools where possible to minimise biases'
+      ]
+    },
+    {
+      id: 'confidentiality',
+      title: '5. Confidentiality',
+      content: [
+        'Ensure that any personal or sensitive data (e.g. names, date of birth, addresses, names of family members) used in conjunction with AI tools is deidentified and if necessary kept confidential and secure.',
+        'Do not share confidential information without proper consent (ideally written where possible)',
+        'You acknowledge that there may be legal, ethical and moral risks with AI if you choose to use any confidential client information even with client consent.',
+        'It is encouraged that data be deleted from AI systems at the earliest reasonable opportunity.'
+      ]
+    },
+    {
+      id: 'transparency',
+      title: '6. Transparency',
+      content: [
+        'Ideally before any service begins and with consent, seek to be transparent to the reader, client, peer or stakeholder about the use of AI in research, practice, and professional decision-making.'
+      ]
+    },
+    {
+      id: 'education',
+      title: '7. Continued Education',
+      content: [
+        'As AI technology continues to evolve, it is important for psychologists, provisional psychologists and psychology students to stay informed about new developments and best practices in the field.',
+        'Engage in continued education and training to learn about AI.'
+      ]
+    },
+    {
+      id: 'communication',
+      title: '8. Organisational communication',
+      content: [
+        'Ensure that you receive permission to use AI by your management and that its use is consistent with your organsational policy.'
+      ]
+    },
+    {
+      id: 'copyright',
+      title: '9. Copyright',
+      content: [
+        'The user should not enter resources that are copyrighted into AI'
+      ]
+    },
+    {
+      id: 'welfare',
+      title: '10. Use of AI in ways that prioritise client welfare, consent and privacy',
+      content: []
+    },
+    {
+      id: 'consistency',
+      title: '11. Consistent AI use in line with the AI program\'s existing policies',
+      content: []
+    },
+    {
+      id: 'australian-principles',
+      title: '12. Your use of AI will be consistent with the 8 voluntary Australian AI Ethics principles',
+      subtitle: '(as of 30 November 2023) by the Department of Industry, Science and Resources:',
+      content: [
+        'a) Human, societal and environmental wellbeing; AI systems should benefit individuals, society and the environment.',
+        'b) Human-centred values; AI systems should respect human rights, diversity, and the autonomy of individuals.',
+        'c) Fairness; In that AI systems should be inclusive and accessible, and should not involve or result in unfair discrimination against individuals, communities or groups.',
+        'd) Privacy protection and security; AI systems should respect and uphold privacy rights and data protection, and ensure the security of data.',
+        'e) Reliability and safety; In that AI systems should reliably operate in accordance with their intended purpose.',
+        'f) Transparency and explainability; There should be transparency and responsible disclosure so people can understand when they are being significantly impacted by AI, and can find out when an AI system is engaging with them.',
+        'g) Contestability; When an AI system significantly impacts a person, community, group or environment, there should be a timely process to allow people to challenge the use or outcomes of the AI system.',
+        'h) Accountability; People responsible for the different phases of the AI system lifecycle should be identifiable and accountable for the outcomes of the AI systems, and human oversight of AI systems should be enabled.'
+      ]
+    },
+    {
+      id: 'competencies',
+      title: '13. Your AI use as a psychologist should be compliant with the professional competencies',
+      subtitle: '(i.e. you agree to use AI ethically in these contexts)',
+      content: [
+        'Competency 1: Applying scientific knowledge of psychology to inform safe and effective practice;',
+        'Competency 2: Practicing ethically and professionally;',
+        'Competency 3: Exercising professional reflexivity, deliberate practice and self-care;',
+        'Competency 4: Conducting psychological assessments',
+        'Competency 5: Conducting psychological interventions;',
+        'Competency 6: Communicating and relating to others effectively and appropriately;',
+        'Competency 7: Demonstrating a health equity and human rights approach when working with Aboriginal and Torres Strait Islander Peoples, families and communities; and',
+        'Competency 8: Demonstrating a health equity and human rights approach when working with people from diverse groups;'
+      ]
+    },
+    {
+      id: 'product-disclaimer',
+      title: '14. Product Disclaimer',
+      content: [
+        'If you purchase any Psychology Squared Product which utilises AI, you recognise that the product results may vary, be unpredictable and largely out of the control of Psychology Squared. Psychology Squared AI products may be considered at present to be experimental in nature and at all times you should check the quality for yourself. The quality of AI responses may not be assured, however the user may be encouraged to vary AI prompts strategically to get the desired result.'
+      ]
+    },
+    {
+      id: 'staff-disclaimer',
+      title: '15. Staff Recommendations Disclaimer',
+      content: [
+        'You understand that posts and recommendations by Psychology Squared staff reviewing AI products do not represent any endorsement of the legality or ethics of the use of this AI.'
+      ]
+    },
+    {
+      id: 'ai-usage',
+      title: '16. AI Usage in Psychology Squared Resources',
+      content: [
+        'AI including ChatGPT, Jasper and others may be used in the production of Psychology Squared Resources'
+      ]
+    }
+  ]
