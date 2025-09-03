@@ -121,6 +121,12 @@ function renderTurnstile(formData, originalBtnText) {
 }
 
 async function submitFormContact() {
+    const honeypotField = document.getElementById('website');
+    if (honeypotField.value) {
+        showSendStatus('success', 'Thank you! Your message was submitted successfully. We\'ll be in touch shortly.');
+        return;
+    }
+
     const formData = new FormData();
     formData.append("message", JSON.stringify({
         message: document.getElementById('message').value,
