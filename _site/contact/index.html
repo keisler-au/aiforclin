@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
   <script src="/assets/js/main.js"></script>
 </head>
 <body>
@@ -126,7 +127,7 @@
             
             <div class="card">
                 <!-- <h3 class="card-title" style="margin-bottom: 1.5rem;">Send a Message</h3> -->
-                <form id="contact-form">
+                <form id="form">
                     <div class="form-group">
                         <label class="form-label">Name</label>
                         <input id="name" type="text" name="name" required class="form-input" placeholder="Your full name" />
@@ -143,7 +144,8 @@
                         <label class="form-label">Message</label>
                         <textarea id="message" name="message" required class="form-textarea" placeholder="Tell us about your AI integration needs..."></textarea>
                     </div>
-                    <button type="button" class="btn btn-primary" style="width: 100%;" onclick="submitForm('contactPage')">Send Message</button>
+                    <div id="cf-turnstile"></div>
+                    <button id="submit-btn" type="button" class="btn btn-primary" style="width: 100%;" onclick="submitFormContact()">Send Message</button>
                     <p id="email-status" class="email-status"></p>
                 </form>
             </div>
@@ -153,7 +155,7 @@
   </main>
 
   <footer class="site-footer" role="contentinfo">
-    <small>&copy;  AI for Clinicians</small>
+    <small>&copy; 2025 AI for Clinicians</small>
     <br><small>By Psychology Squared Pty Ltd </small>
   </footer>
 </body>

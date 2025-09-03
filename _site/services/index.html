@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
   <script src="/assets/js/main.js"></script>
 </head>
 <body>
@@ -544,7 +545,7 @@
             <iframe id="cliniko-1hr" src="https://psychology-squared.au2.cliniko.com/bookings?appointment_type_id=1672953693663665044&amp;embedded=true#service"
             frameborder="0" scrolling="auto" width="876px" height="1000" class="rounded" style="pointer-events: auto; height: 364px;"></iframe>
         </div>
-        <form id="booking-modal-form" class="contact-form" style="display: block; width: 100%;">
+        <form id="form" class="booking-form" style="display: block; width: 100%;">
             <h3 style="color: #f6e05e; margin-bottom: 20px; text-align: center;">Book Your Service</h3>
 
             <!-- Step 1: Service Selection -->
@@ -638,9 +639,10 @@
                     <label for="additional-info">Additional Information</label>
                     <textarea id="additional-info" rows="4" placeholder="Any additional details about your requirements, audience, or special considerations"></textarea>
                 </div>
+                <div id="cf-turnstile"></div>
                 <nav class="form-navigation">
                     <button type="button" class="btn btn-secondary" onclick="prevStep()">← Previous</button>
-                    <button type="button" class="btn" onclick="submitForm('bookingPage')">Submit Request</button>
+                    <button id="submit-btn" type="button" class="btn" onclick="submitFormBooking()">Submit Request</button>
                 </nav>
                 <p id="email-status" class="email-status"></p>
             </fieldset>
@@ -650,7 +652,7 @@
   </main>
 
   <footer class="site-footer" role="contentinfo">
-    <small>&copy;  AI for Clinicians</small>
+    <small>&copy; 2025 AI for Clinicians</small>
     <br><small>By Psychology Squared Pty Ltd </small>
   </footer>
 </body>

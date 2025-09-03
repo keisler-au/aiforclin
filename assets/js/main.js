@@ -23,9 +23,9 @@ function openBookingForm(service, type) {
     document.getElementById('booking-modal-container').style.display = 'flex';
     if (service === 'consulting') {
         document.getElementById('booking-modal-cliniko-1hr').style.display = 'block';
-        document.getElementById('booking-modal-form').style.display = 'none';
+        document.getElementById('form').style.display = 'none';
     } else {
-        document.getElementById('booking-modal-form').style.display = 'block';
+        document.getElementById('form').style.display = 'block';
         document.getElementById('booking-modal-cliniko-1hr').style.display = 'none';
     }
     document.body.style.overflow = 'hidden';
@@ -36,16 +36,6 @@ function openBookingForm(service, type) {
     // Reset form
     currentStep = 1;
     showStep(1);
-    
-    // Adjust form based on service type
-    // const groupSizeGroup = document.getElementById('group-size-group');
-    // if (service === 'consulting' && type === 'individual') {
-    //     groupSizeGroup.style.display = 'none';
-    // } else if (service === 'consulting' && type === 'duo') {
-    //     groupSizeGroup.style.display = 'none';
-    // } else {
-    //     groupSizeGroup.style.display = 'block';
-    // }
 }
 
 function closeBookingForm() {
@@ -81,6 +71,7 @@ function prevStep() {
     }
 }
 
+
 function showSendStatus(type, message) {
     const status = document.getElementById('email-status');
     if (!status) return;
@@ -88,42 +79,16 @@ function showSendStatus(type, message) {
     status.style.color = type === 'success' ? '#48bb78' : '#f56565';
 }
 
-async function submitForm(formOrigin) {
-    const formData = new FormData();
+async function submitForm(token, formData, originalBtnText) {
+    formData.append("cf-turnstile-response", token);
     formData.append("email_address", document.getElementById('email').value);
     formData.append("name", document.getElementById('name').value);
-    if (formOrigin === 'contactPage') {
-        formData.append("message", JSON.stringify({
-            message: document.getElementById('message').value,
-            organization: document.getElementById('organization').value
-        }));
-    } else if (formOrigin === 'bookingPage') {
-        formData.append("message", JSON.stringify({
-            service: document.getElementById('selected-service').value,
-            organization: document.getElementById('organization').value,
-            role: document.getElementById('role').value,
-            groupSize: document.getElementById('group-size').value,
-            preferredDate: document.getElementById('preferred-date').value,
-            budget: document.getElementById('budget').value,
-            location: document.getElementById('location').value,
-            specificTopics: document.getElementById('specific-topics').value,
-            additionalInfo: document.getElementById('additional-info').value
-        }));
-    }
-    // Find and disable submit button
-    const submitBtn = document.querySelector('#step-4 .form-navigation button.btn:not(.btn-secondary)');
-    const originalBtnText = submitBtn ? submitBtn.textContent : '';
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
-    }
     
     try {
-        // const res = await fetch(EMAIL_API_URL, {
-        //     method: 'POST',
-        //     body: formData,
-        // });
-
+        const res = await fetch(EMAIL_API_URL, {
+            method: 'POST',
+            body: formData,
+        });
         if (!res.ok) {
             const errorText = await res.text().catch(() => '');
             throw new Error(errorText || `Request failed (${res.status})`);
@@ -131,14 +96,61 @@ async function submitForm(formOrigin) {
 
         showSendStatus('success', 'Thank you! Your booking request was submitted successfully. We\'ll be in touch shortly.');
     } catch (err) {
-        console.error('Booking submission error:', err);
+        console.error("Error: ", err)
         showSendStatus('error', 'Sorry, there was a problem submitting your request. Please try again later or email david@psychologysquared.com.au');
     } finally {
+        const submitBtn = document.getElementById('submit-btn');
         if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText || 'Submit Request';
+            document.getElementById("form").reset();
         }
     }
+}
+
+function renderTurnstile(formData, originalBtnText) {
+    turnstile.remove("#cf-turnstile");
+    turnstile.render('#cf-turnstile', {
+        sitekey: '0x4AAAAAABx7osAcNS_e9_7w',
+        size: 'normal',
+        theme: "auto",
+        callback: async function (token) {
+            await submitForm(token, formData, originalBtnText);
+        },
+    });
+}
+
+async function submitFormContact() {
+    const formData = new FormData();
+    formData.append("message", JSON.stringify({
+        message: document.getElementById('message').value,
+        organization: document.getElementById('organization').value
+    }));
+    
+    const submitBtn = document.getElementById('submit-btn');
+    let originalBtnText;
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Submitting...';
+    }
+    renderTurnstile(formData, originalBtnText);
+}
+
+async function submitFormBooking() {
+    const formData = new FormData();
+    formData.append("message", JSON.stringify({
+        service: document.getElementById('selected-service').value,
+        organization: document.getElementById('organization').value,
+        role: document.getElementById('role').value,
+        groupSize: document.getElementById('group-size').value,
+        preferredDate: document.getElementById('preferred-date').value,
+        budget: document.getElementById('budget').value,
+        location: document.getElementById('location').value,
+        specificTopics: document.getElementById('specific-topics').value,
+        additionalInfo: document.getElementById('additional-info').value
+    }));
+    renderTurnstile(formData);
 }
 
 // Close modal when clicking outside (guard if element not present)
@@ -175,23 +187,6 @@ const setupMobileMenu = () => {
     });
 };
 
-// Close mobile menu on resize
-const handleResize = () => {
-    const primaryNav = document.getElementById('primary-nav');
-    const menuButton = document.getElementById('mobile-menu-button');
-    if (!primaryNav || !menuButton) return;
-
-    if (window.innerWidth >= 768) {
-        // Ensure desktop state
-        primaryNav.hidden = false;
-        menuButton.setAttribute('aria-expanded', 'true');
-    } else {
-        // Ensure mobile collapsed state by default
-        primaryNav.hidden = true;
-        menuButton.setAttribute('aria-expanded', 'false');
-    }
-};
-
 let currentStep = 1;
 let selectedService = '';
 let selectedType = '';
@@ -216,77 +211,6 @@ function toggleSection(sectionId) {
         content.classList.add('expanded');
         icon.textContent = '▲';
     }
-}
-
-
-
-// Keyboard navigation
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeBookingForm();
-    }
-});
-
-const addPassiveEventListener = (element, event, handler) => {
-    element.addEventListener(event, handler, { passive: true });
-};
-
-const handleIframeResize = () => {
-    const iframe = document.getElementById('comparisonTable');
-    if (!iframe) return;
-
-    const messageHandler = (event) => {                
-        if (event.data && event.data.type === 'resize' && typeof event.data.height === 'number') {
-            const height = Math.min(Math.max(event.data.height, 400), 2000); // Clamp height
-            iframe.style.height = `${height}px`;
-        }
-    };
-
-    window.addEventListener('message', messageHandler);
-    
-    return () => window.removeEventListener('message', messageHandler);
-};
-
-const handleIframeError = () => {
-    const iframe = document.getElementById('comparisonTable');
-    if (!iframe) return;
-
-    iframe.addEventListener('error', () => {
-        const container = iframe.parentElement;
-        const errorMsg = document.createElement('div');
-        errorMsg.innerHTML = `
-            <p style="color: #666; text-align: center; padding: 2rem;">
-                Unable to load comparison table. Please <a href="table.html" style="color: var(--primary-color);">view it directly</a>.
-            </p>
-        `;
-        container.replaceChild(errorMsg, iframe);
-    });
-};
-
-const enhanceFocusManagement = () => {
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Tab') {
-            document.body.classList.add('keyboard-nav');
-        }
-    });
-
-    addPassiveEventListener(document, 'mousedown', () => {
-        document.body.classList.remove('keyboard-nav');
-    });
-};
-
-const init = () => {
-    handleIframeResize();
-    handleIframeError();
-    enhanceFocusManagement();
-    setupMobileMenu();
-    handleResize();
-};
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
 }
 
 // Smooth scrolling for navigation links
@@ -335,13 +259,12 @@ const handleKeyNavigation = (event) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    window.addEventListener('resize', handleResize);
-
     const linkButtons = document.querySelectorAll('.link-button');
     linkButtons.forEach(button => {
         button.addEventListener('click', (e) => addRippleEffect(button, e), { passive: true });
     });
     
     document.addEventListener('keydown', handleKeyNavigation);
+    setupMobileMenu();
 });
 

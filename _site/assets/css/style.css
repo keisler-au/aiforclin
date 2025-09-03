@@ -885,7 +885,7 @@ body {
 .auto-grid-300 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; }
 
 
-.contact-form {
+.booking-form {
     background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
     border: 2px solid #4a5568;
     border-radius: 12px;
