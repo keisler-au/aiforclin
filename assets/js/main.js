@@ -95,6 +95,7 @@ async function submitForm(token, formData, originalBtnText) {
         }
 
         showSendStatus('success', 'Thank you! Your booking request was submitted successfully. We\'ll be in touch shortly.');
+        document.getElementById("form").reset();
     } catch (err) {
         console.error("Error: ", err)
         showSendStatus('error', 'Sorry, there was a problem submitting your request. Please try again later or email david@psychologysquared.com.au');
@@ -103,7 +104,6 @@ async function submitForm(token, formData, originalBtnText) {
         if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText || 'Submit Request';
-            document.getElementById("form").reset();
         }
     }
 }
