@@ -194,6 +194,7 @@ body {
 .title-container-alt {
     min-height: 100%;
     margin: 13rem auto;
+    margin-bottom: 6vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -215,7 +216,9 @@ body {
     flex-direction: column; /* mobile default: stack */
     gap: 2rem;
 }
-
+.container-short {
+    max-width: 800px;
+}
 .title-content-centered {
     text-align: center;
 }

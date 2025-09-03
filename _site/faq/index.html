@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Frequently Asked Questions · AI for Clinicians</title>
+  <meta name="description" content="Quick answers about services, ethics, compliance, and AI for clinicians."><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Frequently Asked Questions | AI for Clinicians</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Frequently Asked Questions" />
+<meta name="author" content="AI for Clinicians" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Quick answers about services, ethics, compliance, and AI for clinicians." />
+<meta property="og:description" content="Quick answers about services, ethics, compliance, and AI for clinicians." />
+<link rel="canonical" href="http://localhost:4000/faq/" />
+<meta property="og:url" content="http://localhost:4000/faq/" />
+<meta property="og:site_name" content="AI for Clinicians" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"http://localhost:4000/faq/","description":"Quick answers about services, ethics, compliance, and AI for clinicians.","headline":"Frequently Asked Questions","author":{"@type":"Person","name":"AI for Clinicians"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<!-- inserts canonical, OG, Twitter, etc. -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
+  <script src="/assets/js/main.js"></script>
+</head>
+<body>
+    
+        <header class="site-header">
+    <a class="skip-link" href="#main">Skip to main content</a>
+  
+    <div class="container">
+      <a href="/" class="nav-brand" aria-label="AI for Clinicians home">
+        AI FOR CLINICIANS
+      </a>
+      
+      <button id="mobile-menu-button"
+              class="mobile-menu-button"
+              aria-label="Toggle navigation menu"
+              aria-controls="primary-nav"
+              aria-expanded="false">
+        <span class="mobile-menu-icon" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary" hidden>
+        <ul class="nav-list">
+          <li><a href="/services/" class="nav-link">Services</a></li>
+          <li><a href="/compliance/" class="nav-link">Compliance Pack</a></li>
+          <li><a href="/comparisons/" class="nav-link">Comparisons Table</a></li>
+          <li><a href="/standards/" class="nav-link">AI Ethical Standards</a></li>
+          <li><a href="/faq/" class="nav-link">FAQ</a></li>
+          <li><a href="/contact/" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+    
+
+    
+        
+
+<nav class="sub-nav" id="subNav" aria-label="Section navigation">
+  <div class="sub-nav-container">
+    <ul class="sub-nav-list">
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#general"
+            class="sub-nav-link"
+            data-section="general"
+          >
+            General
+          </a>
+        </li>
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#services"
+            class="sub-nav-link"
+            data-section="services"
+          >
+            Services
+          </a>
+        </li>
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#ethics"
+            class="sub-nav-link"
+            data-section="ethics"
+          >
+            Ethics
+          </a>
+        </li>
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#speaking"
+            class="sub-nav-link"
+            data-section="speaking"
+          >
+            Speaking
+          </a>
+        </li>
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#tools"
+            class="sub-nav-link"
+            data-section="tools"
+          >
+            Tools
+          </a>
+        </li>
+      
+        
+        
+        <li class="sub-nav-item">
+          <a
+            href="#contact"
+            class="sub-nav-link"
+            data-section="contact"
+          >
+            Contact
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+
+<script>
+    // Handle scroll effects and active states
+    const subNav = document.getElementById('subNav');
+    const navLinks = document.querySelectorAll('.sub-nav-link');
+    const sections = document.querySelectorAll('.section');
+
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY > 50;
+        
+        // Toggle border appearance
+        if (scrolled) {
+            subNav.classList.add('scrolled');
+        } else {
+            subNav.classList.remove('scrolled');
+        }
+        
+        // Update active navigation item
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (window.scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        // Update active states
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Smooth scroll behavior for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const headerOffset = 120; // Account for both main header and sub nav
+                    const elementPosition = targetSection.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+            }
+        });
+    });
+</script>
+    
+
+  <main id="main" role="main">
+    <!-- Header -->
+<header class="title-container">
+    <div class="title-content title-content-centered">
+      <h1 class="main-title main-title-accent">Frequently Asked <span class="main-title">Questions</span></h1>
+      <p class="main-subtitle">Straightforward answers about our services, ethics, compliance, and learning resources.</p>
+    </div>
+</header>
+
+<section id="general" class="section">
+  <div class="container container-short">
+    <h2 class="section-title">General</h2>
+    <div class="content-container">
+      <article class="content-section">
+          <summary class="content-info-header-alt">Who is David Lopis and what is his background in AI and mental health?</summary>
+          <div class="content-section-text">
+            David is an Australian registered psychologist, AI consultant, and board‑approved supervisor. He leads Psychology Squared (3,500+ clinicians) and has presented/trained with APS, AAPi, and ACPA. Learn more on <a href="/services/">Services</a>.
+          </div>
+      </article>
+
+      <article class="content-section">
+          <summary class="content-info-header-alt">Do you provide services outside Australia or virtually?</summary>
+          <div class="content-section-text">
+            Yes. Virtual/online sessions are available. In‑person and hybrid formats can be arranged depending on needs.
+          </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section bg1">
+  <div class="container container-short">
+    <h2 class="section-title">Services and Booking</h2>
+    <div class="content-container">
+      <article class="content-section">
+          <summary class="content-info-header-alt">What kinds of services do you offer?</summary>
+          <div class="content-section-text">
+            • Individual AI consultation<br>
+            • Group training and workshops<br>
+            • Speaking engagements and keynotes<br>
+            • AI Compliance Pack (templates and guidance)<br>
+            • Company collaborations (product reviews and ongoing assistance)<br>
+            See <a href="/services/">Services</a> and <a href="/compliance/">Compliance Pack</a>.
+          </div>
+        </details>
+      </article>
+
+      <article class="content-section">
+          <summary class="content-info-header-alt">What information do I need to provide when booking?</summary>
+          <div class="content-section-text">
+            Name, email, organisation, role, expected group size, preferred dates, budget (optional), location/format (in‑person/virtual/hybrid), and any specific topics or additional info. You can start from <a href="/services/#pricing">our booking options</a>.
+          </div>
+      </article>
+
+      <article class="content-section">
+          <summary class="content-info-header-alt">Do you offer tailored workshops for different professional groups?</summary>
+          <div class="content-section-text">
+            Yes. Examples include AI Basics for Clinicians, AI for Social Workers, and Social Media & AI for Psychologists. Sessions are tailored to your context.
+          </div>
+      </article>
+
+      <article class="content-section">
+          <summary class="content-info-header-alt">What topics do you cover in talks and workshops?</summary>
+          <div class="content-section-text">
+            Getting started with AI in practice, ethical use and governance, AI tool demonstrations, social media and AI for psychologists, and discipline‑specific trainings.
+          </div>
+      </article>
+
+      <article class="content-section">
+          <summary class="content-info-header-alt">Do you consult with companies on product development and positioning?</summary>
+          <div class="content-section-text">
+            Yes. Our Product Review includes tool trial, debrief, 1‑month follow‑up, and written recommendations. Ongoing Assistance covers planning, implementation, governance, and risk management. See <a href="/services/#pricing">Company Consulting and Collaborations</a>.
+          </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="ethics" class="section bg2">
+  <div class="container container-short">
+    <h2 class="section-title">Ethics, Compliance, and Legal</h2>
+    <div class="content-container">
+      <article class="content-section">
+          <summary class="content-info-header-alt">How do you address ethics?</summary>
+          <div class="content-section-text">
+            We align with the Australian AI Ethics principles and professional competencies, emphasising transparency, accountability, privacy, and safety. See <a href="/standards/">AI Ethical Standards</a>.
+          </div>
+      </article>
+
+      <article class="content-section">
+          <summary class="content-info-header-alt">What is the AI Compliance Pack?</summary>
+          <div class="content-section-text">
+            A ready‑to‑use set of templates and guidance drafted by PGC Legal Pty Ltd: AI Policy, Privacy Policy, Consent Form for AI use, Implementation Checklist, and transcript inclusion guidance. Instant access after purchase. See <a href="/compliance/">AI Compliance Pack</a>.
+          </div>
+      </article>
+
+      <article class="content-section">
+          <summary class="content-info-header-alt">Who is the AI Compliance Pack for?</summary>
+          <div class="content-section-text">
+            Psychologists using or planning to use AI. Individual licence is $199 (inc GST); practice bundles available on request.
+          </div>
+      </article>
+
+      <article class="content-section">
+          <summary class="content-info-header-alt">Is the Compliance Pack legal advice? What are the limitations?</summary>
+          <div class="content-section-text">
+            The content is informational, not legal advice, and comes with limitations of liability. Using it does not create a solicitor‑client relationship. See <a href="/compliance/#legal">Important Legal Information</a>.
+          </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="speaking" class="section bg3">
+  <div class="container container-short">
+    <h2 class="section-title">Speaking, Media, and Community</h2>
+    <div class="content-container">
+      <article class="content-section">
+          <summary class="content-info-header-alt">Do you do keynotes at conferences?</summary>
+          <div class="content-section-text">
+            Yes. Examples include APS, AAPi, ACPA events, and ASAICP Symposium 2025. See <a href="/services/#speaking">Speaking & Events</a>.
+          </div>
+      </article>
+
+      <article class="content-section">
+          <summary class="content-info-header-alt">Where can I hear or watch your interviews and presentations?</summary>
+          <div class="content-section-text">
+            • Mastering Therapy Podcast: “Using AI in Your Therapy Practice (Part 2)”<br>
+            • YouTube: “ChatGPT and Beyond: AI’s Impact on Psychology”<br>
+            Links on <a href="/services/#media">Media & Interviews</a>.
+          </div>
+      </article>
+
+      <article class="content-section">
+          <summary class="content-info-header-alt">Is there a community I can join to learn about AI in psychology?</summary>
+          <div class="content-section-text">
+            Yes. Join the “Australian Psychology AI Community” Facebook group. See <a href="/compliance/#contact">Contact Information</a>.
+          </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="tools" class="section bg4">
+  <div class="container container-short">
+    <h2 class="section-title">Choosing AI Tools</h2>
+    <div class="content-container">
+      <article class="content-section">
+          <summary class="content-info-header-alt">Do you compare AI tools for clinicians?</summary>
+          <div class="content-section-text">
+            Yes. See our overview of AI scribe companies, including features, pricing, and trials on <a href="/comparisons/">Comparisons</a>.
+          </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section section-alt bg5">
+  <div class="container center">
+    <h2 class="section-title">Need something specific?</h2>
+    <p class="section-subtitle">Tell us your goals and context, and we’ll recommend the best approach.</p>
+    <a class="btn" href="/services/#pricing">Book or request a quote</a>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <small>&copy; 2025 AI for Clinicians</small>
+    <br><small>By Psychology Squared Pty Ltd </small>
+  </footer>
+</body>
+</html>
