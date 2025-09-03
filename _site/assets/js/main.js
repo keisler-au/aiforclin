@@ -120,19 +120,12 @@ function renderTurnstile(formData, originalBtnText) {
     });
 }
 
-async function submitFormContact() {
+function setupFormSubmission() {
     const honeypotField = document.getElementById('website');
     if (honeypotField.value) {
         showSendStatus('success', 'Thank you! Your message was submitted successfully. We\'ll be in touch shortly.');
         return;
     }
-
-    const formData = new FormData();
-    formData.append("message", JSON.stringify({
-        message: document.getElementById('message').value,
-        organization: document.getElementById('organization').value
-    }));
-    
     const submitBtn = document.getElementById('submit-btn');
     let originalBtnText;
     if (submitBtn) {
@@ -140,10 +133,21 @@ async function submitFormContact() {
         originalBtnText = submitBtn.textContent;
         submitBtn.textContent = 'Submitting...';
     }
+    return originalBtnText;
+}
+
+async function submitFormContact() {
+    const originalBtnText = setupFormSubmission();
+    const formData = new FormData();
+    formData.append("message", JSON.stringify({
+        message: document.getElementById('message').value,
+        organization: document.getElementById('organization').value
+    }));
     renderTurnstile(formData, originalBtnText);
 }
 
 async function submitFormBooking() {
+    const originalBtnText = setupFormSubmission();
     const formData = new FormData();
     formData.append("message", JSON.stringify({
         service: document.getElementById('selected-service').value,
@@ -156,7 +160,7 @@ async function submitFormBooking() {
         specificTopics: document.getElementById('specific-topics').value,
         additionalInfo: document.getElementById('additional-info').value
     }));
-    renderTurnstile(formData);
+    renderTurnstile(formData, originalBtnText);
 }
 
 // Close modal when clicking outside (guard if element not present)
