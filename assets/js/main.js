@@ -8,14 +8,14 @@ function openBookingForm(service, type) {
     
     const serviceNames = {
         'speaking': {
-            'general': 'Speaking Engagement (Pricing varies by group size)'
+            'general': 'Speaking Engagement'
         },
         'consulting': {
-            'general': 'AI Consultation (Individual or Duo)'
+            'general': 'AI Consultation'
         },
         'company': {
-            'product-review': 'Product Review ($770 Inc GST)',
-            'ongoing-assistance': 'Ongoing Assistance ($1,000-2,000/month)'
+            'product-review': 'Product Review',
+            'ongoing-assistance': 'Ongoing Assistance'
         }
     };
     
@@ -27,6 +27,13 @@ function openBookingForm(service, type) {
     } else {
         document.getElementById('form').style.display = 'block';
         document.getElementById('booking-modal-cliniko-1hr').style.display = 'none';
+    }
+    if (service === 'company') {
+        document.getElementById('group-size-group').style.display = 'none';
+        document.getElementById('budget-group').style.display = 'none';
+        document.getElementById('location-group').style.display = 'none';
+        document.getElementById('venue-group').style.display = 'none';
+
     }
     document.body.style.overflow = 'hidden';
     // Remove any previous status message
@@ -149,17 +156,39 @@ async function submitFormContact() {
 async function submitFormBooking() {
     const originalBtnText = setupFormSubmission();
     const formData = new FormData();
+
+    // Build message payload
     formData.append("message", JSON.stringify({
+        // Core
         service: document.getElementById('selected-service').value,
-        organization: document.getElementById('organization').value,
-        role: document.getElementById('role').value,
-        groupSize: document.getElementById('group-size').value,
-        preferredDate: document.getElementById('preferred-date').value,
-        budget: document.getElementById('budget').value,
-        location: document.getElementById('location').value,
-        specificTopics: document.getElementById('specific-topics').value,
-        additionalInfo: document.getElementById('additional-info').value
+        name: document.getElementById('name')?.value || '',
+        email: document.getElementById('email')?.value || '',
+        phone: document.getElementById('phone')?.value || '',
+        contactMethod: document.getElementById('contact-method')?.value || '',
+        timezone: document.getElementById('timezone')?.value || '',
+
+        // Organisation
+        organization: document.getElementById('organization')?.value || '',
+        role: document.getElementById('role')?.value || '',
+        orgWebsite: document.getElementById('org-website')?.value || '',
+        industry: document.getElementById('industry')?.value || '',
+        groupSize: document.getElementById('group-size')?.value || '',
+
+        // Event details
+        preferredDate: document.getElementById('preferred-date')?.value || '',
+        preferredTime: document.getElementById('preferred-time')?.value || '',
+        duration: document.getElementById('duration')?.value || '',
+        budget: document.getElementById('budget')?.value || '',
+        location: document.getElementById('location')?.value || '',
+        venueName: document.getElementById('venue-name')?.value || '',
+
+        // Additional info
+        specificTopics: document.getElementById('specific-topics')?.value || '',
+        objectives: document.getElementById('objectives')?.value || '',
+        additionalInfo: document.getElementById('additional-info')?.value || '',
+        howHeard: document.getElementById('how-heard')?.value || '',
     }));
+
     renderTurnstile(formData, originalBtnText);
 }
 

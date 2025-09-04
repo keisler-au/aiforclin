@@ -553,7 +553,7 @@
             <fieldset class="form-step active" id="step-1">
                 <div class="form-group">
                     <label for="selected-service">Selected Service:</label>
-                    <input type="text" id="selected-service" readonly>
+                    <input type="text" id="selected-service">
                 </div>
                 <div class="form-group">
                     <label for="name">Full Name *</label>
@@ -562,6 +562,23 @@
                 <div class="form-group">
                     <label for="email">Email Address *</label>
                     <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="e.g., +61 4xx xxx xxx">
+                </div>
+                <div class="form-group">
+                    <label for="contact-method">Preferred Contact Method</label>
+                    <select id="contact-method">
+                        <option value="">Select contact method</option>
+                        <option value="email">Email</option>
+                        <option value="phone">Phone</option>
+                        <option value="either">Either</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="timezone">Your Time Zone</label>
+                    <input type="text" id="timezone" placeholder="e.g., AEST (UTC+10)">
                 </div>
                 <nav class="form-navigation">
                     <div></div>
@@ -578,6 +595,23 @@
                 <div class="form-group">
                     <label for="role">Your Role</label>
                     <input type="text" id="role" placeholder="e.g., Psychologist, Practice Manager">
+                </div>
+                <div class="form-group">
+                    <label for="org-website">Organization Website</label>
+                    <input type="url" id="org-website" placeholder="https://example.com">
+                </div>
+                <div class="form-group">
+                    <label for="industry">Industry/Sector</label>
+                    <select id="industry">
+                        <option value="">Select industry</option>
+                        <option value="private-practice">Private Practice</option>
+                        <option value="hospital-health">Hospital/Health Service</option>
+                        <option value="community">Community/NGO</option>
+                        <option value="education">Education/University</option>
+                        <option value="government">Government/Public Sector</option>
+                        <option value="corporate">Corporate</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
                 <div class="form-group" id="group-size-group">
                     <label for="group-size">Expected Group Size</label>
@@ -603,6 +637,28 @@
                     <input type="text" id="preferred-date" placeholder="e.g., March 15-20, 2024">
                 </div>
                 <div class="form-group">
+                    <label for="preferred-time">Preferred Time of Day</label>
+                    <select id="preferred-time">
+                        <option value="">Select time</option>
+                        <option value="morning">Morning</option>
+                        <option value="afternoon">Afternoon</option>
+                        <option value="evening">Evening</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Estimated Duration</label>
+                    <select id="duration">
+                        <option value="">Select duration</option>
+                        <option value="60-min">60 minutes</option>
+                        <option value="90-min">90 minutes</option>
+                        <option value="2-3-hours">2–3 hours</option>
+                        <option value="half-day">Half day</option>
+                        <option value="full-day">Full day</option>
+                        <option value="multi-day">Multi-day</option>
+                    </select>
+                </div>
+                <div class="form-group" id="budget-group">
                     <label for="budget">Budget Range (Optional)</label>
                     <select id="budget">
                         <option value="">Select budget range</option>
@@ -614,7 +670,7 @@
                         <option value="flexible">Flexible</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="location-group">
                     <label for="location">Event Location/Format</label>
                     <select id="location">
                         <option value="">Select format</option>
@@ -623,6 +679,10 @@
                         <option value="hybrid">Hybrid</option>
                         <option value="flexible">Flexible</option>
                     </select>
+                </div>
+                <div class="form-group" id="venue-group">
+                    <label for="venue-name">Venue Name (if in-person)</label>
+                    <input type="text" id="venue-name" placeholder="Venue or organization site">
                 </div>
                 <nav class="form-navigation">
                     <button type="button" class="btn btn-secondary" onclick="prevStep()">← Previous</button>
@@ -637,8 +697,24 @@
                     <textarea id="specific-topics" rows="3" placeholder="e.g., AI scribes, clinical documentation, ethical considerations"></textarea>
                 </div>
                 <div class="form-group">
+                    <label for="objectives">Objectives/Desired Outcomes</label>
+                    <textarea id="objectives" rows="3" placeholder="What outcomes would make this a success for you and your team?"></textarea>
+                </div>
+                <div class="form-group">
                     <label for="additional-info">Additional Information</label>
                     <textarea id="additional-info" rows="4" placeholder="Any additional details about your requirements, audience, or special considerations"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="how-heard">How did you hear about us?</label>
+                    <select id="how-heard">
+                        <option value="">Select one</option>
+                        <option value="aps-aapi-acpa">APS/AAPi/ACPA event</option>
+                        <option value="referral">Referral/Word of mouth</option>
+                        <option value="search">Search engine</option>
+                        <option value="social">Social media</option>
+                        <option value="podcast-video">Podcast/Video</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
                 <input type="text" name="website" id="website" class="hp-field" autocomplete="off" tabindex="-1">
                 <div id="cf-turnstile"></div>
