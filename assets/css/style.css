@@ -467,6 +467,17 @@ body {
     justify-self: center;
 }
 
+/* Responsive homepage logo */
+.dashboard-logo {
+    display: block;
+    margin: 0 auto 1rem;
+    max-width: clamp(120px, 30vw, 220px);
+    height: auto;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+}
+
 .logo-icon {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     transition: var(--transition);
