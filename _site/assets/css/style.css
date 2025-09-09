@@ -642,6 +642,9 @@ body {
 
 .card-alt {
     background: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card::before {
@@ -718,18 +721,6 @@ body {
 .event-desc {
     color: var(--text-muted);
     font-size: 0.9rem;
-}
-
-.btn-primary {
-    background: var(--primary-gold);
-    color: var(--navy-deepest);
-    border-color: var(--primary-gold);
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-    background: var(--gold-light);
-    color: var(--navy-deepest);
 }
 
 .btn-group {
@@ -853,17 +844,6 @@ body {
 
 .list-unstyled { list-style: none; }
 
-.icon-box {
-    width: 3rem;
-    height: 3rem;
-    background: var(--card-bg-alt);
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
 .hero-cta-subtitle { font-weight: 400; font-size: 0.9rem; }
 
 .row-between { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
@@ -872,7 +852,6 @@ body {
 .price-lg { font-size: 2rem; font-weight: 700; color: var(--primary-gold); }
 .price-range { font-size: 1.75rem; font-weight: 700; color: var(--primary-gold); }
 .subtitle-muted { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
-.panel-alt { border: 1px solid var(--border-color); border-radius: 0.5rem; padding: 2rem;}
 .auto-grid-300 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; }
 
 
