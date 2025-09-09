@@ -22,10 +22,6 @@
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/comparisons/companies/allyscribe.html</loc>
-<lastmod>2025-08-25T14:11:58+00:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/comparisons/companies/antsa.html</loc>
 <lastmod>2025-08-25T14:12:31+00:00</lastmod>
 </url>
@@ -46,10 +42,6 @@
 <lastmod>2025-08-25T14:13:48+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/comparisons/companies/mentalyc.html</loc>
-<lastmod>2025-08-25T14:14:00+00:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/comparisons/companies/novopsych.html</loc>
 <lastmod>2025-08-25T14:14:21+00:00</lastmod>
 </url>
@@ -67,6 +59,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/comparisons/table.html</loc>
-<lastmod>2025-08-25T13:51:08+00:00</lastmod>
+<lastmod>2025-09-09T12:16:42+00:00</lastmod>
 </url>
 </urlset>
