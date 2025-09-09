@@ -62,8 +62,14 @@ function nextStep() {
         if (currentStep === 1) {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            if (!name || !email) {
-                alert('Please fill in all required fields.');
+            if (!name) {
+                alert('Please fill in Name field.');
+                return;
+            } else if (!email) {
+                alert('Please fill in Email field.');
+                return;
+            } else if (email.indexOf("@") === -1) {
+                alert('Please enter a valid Email address.');
                 return;
             }
         }
