@@ -193,8 +193,7 @@ body {
     padding: 0 20px;
 }
 
-.title-container,
-.title-container-alt {
+.title-container {
     min-height: 100%;
     margin: 13rem auto;
     margin-bottom: 6vh;
@@ -203,11 +202,6 @@ body {
     justify-content: center;
 }
 
-.title-container-alt {
-    flex-direction: column;
-    margin-top: 6rem;  
-    margin-bottom: 6vh;
-}
 
 .title-content {
     width: 50%;
@@ -1263,6 +1257,7 @@ body {
     letter-spacing: 0.025em;
     margin-bottom: 1rem;
     z-index: 1;
+    text-align: center;
 }
 
 .card-content {
@@ -1572,8 +1567,7 @@ a {
   
   /* ≤1024px */
   @media (max-width: 1024px) {
-    .title-container,
-    .title-container-alt { margin: 8rem auto; }
+    .title-container { margin: 8rem auto; }
   
     .title-content { width: 100%; }
   
@@ -1660,8 +1654,7 @@ a {
       gap: 0.625rem;
     }
   
-    .title-container,
-    .title-container-alt { margin: 6rem auto 4rem; }
+    .title-container { margin: 6rem auto 4rem; }
   
     .main-subtitle { font-size: 1.05rem; }
     .hero-info { font-size: 1.2rem; }
