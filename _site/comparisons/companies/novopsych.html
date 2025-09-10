@@ -1,726 +1,854 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NovoPsych (NovoNote) - AI Mental Health Scribe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>        
-        :root {
-            --primary-gold: #D4AF37;
-            --gold-light: #F4E4BC;
-            --gold-dark: #B8941F;
-            --navy-dark: #1A2B44;
-            --navy-darker: #14223A;
-            --navy-deepest: #0F1A2E;
-            --text-primary: #D4AF37;
-            --text-secondary: #F4E4BC;
-            --text-muted: #C4B078;
-            --border-color: rgba(212, 175, 55, 0.3);
-            --hover-bg: rgba(212, 175, 55, 0.15);
-            --transition: all 0.3s ease;
-            --success-green: #28a745;
-            --success-bg: rgba(40, 167, 69, 0.1);
-            --warning-orange: #fd7e14;
-            --warning-bg: rgba(253, 126, 20, 0.1);
-            --error-red: #dc3545;
-            --error-bg: rgba(220, 53, 69, 0.1);
-        }
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <style>
+      :root {
+        --primary-gold: #d4af37;
+        --gold-light: #f4e4bc;
+        --gold-dark: #b8941f;
+        --navy-dark: #1a2b44;
+        --navy-darker: #14223a;
+        --navy-deepest: #0f1a2e;
+        --text-primary: #d4af37;
+        --text-secondary: #f4e4bc;
+        --text-muted: #c4b078;
+        --border-color: rgba(212, 175, 55, 0.3);
+        --hover-bg: rgba(212, 175, 55, 0.15);
+        --transition: all 0.3s ease;
+        --success-green: #28a745;
+        --success-bg: rgba(40, 167, 69, 0.1);
+        --warning-orange: #fd7e14;
+        --warning-bg: rgba(253, 126, 20, 0.1);
+        --error-red: #dc3545;
+        --error-bg: rgba(220, 53, 69, 0.1);
+      }
 
-        body {
-            font-family: 'Lora', serif;
-            background: linear-gradient(135deg, var(--navy-deepest) 0%, var(--navy-darker) 50%, var(--navy-dark) 100%);
-            color: var(--text-primary);
-            min-height: 100vh;
-            line-height: 1.6;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
+      body {
+        font-family: "Lora", serif;
+        background: linear-gradient(
+          135deg,
+          var(--navy-deepest) 0%,
+          var(--navy-darker) 50%,
+          var(--navy-dark) 100%
+        );
+        color: var(--text-primary);
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 3.75rem;
+      }
+
+      .header h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 1.25rem;
+        color: var(--primary-gold);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        letter-spacing: 0.05em;
+        line-height: 1.2;
+      }
+
+      .header p {
+        font-size: 1.3rem;
+        color: var(--text-secondary);
+        font-weight: 400;
+        font-style: italic;
+        margin-bottom: 2rem;
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 1.25rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .nav-button {
+        display: inline-block;
+        text-decoration: none;
+        background: rgba(212, 175, 55, 0.08);
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1.25rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary-gold);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        font-family: "Lora", serif;
+        letter-spacing: 0.025em;
+      }
+
+      .nav-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 175, 55, 0.1),
+          transparent
+        );
+        transition: left 0.5s ease;
+        pointer-events: none;
+      }
+
+      .nav-button:hover::before,
+      .nav-button:focus::before {
+        left: 100%;
+      }
+
+      .nav-button:hover,
+      .nav-button:focus {
+        background: var(--hover-bg);
+        border-color: var(--primary-gold);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+        outline: none;
+        color: var(--gold-light);
+      }
+
+      .nav-button.secondary {
+        background: rgba(212, 175, 55, 0.12);
+        border-color: var(--gold-dark);
+      }
+
+      .nav-button.secondary:hover,
+      .nav-button.secondary:focus {
+        background: rgba(212, 175, 55, 0.2);
+        border-color: var(--primary-gold);
+      }
+
+      .company-details {
+        background: rgba(212, 175, 55, 0.08);
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 40px;
+        margin-bottom: 3.75rem;
+        position: relative;
+        overflow: hidden;
+        transition: var(--transition);
+      }
+
+      .company-details::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 175, 55, 0.05),
+          transparent
+        );
+        transition: left 0.8s ease;
+        pointer-events: none;
+      }
+
+      .company-details:hover::before {
+        left: 100%;
+      }
+
+      .company-details:hover {
+        background: var(--hover-bg);
+        border-color: var(--primary-gold);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+      }
+
+      .detail-section {
+        margin-bottom: 2.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .detail-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .detail-section h2 {
+        color: var(--primary-gold);
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1.25rem;
+        border-bottom: 2px solid var(--primary-gold);
+        padding-bottom: 0.5rem;
+        letter-spacing: 0.025em;
+      }
+
+      .detail-section h3 {
+        color: var(--text-secondary);
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .detail-section p,
+      .detail-section li {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      .detail-section ul {
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .detail-section li {
+        margin-bottom: 0.5rem;
+      }
+
+      .detail-section strong {
+        color: var(--primary-gold);
+        font-weight: 700;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .info-card {
+        background: rgba(212, 175, 55, 0.05);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .info-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 175, 55, 0.03),
+          transparent
+        );
+        transition: left 0.6s ease;
+        pointer-events: none;
+      }
+
+      .info-card:hover::before {
+        left: 100%;
+      }
+
+      .info-card:hover {
+        background: rgba(212, 175, 55, 0.1);
+        border-color: var(--primary-gold);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+      }
+
+      .info-card h3 {
+        color: var(--primary-gold);
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+      }
+
+      .info-card p,
+      .info-card ul {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .feature-item {
+        background: rgba(212, 175, 55, 0.05);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1.25rem;
+        transition: var(--transition);
+        border-left: 4px solid var(--primary-gold);
+      }
+
+      .feature-item:hover {
+        background: rgba(212, 175, 55, 0.1);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+      }
+
+      .feature-item h4 {
+        color: var(--primary-gold);
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+
+      .feature-item p {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .pricing-card {
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.1),
+          rgba(212, 175, 55, 0.15)
+        );
+        border: 2px solid var(--border-color);
+        color: var(--text-secondary);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pricing-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 175, 55, 0.1),
+          transparent
+        );
+        transition: left 0.6s ease;
+        pointer-events: none;
+      }
+
+      .pricing-card:hover::before {
+        left: 100%;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--primary-gold);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+      }
+
+      .pricing-card h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary-gold);
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+      }
+
+      .pricing-card .price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: var(--primary-gold);
+        position: relative;
+        z-index: 1;
+      }
+
+      .pricing-card .features {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        position: relative;
+        z-index: 1;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-left: 0.5rem;
+        border: 1px solid;
+      }
+
+      .status-yes {
+        background: var(--success-bg);
+        color: var(--success-green);
+        border-color: var(--success-green);
+      }
+
+      .status-no {
+        background: var(--error-bg);
+        color: var(--error-red);
+        border-color: var(--error-red);
+      }
+
+      .status-partial {
+        background: var(--warning-bg);
+        color: var(--warning-orange);
+        border-color: var(--warning-orange);
+      }
+
+      .highlight {
+        background: rgba(212, 175, 55, 0.2);
+        color: var(--primary-gold);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-weight: 700;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+      }
+
+      .special-offer {
+        background: var(--success-bg);
+        border: 2px solid var(--success-green);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-top: 1rem;
+      }
+
+      .special-offer h3 {
+        color: var(--success-green) !important;
+        margin-bottom: 0.75rem;
+      }
+
+      .special-offer p {
+        color: var(--success-green) !important;
+      }
+
+      .contact-info {
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.15),
+          rgba(212, 175, 55, 0.1)
+        );
+        border: 2px solid var(--primary-gold);
+        color: var(--text-secondary);
+        padding: 2rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .contact-info h3 {
+        margin-bottom: 1.25rem;
+        font-size: 1.5rem;
+        color: var(--primary-gold);
+      }
+
+      .contact-info a {
+        color: var(--primary-gold);
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        transition: var(--transition);
+      }
+
+      .contact-info a:hover {
+        border-color: var(--primary-gold);
+        color: var(--gold-light);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      @media (max-width: 768px) {
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 3.75rem;
+          padding: 1.875rem 0.9375rem;
         }
 
         .header h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-            color: var(--primary-gold);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            letter-spacing: 0.05em;
-            line-height: 1.2;
+          font-size: clamp(2rem, 6vw, 2.5rem);
         }
 
         .header p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-            font-style: italic;
-            margin-bottom: 2rem;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 1.25rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-button {
-            display: inline-block;
-            text-decoration: none;
-            background: rgba(212, 175, 55, 0.08);
-            border: 2px solid var(--border-color);
-            border-radius: 0.5rem;
-            padding: 1.25rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-gold);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            font-family: 'Lora', serif;
-            letter-spacing: 0.025em;
-        }
-
-        .nav-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-            transition: left 0.5s ease;
-            pointer-events: none;
-        }
-
-        .nav-button:hover::before,
-        .nav-button:focus::before {
-            left: 100%;
-        }
-
-        .nav-button:hover,
-        .nav-button:focus {
-            background: var(--hover-bg);
-            border-color: var(--primary-gold);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
-            outline: none;
-            color: var(--gold-light);
-        }
-
-        .nav-button.secondary {
-            background: rgba(212, 175, 55, 0.12);
-            border-color: var(--gold-dark);
-        }
-
-        .nav-button.secondary:hover,
-        .nav-button.secondary:focus {
-            background: rgba(212, 175, 55, 0.2);
-            border-color: var(--primary-gold);
+          font-size: 1.1rem;
         }
 
         .company-details {
-            background: rgba(212, 175, 55, 0.08);
-            border: 2px solid var(--border-color);
-            border-radius: 0.5rem;
-            padding: 40px;
-            margin-bottom: 3.75rem;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .company-details::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.05), transparent);
-            transition: left 0.8s ease;
-            pointer-events: none;
-        }
-
-        .company-details:hover::before {
-            left: 100%;
-        }
-
-        .company-details:hover {
-            background: var(--hover-bg);
-            border-color: var(--primary-gold);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
-        }
-
-        .detail-section {
-            margin-bottom: 2.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .detail-section:last-child {
-            margin-bottom: 0;
+          padding: 1.25rem;
         }
 
         .detail-section h2 {
-            color: var(--primary-gold);
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-            border-bottom: 2px solid var(--primary-gold);
-            padding-bottom: 0.5rem;
-            letter-spacing: 0.025em;
+          font-size: 1.5rem;
         }
 
         .detail-section h3 {
-            color: var(--text-secondary);
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            margin-top: 1.5rem;
+          font-size: 1.2rem;
         }
 
-        .detail-section p, .detail-section li {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .detail-section ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
+        .detail-section p,
         .detail-section li {
-            margin-bottom: 0.5rem;
+          font-size: 1rem;
         }
 
-        .detail-section strong {
-            color: var(--primary-gold);
-            font-weight: 700;
+        .nav-buttons {
+          flex-direction: column;
+          align-items: center;
+          gap: 0.9375rem;
         }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+        .nav-button {
+          padding: 1rem 1.5rem;
+          font-size: 1rem;
+          width: 100%;
+          max-width: 300px;
+          text-align: center;
         }
 
-        .info-card {
-            background: rgba(212, 175, 55, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .info-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.03), transparent);
-            transition: left 0.6s ease;
-            pointer-events: none;
-        }
-
-        .info-card:hover::before {
-            left: 100%;
-        }
-
-        .info-card:hover {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: var(--primary-gold);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
-        }
-
-        .info-card h3 {
-            color: var(--primary-gold);
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-
-        .info-card p, .info-card ul {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
+        .info-grid,
+        .pricing-grid,
         .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .detail-section ul {
+          margin-left: 1rem;
         }
 
-        .feature-item {
-            background: rgba(212, 175, 55, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            padding: 1.25rem;
-            transition: var(--transition);
-            border-left: 4px solid var(--primary-gold);
+        .nav-button {
+          padding: 0.875rem 1.25rem;
         }
+      }
 
-        .feature-item:hover {
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
         }
+      }
 
-        .feature-item h4 {
-            color: var(--primary-gold);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .feature-item p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
+      @media (prefers-contrast: high) {
+        .company-details,
+        .nav-button,
+        .info-card,
         .pricing-card {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.15));
-            border: 2px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+          border-width: 3px;
         }
-
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-            transition: left 0.6s ease;
-            pointer-events: none;
-        }
-
-        .pricing-card:hover::before {
-            left: 100%;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary-gold);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
-        }
-
-        .pricing-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-gold);
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-        }
-
-        .pricing-card .price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--primary-gold);
-            position: relative;
-            z-index: 1;
-        }
-
-        .pricing-card .features {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            position: relative;
-            z-index: 1;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 0.5rem;
-            border: 1px solid;
-        }
-
-        .status-yes {
-            background: var(--success-bg);
-            color: var(--success-green);
-            border-color: var(--success-green);
-        }
-
-        .status-no {
-            background: var(--error-bg);
-            color: var(--error-red);
-            border-color: var(--error-red);
-        }
-
-        .status-partial {
-            background: var(--warning-bg);
-            color: var(--warning-orange);
-            border-color: var(--warning-orange);
-        }
-
-        .highlight {
-            background: rgba(212, 175, 55, 0.2);
-            color: var(--primary-gold);
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-weight: 700;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .special-offer {
-            background: var(--success-bg);
-            border: 2px solid var(--success-green);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .special-offer h3 {
-            color: var(--success-green) !important;
-            margin-bottom: 0.75rem;
-        }
-
-        .special-offer p {
-            color: var(--success-green) !important;
-        }
-
-        .contact-info {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.1));
-            border: 2px solid var(--primary-gold);
-            color: var(--text-secondary);
-            padding: 2rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .contact-info h3 {
-            margin-bottom: 1.25rem;
-            font-size: 1.5rem;
-            color: var(--primary-gold);
-        }
-
-        .contact-info a {
-            color: var(--primary-gold);
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-            transition: var(--transition);
-        }
-
-        .contact-info a:hover {
-            border-color: var(--primary-gold);
-            color: var(--gold-light);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1.875rem 0.9375rem;
-            }
-
-            .header h1 {
-                font-size: clamp(2rem, 6vw, 2.5rem);
-            }
-
-            .header p {
-                font-size: 1.1rem;
-            }
-            
-            .company-details {
-                padding: 1.25rem;
-            }
-
-            .detail-section h2 {
-                font-size: 1.5rem;
-            }
-
-            .detail-section h3 {
-                font-size: 1.2rem;
-            }
-
-            .detail-section p, .detail-section li {
-                font-size: 1rem;
-            }
-            
-            .nav-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.9375rem;
-            }
-
-            .nav-button {
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-                width: 100%;
-                max-width: 300px;
-                text-align: center;
-            }
-
-            .info-grid, .pricing-grid, .feature-list {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .detail-section ul {
-                margin-left: 1rem;
-            }
-
-            .nav-button {
-                padding: 0.875rem 1.25rem;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        @media (prefers-contrast: high) {
-            .company-details,
-            .nav-button,
-            .info-card,
-            .pricing-card {
-                border-width: 3px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header class="header">
-            <h1>NovoPsych</h1>
-            <p>AI-Powered Mental Health Scribe & Psychometrics</p>
-            
-            <nav class="nav-buttons" aria-label="Navigation links">
-                <a href="../index.html" class="nav-button" aria-label="Return to comparison page">← Back to Comparison</a>
-                <a href="https://novopsych.com.au" class="nav-button secondary" target="_blank" rel="noopener noreferrer" aria-label="Visit NovoPsych website">Visit NovoPsych Website</a>
-            </nav>
-        </header>
+      <header class="header">
+        <h1>NovoPsych</h1>
+        <p>AI-Powered Mental Health Scribe & Psychometrics</p>
 
-        <article class="company-details">
-            <section class="detail-section">
-                <h2>Company Overview</h2>
-                <div class="info-grid">
-                    <div class="info-card">
-                        <h3>Leadership</h3>
-                        <p><strong>CEO:</strong> Ben Buchanan</p>
-                        <p><strong>Product:</strong> NovoNote by NovoPsych</p>
-                        <p><strong>Specialization:</strong> Mental health practitioners</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>Privacy & Compliance</h3>
-                        <p>✅ Complies with Australian Privacy Principles</p>
-                        <p>✅ Data stored in <span class="highlight">Australia</span></p>
-                        <p>✅ Designed specifically for mental health</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>Trial & Access</h3>
-                        <p><strong>Free Trial:</strong> <span class="highlight">3 months</span></p>
-                        <p><strong>Free Tier:</strong> <span class="highlight">30 notes per month</span></p>
-                        <p><strong>Special Offer:</strong> <span class="highlight">Free until March 2025</span></p>
-                    </div>
-                </div>
-            </section>
+        <nav class="nav-buttons" aria-label="Navigation links">
+          <a
+            href="../index.html"
+            class="nav-button"
+            aria-label="Return to comparison page"
+            >← Back to Comparison</a
+          >
+          <a
+            href="https://novopsych.com.au"
+            class="nav-button secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit NovoPsych website"
+            >Visit NovoPsych Website</a
+          >
+        </nav>
+      </header>
 
-            <section class="detail-section">
-                <h2>Core Features</h2>
-                <div class="feature-list">
-                    <div class="feature-item">
-                        <h4>In-Session Transcription</h4>
-                        <p>Real-time transcription during therapy sessions with mental health-specific accuracy</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>Document & Note Generation</h4>
-                        <p>Automated generation of clinical notes and documentation</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>Mental Health Templates</h4>
-                        <p>Template library designed by team of psychologists for various therapy contexts</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>Custom Templates</h4>
-                        <p>Create and customize templates to match your specific practice needs</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>NovoPsych Integration</h4>
-                        <p>Seamless integration with NovoPsych Psychometrics for enhanced context</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>Multi-Platform Support</h4>
-                        <p>Works on computers, phones, and tablets for maximum flexibility</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="detail-section">
-                <h2>Unique Value Proposition</h2>
-                <div class="info-card">
-                    <h3>Mental Health Specialization</h3>
-                    <p>NovoNote is specifically designed for mental health practitioners by the NovoPsych team. The integration with NovoPsych Psychometrics allows the AI to use objective and structured psychometric data to create extra context for note and document generation, drastically improving note quality.</p>
-                </div>
-                
-                <div class="feature-list">
-                    <div class="feature-item">
-                        <h4>Multi-Session Reports <span class="status-badge status-partial">Coming Jan 2025</span></h4>
-                        <p>Generate comprehensive reports across multiple therapy sessions</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>Psychometric Integration <span class="status-badge status-partial">Coming Jan 2025</span></h4>
-                        <p>Integration of psychometric test results for enhanced clinical context</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>Practice Plans</h4>
-                        <p>Team-based features for group practices and clinics</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="detail-section">
-                <h2>Technical Specifications</h2>
-                <div class="info-grid">
-                    <div class="info-card">
-                        <h3>Compatibility</h3>
-                        <p>✅ Works with <span class="highlight">Telehealth</span></p>
-                        <p>✅ Multi-platform (computers, phones, tablets)</p>
-                        <p>❓ Works with headphones (Not confirmed)</p>
-                        <p>❌ Does not work over the phone</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>Integration</h3>
-                        <p>Copy/paste into practice management software</p>
-                        <p>Native integration with NovoPsych Psychometrics</p>
-                        <p>Primarily <span class="highlight">English</span> language support</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>AI Capabilities</h3>
-                        <p>✅ <span class="highlight">AI trainable</span> over time</p>
-                        <p>✅ Reinforcement learning from feedback</p>
-                        <p>✅ Evidence-based source restrictions</p>
-                        <p>✅ <span class="highlight">Multi-session report</span> capability</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="detail-section">
-                <h2>Pricing & Plans</h2>
-                <p><strong>All plans include access to both NovoNote AI Scribe and NovoPsych Psychometrics</strong></p>
-                
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h4>Free Tier</h4>
-                        <div class="price">$0/month</div>
-                        <div class="features">30 notes per month</div>
-                    </div>
-                    <div class="pricing-card">
-                        <h4>Pro</h4>
-                        <div class="price">$25/month</div>
-                        <div class="features">50 notes per month<br>($300/year)</div>
-                    </div>
-                    <div class="pricing-card">
-                        <h4>Pro Plus</h4>
-                        <div class="price">$60/month</div>
-                        <div class="features">100 notes per month</div>
-                    </div>
-                    <div class="pricing-card">
-                        <h4>Platinum</h4>
-                        <div class="price">$99/month</div>
-                        <div class="features">Unlimited usage</div>
-                    </div>
-                    <div class="pricing-card">
-                        <h4>Practice Plans</h4>
-                        <div class="price">From $50/month</div>
-                        <div class="features">Per clinician<br>Team features</div>
-                    </div>
-                </div>
-                
-                <div class="special-offer">
-                    <h3>🎉 Special Offer</h3>
-                    <p><strong>NovoNote AI Scribe is totally free until March 2025!</strong> Perfect opportunity to test all features without any cost.</p>
-                </div>
-            </section>
-
-            <section class="detail-section">
-                <h2>User Experience</h2>
-                <div class="info-card">
-                    <h3>Designed for Busy Practitioners</h3>
-                    <p>NovoNote is built with simplicity in mind, making it easy to use for busy mental health practitioners. The interface is intuitive and requires minimal training to get started.</p>
-                </div>
-            </section>
-
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                <p><strong>CEO:</strong> Ben Buchanan</p>
-                <p><strong>Email:</strong> <a href="mailto:ben@novopsych.com">ben@novopsych.com</a></p>
-                <p><strong>Phone:</strong> <a href="tel:0421796325">0421 796 325</a></p>
-                <p><strong>Website:</strong> <a href="https://novopsych.com.au">novopsych.com.au</a></p>
-                <p><strong>Pricing Details:</strong> <a href="https://novopsych.com.au/pricing/">novopsych.com.au/pricing</a></p>
+      <article class="company-details">
+        <section class="detail-section">
+          <h2>Company Overview</h2>
+          <div class="info-grid">
+            <div class="info-card">
+              <h3>Leadership</h3>
+              <p><strong>CEO:</strong> Ben Buchanan</p>
+              <p><strong>Product:</strong> NovoNote by NovoPsych</p>
+              <p>
+                <strong>Specialization:</strong> Mental health practitioners
+              </p>
             </div>
-        </article>
+
+            <div class="info-card">
+              <h3>Privacy & Compliance</h3>
+              <p>✅ Complies with Australian Privacy Principles</p>
+              <p>✅ Data stored in <span class="highlight">Australia</span></p>
+              <p>✅ Designed specifically for mental health</p>
+            </div>
+
+            <div class="info-card">
+              <h3>Trial & Access</h3>
+              <p>
+                <strong>Free Trial:</strong>
+                <span class="highlight">3 months</span>
+              </p>
+              <p>
+                <strong>Free Tier:</strong>
+                <span class="highlight">30 notes per month</span>
+              </p>
+              <p>
+                <strong>Special Offer:</strong>
+                <span class="highlight">Free until March 2025</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <h2>Core Features</h2>
+          <div class="feature-list">
+            <div class="feature-item">
+              <h4>In-Session Transcription</h4>
+              <p>
+                Real-time transcription during therapy sessions with mental
+                health-specific accuracy
+              </p>
+            </div>
+            <div class="feature-item">
+              <h4>Document & Note Generation</h4>
+              <p>Automated generation of clinical notes and documentation</p>
+            </div>
+            <div class="feature-item">
+              <h4>Mental Health Templates</h4>
+              <p>
+                Template library designed by team of psychologists for various
+                therapy contexts
+              </p>
+            </div>
+            <div class="feature-item">
+              <h4>Custom Templates</h4>
+              <p>
+                Create and customize templates to match your specific practice
+                needs
+              </p>
+            </div>
+            <div class="feature-item">
+              <h4>NovoPsych Integration</h4>
+              <p>
+                Seamless integration with NovoPsych Psychometrics for enhanced
+                context
+              </p>
+            </div>
+            <div class="feature-item">
+              <h4>Multi-Platform Support</h4>
+              <p>
+                Works on computers, phones, and tablets for maximum flexibility
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <h2>Unique Value Proposition</h2>
+          <div class="info-card">
+            <h3>Mental Health Specialization</h3>
+            <p>
+              NovoNote is specifically designed for mental health practitioners
+              by the NovoPsych team. The integration with NovoPsych
+              Psychometrics allows the AI to use objective and structured
+              psychometric data to create extra context for note and document
+              generation, drastically improving note quality.
+            </p>
+          </div>
+
+          <div class="feature-list">
+            <div class="feature-item">
+              <h4>
+                Multi-Session Reports
+                <span class="status-badge status-partial">Coming Jan 2025</span>
+              </h4>
+              <p>
+                Generate comprehensive reports across multiple therapy sessions
+              </p>
+            </div>
+            <div class="feature-item">
+              <h4>
+                Psychometric Integration
+                <span class="status-badge status-partial">Coming Jan 2025</span>
+              </h4>
+              <p>
+                Integration of psychometric test results for enhanced clinical
+                context
+              </p>
+            </div>
+            <div class="feature-item">
+              <h4>Practice Plans</h4>
+              <p>Team-based features for group practices and clinics</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <h2>Technical Specifications</h2>
+          <div class="info-grid">
+            <div class="info-card">
+              <h3>Compatibility</h3>
+              <p>✅ Works with <span class="highlight">Telehealth</span></p>
+              <p>✅ Multi-platform (computers, phones, tablets)</p>
+              <p>❓ Works with headphones (Not confirmed)</p>
+              <p>❌ Does not work over the phone</p>
+            </div>
+
+            <div class="info-card">
+              <h3>Integration</h3>
+              <p>Copy/paste into practice management software</p>
+              <p>Native integration with NovoPsych Psychometrics</p>
+              <p>
+                Primarily <span class="highlight">English</span> language
+                support
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3>AI Capabilities</h3>
+              <p>✅ <span class="highlight">AI trainable</span> over time</p>
+              <p>✅ Reinforcement learning from feedback</p>
+              <p>✅ Evidence-based source restrictions</p>
+              <p>
+                ✅
+                <span class="highlight">Multi-session report</span> capability
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <h2>Pricing & Plans</h2>
+          <p>
+            <strong
+              >All plans include access to both NovoNote AI Scribe and NovoPsych
+              Psychometrics</strong
+            >
+          </p>
+
+          <div class="pricing-grid">
+            <div class="pricing-card">
+              <h4>Free Tier</h4>
+              <div class="price">$0/month</div>
+              <div class="features">30 notes per month</div>
+            </div>
+            <div class="pricing-card">
+              <h4>Pro</h4>
+              <div class="price">$25/month</div>
+              <div class="features">50 notes per month<br />($300/year)</div>
+            </div>
+            <div class="pricing-card">
+              <h4>Pro Plus</h4>
+              <div class="price">$60/month</div>
+              <div class="features">100 notes per month</div>
+            </div>
+            <div class="pricing-card">
+              <h4>Platinum</h4>
+              <div class="price">$99/month</div>
+              <div class="features">Unlimited usage</div>
+            </div>
+            <div class="pricing-card">
+              <h4>Practice Plans</h4>
+              <div class="price">From $50/month</div>
+              <div class="features">Per clinician<br />Team features</div>
+            </div>
+          </div>
+
+          <div class="special-offer">
+            <h3>🎉 Special Offer</h3>
+            <p>
+              <strong
+                >NovoNote AI Scribe is totally free until March 2025!</strong
+              >
+              Perfect opportunity to test all features without any cost.
+            </p>
+          </div>
+        </section>
+
+        <section class="detail-section">
+          <h2>User Experience</h2>
+          <div class="info-card">
+            <h3>Designed for Busy Practitioners</h3>
+            <p>
+              NovoNote is built with simplicity in mind, making it easy to use
+              for busy mental health practitioners. The interface is intuitive
+              and requires minimal training to get started.
+            </p>
+          </div>
+        </section>
+
+        <div class="contact-info">
+          <h3>Contact Information</h3>
+          <p><strong>CEO:</strong> Ben Buchanan</p>
+          <p>
+            <strong>Email:</strong>
+            <a href="mailto:ben@novopsych.com">ben@novopsych.com</a>
+          </p>
+          <p>
+            <strong>Phone:</strong> <a href="tel:0421796325">0421 796 325</a>
+          </p>
+          <p>
+            <strong>Website:</strong>
+            <a href="https://novopsych.com.au">novopsych.com.au</a>
+          </p>
+          <p>
+            <strong>Pricing Details:</strong>
+            <a href="https://novopsych.com.au/pricing/"
+              >novopsych.com.au/pricing</a
+            >
+          </p>
+        </div>
+      </article>
     </div>
-</body>
+  </body>
 </html>

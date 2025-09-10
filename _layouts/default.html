@@ -1,42 +1,49 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ page.title }} · {{ site.title }}</title>
-  <meta name="description" content="{{ page.description | default: site.description }}">
-  {%- seo -%}  <!-- inserts canonical, OG, Twitter, etc. -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title }} · {{ site.title }}</title>
+    <meta
+      name="description"
+      content="{{ page.description | default: site.description }}"
+    />
+    {%- seo -%}
+    <!-- inserts canonical, OG, Twitter, etc. -->
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
-  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-</head>
-<body>
-    {% if page.title == "AI Consultant and Speaker" 
-      or page.title == "AI Compliance Pack" 
-      or page.title == "AI Scribe Company Comparisons" 
-      or page.title == "AI Ethical Standards" 
-      or page.title == "Get in Contact" 
-      or page.title == "Frequently Asked Questions"
-    %}
-        {% include header-nav.html %}
-    {% endif %}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/style.css' | relative_url }}"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ '/assets/images/favicon.ico' | relative_url }}"
+    />
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+      defer
+    ></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  </head>
+  <body>
+    {% if page.title == "AI Consultant and Speaker" or page.title == "AI
+    Compliance Pack" or page.title == "AI Scribe Company Comparisons" or
+    page.title == "AI Ethical Standards" or page.title == "Get in Contact" or
+    page.title == "Frequently Asked Questions" %} {% include header-nav.html %}
+    {% endif %} {% if page.subnav %} {% include sub-nav.html %} {% endif %}
 
-    {% if page.subnav %}
-        {% include sub-nav.html %}
-    {% endif %}
+    <main id="main" role="main">{{ content }}</main>
 
-  <main id="main" role="main">
-    {{ content }}
-  </main>
-
-  <footer class="site-footer" role="contentinfo">
-    <small>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</small>
-    <br><small>By Psychology Squared Pty Ltd </small>
-  </footer>
-</body>
+    <footer class="site-footer" role="contentinfo">
+      <small>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</small>
+      <br /><small>By Psychology Squared Pty Ltd </small>
+    </footer>
+  </body>
 </html>

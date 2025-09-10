@@ -1,105 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Tools Comparison Widget</title>
     <style>
       :root {
-          /* Light Theme Color Palette for Maximum Readability */
-          --primary-gold: #D4AF37;        /* Accent gold for highlights */
-          --light-gold: #F4E4BC;          /* Subtle gold tints */
-          --dark-gold: #B8941F;           /* Darker gold accents */
-          --navy-dark: #1A2B44;           /* Deep navy for text */
-          --navy-darker: #14223A;         /* Darker navy for emphasis */
-          --navy-deepest: #0F1A2E;        /* Deepest navy for headers */
-          
-          /* Background Colors (Light Theme) */
-          --bg-primary: #FFFCF5;          /* Off-white with subtle cream tint */
-          --bg-secondary: #FBF8F0;        /* Slightly warmer cream */
-          --bg-tertiary: #F7F4EB;         /* Subtle cream gold background */
-          
-          /* Text Colors (Dark Navy) */
-          --text-primary: #0F1A2E;        /* Deepest navy for headers */
-          --text-secondary: #1A2B44;      /* Dark navy for body text */
-          --text-muted: #4A5568;          /* Lighter navy for muted text */
-          --text-accent: #B8941F;         /* Dark gold for accents */
-          
-          /* Border and Hover (Light Theme) */
-          --border-color: rgba(212, 175, 55, 0.25);    /* Subtle gold borders */
-          --hover-background: rgba(212, 175, 55, 0.1);  /* Light gold hover */
+        /* Light Theme Color Palette for Maximum Readability */
+        --primary-gold: #d4af37; /* Accent gold for highlights */
+        --light-gold: #f4e4bc; /* Subtle gold tints */
+        --dark-gold: #b8941f; /* Darker gold accents */
+        --navy-dark: #1a2b44; /* Deep navy for text */
+        --navy-darker: #14223a; /* Darker navy for emphasis */
+        --navy-deepest: #0f1a2e; /* Deepest navy for headers */
+
+        /* Background Colors (Light Theme) */
+        --bg-primary: #fffcf5; /* Off-white with subtle cream tint */
+        --bg-secondary: #fbf8f0; /* Slightly warmer cream */
+        --bg-tertiary: #f7f4eb; /* Subtle cream gold background */
+
+        /* Text Colors (Dark Navy) */
+        --text-primary: #0f1a2e; /* Deepest navy for headers */
+        --text-secondary: #1a2b44; /* Dark navy for body text */
+        --text-muted: #4a5568; /* Lighter navy for muted text */
+        --text-accent: #b8941f; /* Dark gold for accents */
+
+        /* Border and Hover (Light Theme) */
+        --border-color: rgba(212, 175, 55, 0.25); /* Subtle gold borders */
+        --hover-background: rgba(212, 175, 55, 0.1); /* Light gold hover */
       }
 
       * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
 
       body {
-          font-family: 'Lora', serif;
-          background: var(--bg-primary);
-          padding: 20px;
-          line-height: 1.6;
-          color: var(--text-secondary);
-          letter-spacing: 0.025em;
+        font-family: "Lora", serif;
+        background: var(--bg-primary);
+        padding: 20px;
+        line-height: 1.6;
+        color: var(--text-secondary);
+        letter-spacing: 0.025em;
       }
 
       .dropdown-wrapper {
-  position: relative;
-  margin-bottom: 16px;
-}
+        position: relative;
+        margin-bottom: 16px;
+      }
 
-.dropdown-toggle-btn {
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  font-weight: 600;
-  font-size: 14px;
-  font-family: 'Lora', serif;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(15, 26, 46, 0.1);
-  transition: background 0.2s ease, transform 0.2s ease;
-}
+      .dropdown-toggle-btn {
+        padding: 10px 18px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        font-weight: 600;
+        font-size: 14px;
+        font-family: "Lora", serif;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(15, 26, 46, 0.1);
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
 
-.dropdown-toggle-btn:hover {
-  background: var(--hover-background);
-  transform: translateY(-1px);
-}
+      .dropdown-toggle-btn:hover {
+        background: var(--hover-background);
+        transform: translateY(-1px);
+      }
 
-.dropdown-panel {
-  display: none;
-  position: absolute;
-  z-index: 100;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(15, 26, 46, 0.15);
-  padding: 12px;
-  min-width: 240px;
-  max-height: 300px;
-  overflow-y: auto;
-}
+      .dropdown-panel {
+        display: none;
+        position: absolute;
+        z-index: 100;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(15, 26, 46, 0.15);
+        padding: 12px;
+        min-width: 240px;
+        max-height: 300px;
+        overflow-y: auto;
+      }
 
-.dropdown-option {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
-  font-family: 'Lora', serif;
-  color: var(--text-secondary);
-}
+      .dropdown-option {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+        font-family: "Lora", serif;
+        color: var(--text-secondary);
+      }
 
       .table-container {
-          position: relative;
-          background: var(--bg-secondary);
-          border-radius: 12px;
-          box-shadow: 0 8px 32px rgba(15, 26, 46, 0.15);
-          overflow: hidden;
-          min-height: 400px;
-          border: 1px solid var(--border-color);
-          
+        position: relative;
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(15, 26, 46, 0.15);
+        overflow: hidden;
+        min-height: 400px;
+        border: 1px solid var(--border-color);
       }
 
       .table-wrapper {
@@ -110,1204 +111,1773 @@
         scroll-behavior: smooth;
         scrollbar-width: thin;
         scrollbar-color: var(--primary-gold) var(--navy-darker);
-
-        
-    }
-    .scrollbar-spacer {
+      }
+      .scrollbar-spacer {
         height: 16px;
         border-top: 2px solid var(--border-color);
         background: var(--bg-secondary);
-    }
+      }
 
       .table-wrapper::-webkit-scrollbar {
-          height: 8px;
+        height: 8px;
       }
       .table-wrapper::-webkit-scrollbar-track {
-          background: var(--bg-tertiary);
+        background: var(--bg-tertiary);
       }
       .table-wrapper::-webkit-scrollbar-thumb {
-          background: var(--primary-gold);
-          border-radius: 4px;
+        background: var(--primary-gold);
+        border-radius: 4px;
       }
       .table-wrapper::-webkit-scrollbar-thumb:hover {
-          background: var(--dark-gold);
+        background: var(--dark-gold);
       }
 
       .comparison-table {
-          width: 100%;
-          border-collapse: collapse;
-          font-size: clamp(12px, 2vw, 14px);
-          min-width: 1000px;
-          font-family: 'Lora', serif;
+        width: 100%;
+        border-collapse: collapse;
+        font-size: clamp(12px, 2vw, 14px);
+        min-width: 1000px;
+        font-family: "Lora", serif;
       }
 
       .comparison-table th {
-          background: var(--bg-tertiary);
-          padding: 24px 20px;
-          text-align: center;
-          font-weight: 700;
-          font-size: clamp(15px, 3vw, 17px);
-          color: var(--text-primary);
-          border-bottom: 2px solid var(--border-color);
-          border-right: 1px solid var(--border-color);
-          position: sticky;
-          top: 0;
-          z-index: 10;
-          letter-spacing: 0.05em;
-          text-shadow: none;
+        background: var(--bg-tertiary);
+        padding: 24px 20px;
+        text-align: center;
+        font-weight: 700;
+        font-size: clamp(15px, 3vw, 17px);
+        color: var(--text-primary);
+        border-bottom: 2px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        letter-spacing: 0.05em;
+        text-shadow: none;
       }
 
       .comparison-table th:first-child {
-          text-align: left;
-          background: var(--bg-secondary);
-          min-width: 180px;
-          width: 180px;
-          position: sticky;
-          top: 0;
-          left: 0;
-          z-index: 2;
-          box-shadow: 2px 0 4px rgba(15, 26, 46, 0.08);
+        text-align: left;
+        background: var(--bg-secondary);
+        min-width: 180px;
+        width: 180px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        box-shadow: 2px 0 4px rgba(15, 26, 46, 0.08);
       }
 
       .comparison-table th:last-child {
-          border-right: none;
+        border-right: none;
       }
 
       .comparison-table td {
-          padding: 20px 18px;
-          border-bottom: 1px solid var(--border-color);
-          border-right: 1px solid var(--border-color);
-          text-align: center;
-          vertical-align: top;
-          min-width: 200px;
-          transition: background-color 0.2s ease;
-          background: var(--bg-primary);
-          color: var(--text-secondary);
+        padding: 20px 18px;
+        border-bottom: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
+        text-align: center;
+        vertical-align: top;
+        min-width: 200px;
+        transition: background-color 0.2s ease;
+        background: var(--bg-primary);
+        color: var(--text-secondary);
       }
 
       .comparison-table tr:nth-child(even) td {
-          background: var(--bg-secondary);
+        background: var(--bg-secondary);
       }
 
       .comparison-table tr:hover td {
-          background: var(--hover-background);
+        background: var(--hover-background);
       }
 
       .comparison-table td:first-child {
-          text-align: left;
-          font-weight: 600;
-          background: var(--bg-secondary);
-          color: var(--text-primary);
-          border-right: 2px solid var(--border-color);
-          font-size: clamp(13px, 2.5vw, 15px);
-          position: sticky;
-          left: 0;
-          z-index: 15;
-          box-shadow: 2px 0 4px rgba(15, 26, 46, 0.08);
-          letter-spacing: 0.025em;
+        text-align: left;
+        font-weight: 600;
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        border-right: 2px solid var(--border-color);
+        font-size: clamp(13px, 2.5vw, 15px);
+        position: sticky;
+        left: 0;
+        z-index: 15;
+        box-shadow: 2px 0 4px rgba(15, 26, 46, 0.08);
+        letter-spacing: 0.025em;
       }
 
       .comparison-table td:last-child {
-          border-right: none;
+        border-right: none;
       }
 
       .scroll-button {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 30;
-          width: 40px;
-          height: 40px;
-          border: none;
-          background: var(--primary-gold);
-          color: white;
-          font-size: 22px;
-          border-radius: 50%;
-          box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
-          cursor: pointer;
-          transition: all 0.2s ease;
-          opacity: 0.9;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 30;
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: var(--primary-gold);
+        color: white;
+        font-size: 22px;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        opacity: 0.9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .scroll-button:hover {
-          transform: translateY(-50%) scale(1.1);
-          box-shadow: 0 4px 16px rgba(212, 175, 55, 0.6);
-          background: var(--dark-gold);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 4px 16px rgba(212, 175, 55, 0.6);
+        background: var(--dark-gold);
       }
 
       .scroll-button.scroll-left {
-          left: 8px;
+        left: 8px;
       }
       .scroll-button.scroll-right {
-          right: 8px;
+        right: 8px;
       }
 
       .scroll-button.disabled {
-          opacity: 0.4;
-          cursor: not-allowed;
-          background: var(--text-muted);
+        opacity: 0.4;
+        cursor: not-allowed;
+        background: var(--text-muted);
       }
 
       .scroll-button.disabled:hover {
-          transform: translateY(-50%);
-          box-shadow: 0 4px 16px rgba(74, 85, 104, 0.2);
+        transform: translateY(-50%);
+        box-shadow: 0 4px 16px rgba(74, 85, 104, 0.2);
       }
 
       .see-more-btn {
-          background: var(--primary-gold);
-          color: white;
-          padding: 12px 20px;
-          border: none;
-          border-radius: 8px;
-          font-size: clamp(12px, 2vw, 14px);
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          margin-bottom: 12px;
-          box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-          text-decoration: none;
-          font-family: 'Lora', serif;
+        background: var(--primary-gold);
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: clamp(12px, 2vw, 14px);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 12px;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        text-decoration: none;
+        font-family: "Lora", serif;
       }
 
       .see-more-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-          background: var(--dark-gold);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        background: var(--dark-gold);
       }
 
       .check-icon {
-          color: #16a34a;
-          font-size: 20px;
-          font-weight: bold;
+        color: #16a34a;
+        font-size: 20px;
+        font-weight: bold;
       }
 
       .cross-icon {
-          color: #dc2626;
-          font-size: 20px;
-          font-weight: bold;
+        color: #dc2626;
+        font-size: 20px;
+        font-weight: bold;
       }
 
       .question-mark {
-          display: inline-block;
-          width: 18px;
-          height: 18px;
-          background: var(--text-muted);
-          color: white;
-          border-radius: 50%;
-          text-align: center;
-          font-size: 12px;
-          line-height: 18px;
-          margin-left: 6px;
-          cursor: help;
-          transition: all 0.2s ease;
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background: var(--text-muted);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 12px;
+        line-height: 18px;
+        margin-left: 6px;
+        cursor: help;
+        transition: all 0.2s ease;
       }
 
       .question-mark:hover {
-          background: var(--primary-gold);
-          transform: scale(1.1);
+        background: var(--primary-gold);
+        transform: scale(1.1);
       }
 
       .feature-list {
-          text-align: left;
-          color: var(--text-secondary);
-          line-height: 1.6;
-          font-size: clamp(11px, 2vw, 13px);
+        text-align: left;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        font-size: clamp(11px, 2vw, 13px);
       }
 
       .feature-list ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
 
       .feature-list li {
-          padding: 6px 0;
-          padding-left: 20px;
-          position: relative;
-          border-bottom: 1px solid var(--border-color);
+        padding: 6px 0;
+        padding-left: 20px;
+        position: relative;
+        border-bottom: 1px solid var(--border-color);
       }
 
       .feature-list li:last-child {
-          border-bottom: none;
+        border-bottom: none;
       }
 
       .feature-list li:before {
-          content: "→";
-          position: absolute;
-          left: 0;
-          color: var(--text-accent);
-          font-weight: bold;
-          font-size: 14px;
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--text-accent);
+        font-weight: bold;
+        font-size: 14px;
       }
 
       .feature-section {
-          margin-bottom: 16px;
+        margin-bottom: 16px;
       }
 
       .feature-section:last-child {
-          margin-bottom: 0;
+        margin-bottom: 0;
       }
 
       .section-divider {
-          height: 1px;
-          background: linear-gradient(90deg, transparent 0%, var(--border-color) 50%, transparent 100%);
-          margin: 12px 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--border-color) 50%,
+          transparent 100%
+        );
+        margin: 12px 0;
       }
 
       .expandable-content {
-          max-height: 150px;
-          overflow: hidden;
-          transition: max-height 0.3s ease;
-          position: relative;
+        max-height: 150px;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        position: relative;
       }
 
       .expandable-content.expanded {
-          max-height: none;
+        max-height: none;
       }
 
       .expand-btn {
-          background: none;
-          border: none;
-          color: var(--text-accent);
-          cursor: pointer;
-          font-size: 12px;
-          font-weight: 600;
-          padding: 4px 8px;
-          margin-top: 8px;
-          border-radius: 4px;
-          transition: all 0.2s ease;
-          font-family: 'Lora', serif;
+        background: none;
+        border: none;
+        color: var(--text-accent);
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 8px;
+        margin-top: 8px;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        font-family: "Lora", serif;
       }
 
       .expand-btn:hover {
-          background-color: var(--hover-background);
+        background-color: var(--hover-background);
       }
 
       .feature-category {
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 8px;
-          font-size: clamp(12px, 2vw, 14px);
-          display: flex;
-          align-items: center;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+        font-size: clamp(12px, 2vw, 14px);
+        display: flex;
+        align-items: center;
       }
 
       .feature-category:before {
-          content: "●";
-          color: var(--text-accent);
-          margin-right: 8px;
+        content: "●";
+        color: var(--text-accent);
+        margin-right: 8px;
       }
 
       .tooltip {
-          position: relative;
-          display: inline-block;
+        position: relative;
+        display: inline-block;
       }
 
       .tooltip .tooltiptext {
-          visibility: hidden;
-          width: 200px;
-          background: var(--text-primary);
-          color: white;
-          text-align: center;
-          border-radius: 6px;
-          padding: 8px;
-          position: absolute;
-          z-index: 1000;
-          bottom: 125%;
-          left: 50%;
-          margin-left: -100px;
-          opacity: 0;
-          transition: opacity 0.3s;
-          font-size: 12px;
-          line-height: 1.4;
-          border: 1px solid var(--border-color);
-          box-shadow: 0 4px 12px rgba(15, 26, 46, 0.2);
+        visibility: hidden;
+        width: 200px;
+        background: var(--text-primary);
+        color: white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        z-index: 1000;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -100px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 12px;
+        line-height: 1.4;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px rgba(15, 26, 46, 0.2);
       }
 
       .tooltip .tooltiptext::after {
-          content: "";
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          margin-left: -5px;
-          border-width: 5px;
-          border-style: solid;
-          border-color: var(--text-primary) transparent transparent transparent;
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: var(--text-primary) transparent transparent transparent;
       }
 
       .tooltip:hover .tooltiptext {
-          visibility: visible;
-          opacity: 1;
+        visibility: visible;
+        opacity: 1;
       }
 
       /* Mobile Responsive Design */
       @media (max-width: 768px) {
-          body {
-              padding: 10px;
-          }
-          
-          .table-container {
-              margin: 5px;
-          }
-          
-          .comparison-table {
-              font-size: clamp(10px, 3vw, 12px);
-          }
-          
-          .comparison-table th,
-          .comparison-table td {
-              padding: 12px 8px;
-          }
-          
-          .feature-list {
-              font-size: clamp(9px, 3vw, 11px);
-          }
+        body {
+          padding: 10px;
+        }
 
-          .scroll-button {
-              width: 35px;
-              height: 35px;
-              font-size: 16px;
-          }
+        .table-container {
+          margin: 5px;
+        }
+
+        .comparison-table {
+          font-size: clamp(10px, 3vw, 12px);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+          padding: 12px 8px;
+        }
+
+        .feature-list {
+          font-size: clamp(9px, 3vw, 11px);
+        }
+
+        .scroll-button {
+          width: 35px;
+          height: 35px;
+          font-size: 16px;
+        }
       }
 
       @media (max-width: 480px) {
-          .comparison-table th,
-          .comparison-table td {
-              padding: 8px 6px;
-          }
-          
-          .scroll-button {
-              width: 30px;
-              height: 30px;
-              font-size: 14px;
-          }
+        .comparison-table th,
+        .comparison-table td {
+          padding: 8px 6px;
+        }
+
+        .scroll-button {
+          width: 30px;
+          height: 30px;
+          font-size: 14px;
+        }
       }
-  </style>
-</head>
-<body>
+    </style>
+  </head>
+  <body>
     <div class="dropdown-wrapper">
-        <button id="columnDropdownBtn" class="dropdown-toggle-btn">
-          Show/Hide Companies ▼
-        </button>
-        <div id="columnDropdown" class="dropdown-panel">
-          <label class="dropdown-option"><input type="checkbox" class="column-toggle" data-col="1" checked> ANTSA</label>
-          <label class="dropdown-option"><input type="checkbox" class="column-toggle" data-col="2" checked> Bastion GPT</label>
-          <label class="dropdown-option"><input type="checkbox" class="column-toggle" data-col="3" checked> Patient Notes</label>
-          <label class="dropdown-option"><input type="checkbox" class="column-toggle" data-col="4" checked> Heidi Health</label>
-          <label class="dropdown-option"><input type="checkbox" class="column-toggle" data-col="5" checked> Lyrebird</label>
-          <label class="dropdown-option"><input type="checkbox" class="column-toggle" data-col="6" checked> Zanda Health</label>
-          <label class="dropdown-option"><input type="checkbox" class="column-toggle" data-col="7" checked> NovoNote by NovoPsych</label>
-          <label class="dropdown-option"><input type="checkbox" class="column-toggle" data-col="8" checked> Uplift AI</label>
-          <label class="dropdown-option"><input type="checkbox" class="column-toggle" data-col="9" checked> Everbility</label>
-        </div>
-      </div>   
-  <div class="table-container">
-
-
-  <button class="scroll-button scroll-left" onclick="scrollTable('left')" id="scrollLeft">
-    ‹
-</button>
-<button class="scroll-button scroll-right" onclick="scrollTable('right')" id="scrollRight">
-    ›
-</button>
-<div class="table-wrapper" id="tableWrapper">
+      <button id="columnDropdownBtn" class="dropdown-toggle-btn">
+        Show/Hide Companies ▼
+      </button>
+      <div id="columnDropdown" class="dropdown-panel">
+        <label class="dropdown-option"
+          ><input type="checkbox" class="column-toggle" data-col="1" checked />
+          ANTSA</label
+        >
+        <label class="dropdown-option"
+          ><input type="checkbox" class="column-toggle" data-col="2" checked />
+          Bastion GPT</label
+        >
+        <label class="dropdown-option"
+          ><input type="checkbox" class="column-toggle" data-col="3" checked />
+          Patient Notes</label
+        >
+        <label class="dropdown-option"
+          ><input type="checkbox" class="column-toggle" data-col="4" checked />
+          Heidi Health</label
+        >
+        <label class="dropdown-option"
+          ><input type="checkbox" class="column-toggle" data-col="5" checked />
+          Lyrebird</label
+        >
+        <label class="dropdown-option"
+          ><input type="checkbox" class="column-toggle" data-col="6" checked />
+          Zanda Health</label
+        >
+        <label class="dropdown-option"
+          ><input type="checkbox" class="column-toggle" data-col="7" checked />
+          NovoNote by NovoPsych</label
+        >
+        <label class="dropdown-option"
+          ><input type="checkbox" class="column-toggle" data-col="8" checked />
+          Uplift AI</label
+        >
+        <label class="dropdown-option"
+          ><input type="checkbox" class="column-toggle" data-col="9" checked />
+          Everbility</label
+        >
+      </div>
+    </div>
+    <div class="table-container">
+      <button
+        class="scroll-button scroll-left"
+        onclick="scrollTable('left')"
+        id="scrollLeft"
+      >
+        ‹
+      </button>
+      <button
+        class="scroll-button scroll-right"
+        onclick="scrollTable('right')"
+        id="scrollRight"
+      >
+        ›
+      </button>
+      <div class="table-wrapper" id="tableWrapper">
         <table id="tableId" class="comparison-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>ANTSA</th>
-                    <th>Bastion GPT</th>
-                    <th>Patient Notes</th>
-                    <th>Heidi Health</th>
-                    <th>Lyrebird</th>
-                    <th>Zanda Health</th>
-                    <th>NovoNote by NovoPsych</th>
-                    <th>Uplift AI</th>
-                    <th>Everbility</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Header -->
-                <tr>
-                    <th scope="row"> </th>
-                    <td>
-                        <a href="https://www.antsa.com.au/" target="_blank" class="see-more-btn">See more</a>
-                    </td>
-                    <td>
-                        <a href="https://buy.stripe.com/eVa8yH6Akcs35I48wQ" target="_blank" class="see-more-btn">30 day free trial</button>
-                        
-                    </td>
-                    <td>
-                        <a href="https://www.patientnotes.app/" target="_blank" class="see-more-btn">10% Discount</a><br><br><div><b>Code:</b> AIPSYCH2024</div>
-                        <br>
-                    </td>
-                    <td>
-                        <a href="https://scribe.heidihealth.com/?via=psychologysquared" target="_blank" class="see-more-btn">30 day free trial</a>
-                        <br>
-                    </td>
-                    <td>
-                        <a href="https://www.lyrebirdhealth.com/us?via=024cf1" target="_blank" class="see-more-btn">10% Discount</a><br><br><div><b>Code:</b> PS10</div>
-                        <br>
-                    </td>
-                    <td>
-                        <a href="https://zandahealth.com/?fpr=david67" target="_blank" class="see-more-btn">See more</a>
-                    </td>
-                    <td>
-                        <a href="https://novopsych.com/novonote/" target="_blank" class="see-more-btn">See more</a>
-                    </td>
-                    <td>
-                        <a href="https://www.upliftgroup.ai/" target="_blank" class="see-more-btn">See more</a>
-                    </td>
-                    <td>
-                        <a href="https://www.everbility.com/?via=david-lopis" target="_blank" class="see-more-btn">10% Discount</a>
-                    </td>
-                </tr>
-
-                <!-- 1. APP Compliance -->
-                <tr>
-                    <th scope="row">
-                        <div class="tooltip">
-                            APP Compliance<span class="question-mark">?</span>
-                            <span class="tooltiptext">Australian Privacy Principles</span>
-                        </div>
-                    </th>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                </tr>
-            
-                <!-- 2. Where is the data stored? -->
-                <tr>
-                    <th scope="row">Data storage</th>
-                    <td>Australia</td>
-                    <td>Australia</td>
-                    <td>Australia</td>
-                    <td>Australian AWS servers</td>
-                    <td>Australia</td>
-                    <td>Australia (For Aus users). Stored according to the practice's location</td>
-                    <td>Australia</td>
-                    <td>Australia</td>
-                    <td>Australia</td>
-                </tr>
-            
-                <!-- 3. Free Membership Option -->
-                <tr>
-                    <th scope="row">Free membership</th>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td>
-                        <div class="tooltip">
-                            <span class="question-mark">!</span>
-                            <span class="tooltiptext">Heidi offer unlimited usage without being limited by the number of actions</span>
-                            <span class="check-icon">✓</span>
-                        </div>
-                    </td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="cross-icon">✗</span></td>
-                </tr>
-            
-                <!-- 4. Free Trial Option -->
-                <tr>
-                    <th scope="row">Free trial</th>
-                    <td><span class="check-icon">✓</span><br><span>30 days</span></td>
-                    <td><span class="check-icon">✓</span><br><span>30 days</span></td>
-                    <td><span class="check-icon">✓</span><br><span>14 days</span></td>
-                    <td><span class="check-icon">✓</span><br><span>30 days</span></td>
-                    <td><span class="check-icon">✓</span><br><span>14 days</span></td>
-                    <td><span class="check-icon">✓</span><br><span>14 days</span></td>
-                    <td><span class="check-icon">✓</span><br><span>3 months</span></td>
-                    <td><span class="check-icon">✓</span><br><span>Ongoing for now</span></td>
-                    <td><span class="check-icon">✓</span><br><span>7 days</span></td>
-                </tr>
-            
-                <!-- 5. PMS Integration -->
-                <tr>
-                    <th scope="row">
-                        <div class="tooltip">
-                            PMS Integration <span class="question-mark">?</span>
-                            <span class="tooltiptext">Practice Management System</span>
-                        </div>
-                    </th>
-                    <td>The AI scribe is currently able to be saved straight into any PMS. We are new so this information is changing daily - contact us at help@ANTSA.com.au for updates</td>
-                    <td>Copy+Paste typical, if needed</td>
-                    <td>Cliniko and Nookal</td>
-                    <td>Yes, Cliniko, Best Practice, Medirecords and many to come. If you would like to know if we are currently building an integration for your PMS please contact Support@heidihealth.com</td>
-                    <td>Best Practice (available) & Genie / Gentu (coming very soon)</td>
-                    <td>The tool is built natively within the Zanda practice management system</td>
-                    <td>Copy and paste into practice management software. Integration with NovoPsych</td>
-                    <td>Can use it as a standalone AI-powered, all-inclusive PMS OR use it alongside your existing PMS</td>
-                    <td>Everbility is building integrations with many Australian practice management softwares, reach out to us if you want an integration with yours.</td>
-                </tr>
-            
-                <!-- 6. Unique Features -->
-                <tr>
-                    <th scope="row">Unique features<br><button class="expand-btn" onclick="toggleExpansion(this)">Show more ↓</button></th>
-                    <td>
-                        <div class="expandable-content">
-                        <div class="feature-list">
-                            <div class="feature-section">
-                                <div class="feature-category">AI Scribe Integration</div>
-                                <ul>
-                                    <li>AI scribe (converts voice to text) and will be exportable to PMS (coming January 2025)</li>
-                                </ul>
-                            </div>
-                            <div class="section-divider"></div>
-                            <div class="feature-section">
-                                <div class="feature-category">24/7 AI Therapy</div>
-                                <ul>
-                                    <li>jAlmee (AI therapy chatbot - extremely popular with clients) is available 24/7. </li>
-                                    <li>Clinicians can observe jAlmee live or during the client's next session.</li>
-                                    <li>ANTSA's AI interventions are supervised by clinicians.</li>
-                                    <li>Practitioner oversight & customisability.</li>
-                                    <li>Continuous client engagement - "therapy takes place between the sessions".</li>
-                                </ul>
-                            </div>
-                        </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="expandable-content">
-                        <div class="feature-list">
-                            <div class="feature-section">
-                                <div class="feature-category">Advanced Transcription</div>
-                                <ul>
-                                    <li>Transcription service with speaker recognition included</li>
-                                </ul>
-                            </div>
-                            <div class="section-divider"></div>
-                            <div class="feature-section">
-                                <div class="feature-category">Specialized Healthcare AI</div>
-                                <ul>
-                                    <li>AI models customized for over 200 healthcare and mental health use cases.</li>
-                                    <li>Increased use of evidence-based output relative to other models like ChatGPT.</li>
-                                    <li>Stay up to date with the latest high-end AI models with only one monthly subscription and APP compliance.</li>
-                                    <li>Reduced content filters when dealing with dealing with psychology topics around violence and sexual abuse. </li>
-                                    <li>Searchable chat history.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="expandable-content">
-                        <div class="feature-list">
-                            <div class="feature-section">
-                                <div class="feature-category">Advanced Tools</div>
-                                <ul>
-                                    <li>Smart dictate</li>
-                                    <li>Multi session reports</li>
-                                    <li>Speech-to-text editing</li>
-                                    <li>Prompt creation tool</li>
-                                    <li>Extensive prompt library</li>
-                                </ul>
-                            </div>
-                        </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="expandable-content">
-                        <div class="feature-list">
-                            <div class="feature-section">
-                                <div class="feature-category">Security & Compliance</div>
-                                <ul>
-                                    <li>Highest level of security (SOC2 and ISO27001)</li>
-                                    <li>Fully regulated in multiple countries</li>
-                                </ul>
-                            </div>
-                            <div class="section-divider"></div>
-                            <div class="feature-section">
-                                <div class="feature-category">Medical Specialization</div>
-                                <ul>
-                                    <li>AI is trained on medical language and built by clinicians, making transcription unmatched</li>
-                                </ul>
-                            </div>
-                        </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="expandable-content">
-                        <div class="feature-list">
-                            <div class="feature-section">
-                                <div class="feature-category">Customization</div>
-                                <ul>
-                                    <li>Deep levels of customisation, Lyrebird is the only scribe that allows you upload an example of your ideal report for it to learn how you would like Lyrebird to write (NB Heidi Health say they offer this feature too). </li>
-                                    <li>This means you won't sound like a robot, and your letters will still very much sound like you wrote them.</li>
-                                </ul>
-                            </div>
-                            <div class="feature-section">
-                                <div class="feature-category">Security</div>
-                                <ul>
-                                    <li>Only AI scribe (to our knowledge) that processes all data on Australian soil. Especially in Psychology, it is so important that security and privacy is front of mind, for Lyrebird, it is.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="expandable-content">
-                        <div class="feature-list">
-                            <ul>
-                                <li>Purpose-built for psychologists and allied health professionals</li>
-                                <li>Ability to set custom note output preferences per user</li>
-                                <li>Seamlessly integrated with the client profile in Zanda - no copying and pasting required</li>
-                                <li>Free usage of the refine tool to make changes to the note using AI</li>
-                                <li>Custom retention period for transcript storage</li>
-                                <li>Usage report to see recording time per user in a specific date range</li>
-                                <li>Compliant with Australian privacy and security regulation, and ISO 27001 certified</li>
-                            </ul>
-                        </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="expandable-content">
-                        <div class="feature-list">
-                            <ul>
-                                <li>Specifically designed for mental health practitioners by the team at NovoPsych</li>
-                                <li>Multi session reports (coming in January 2025)</li>
-                                <li>Integration of psychometric results of NovoPsych (coming in January 2025)</li>
-                                <li>Template library designed by a team of psychologists</li>
-                            </ul>
-                        </div>
-                        </div>
-                    </td>
-                    <td>
-                    <div class="expandable-content">
-                        <div class="feature-list">
-                        <ul>
-                            <li>The Only Fully Inclusive AI-Driven Operating System – Combines AI therapy, practice management, and patient engagement in one seamless ecosystem.</li>
-                        </ul>
-                        </div>
-                    </div>
-                    </td>
-                    <td>
-                        <div class="expandable-content">
-                        <div class="feature-list">
-                            <ul>
-                                <li>Everbility's ability to write very long reports from as much context is very unique, it also has features to find peer reviewed research, additional NDIS knowledge, upload PDF (including handwriting).</li>
-                                <li>Everbility provides unlimited customer support to all customers with no additional fees for template creation and as much help as you need.</li>
-                            </ul>
-                        </div>
-                        </div>
-                    </td>
-                </tr>
-                
-                <!-- 7. Core Features -->
-                <tr id="core-features">
-                <th scope="row">Core features<br><button class="expand-btn" onclick="toggleExpansion(this)">Show more ↓</button></th>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                            <div class="feature-section">
-                                <div class="feature-category">AI Transcription</div>
-                                <ul>
-                                    <li>AI scribe (no recordings made - converts straight to notes) - Available January 2025</li>
-                                </ul>
-                            </div>
-                            <div class="section-divider"></div>
-                            <div class="feature-section">
-                                <div class="feature-category">Therapy Tools</div>
-                                <ul>
-                                    <li>World's first overseen AI therapy chatbot (jAlmee)</li>
-                                    <li>Automated homework tasks (fully customisable)</li>
-                                    <li>On-demand evidence-based psychoeducation library</li>
-                                    <li>Journalling activities</li>
-                                </ul>
-                            </div>
-                            <div class="section-divider"></div>
-                            <div class="feature-section">
-                                <div class="feature-category">Monitoring & Analytics</div>
-                                <ul>
-                                    <li>AI algorithms detect client distress levels in real-time</li>
-                                    <li>Mood Tracking (graphed feedback for both clinician & client)</li>
-                                    <li>Real-time data collection & monitoring</li>
-                                    <li>Gamified engagement</li>
-                                </ul>
-                            </div>
-                            <div class="section-divider"></div>
-                            <div class="feature-section">
-                                <div class="feature-category">Security & Communication</div>
-                                <ul>
-                                    <li>Secure client-practitioner communication</li>
-                                    <li>Designed for clinician oversight</li>
-                                    <li>Privacy & data security is our number one priority!!!</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <div class="feature-section">
-                            <div class="feature-category">AI Assistant</div>
-                            <ul>
-                                <li>AI assistant with the ease of use of ChatGPT but with AI models and features tailored for the needs of Psychologists</li>
-                            </ul>
-                        </div>
-                        <div class="section-divider"></div>
-                        <div class="feature-section">
-                            <div class="feature-category">Privacy & AI Models</div>
-                            <ul>
-                                <li>The tool allows for use with personal information (APP\Privacy Act compliant), and automatic selection of the leading AI models (e.g., OpenAI GPT-4, Google Gemini, Anthropic Claude) based on what is being asked of it</li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <div class="feature-section">
-                            <div class="feature-category">Session Management</div>
-                            <ul>
-                                <li>Creation of session data from session audio for clinical notes for in rooms or telehealth sessions</li>
-                                <li>Creation of medical reports and letters using either the captured session data or a manual option to insert one or several sets of clinical notes</li>
-                            </ul>
-                        </div>
-                        <div class="section-divider"></div>
-                        <div class="feature-section">
-                            <div class="feature-category">Smart Features</div>
-                            <ul>
-                                <li>Smart dictate feature to allow flexible clinical admin tasks such as clinical notes, letter writing, recording phone sessions</li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <div class="feature-section">
-                            <div class="feature-category">Documentation</div>
-                            <ul>
-                                <li>Transcription</li>
-                                <li>Document and note generation</li>
-                                <li>Custom templates</li>
-                            </ul>
-                        </div>
-                        <div class="section-divider"></div>
-                        <div class="feature-section">
-                            <div class="feature-category">Integration & Support</div>
-                            <ul>
-                                <li>Ask AI feature</li>
-                                <li>Practice Management System (PMS) integrations</li>
-                                <li>Team and enterprise infrastructure</li>
-                                <li>Full Telehealth Support</li>
-                                <li>Heidi Health App</li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content"></div>
-                    <div class="feature-list">
-                        <div class="feature-section">
-                            <div class="feature-category">AI Medical Scribe</div>
-                            <ul>
-                                <li>AI medical scribe, Lyrebird listens to a consultation and converts it into clinical notes and documents</li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <ul>
-                            <li>Real-time transcription</li>
-                            <li>Ability to add typed context notes while transcribing</li>
-                            <li>Fully customisable note templates</li>
-                            <li>Per user custom note preferences to control the note formatting, style and more</li>
-                            <li>Option to refine the note using AI</li>
-                        </ul>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <ul>
-                            <li>In Session Transcription</li>
-                            <li>Document and note generation</li>
-                            <li>Dictation of notes</li>
-                            <li>Mental health specific template library</li>
-                            <li>Custom templates</li>
-                            <li>Integration with NovoPsych Psychometrics</li>
-                            <li>Practice Plans for teams</li>
-                            <li>Telehealth Support</li>
-                            <li>Works on computers, phones and tablets</li>
-                        </ul>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <ul>
-                            <li>AI-Powered:</li>
-                            <li>- scheduling, billing, Workflow automation</li>
-                            <li>- clinical notes, session summaries, Treatment plans, reports, Diagnoses</li>
-                            <li>- Patient risk alerts & insights</li>
-                            <li>- Therapy support to patients between sessions = reduces dropout rates, maintains engagement</li>
-                        </ul>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <ul>
-                            <li>Clinical documentation. Everbility supports clinicians to use any amount of context to write any length documentation. If you're writing a case note, you can transcribe and generate a note from that transcription.</li>
-                            <li>If you're writing a long detailed report, you can use historical information about your client and provide as much additional context as required and generate a very detailed report.</li>
-                        </ul>
-                    </div>
-                    </div>
-                </td>
+          <thead>
+            <tr>
+              <th></th>
+              <th>ANTSA</th>
+              <th>Bastion GPT</th>
+              <th>Patient Notes</th>
+              <th>Heidi Health</th>
+              <th>Lyrebird</th>
+              <th>Zanda Health</th>
+              <th>NovoNote by NovoPsych</th>
+              <th>Uplift AI</th>
+              <th>Everbility</th>
             </tr>
-            
+          </thead>
+          <tbody>
+            <!-- Header -->
+            <tr>
+              <th scope="row"></th>
+              <td>
+                <a
+                  href="https://www.antsa.com.au/"
+                  target="_blank"
+                  class="see-more-btn"
+                  >See more</a
+                >
+              </td>
+              <td>
+                <a
+                  href="https://buy.stripe.com/eVa8yH6Akcs35I48wQ"
+                  target="_blank"
+                  class="see-more-btn"
+                  >30 day free trial</a
+                >
+              </td>
+              <td>
+                <a
+                  href="https://www.patientnotes.app/"
+                  target="_blank"
+                  class="see-more-btn"
+                  >10% Discount</a
+                ><br /><br />
+                <div><b>Code:</b> AIPSYCH2024</div>
+                <br />
+              </td>
+              <td>
+                <a
+                  href="https://scribe.heidihealth.com/?via=psychologysquared"
+                  target="_blank"
+                  class="see-more-btn"
+                  >30 day free trial</a
+                >
+                <br />
+              </td>
+              <td>
+                <a
+                  href="https://www.lyrebirdhealth.com/us?via=024cf1"
+                  target="_blank"
+                  class="see-more-btn"
+                  >10% Discount</a
+                ><br /><br />
+                <div><b>Code:</b> PS10</div>
+                <br />
+              </td>
+              <td>
+                <a
+                  href="https://zandahealth.com/?fpr=david67"
+                  target="_blank"
+                  class="see-more-btn"
+                  >See more</a
+                >
+              </td>
+              <td>
+                <a
+                  href="https://novopsych.com/novonote/"
+                  target="_blank"
+                  class="see-more-btn"
+                  >See more</a
+                >
+              </td>
+              <td>
+                <a
+                  href="https://www.upliftgroup.ai/"
+                  target="_blank"
+                  class="see-more-btn"
+                  >See more</a
+                >
+              </td>
+              <td>
+                <a
+                  href="https://www.everbility.com/?via=david-lopis"
+                  target="_blank"
+                  class="see-more-btn"
+                  >10% Discount</a
+                >
+              </td>
+            </tr>
+
+            <!-- 1. APP Compliance -->
+            <tr>
+              <th scope="row">
+                <div class="tooltip">
+                  APP Compliance<span class="question-mark">?</span>
+                  <span class="tooltiptext">Australian Privacy Principles</span>
+                </div>
+              </th>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+
+            <!-- 2. Where is the data stored? -->
+            <tr>
+              <th scope="row">Data storage</th>
+              <td>Australia</td>
+              <td>Australia</td>
+              <td>Australia</td>
+              <td>Australian AWS servers</td>
+              <td>Australia</td>
+              <td>
+                Australia (For Aus users). Stored according to the practice's
+                location
+              </td>
+              <td>Australia</td>
+              <td>Australia</td>
+              <td>Australia</td>
+            </tr>
+
+            <!-- 3. Free Membership Option -->
+            <tr>
+              <th scope="row">Free membership</th>
+              <td><span class="cross-icon">✗</span></td>
+              <td><span class="cross-icon">✗</span></td>
+              <td><span class="cross-icon">✗</span></td>
+              <td>
+                <div class="tooltip">
+                  <span class="question-mark">!</span>
+                  <span class="tooltiptext"
+                    >Heidi offer unlimited usage without being limited by the
+                    number of actions</span
+                  >
+                  <span class="check-icon">✓</span>
+                </div>
+              </td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="cross-icon">✗</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="cross-icon">✗</span></td>
+            </tr>
+
+            <!-- 4. Free Trial Option -->
+            <tr>
+              <th scope="row">Free trial</th>
+              <td>
+                <span class="check-icon">✓</span><br /><span>30 days</span>
+              </td>
+              <td>
+                <span class="check-icon">✓</span><br /><span>30 days</span>
+              </td>
+              <td>
+                <span class="check-icon">✓</span><br /><span>14 days</span>
+              </td>
+              <td>
+                <span class="check-icon">✓</span><br /><span>30 days</span>
+              </td>
+              <td>
+                <span class="check-icon">✓</span><br /><span>14 days</span>
+              </td>
+              <td>
+                <span class="check-icon">✓</span><br /><span>14 days</span>
+              </td>
+              <td>
+                <span class="check-icon">✓</span><br /><span>3 months</span>
+              </td>
+              <td>
+                <span class="check-icon">✓</span><br /><span
+                  >Ongoing for now</span
+                >
+              </td>
+              <td>
+                <span class="check-icon">✓</span><br /><span>7 days</span>
+              </td>
+            </tr>
+
+            <!-- 5. PMS Integration -->
+            <tr>
+              <th scope="row">
+                <div class="tooltip">
+                  PMS Integration <span class="question-mark">?</span>
+                  <span class="tooltiptext">Practice Management System</span>
+                </div>
+              </th>
+              <td>
+                The AI scribe is currently able to be saved straight into any
+                PMS. We are new so this information is changing daily - contact
+                us at help@ANTSA.com.au for updates
+              </td>
+              <td>Copy+Paste typical, if needed</td>
+              <td>Cliniko and Nookal</td>
+              <td>
+                Yes, Cliniko, Best Practice, Medirecords and many to come. If
+                you would like to know if we are currently building an
+                integration for your PMS please contact Support@heidihealth.com
+              </td>
+              <td>
+                Best Practice (available) & Genie / Gentu (coming very soon)
+              </td>
+              <td>
+                The tool is built natively within the Zanda practice management
+                system
+              </td>
+              <td>
+                Copy and paste into practice management software. Integration
+                with NovoPsych
+              </td>
+              <td>
+                Can use it as a standalone AI-powered, all-inclusive PMS OR use
+                it alongside your existing PMS
+              </td>
+              <td>
+                Everbility is building integrations with many Australian
+                practice management softwares, reach out to us if you want an
+                integration with yours.
+              </td>
+            </tr>
+
+            <!-- 6. Unique Features -->
+            <tr>
+              <th scope="row">
+                Unique features<br /><button
+                  class="expand-btn"
+                  onclick="toggleExpansion(this)"
+                >
+                  Show more ↓
+                </button>
+              </th>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <div class="feature-section">
+                      <div class="feature-category">AI Scribe Integration</div>
+                      <ul>
+                        <li>
+                          AI scribe (converts voice to text) and will be
+                          exportable to PMS (coming January 2025)
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="feature-section">
+                      <div class="feature-category">24/7 AI Therapy</div>
+                      <ul>
+                        <li>
+                          jAlmee (AI therapy chatbot - extremely popular with
+                          clients) is available 24/7.
+                        </li>
+                        <li>
+                          Clinicians can observe jAlmee live or during the
+                          client's next session.
+                        </li>
+                        <li>
+                          ANTSA's AI interventions are supervised by clinicians.
+                        </li>
+                        <li>Practitioner oversight & customisability.</li>
+                        <li>
+                          Continuous client engagement - "therapy takes place
+                          between the sessions".
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <div class="feature-section">
+                      <div class="feature-category">Advanced Transcription</div>
+                      <ul>
+                        <li>
+                          Transcription service with speaker recognition
+                          included
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="feature-section">
+                      <div class="feature-category">
+                        Specialized Healthcare AI
+                      </div>
+                      <ul>
+                        <li>
+                          AI models customized for over 200 healthcare and
+                          mental health use cases.
+                        </li>
+                        <li>
+                          Increased use of evidence-based output relative to
+                          other models like ChatGPT.
+                        </li>
+                        <li>
+                          Stay up to date with the latest high-end AI models
+                          with only one monthly subscription and APP compliance.
+                        </li>
+                        <li>
+                          Reduced content filters when dealing with dealing with
+                          psychology topics around violence and sexual abuse.
+                        </li>
+                        <li>Searchable chat history.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <div class="feature-section">
+                      <div class="feature-category">Advanced Tools</div>
+                      <ul>
+                        <li>Smart dictate</li>
+                        <li>Multi session reports</li>
+                        <li>Speech-to-text editing</li>
+                        <li>Prompt creation tool</li>
+                        <li>Extensive prompt library</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <div class="feature-section">
+                      <div class="feature-category">Security & Compliance</div>
+                      <ul>
+                        <li>Highest level of security (SOC2 and ISO27001)</li>
+                        <li>Fully regulated in multiple countries</li>
+                      </ul>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="feature-section">
+                      <div class="feature-category">Medical Specialization</div>
+                      <ul>
+                        <li>
+                          AI is trained on medical language and built by
+                          clinicians, making transcription unmatched
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <div class="feature-section">
+                      <div class="feature-category">Customization</div>
+                      <ul>
+                        <li>
+                          Deep levels of customisation, Lyrebird is the only
+                          scribe that allows you upload an example of your ideal
+                          report for it to learn how you would like Lyrebird to
+                          write (NB Heidi Health say they offer this feature
+                          too).
+                        </li>
+                        <li>
+                          This means you won't sound like a robot, and your
+                          letters will still very much sound like you wrote
+                          them.
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="feature-section">
+                      <div class="feature-category">Security</div>
+                      <ul>
+                        <li>
+                          Only AI scribe (to our knowledge) that processes all
+                          data on Australian soil. Especially in Psychology, it
+                          is so important that security and privacy is front of
+                          mind, for Lyrebird, it is.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        Purpose-built for psychologists and allied health
+                        professionals
+                      </li>
+                      <li>
+                        Ability to set custom note output preferences per user
+                      </li>
+                      <li>
+                        Seamlessly integrated with the client profile in Zanda -
+                        no copying and pasting required
+                      </li>
+                      <li>
+                        Free usage of the refine tool to make changes to the
+                        note using AI
+                      </li>
+                      <li>Custom retention period for transcript storage</li>
+                      <li>
+                        Usage report to see recording time per user in a
+                        specific date range
+                      </li>
+                      <li>
+                        Compliant with Australian privacy and security
+                        regulation, and ISO 27001 certified
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        Specifically designed for mental health practitioners by
+                        the team at NovoPsych
+                      </li>
+                      <li>Multi session reports (coming in January 2025)</li>
+                      <li>
+                        Integration of psychometric results of NovoPsych (coming
+                        in January 2025)
+                      </li>
+                      <li>
+                        Template library designed by a team of psychologists
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        The Only Fully Inclusive AI-Driven Operating System –
+                        Combines AI therapy, practice management, and patient
+                        engagement in one seamless ecosystem.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        Everbility's ability to write very long reports from as
+                        much context is very unique, it also has features to
+                        find peer reviewed research, additional NDIS knowledge,
+                        upload PDF (including handwriting).
+                      </li>
+                      <li>
+                        Everbility provides unlimited customer support to all
+                        customers with no additional fees for template creation
+                        and as much help as you need.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- 7. Core Features -->
+            <tr id="core-features">
+              <th scope="row">
+                Core features<br /><button
+                  class="expand-btn"
+                  onclick="toggleExpansion(this)"
+                >
+                  Show more ↓
+                </button>
+              </th>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <div class="feature-section">
+                      <div class="feature-category">AI Transcription</div>
+                      <ul>
+                        <li>
+                          AI scribe (no recordings made - converts straight to
+                          notes) - Available January 2025
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="feature-section">
+                      <div class="feature-category">Therapy Tools</div>
+                      <ul>
+                        <li>
+                          World's first overseen AI therapy chatbot (jAlmee)
+                        </li>
+                        <li>Automated homework tasks (fully customisable)</li>
+                        <li>
+                          On-demand evidence-based psychoeducation library
+                        </li>
+                        <li>Journalling activities</li>
+                      </ul>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="feature-section">
+                      <div class="feature-category">Monitoring & Analytics</div>
+                      <ul>
+                        <li>
+                          AI algorithms detect client distress levels in
+                          real-time
+                        </li>
+                        <li>
+                          Mood Tracking (graphed feedback for both clinician &
+                          client)
+                        </li>
+                        <li>Real-time data collection & monitoring</li>
+                        <li>Gamified engagement</li>
+                      </ul>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="feature-section">
+                      <div class="feature-category">
+                        Security & Communication
+                      </div>
+                      <ul>
+                        <li>Secure client-practitioner communication</li>
+                        <li>Designed for clinician oversight</li>
+                        <li>
+                          Privacy & data security is our number one priority!!!
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <div class="feature-section">
+                      <div class="feature-category">AI Assistant</div>
+                      <ul>
+                        <li>
+                          AI assistant with the ease of use of ChatGPT but with
+                          AI models and features tailored for the needs of
+                          Psychologists
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="feature-section">
+                      <div class="feature-category">Privacy & AI Models</div>
+                      <ul>
+                        <li>
+                          The tool allows for use with personal information
+                          (APP\Privacy Act compliant), and automatic selection
+                          of the leading AI models (e.g., OpenAI GPT-4, Google
+                          Gemini, Anthropic Claude) based on what is being asked
+                          of it
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <div class="feature-section">
+                      <div class="feature-category">Session Management</div>
+                      <ul>
+                        <li>
+                          Creation of session data from session audio for
+                          clinical notes for in rooms or telehealth sessions
+                        </li>
+                        <li>
+                          Creation of medical reports and letters using either
+                          the captured session data or a manual option to insert
+                          one or several sets of clinical notes
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="feature-section">
+                      <div class="feature-category">Smart Features</div>
+                      <ul>
+                        <li>
+                          Smart dictate feature to allow flexible clinical admin
+                          tasks such as clinical notes, letter writing,
+                          recording phone sessions
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <div class="feature-section">
+                      <div class="feature-category">Documentation</div>
+                      <ul>
+                        <li>Transcription</li>
+                        <li>Document and note generation</li>
+                        <li>Custom templates</li>
+                      </ul>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="feature-section">
+                      <div class="feature-category">Integration & Support</div>
+                      <ul>
+                        <li>Ask AI feature</li>
+                        <li>Practice Management System (PMS) integrations</li>
+                        <li>Team and enterprise infrastructure</li>
+                        <li>Full Telehealth Support</li>
+                        <li>Heidi Health App</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content"></div>
+                <div class="feature-list">
+                  <div class="feature-section">
+                    <div class="feature-category">AI Medical Scribe</div>
+                    <ul>
+                      <li>
+                        AI medical scribe, Lyrebird listens to a consultation
+                        and converts it into clinical notes and documents
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>Real-time transcription</li>
+                      <li>
+                        Ability to add typed context notes while transcribing
+                      </li>
+                      <li>Fully customisable note templates</li>
+                      <li>
+                        Per user custom note preferences to control the note
+                        formatting, style and more
+                      </li>
+                      <li>Option to refine the note using AI</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>In Session Transcription</li>
+                      <li>Document and note generation</li>
+                      <li>Dictation of notes</li>
+                      <li>Mental health specific template library</li>
+                      <li>Custom templates</li>
+                      <li>Integration with NovoPsych Psychometrics</li>
+                      <li>Practice Plans for teams</li>
+                      <li>Telehealth Support</li>
+                      <li>Works on computers, phones and tablets</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>AI-Powered:</li>
+                      <li>- scheduling, billing, Workflow automation</li>
+                      <li>
+                        - clinical notes, session summaries, Treatment plans,
+                        reports, Diagnoses
+                      </li>
+                      <li>- Patient risk alerts & insights</li>
+                      <li>
+                        - Therapy support to patients between sessions = reduces
+                        dropout rates, maintains engagement
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        Clinical documentation. Everbility supports clinicians
+                        to use any amount of context to write any length
+                        documentation. If you're writing a case note, you can
+                        transcribe and generate a note from that transcription.
+                      </li>
+                      <li>
+                        If you're writing a long detailed report, you can use
+                        historical information about your client and provide as
+                        much additional context as required and generate a very
+                        detailed report.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
             <!-- 8. Cost of the tool -->
             <tr>
-                <th scope="row">Pricing<br><button class="expand-btn" onclick="toggleExpansion(this)">Show more ↓</button></th>
-                <td><div class="expandable-content"><div class="feature-list"><ul>
-                    <li>$59 per month for UNLIMITED clients, prompts, transcriptions.</li>
-                    <li>Includes use of FULL platform - AI transcriptions, homework tasks, customisable activities, and continuous engagement support with AI therapist chatbot, jAlmee.</li>
-                    <li>Discounts for clinic owners requiring multiple licences for practitioners.</li>
-                    <li>Details on our website - <a href="https://www.antsa.com.au/pricing-plans">www.antsa.com.au/pricing-plans</a></li>
-                </ul></div></div></td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <ul>
-                            <li>$20/mo - Professional: High quality psychology-tailored AI models, unlimited prompts, input documents up to 10,000 words each</li>
-                            <li>$45/mo - Professional Plus: Enhanced features such as greater memory that supports documents up to 35,000 words each, cloud synchronizing saved prompts across multiple devices, and processing of images and graphics</li>
-                            <li>$60/mo - Enterprise: Features designed for large enterprises, such as customizable security policies and Single-Sign-On</li>
-                        </ul>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <ul>
-                            <li>Essential plan $29 AUD $19USD</li>
-                            <li>Professional Plan $79 AUD $49USD</li>
-                            <li>Code: AIPSYCH2024 (for affiliate: 10% off)</li>
-                        </ul>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <ul>
-                            <li>Free Tier: Cost - Free. Benefits - Access to world class AI scribe with no cost. Limitations: 10 pro actions a month which can be used on custom templates, document generation or Ask Heidi</li>
-                            <li>Pro Tier: Cost - $99 per month or $799 upfront for the year. Benefits - Unlimited usage of the Heidi platform! No limits on number of sessions or documents generated (Pro Actions). Limits: Self-Serve system where you must create your own templates or utilise community templates</li>
-                            <li>Together Tier: Cost - $1299 for the year per user. Benefits: Team features that allow you to share templates across the team, Integration with your PMS, Full Heidi Support where the Medical Knowledge team will create templates for you! Limitations: None at all!</li>
-                        </ul>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
-                        <ul>
-                            <li>Standard Pricing: $300 per month OR $2,400 per year (33% discount)</li>
-                            <li>Use code PS10 for 10% off</li>
-                            <li>Special Discounts: Students: Free subscription for 1 year</li>
-                            <li>Registrars: 80% off if solo, free if part of a clinic deal</li>
-                            <li>Part-Time Pricing: More than 25 hours/week: Full price. Less than 25 hours/week: 50% discount</li>
-                            <li>Organisation: If you are a part of a clinic wanting to join Lyrebird, we discuss a special price and organise an onboarding session to make sure it is a smooth roll out of a new tool in the clinic.</li>
-                        </ul>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    Our AI Refine tool is free for all users. Transcription is invoiced based on actual use at $1 +gst per hour (prorata).
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
+              <th scope="row">
+                Pricing<br /><button
+                  class="expand-btn"
+                  onclick="toggleExpansion(this)"
+                >
+                  Show more ↓
+                </button>
+              </th>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
                     <ul>
-                        <li>All NovoNote plans include access to NovoPsych Psychometrics:</li>
-                        <li>Free Tier: 30 notes a month</li>
-                        <li>Pro: $25 - 50 notes a month</li>
-                        <li>Pro Plus: $60 - 100 notes per month</li>
-                        <li>Platinum: $99 - Unlimited usage</li>
-                        <li>Practice Plans starting from $50 per clinician per month</li>
+                      <li>
+                        $59 per month for UNLIMITED clients, prompts,
+                        transcriptions.
+                      </li>
+                      <li>
+                        Includes use of FULL platform - AI transcriptions,
+                        homework tasks, customisable activities, and continuous
+                        engagement support with AI therapist chatbot, jAlmee.
+                      </li>
+                      <li>
+                        Discounts for clinic owners requiring multiple licences
+                        for practitioners.
+                      </li>
+                      <li>
+                        Details on our website -
+                        <a href="https://www.antsa.com.au/pricing-plans"
+                          >www.antsa.com.au/pricing-plans</a
+                        >
+                      </li>
                     </ul>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    Free. Future pricing packages to be determined end 2025/start 2026
-                </td>
-                <td>
-                    <div class="expandable-content">
-                    <div class="feature-list">
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
                     <ul>
-                        <li>Everbility has one subscription level, $50AUD per month per clinician or $420AUD per year per clinician which is 30% discount on monthly cost.</li>
-                        <li>There's no additional costs for template support, training calls, etc.</li>
+                      <li>
+                        $20/mo - Professional: High quality psychology-tailored
+                        AI models, unlimited prompts, input documents up to
+                        10,000 words each
+                      </li>
+                      <li>
+                        $45/mo - Professional Plus: Enhanced features such as
+                        greater memory that supports documents up to 35,000
+                        words each, cloud synchronizing saved prompts across
+                        multiple devices, and processing of images and graphics
+                      </li>
+                      <li>
+                        $60/mo - Enterprise: Features designed for large
+                        enterprises, such as customizable security policies and
+                        Single-Sign-On
+                      </li>
                     </ul>
-                    </div>
-                    </div>
-                </td>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>Essential plan $29 AUD $19USD</li>
+                      <li>Professional Plan $79 AUD $49USD</li>
+                      <li>Code: AIPSYCH2024 (for affiliate: 10% off)</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        Free Tier: Cost - Free. Benefits - Access to world class
+                        AI scribe with no cost. Limitations: 10 pro actions a
+                        month which can be used on custom templates, document
+                        generation or Ask Heidi
+                      </li>
+                      <li>
+                        Pro Tier: Cost - $99 per month or $799 upfront for the
+                        year. Benefits - Unlimited usage of the Heidi platform!
+                        No limits on number of sessions or documents generated
+                        (Pro Actions). Limits: Self-Serve system where you must
+                        create your own templates or utilise community templates
+                      </li>
+                      <li>
+                        Together Tier: Cost - $1299 for the year per user.
+                        Benefits: Team features that allow you to share
+                        templates across the team, Integration with your PMS,
+                        Full Heidi Support where the Medical Knowledge team will
+                        create templates for you! Limitations: None at all!
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        Standard Pricing: $300 per month OR $2,400 per year (33%
+                        discount)
+                      </li>
+                      <li>Use code PS10 for 10% off</li>
+                      <li>
+                        Special Discounts: Students: Free subscription for 1
+                        year
+                      </li>
+                      <li>
+                        Registrars: 80% off if solo, free if part of a clinic
+                        deal
+                      </li>
+                      <li>
+                        Part-Time Pricing: More than 25 hours/week: Full price.
+                        Less than 25 hours/week: 50% discount
+                      </li>
+                      <li>
+                        Organisation: If you are a part of a clinic wanting to
+                        join Lyrebird, we discuss a special price and organise
+                        an onboarding session to make sure it is a smooth roll
+                        out of a new tool in the clinic.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                Our AI Refine tool is free for all users. Transcription is
+                invoiced based on actual use at $1 +gst per hour (prorata).
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        All NovoNote plans include access to NovoPsych
+                        Psychometrics:
+                      </li>
+                      <li>Free Tier: 30 notes a month</li>
+                      <li>Pro: $25 - 50 notes a month</li>
+                      <li>Pro Plus: $60 - 100 notes per month</li>
+                      <li>Platinum: $99 - Unlimited usage</li>
+                      <li>
+                        Practice Plans starting from $50 per clinician per month
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                Free. Future pricing packages to be determined end 2025/start
+                2026
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        Everbility has one subscription level, $50AUD per month
+                        per clinician or $420AUD per year per clinician which is
+                        30% discount on monthly cost.
+                      </li>
+                      <li>
+                        There's no additional costs for template support,
+                        training calls, etc.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
             </tr>
 
             <!-- 9. Telehealth -->
             <tr>
-                <th scope="row">Telehealth</th>
-                <td><span class="check-icon">✓</span></td>
-                <td><span class="check-icon">✓</span></td>
-                <td><span class="check-icon">✓</span></td>
-                <td><span class="check-icon">✓</span></td>
-                <td><span class="check-icon">✓</span></td>
-                <td>
+              <th scope="row">Telehealth</th>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td>
                 <div class="tooltip">
-                    <span class="question-mark">!</span>
-                    <span class="tooltiptext">
-                    Yes, if you use speaker mode on your device for the audio. We are working with Zoom to provide an option where headphones can be used.
-                </span></div>
-                <span class="check-icon">✓</span></td>
-                <td><span class="check-icon">✓</span></td>
-                <td><span class="check-icon">✓</span></td>
-                <td><span class="check-icon">✓</span></td>
+                  <span class="question-mark">!</span>
+                  <span class="tooltiptext">
+                    Yes, if you use speaker mode on your device for the audio.
+                    We are working with Zoom to provide an option where
+                    headphones can be used.
+                  </span>
+                </div>
+                <span class="check-icon">✓</span>
+              </td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
             </tr>
-            
-                <!-- 9. Headphones compatible -->
-                <tr>
-                    <th scope="row">Headphones compatible</th>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">Not sure</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                </tr>
-            
-                <!-- 10. Mobile Phone compatible -->
-                <tr>
-                    <th scope="row">Mobile Phone compatible</th>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                </tr>
-            
-                <!-- 11. Can multiple notes inform the report? -->
-                <tr>
-                    <th scope="row">Multiple notes for a single report?</th>
-                    <td>Not sure</td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td>Under development</td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td>Can use as a standalone AI-powered, all-inclusive PMS OR use it alongside your existing PMS</td>
-                    <td><span class="check-icon">✓</span></td>
-                </tr>
-            
-                <!-- 12. Is the AI trainable over time? -->
-                <tr>
-                    <th scope="row">Is the AI trainable over time?</th>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td>We have a prompt review tool which we have found better than training</td>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td>This is on our roadmap.</td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                </tr>
-            
-                <!-- 13. Content Tuning -->
-                <tr>
-                    <th scope="row">
-                        <div class="tooltip">
-                            Content Tuning <span class="question-mark">?</span>
-                            <span class="tooltiptext">Can the tool adjust its content based on feedback? (reinforcement learning)</span>
-                        </div>
-                    </th>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td>Yes, each user can prove instructions on their preferences that the tool will abide when producing a note.</td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                </tr>
-            
-                <!-- 14. Trusted Sources Only -->
-                <tr>
-                    <th scope="row">
-                        <div class="tooltip">
-                            Trusted Sources Only <span class="question-mark">?</span>
-                            <span class="tooltiptext">Can the tool be limited to use only top quality, evidence-based sources for info, assessments, and plans?</span>
-                        </div>
-                    </th>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="cross-icon">✗</span></td>
-                    <td>This can be achieved applying the user's custom preferences.</td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                    <td><span class="check-icon">✓</span></td>
-                </tr>
-            
-                <!-- 15. Languages -->
-                <tr>
-                    <th scope="row">Languages Supported<br><button class="expand-btn" onclick="toggleExpansion(this)">Show more ↓</button></th>
-                    <td><div class="expandable-content"><div class="feature-list"><ul><li>Not at this time, but will be adding languages as we go</li><li>Message us at help@ANTSA.com.au for requests at this stage.</li></ul></div></div></td>
-                    <td><div class="expandable-content"><div class="feature-list"><ul><li>English primarily supported, but content can be generated in many other languages</li></ul></div></div></td>
-                    <td><div class="expandable-content"><div class="feature-list"><ul><li>Bulgarian</li><li>Catalan</li><li>Chinese (Mandarin, Simplified)</li><li>Chinese (Mandarin, Traditional)</li><li>Chinese (Cantonese, Traditional)</li><li>Czech</li><li>Danish</li><li>Dutch</li><li>English Australian</li><li>English British</li><li>English Indian</li><li>English New Zealand</li><li>English U.S.</li><li>Estonian</li><li>Finnish</li><li>Flemish</li><li>French Canadian</li><li>French Swiss</li><li>French</li><li>German Swiss</li><li>German</li><li>Greek</li><li>Hindi</li><li>Hungarian</li><li>Indonesian</li><li>Italian</li><li>Japanese</li><li>Korean</li><li>Latvian</li><li>Lithuanian</li><li>Malay</li><li>Spanish and English</li><li>Norwegian</li><li>Polish</li><li>Portuguese Brazilian</li><li>Portuguese</li><li>Romanian</li><li>Russian</li><li>Slovak</li><li>Spanish</li><li>Swedish</li><li>Thai</li><li>Turkish</li><li>Ukrainian</li><li>Vietnamese</li></ul></div></div></td>
-                    <td><div class="expandable-content"><div class="feature-list"><ul><li>Cantonese</li><li>Czech</li><li>Danish</li><li>Dutch</li><li>Flemish</li><li>French</li><li>German</li><li>Greek</li><li>Hindi</li><li>Indonesian</li><li>Italian</li><li>Mandarin</li><li>Norwegian</li><li>Japanese</li><li>Korean</li><li>Malay</li><li>Polish</li><li>Portuguese</li><li>Russian</li><li>Spanish</li><li>Swedish</li><li>Thai</li><li>Turkish</li><li>Ukrainian</li><li>Vietnamese</li></ul></div></div></td>
-                    <td><div class="expandable-content"><div class="feature-list"><ul><li>Yes, it supports all languages</li></ul></div></div></td>
-                    <td><div class="expandable-content"><div class="feature-list"><ul><li>Currently only available in English.</li></ul></div></div></td>
-                    <td><div class="expandable-content"><div class="feature-list"><ul><li>Primarily English</li></ul></div></div></td>
-                    <td><div class="expandable-content"><div class="feature-list"><ul><li>Not currently. It will in future development</li></ul></div></div></td>
-                    <td><div class="expandable-content"><div class="feature-list"><ul><li>Everbility can be used in many other languages, reach out to us if you have any issues and we're happy to help.</li></ul></div></div></td>
-                </tr>
-            </tbody>
-            
-        </table>  
+
+            <!-- 9. Headphones compatible -->
+            <tr>
+              <th scope="row">Headphones compatible</th>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="cross-icon">✗</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">Not sure</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+
+            <!-- 10. Mobile Phone compatible -->
+            <tr>
+              <th scope="row">Mobile Phone compatible</th>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="cross-icon">✗</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="cross-icon">✗</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+
+            <!-- 11. Can multiple notes inform the report? -->
+            <tr>
+              <th scope="row">Multiple notes for a single report?</th>
+              <td>Not sure</td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="cross-icon">✗</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td>Under development</td>
+              <td><span class="check-icon">✓</span></td>
+              <td>
+                Can use as a standalone AI-powered, all-inclusive PMS OR use it
+                alongside your existing PMS
+              </td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+
+            <!-- 12. Is the AI trainable over time? -->
+            <tr>
+              <th scope="row">Is the AI trainable over time?</th>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td>
+                We have a prompt review tool which we have found better than
+                training
+              </td>
+              <td><span class="cross-icon">✗</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td>This is on our roadmap.</td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+
+            <!-- 13. Content Tuning -->
+            <tr>
+              <th scope="row">
+                <div class="tooltip">
+                  Content Tuning <span class="question-mark">?</span>
+                  <span class="tooltiptext"
+                    >Can the tool adjust its content based on feedback?
+                    (reinforcement learning)</span
+                  >
+                </div>
+              </th>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td>
+                Yes, each user can prove instructions on their preferences that
+                the tool will abide when producing a note.
+              </td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+
+            <!-- 14. Trusted Sources Only -->
+            <tr>
+              <th scope="row">
+                <div class="tooltip">
+                  Trusted Sources Only <span class="question-mark">?</span>
+                  <span class="tooltiptext"
+                    >Can the tool be limited to use only top quality,
+                    evidence-based sources for info, assessments, and
+                    plans?</span
+                  >
+                </div>
+              </th>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="cross-icon">✗</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="cross-icon">✗</span></td>
+              <td>
+                This can be achieved applying the user's custom preferences.
+              </td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+
+            <!-- 15. Languages -->
+            <tr>
+              <th scope="row">
+                Languages Supported<br /><button
+                  class="expand-btn"
+                  onclick="toggleExpansion(this)"
+                >
+                  Show more ↓
+                </button>
+              </th>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        Not at this time, but will be adding languages as we go
+                      </li>
+                      <li>
+                        Message us at help@ANTSA.com.au for requests at this
+                        stage.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        English primarily supported, but content can be
+                        generated in many other languages
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>Bulgarian</li>
+                      <li>Catalan</li>
+                      <li>Chinese (Mandarin, Simplified)</li>
+                      <li>Chinese (Mandarin, Traditional)</li>
+                      <li>Chinese (Cantonese, Traditional)</li>
+                      <li>Czech</li>
+                      <li>Danish</li>
+                      <li>Dutch</li>
+                      <li>English Australian</li>
+                      <li>English British</li>
+                      <li>English Indian</li>
+                      <li>English New Zealand</li>
+                      <li>English U.S.</li>
+                      <li>Estonian</li>
+                      <li>Finnish</li>
+                      <li>Flemish</li>
+                      <li>French Canadian</li>
+                      <li>French Swiss</li>
+                      <li>French</li>
+                      <li>German Swiss</li>
+                      <li>German</li>
+                      <li>Greek</li>
+                      <li>Hindi</li>
+                      <li>Hungarian</li>
+                      <li>Indonesian</li>
+                      <li>Italian</li>
+                      <li>Japanese</li>
+                      <li>Korean</li>
+                      <li>Latvian</li>
+                      <li>Lithuanian</li>
+                      <li>Malay</li>
+                      <li>Spanish and English</li>
+                      <li>Norwegian</li>
+                      <li>Polish</li>
+                      <li>Portuguese Brazilian</li>
+                      <li>Portuguese</li>
+                      <li>Romanian</li>
+                      <li>Russian</li>
+                      <li>Slovak</li>
+                      <li>Spanish</li>
+                      <li>Swedish</li>
+                      <li>Thai</li>
+                      <li>Turkish</li>
+                      <li>Ukrainian</li>
+                      <li>Vietnamese</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>Cantonese</li>
+                      <li>Czech</li>
+                      <li>Danish</li>
+                      <li>Dutch</li>
+                      <li>Flemish</li>
+                      <li>French</li>
+                      <li>German</li>
+                      <li>Greek</li>
+                      <li>Hindi</li>
+                      <li>Indonesian</li>
+                      <li>Italian</li>
+                      <li>Mandarin</li>
+                      <li>Norwegian</li>
+                      <li>Japanese</li>
+                      <li>Korean</li>
+                      <li>Malay</li>
+                      <li>Polish</li>
+                      <li>Portuguese</li>
+                      <li>Russian</li>
+                      <li>Spanish</li>
+                      <li>Swedish</li>
+                      <li>Thai</li>
+                      <li>Turkish</li>
+                      <li>Ukrainian</li>
+                      <li>Vietnamese</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>Yes, it supports all languages</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>Currently only available in English.</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>Primarily English</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>Not currently. It will in future development</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="expandable-content">
+                  <div class="feature-list">
+                    <ul>
+                      <li>
+                        Everbility can be used in many other languages, reach
+                        out to us if you have any issues and we're happy to
+                        help.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <div class="scrollbar-spacer" aria-hidden="true"></div>
+      </div>
     </div>
-</div>
     <script>
-              const tableWrapper = document.getElementById('tableWrapper');
-        const scrollLeftBtn = document.getElementById('scrollLeft');
-        const scrollRightBtn = document.getElementById('scrollRight');
+      const tableWrapper = document.getElementById("tableWrapper");
+      const scrollLeftBtn = document.getElementById("scrollLeft");
+      const scrollRightBtn = document.getElementById("scrollRight");
 
-        function scrollTable(direction) {
-            const scrollAmount = 300;
-            const currentScroll = tableWrapper.scrollLeft;
-            
-            if (direction === 'left') {
-                tableWrapper.scrollTo({
-                    left: currentScroll - scrollAmount,
-                    behavior: 'smooth'
-                });
-            } else {
-                tableWrapper.scrollTo({
-                    left: currentScroll + scrollAmount,
-                    behavior: 'smooth'
-                });
-            }
+      function scrollTable(direction) {
+        const scrollAmount = 300;
+        const currentScroll = tableWrapper.scrollLeft;
+
+        if (direction === "left") {
+          tableWrapper.scrollTo({
+            left: currentScroll - scrollAmount,
+            behavior: "smooth",
+          });
+        } else {
+          tableWrapper.scrollTo({
+            left: currentScroll + scrollAmount,
+            behavior: "smooth",
+          });
+        }
+      }
+
+      function updateScrollButtons() {
+        const maxScroll = tableWrapper.scrollWidth - tableWrapper.clientWidth;
+        const currentScroll = tableWrapper.scrollLeft;
+
+        if (currentScroll <= 0) {
+          scrollLeftBtn.classList.add("disabled");
+        } else {
+          scrollLeftBtn.classList.remove("disabled");
         }
 
-        function updateScrollButtons() {
-            const maxScroll = tableWrapper.scrollWidth - tableWrapper.clientWidth;
-            const currentScroll = tableWrapper.scrollLeft;
-            
-            if (currentScroll <= 0) {
-                scrollLeftBtn.classList.add('disabled');
-            } else {
-                scrollLeftBtn.classList.remove('disabled');
-            }
-            
-            if (currentScroll >= maxScroll - 1) {
-                scrollRightBtn.classList.add('disabled');
-            } else {
-                scrollRightBtn.classList.remove('disabled');
-            }
+        if (currentScroll >= maxScroll - 1) {
+          scrollRightBtn.classList.add("disabled");
+        } else {
+          scrollRightBtn.classList.remove("disabled");
         }
+      }
 
-        tableWrapper.addEventListener('scroll', updateScrollButtons);
-        
-        window.addEventListener('load', updateScrollButtons);
-        window.addEventListener('resize', updateScrollButtons);
+      tableWrapper.addEventListener("scroll", updateScrollButtons);
 
-        function toggleExpansion(button) {
-            const row = button.closest('tr');
-            const expandableSections = row.querySelectorAll('.expandable-content');
-            const isExpanded = [...expandableSections].some(el => el.classList.contains('expanded'));
+      window.addEventListener("load", updateScrollButtons);
+      window.addEventListener("resize", updateScrollButtons);
 
-            expandableSections.forEach(section => {
-                section.classList.toggle('expanded', !isExpanded);
-            });
+      function toggleExpansion(button) {
+        const row = button.closest("tr");
+        const expandableSections = row.querySelectorAll(".expandable-content");
+        const isExpanded = [...expandableSections].some((el) =>
+          el.classList.contains("expanded"),
+        );
 
-            button.textContent = isExpanded ? 'Show more ↓' : 'Show less ↑';
-        }
+        expandableSections.forEach((section) => {
+          section.classList.toggle("expanded", !isExpanded);
+        });
 
-        function sendHeight() {
-            const height = document.body.scrollHeight;
-            parent.postMessage({ type: "resize", height: height }, window.location.origin);
-        }
+        button.textContent = isExpanded ? "Show more ↓" : "Show less ↑";
+      }
 
-        window.addEventListener("load", sendHeight);
-        window.addEventListener("resize", sendHeight);
+      function sendHeight() {
+        const height = document.body.scrollHeight;
+        parent.postMessage(
+          { type: "resize", height: height },
+          window.location.origin,
+        );
+      }
 
-    // --- COLUMN TOGGLE DROPDOWN LOGIC ---
-    const dropdownBtn = document.getElementById('columnDropdownBtn');
-    const dropdown = document.getElementById('columnDropdown');
-    dropdownBtn.addEventListener('click', function(e) {
-      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-      e.stopPropagation();
-    });
-    document.addEventListener('click', function(e) {
-      if (dropdown.style.display === 'block') dropdown.style.display = 'none';
-    });
-    dropdown.addEventListener('click', function(e) {
-      e.stopPropagation();
-    });
+      window.addEventListener("load", sendHeight);
+      window.addEventListener("resize", sendHeight);
 
-    function setColumnVisibility(colIdx, visible) {
-      const table = document.getElementById('tableId');
-      if (!table) return;
-      // th
-      const ths = table.querySelectorAll('thead tr th');
-      if (ths[colIdx]) ths[colIdx].style.display = visible ? '' : 'none';
-      // all rows
-      const rows = table.querySelectorAll('tbody tr');
-      rows.forEach(row => {
-        const cells = row.querySelectorAll('td, th');
-        if (cells[colIdx]) cells[colIdx].style.display = visible ? '' : 'none';
+      // --- COLUMN TOGGLE DROPDOWN LOGIC ---
+      const dropdownBtn = document.getElementById("columnDropdownBtn");
+      const dropdown = document.getElementById("columnDropdown");
+      dropdownBtn.addEventListener("click", function (e) {
+        dropdown.style.display =
+          dropdown.style.display === "block" ? "none" : "block";
+        e.stopPropagation();
       });
-    }
-
-    // Initial setup: all checked
-    const toggles = document.querySelectorAll('.column-toggle');
-    toggles.forEach(toggle => {
-      toggle.addEventListener('change', function() {
-        const col = parseInt(this.getAttribute('data-col'));
-        setColumnVisibility(col, this.checked);
+      document.addEventListener("click", function (e) {
+        if (dropdown.style.display === "block") dropdown.style.display = "none";
       });
-    });
+      dropdown.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
 
-    // Utility: on load, ensure all columns visible
-    toggles.forEach(toggle => {
-      const col = parseInt(toggle.getAttribute('data-col'));
-      setColumnVisibility(col, toggle.checked);
-    });
-    // --- END COLUMN TOGGLE ---
+      function setColumnVisibility(colIdx, visible) {
+        const table = document.getElementById("tableId");
+        if (!table) return;
+        // th
+        const ths = table.querySelectorAll("thead tr th");
+        if (ths[colIdx]) ths[colIdx].style.display = visible ? "" : "none";
+        // all rows
+        const rows = table.querySelectorAll("tbody tr");
+        rows.forEach((row) => {
+          const cells = row.querySelectorAll("td, th");
+          if (cells[colIdx])
+            cells[colIdx].style.display = visible ? "" : "none";
+        });
+      }
+
+      // Initial setup: all checked
+      const toggles = document.querySelectorAll(".column-toggle");
+      toggles.forEach((toggle) => {
+        toggle.addEventListener("change", function () {
+          const col = parseInt(this.getAttribute("data-col"));
+          setColumnVisibility(col, this.checked);
+        });
+      });
+
+      // Utility: on load, ensure all columns visible
+      toggles.forEach((toggle) => {
+        const col = parseInt(toggle.getAttribute("data-col"));
+        setColumnVisibility(col, toggle.checked);
+      });
+      // --- END COLUMN TOGGLE ---
     </script>
-</body>
+  </body>
 </html>
