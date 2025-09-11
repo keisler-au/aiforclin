@@ -1,0 +1,8 @@
+# Ignore build output
+_site/
+dist/
+node_modules/
+
+# Ignore Jekyll includes
+_includes/
+_layouts/

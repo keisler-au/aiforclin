@@ -33,10 +33,15 @@
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
   </head>
   <body>
-    {% if page.title == "AI Consultant and Speaker" or page.title == "AI
-    Compliance Pack" or page.title == "AI Scribe Company Comparisons" or
-    page.title == "AI Ethical Standards" or page.title == "Get in Contact" or
-    page.title == "Frequently Asked Questions" %} {% include header-nav.html %}
+    {% if 
+      page.title == "AI Consultant and Speaker" 
+      or page.title == "AI Compliance Pack" 
+      or page.title == "AI Scribe Company Comparisons" 
+      or page.title == "AI Ethical Standards" 
+      or page.title == "Get in Contact" 
+      or page.title == "Frequently Asked Questions" 
+    %} 
+    {% include header-nav.html %}
     {% endif %} {% if page.subnav %} {% include sub-nav.html %} {% endif %}
 
     <main id="main" role="main">{{ content }}</main>

@@ -45,7 +45,8 @@
     <script src="/assets/js/main.js"></script>
   </head>
   <body>
-     <header class="site-header">
+     
+    <header class="site-header">
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <div class="container">
@@ -160,43 +161,12 @@
 
 
 <script>
-  // Handle scroll effects and active states
   const subNav = document.getElementById("subNav");
+  
+  // Handle scroll effects and active states
   const navLinks = document.querySelectorAll(".sub-nav-link");
   const sections = document.querySelectorAll(".section");
 
-  // Add scroll event listener
-  window.addEventListener("scroll", () => {
-    const scrolled = window.scrollY > 50;
-
-    // Toggle border appearance
-    if (scrolled) {
-      subNav.classList.add("scrolled");
-    } else {
-      subNav.classList.remove("scrolled");
-    }
-
-    // Update active navigation item
-    let current = "";
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-
-      if (window.scrollY >= sectionTop - 200) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    // Update active states
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("data-section") === current) {
-        link.classList.add("active");
-      }
-    });
-  });
-
-  // Smooth scroll behavior for navigation links
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -218,7 +188,7 @@
 </script>
  
 
-    <main id="main" role="main"><header id="home" class="title-container">
+    <main id="main" role="main"><header id="home" class="title-container container-short">
   <div class="container container-alt">
     <div class="title-content">
       <h1 class="main-title main-title-accent">
@@ -242,7 +212,7 @@
 </header>
 <!-- About Section -->
 <section id="about" class="section bg1">
-  <div class="container">
+  <div class="container container-short">
     <h2 class="section-title">
       About <span class="section-title-accent">David Lopis</span>
     </h2>
@@ -299,9 +269,9 @@
 
 <!-- Speaking & Events Section -->
 <section id="speaking" class="section bg2">
-  <div class="container">
+  <div class="container container-short">
     <h2 class="section-title">
-      Speaking & <span class="section-title-accent">Events</span>
+      Speaking and <span class="section-title-accent">Events</span>
     </h2>
     <p class="section-subtitle">
       Leading AI training and thought leadership across Australia's top
@@ -375,9 +345,9 @@
 
 <!-- Media Section -->
 <section id="media" class="section bg3">
-  <div class="container">
+  <div class="container container-short" style="max-width: 800px">
     <h2 class="section-title">
-      Media & <span class="section-title-accent">Interviews</span>
+      Media and <span class="section-title-accent">Interviews</span>
     </h2>
     <p class="section-subtitle">
       Featured insights on AI in psychology across podcasts and industry
@@ -433,7 +403,7 @@
 
 <!-- Services Section -->
 <section id="services" class="section bg4">
-  <div class="container">
+  <div class="container container-short">
     <h2 class="section-title">
       Our <span class="section-title-accent">Services</span>
     </h2>
@@ -657,7 +627,10 @@
 </section>
 
 <!-- Contact Form Modal -->
-<dialog id="booking-modal-container" class="booking-modal-container">
+<dialog
+  id="booking-modal-container container-short"
+  class="booking-modal-container container-short"
+>
   <div id="booking-modal" class="booking-modal">
     <button
       onclick="closeBookingForm()"

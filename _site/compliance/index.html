@@ -45,6 +45,71 @@
     <script src="/assets/js/main.js"></script>
   </head>
   <body>
+     
+    <header class="site-header">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="container">
+    <a
+      href="/"
+      class="nav-brand"
+      aria-label="AI for Clinicians home"
+    >
+      <img
+        src="/assets/images/logo.png"
+        alt="AI for Clinicians logo"
+        width="50"
+        height="50"
+        decoding="async"
+        loading="lazy"
+      />
+      <span class="nav-brand-text">AI for Clinicians</span>
+    </a>
+
+    <button
+      id="mobile-menu-button"
+      class="mobile-menu-button"
+      aria-label="Toggle navigation menu"
+      aria-controls="primary-nav"
+      aria-expanded="false"
+    >
+      <span class="mobile-menu-icon" aria-hidden="true"></span>
+      <span class="sr-only">Menu</span>
+    </button>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary" hidden>
+      <ul class="nav-list">
+        <li>
+          <a href="/services/" class="nav-link"
+            >Services</a
+          >
+        </li>
+        <li>
+          <a href="/compliance/" class="nav-link"
+            >Compliance Pack</a
+          >
+        </li>
+        <li>
+          <a href="/comparisons/" class="nav-link"
+            >Comparisons Table</a
+          >
+        </li>
+        <li>
+          <a href="/standards/" class="nav-link"
+            >AI Ethical Standards</a
+          >
+        </li>
+        <li><a href="/faq/" class="nav-link">FAQ</a></li>
+        <li>
+          <a href="/contact/" class="nav-link"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
        
 <nav class="sub-nav" id="subNav" aria-label="Section navigation">
   <div class="sub-nav-container">
@@ -106,43 +171,12 @@
 
 
 <script>
-  // Handle scroll effects and active states
   const subNav = document.getElementById("subNav");
+  
+  // Handle scroll effects and active states
   const navLinks = document.querySelectorAll(".sub-nav-link");
   const sections = document.querySelectorAll(".section");
 
-  // Add scroll event listener
-  window.addEventListener("scroll", () => {
-    const scrolled = window.scrollY > 50;
-
-    // Toggle border appearance
-    if (scrolled) {
-      subNav.classList.add("scrolled");
-    } else {
-      subNav.classList.remove("scrolled");
-    }
-
-    // Update active navigation item
-    let current = "";
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-
-      if (window.scrollY >= sectionTop - 200) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    // Update active states
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("data-section") === current) {
-        link.classList.add("active");
-      }
-    });
-  });
-
-  // Smooth scroll behavior for navigation links
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -324,7 +358,7 @@
 
 <!-- Legal Disclaimers -->
 <section id="legal" class="section bg4">
-  <div class="container">
+  <div class="container container-short">
     <h2 class="section-title">Important Legal Information</h2>
     <div class="content-container">
       <div class="content-section">

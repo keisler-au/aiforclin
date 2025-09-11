@@ -193,6 +193,12 @@ body {
     padding: 0 20px;
 }
 
+.container-alt {
+    display: flex;
+    flex-direction: column; /* mobile default: stack */
+    gap: 2rem;
+}
+
 .title-container {
     min-height: 100%;
     margin: 13rem auto;
@@ -208,14 +214,6 @@ body {
 }
 
 /* Header inner wrapper used on services page */
-.container-alt {
-    display: flex;
-    flex-direction: column; /* mobile default: stack */
-    gap: 2rem;
-}
-.container-short {
-    max-width: 800px;
-}
 .title-content-centered {
     text-align: center;
 }
@@ -244,8 +242,8 @@ body {
 /* Sub-Nav */
 .sub-nav {
     position: fixed;
-    top: 6rem;
-    left: 50%;
+    top: 15rem;
+    left: 10%;
     transform: translateX(-50%);
     z-index: 999;
     transition: var(--transition);
@@ -260,14 +258,9 @@ body {
     transition: var(--transition);
 }
 
-.sub-nav.scrolled .sub-nav-container {
-    border-color: var(--border-color);
-    background: rgba(15, 26, 46, 0.95);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
 .sub-nav-list {
     display: flex;
+    flex-direction: column;
     list-style: none;
     gap: var(--spacing-md);
     align-items: center;
@@ -295,12 +288,6 @@ body {
     border-color: rgba(212, 175, 55, 0.2);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
-}
-
-.sub-nav-link.active {
-    color: var(--primary-gold);
-    background: var(--card-bg-alt);
-    border-color: var(--border-color);
 }
 
 /* Hero Section */
@@ -450,6 +437,12 @@ body {
 }
 
 /* Dashboard */
+.dashboard-logo {
+    position: absolute; 
+    top: 7rem; 
+    left: 9rem; 
+    transform: translate(-50%, -50%);
+}
 .dashboard-container {
     max-width: 600px;
 }
@@ -1443,7 +1436,7 @@ a {
 }
 @media (min-width: 768px) {
     .container-alt {
-        flex-direction: row; /* larger screens: side-by-side */
+        flex-direction: row;
         align-items: center;
         justify-content: space-between;
     }
@@ -1518,6 +1511,12 @@ a {
       height: 360px;
     }
   }
+
+  @media (max-width: 1600px) {
+    .container-short {
+        max-width: 1000px;
+    }
+  }
   
   /* Print */
   @media print {
@@ -1558,6 +1557,14 @@ a {
   
   /* ≤768px */
   @media (max-width: 768px) {
+    .dashboard-logo {
+        position: absolute;
+        top: 3rem;
+        left: 3rem;
+        transform: translate(-50%, -50%);
+        width: 140px;
+        height: 140px;
+    }
     .dashboard-header-container{
         flex-direction: column;
         gap: 2rem;

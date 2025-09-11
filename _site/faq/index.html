@@ -45,7 +45,8 @@
     <script src="/assets/js/main.js"></script>
   </head>
   <body>
-     <header class="site-header">
+     
+    <header class="site-header">
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <div class="container">
@@ -180,43 +181,12 @@
 
 
 <script>
-  // Handle scroll effects and active states
   const subNav = document.getElementById("subNav");
+  
+  // Handle scroll effects and active states
   const navLinks = document.querySelectorAll(".sub-nav-link");
   const sections = document.querySelectorAll(".section");
 
-  // Add scroll event listener
-  window.addEventListener("scroll", () => {
-    const scrolled = window.scrollY > 50;
-
-    // Toggle border appearance
-    if (scrolled) {
-      subNav.classList.add("scrolled");
-    } else {
-      subNav.classList.remove("scrolled");
-    }
-
-    // Update active navigation item
-    let current = "";
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-
-      if (window.scrollY >= sectionTop - 200) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    // Update active states
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("data-section") === current) {
-        link.classList.add("active");
-      }
-    });
-  });
-
-  // Smooth scroll behavior for navigation links
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
