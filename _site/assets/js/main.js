@@ -9,27 +9,8 @@ const EMAIL_API_URL = [
   ? EMAIL_API_URL_DEV
   : EMAIL_API_URL_PROD;
 
-function openBookingForm(service, type) {
-  selectedService = service;
-  selectedType = type;
-
-  const serviceNames = {
-    speaking: {
-      general: "Speaking Engagement",
-    },
-    consulting: {
-      general: "AI Consultation",
-    },
-    company: {
-      "product-review": "Product Review",
-      "ongoing-assistance": "Ongoing Assistance",
-    },
-  };
-
-  document.getElementById("selected-service").value =
-    serviceNames[service][type];
-  document.getElementById("booking-modal-container").style.display = "flex";
-  if (service === "consulting") {
+function configureBookingForm(serviceType) {
+  if (serviceType === "consulting") {
     document.getElementById("booking-modal-cliniko-1hr").style.display =
       "block";
     document.getElementById("form").style.display = "none";
@@ -37,17 +18,27 @@ function openBookingForm(service, type) {
     document.getElementById("form").style.display = "block";
     document.getElementById("booking-modal-cliniko-1hr").style.display = "none";
   }
-  if (service === "company") {
+
+  if (serviceType && serviceType.includes("company")) {
     document.getElementById("group-size-group").style.display = "none";
     document.getElementById("budget-group").style.display = "none";
     document.getElementById("location-group").style.display = "none";
     document.getElementById("venue-group").style.display = "none";
   }
+}
+
+let serviceTypeSelector = null;
+function openBookingForm(serviceType) {
+  document.getElementById("booking-modal-container").style.display = "flex";
+  serviceTypeSelector = document.getElementById("selected-service");
+  serviceTypeSelector.value = serviceType;
+  serviceTypeSelector.addEventListener("change", () => { configureBookingForm(serviceTypeSelector.value); });
+
+  configureBookingForm(serviceType);
   document.body.style.overflow = "hidden";
   // Remove any previous status message
   const prevStatus = document.getElementById("email-status");
   if (prevStatus) prevStatus.textContent = "";
-
   // Reset form
   currentStep = 1;
   showStep(1);
@@ -55,6 +46,9 @@ function openBookingForm(service, type) {
 
 function closeBookingForm() {
   document.getElementById("booking-modal-container").style.display = "none";
+  serviceTypeSelector.value = "";
+  serviceTypeSelector.removeEventListener("change", () => { configureBookingForm(serviceTypeSelector.value); });
+  serviceTypeSelector = null;
   document.body.style.overflow = "auto";
 }
 
@@ -70,9 +64,13 @@ function nextStep() {
   if (currentStep < 4) {
     // Basic validation
     if (currentStep === 1) {
+      const selectedService = document.getElementById("selected-service").value; 
       const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      if (!name) {
+      const email = document.getElementById("email").value; 
+      if (!selectedService) {
+        alert("Please select a service.");
+        return;
+      } else if (!name) {
         alert("Please fill in Name field.");
         return;
       } else if (!email) {
