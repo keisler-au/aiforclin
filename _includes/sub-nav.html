@@ -11,6 +11,7 @@ items.size > 0 %}
           href="{{ href }}"
           class="sub-nav-link"
           data-section="{{ item.section_id | default: href | replace: '#', '' }}"
+          id="sub-nav-link-{{ item.label | downcase }}"
         >
           {{ item.label }}
         </a>
@@ -20,30 +21,3 @@ items.size > 0 %}
   </div>
 </nav>
 {% endif %}
-
-<script>
-  const subNav = document.getElementById("subNav");
-  
-  // Handle scroll effects and active states
-  const navLinks = document.querySelectorAll(".sub-nav-link");
-  const sections = document.querySelectorAll(".section");
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute("href");
-      const targetSection = document.querySelector(targetId);
-
-      if (targetSection) {
-        const headerOffset = 120; // Account for both main header and sub nav
-        const elementPosition = targetSection.offsetTop;
-        const offsetPosition = elementPosition - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-</script>

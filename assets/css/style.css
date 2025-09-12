@@ -798,6 +798,13 @@ body {
     animation: fadeInUp 0.6s ease forwards;
 }
 
+.hide-select-arrow {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: none;
+}
+
 /* Compliance */
 .compliance-symbols {
     display: grid;

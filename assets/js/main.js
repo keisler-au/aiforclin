@@ -32,6 +32,10 @@ function openBookingForm(serviceType) {
   document.getElementById("booking-modal-container").style.display = "flex";
   serviceTypeSelector = document.getElementById("selected-service");
   serviceTypeSelector.value = serviceType;
+  if (serviceType) {
+    serviceTypeSelector.disabled = true;
+    serviceTypeSelector.classList.add("hide-select-arrow");
+  }
   serviceTypeSelector.addEventListener("change", () => { configureBookingForm(serviceTypeSelector.value); });
 
   configureBookingForm(serviceType);
@@ -192,7 +196,6 @@ async function submitFormBooking() {
       email: document.getElementById("email")?.value || "",
       phone: document.getElementById("phone")?.value || "",
       contactMethod: document.getElementById("contact-method")?.value || "",
-      timezone: document.getElementById("timezone")?.value || "",
 
       // Organisation
       organization: document.getElementById("organization")?.value || "",
@@ -253,8 +256,6 @@ const setupMobileMenu = () => {
   });
 };
 
-window.addEventListener("DOMContentLoaded", setupMobileMenu);
-
 let currentStep = 1;
 let selectedService = "";
 let selectedType = "";
@@ -282,22 +283,41 @@ function toggleSection(sectionId) {
 }
 
 // Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      const headerOffset = 100;
-      const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+function setupSmoothScrolling() {
+  document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault()
+      let hash = this.hash;
+      if (anchor.getAttribute("href").includes("index.html")) {
+        if (!window.location.href.includes("index.html/#services")) {
+          window.location.href = anchor.getAttribute("href");
+        }
+        hash = "#services"
+      }
+      const target = document.querySelector(hash);
+      if (target) {
+        const headerOffset = 100;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+      
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    });
   });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  setupMobileMenu();
+  setupSmoothScrolling();
+  if (window.location.href.includes("index.html/#services")) {
+    setTimeout(() => {
+      document.querySelector("#sub-nav-link-services").click();
+    }, 500);
+  }  
 });
 
 const downloadPDF = () => {
