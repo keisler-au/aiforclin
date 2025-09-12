@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://aiforclin.com/sitemap.xml

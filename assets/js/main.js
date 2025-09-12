@@ -235,7 +235,6 @@ const setupMobileMenu = () => {
   const menuButton = document.getElementById("mobile-menu-button");
   const primaryNav = document.getElementById("primary-nav");
   if (!menuButton || !primaryNav) return;
-
   // Toggle on button click
   menuButton.addEventListener("click", () => {
     const expanded = menuButton.getAttribute("aria-expanded") === "true";
@@ -253,6 +252,8 @@ const setupMobileMenu = () => {
     });
   });
 };
+
+window.addEventListener("DOMContentLoaded", setupMobileMenu);
 
 let currentStep = 1;
 let selectedService = "";
@@ -299,33 +300,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-const handleKeyNavigation = (event) => {
-  const links = Array.from(document.querySelectorAll(".link-button"));
-  const currentIndex = links.indexOf(document.activeElement);
-
-  switch (event.key) {
-    case "ArrowDown":
-      if (currentIndex < links.length - 1) {
-        event.preventDefault();
-        links[currentIndex + 1].focus();
-      }
-      break;
-    case "ArrowUp":
-      if (currentIndex > 0) {
-        event.preventDefault();
-        links[currentIndex - 1].focus();
-      }
-      break;
-    case "Enter":
-    case " ":
-      if (document.activeElement.classList.contains("link-button")) {
-        event.preventDefault();
-        document.activeElement.click();
-      }
-      break;
-  }
-};
-
 const downloadPDF = () => {
   const printWindow = window.open("", "_blank");
   const content = `<!DOCTYPE html><html><head><title>AI Ethical Standards - Psychology Squared</title><style>body{font-family:Arial,sans-serif;margin:40px;line-height:1.6;}h1{color:#1e40af;border-bottom:2px solid #1e40af;padding-bottom:10px;}h2{color:#1e40af;margin-top:30px;}h3{color:#374151;margin-top:20px;}.header{text-align:center;margin-bottom:40px;}.content{margin-bottom:20px;}.standard{margin-bottom:30px;page-break-inside:avoid;}.contact{margin-top:40px;padding-top:20px;border-top:1px solid #ccc;}ul{margin:10px 0;}li{margin:5px 0;}</style></head><body><div class='header'><h1>AI Ethical Standards</h1><p><strong>Last updated on 30 November 2023</strong></p><p>Psychology Squared Pty Ltd<br/>ABN 16 638 041 719</p></div><h2>AI Ethical Standards for the Facebook page \"AI and Australian Psychology Internship and Early Career\" or AI related products and services by Psychology Squared</h2><p><strong>Here's a list of ethical standards for psychologists and psychologists in training regarding the use of AI:</strong></p>${aiStandards.map((standard) => `<div class='standard'><h3>${standard.title}</h3>${standard.subtitle ? `<p><em>${standard.subtitle}</em></p>` : ""}${standard.content.length > 0 ? `<ul>${standard.content.map((item) => `<li>${item}</li>`).join("")}</ul>` : ""}</div>`).join("")}<div class='contact'><p><strong>Attribution:</strong> Psychology Squared Pty Ltd</p><p><strong>Contact:</strong> hello@psychologysquared.com.au</p></div></body></html>`;
@@ -333,18 +307,6 @@ const downloadPDF = () => {
   printWindow.document.close();
   printWindow.print();
 };
-
-document.addEventListener("DOMContentLoaded", () => {
-  const linkButtons = document.querySelectorAll(".link-button");
-  linkButtons.forEach((button) => {
-    button.addEventListener("click", (e) => addRippleEffect(button, e), {
-      passive: true,
-    });
-  });
-
-  document.addEventListener("keydown", handleKeyNavigation);
-  setupMobileMenu();
-});
 
 const aiStandards = [
   {

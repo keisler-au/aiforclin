@@ -1,23 +1,16 @@
 <header class="site-header">
   <a class="skip-link" href="#main">Skip to main content</a>
-
-  <div class="container">
-    <a
-      href="{{ '/' | relative_url }}"
-      class="nav-brand"
-      aria-label="AI for Clinicians home"
-    >
+  <div class="header-container">
+    <a href="{{ '/' | relative_url }}" aria-label="AI for Clinicians home">
       <img
-        src="{{ '/assets/images/logo.png' | relative_url }}"
+        src="{{ '/assets/images/logo-header.png' | relative_url }}"
         alt="AI for Clinicians logo"
-        width="50"
-        height="50"
+        width="80"
+        height="80"
         decoding="async"
         loading="lazy"
       />
-      <span class="nav-brand-text">AI for Clinicians</span>
     </a>
-
     <button
       id="mobile-menu-button"
       class="mobile-menu-button"
@@ -32,30 +25,27 @@
     <nav class="nav" id="primary-nav" aria-label="Primary" hidden>
       <ul class="nav-list">
         <li>
-          <a href="{{ '/services/' | relative_url }}" class="nav-link"
-            >Services</a
-          >
+          <a href="{{ '/compliance/' | relative_url }}" class="nav-link">Compliance Pack</a>
+        </li>
+        <li class="dropdown">
+          <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            Important Information
+            <span class="dropdown-arrow" aria-hidden="true">▼</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>  
+              <a href="{{ '/comparisons/' | relative_url }}" class="nav-link">Comparisons Table</a>
+            </li>
+            <li>  
+              <a href="{{ '/standards/' | relative_url }}" class="nav-link">AI Ethical Standards</a>
+            </li>
+            <li>  
+              <a href="{{ '/faq/' | relative_url }}" class="nav-link">FAQ</a>
+            </li> 
+          </ul>
         </li>
         <li>
-          <a href="{{ '/compliance/' | relative_url }}" class="nav-link"
-            >Compliance Pack</a
-          >
-        </li>
-        <li>
-          <a href="{{ '/comparisons/' | relative_url }}" class="nav-link"
-            >Comparisons Table</a
-          >
-        </li>
-        <li>
-          <a href="{{ '/standards/' | relative_url }}" class="nav-link"
-            >AI Ethical Standards</a
-          >
-        </li>
-        <li><a href="{{ '/faq/' | relative_url }}" class="nav-link">FAQ</a></li>
-        <li>
-          <a href="{{ '/contact/' | relative_url }}" class="nav-link"
-            >Contact</a
-          >
+          <a href="{{ '/contact/' | relative_url }}" class="nav-link">Contact</a>
         </li>
       </ul>
     </nav>
