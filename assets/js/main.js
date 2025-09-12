@@ -71,6 +71,7 @@ function nextStep() {
       const selectedService = document.getElementById("selected-service").value; 
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value; 
+      const phone = document.getElementById("phone").value;
       if (!selectedService) {
         alert("Please select a service.");
         return;
@@ -82,6 +83,9 @@ function nextStep() {
         return;
       } else if (email.indexOf("@") === -1) {
         alert("Please enter a valid Email address.");
+        return;
+      } else if (!phone) {
+        alert("Please fill in Phone field.");
         return;
       }
     }
