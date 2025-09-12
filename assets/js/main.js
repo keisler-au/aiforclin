@@ -288,16 +288,10 @@ function toggleSection(sectionId) {
 
 // Smooth scrolling for navigation links
 function setupSmoothScrolling() {
-  document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault()
       let hash = this.hash;
-      if (anchor.getAttribute("href").includes("index.html")) {
-        if (!window.location.href.includes("index.html/#services")) {
-          window.location.href = anchor.getAttribute("href");
-        }
-        hash = "#services"
-      }
       const target = document.querySelector(hash);
       if (target) {
         const headerOffset = 100;
@@ -317,10 +311,14 @@ function setupSmoothScrolling() {
 window.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
   setupSmoothScrolling();
-  if (window.location.href.includes("index.html/#services")) {
-    setTimeout(() => {
-      document.querySelector("#sub-nav-link-services").click();
-    }, 500);
+  if (window.location.href.includes("index.html/#services-section")) {
+    const subNavLinkServices = document.querySelector("#sub-nav-link-services");
+    document.getElementById("nav-link-services").addEventListener("click", () => {
+      setTimeout(() => {
+        subNavLinkServices.click();
+      }, 100);
+    });
+    subNavLinkServices.click();
   }  
 });
 
