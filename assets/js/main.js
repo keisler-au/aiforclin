@@ -334,7 +334,7 @@ function setupSmoothScrolling() {
 window.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
   setupSmoothScrolling();
-  if (window.location.href.includes("index.html/#services-section")) {
+  if (window.location.href.includes("#services-section")) {
     const servicesSection = document.getElementById("services");
     scrollToSection(servicesSection);
   }  
