@@ -286,6 +286,18 @@ function toggleSection(sectionId) {
   }
 }
 
+function scrollToSection(target) {
+  const headerOffset = 100;
+  const elementPosition = target.getBoundingClientRect().top;
+  const offsetPosition =
+    elementPosition + window.pageYOffset - headerOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: "smooth",
+  });
+}
+
 // Smooth scrolling for navigation links
 function setupSmoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -294,15 +306,7 @@ function setupSmoothScrolling() {
       let hash = this.hash;
       const target = document.querySelector(hash);
       if (target) {
-        const headerOffset = 100;
-        const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerOffset;
-      
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+        scrollToSection(target);
       }
     });
   });
@@ -312,13 +316,8 @@ window.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
   setupSmoothScrolling();
   if (window.location.href.includes("index.html/#services-section")) {
-    const subNavLinkServices = document.querySelector("#sub-nav-link-services");
-    document.getElementById("nav-link-services").addEventListener("click", () => {
-      setTimeout(() => {
-        subNavLinkServices.click();
-      }, 100);
-    });
-    subNavLinkServices.click();
+    const servicesSection = document.getElementById("services");
+    scrollToSection(servicesSection);
   }  
 });
 
