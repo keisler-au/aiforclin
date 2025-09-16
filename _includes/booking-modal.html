@@ -1,0 +1,285 @@
+<dialog
+id="booking-modal-container"
+class="booking-modal-container"
+>
+<div id="booking-modal" class="booking-modal">
+<button
+  onclick="closeBookingForm()"
+  style="
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #f6e05e;
+    font-size: 2rem;
+    cursor: pointer;
+  "
+>
+  ×
+</button>
+<form id="form" class="booking-form" style="display: block; width: 100%; margin-bottom: 20px">
+  <h3 style="color: #f6e05e; margin-bottom: 20px; text-align: center">
+    Book Your Service
+  </h3>
+  <!-- Booking Consult only -->
+  <fieldset class="form-step" id="step-0" style="display: none; border: none; margin-bottom: 20px">
+    <div class="form-group">
+      <label for="selected-service-consult">Select Consultation Service: *</label>
+      <select id="selected-service-consult">
+        <option value="consulting">Select to load booking form...</option>
+        <option value="consulting-30min">AI Consultation (30min)</option>
+        <option value="consulting-60min">AI Consultation (60min)</option>
+      </select>
+    </div>
+  </fieldset>
+  <!-- Step 1: Service Selection -->
+  <fieldset class="form-step active" id="step-1">
+    <div class="form-group">
+      <label for="selected-service">Selected Service: *</label>
+      <select id="selected-service" required>
+        <option value="speaking">Speaking Engagement</option>
+        <option value="consulting-30min">AI Consultation (30min)</option>
+        <option value="consulting-60min">AI Consultation (60min)</option>
+        <option value="company-product-review">Product Review</option>
+        <option value="company-ongoing-assistance">Ongoing Assistance</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="name">Full Name *</label>
+      <input type="text" id="name" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" required />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" required />
+    </div>
+    <div class="form-group">
+      <label for="contact-method">Preferred Contact Method</label>
+      <select id="contact-method">
+        <option value="">Select contact method</option>
+        <option value="email">Email</option>
+        <option value="phone">Phone</option>
+        <option value="either">Either</option>
+      </select>
+    </div>
+    <nav class="form-navigation">
+      <div></div>
+      <button type="button" class="btn" onclick="nextStep()">
+        Next Step →
+      </button>
+    </nav>
+  </fieldset>
+
+  <!-- Step 2: Organization Details -->
+  <fieldset class="form-step" id="step-2">
+    <div class="form-group">
+      <label for="organization">Organization/Practice Name</label>
+      <input type="text" id="organization" />
+    </div>
+    <div class="form-group">
+      <label for="role">Your Role</label>
+      <input
+        type="text"
+        id="role"
+        placeholder="e.g., Psychologist, Practice Manager"
+      />
+    </div>
+    <div class="form-group">
+      <label for="org-website">Organization Website</label>
+      <input
+        type="url"
+        id="org-website"
+        placeholder="https://example.com"
+      />
+    </div>
+    <div class="form-group">
+      <label for="industry">Industry/Sector</label>
+      <select id="industry">
+        <option value="">Select industry</option>
+        <option value="private-practice">Private Practice</option>
+        <option value="hospital-health">Hospital/Health Service</option>
+        <option value="community">Community/NGO</option>
+        <option value="education">Education/University</option>
+        <option value="government">Government/Public Sector</option>
+        <option value="corporate">Corporate</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="form-group" id="group-size-group">
+      <label for="group-size">Expected Group Size</label>
+      <select id="group-size">
+        <option value="">Select group size</option>
+        <option value="1">Individual (1 person)</option>
+        <option value="2">Duo (2 people)</option>
+        <option value="3-10">Small group (3-10 people)</option>
+        <option value="11-50">Medium group (11-50 people)</option>
+        <option value="50+">Large group (50+ people)</option>
+      </select>
+    </div>
+    <nav class="form-navigation">
+      <button type="button" class="btn btn-secondary" onclick="prevStep()">
+        ← Previous
+      </button>
+      <button type="button" class="btn" onclick="nextStep()">
+        Next Step →
+      </button>
+    </nav>
+  </fieldset>
+
+  <!-- Step 3: Event Details -->
+  <fieldset class="form-step" id="step-3">
+    <div class="form-group">
+      <label for="preferred-date">Preferred Date(s)</label>
+      <input
+        type="text"
+        id="preferred-date"
+        placeholder="e.g., March 15-20, 2024"
+      />
+    </div>
+    <div class="form-group">
+      <label for="preferred-time">Preferred Time of Day</label>
+      <select id="preferred-time">
+        <option value="">Select time</option>
+        <option value="morning">Morning</option>
+        <option value="afternoon">Afternoon</option>
+        <option value="evening">Evening</option>
+        <option value="flexible">Flexible</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="duration">Estimated Duration</label>
+      <select id="duration">
+        <option value="">Select duration</option>
+        <option value="60-min">60 minutes</option>
+        <option value="90-min">90 minutes</option>
+        <option value="2-3-hours">2–3 hours</option>
+        <option value="half-day">Half day</option>
+        <option value="full-day">Full day</option>
+        <option value="multi-day">Multi-day</option>
+      </select>
+    </div>
+    <div class="form-group" id="budget-group">
+      <label for="budget">Budget Range (Optional)</label>
+      <select id="budget">
+        <option value="">Select budget range</option>
+        <option value="under-500">Under $500</option>
+        <option value="500-1000">$500 - $1,000</option>
+        <option value="1000-2000">$1,000 - $2,000</option>
+        <option value="2000-5000">$2,000 - $5,000</option>
+        <option value="5000+">$5,000+</option>
+        <option value="flexible">Flexible</option>
+      </select>
+    </div>
+    <div class="form-group" id="location-group">
+      <label for="location">Event Location/Format</label>
+      <select id="location">
+        <option value="">Select format</option>
+        <option value="in-person">In-person</option>
+        <option value="virtual">Virtual/Online</option>
+        <option value="hybrid">Hybrid</option>
+        <option value="flexible">Flexible</option>
+      </select>
+    </div>
+    <div class="form-group" id="venue-group">
+      <label for="venue-name">Venue Name (if in-person)</label>
+      <input
+        type="text"
+        id="venue-name"
+        placeholder="Venue or organization site"
+      />
+    </div>
+    <nav class="form-navigation">
+      <button type="button" class="btn btn-secondary" onclick="prevStep()">
+        ← Previous
+      </button>
+      <button type="button" class="btn" onclick="nextStep()">
+        Next Step →
+      </button>
+    </nav>
+  </fieldset>
+
+  <!-- Step 4: Additional Information -->
+  <fieldset class="form-step" id="step-4">
+    <div class="form-group">
+      <label for="specific-topics">Specific Topics of Interest</label>
+      <textarea
+        id="specific-topics"
+        rows="3"
+        placeholder="e.g., AI scribes, clinical documentation, ethical considerations"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="objectives">Objectives/Desired Outcomes</label>
+      <textarea
+        id="objectives"
+        rows="3"
+        placeholder="What outcomes would make this a success for you and your team?"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="additional-info">Additional Information</label>
+      <textarea
+        id="additional-info"
+        rows="4"
+        placeholder="Any additional details about your requirements, audience, or special considerations"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="how-heard">How did you hear about us?</label>
+      <select id="how-heard">
+        <option value="">Select one</option>
+        <option value="aps-aapi-acpa">APS/AAPi/ACPA event</option>
+        <option value="referral">Referral/Word of mouth</option>
+        <option value="search">Search engine</option>
+        <option value="social">Social media</option>
+        <option value="podcast-video">Podcast/Video</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <input
+      type="text"
+      name="website"
+      id="website"
+      class="hp-field"
+      autocomplete="off"
+      tabindex="-1"
+    />
+    <div id="cf-turnstile"></div>
+    <nav class="form-navigation">
+      <button type="button" class="btn btn-secondary" onclick="prevStep()">
+        ← Previous
+      </button>
+      <button
+        id="submit-btn"
+        type="button"
+        class="btn"
+        onclick="submitFormBooking()"
+      >
+        Submit Request
+      </button>
+    </nav>
+    <p id="email-status" class="email-status"></p>
+  </fieldset>
+</form>
+<div
+  id="booking-modal-cliniko"
+  style="display: none; position: relative"
+>
+  <iframe
+    id="cliniko"
+    src=""
+    frameborder="0"
+    scrolling="auto"
+    width="876px"
+    height="1000"
+    class="rounded"
+    style="pointer-events: auto; height: 364px; border-radius: 12px;"
+    loading="lazy"
+  ></iframe>
+</div>
+</div>
+</dialog>

@@ -9,14 +9,26 @@ const EMAIL_API_URL = [
   ? EMAIL_API_URL_DEV
   : EMAIL_API_URL_PROD;
 
+
+let serviceTypeSelector = null;
+let serviceTypeConsultSelector = null;
+
 function configureBookingForm(serviceType) {
-  if (serviceType === "consulting") {
-    document.getElementById("booking-modal-cliniko-1hr").style.display =
+  if (serviceType && serviceType.includes("consulting")) {
+    document.getElementById("booking-modal-cliniko").style.display =
       "block";
-    document.getElementById("form").style.display = "none";
+    document.getElementById("step-1").style.display = "none";
+    document.getElementById("step-0").style.display = "block";
+    serviceTypeConsultSelector.value = serviceType;
+    const iframe = document.getElementById("cliniko");
+    if (serviceType.includes("30min")) {
+      iframe.src = "https://psychology-squared.au2.cliniko.com/bookings?appointment_type_id=1535997143150499859&amp;embedded=true#service";
+    } else if (serviceType.includes("60min")) {
+      iframe.src = "https://psychology-squared.au2.cliniko.com/bookings?appointment_type_id=1309110159544424981&amp;embedded=true#service";
+    }
   } else {
     document.getElementById("form").style.display = "block";
-    document.getElementById("booking-modal-cliniko-1hr").style.display = "none";
+    document.getElementById("booking-modal-cliniko").style.display = "none";
   }
 
   if (serviceType && serviceType.includes("company")) {
@@ -27,15 +39,16 @@ function configureBookingForm(serviceType) {
   }
 }
 
-let serviceTypeSelector = null;
 function openBookingForm(serviceType) {
   document.getElementById("booking-modal-container").style.display = "flex";
+  serviceTypeConsultSelector = document.getElementById("selected-service-consult");
   serviceTypeSelector = document.getElementById("selected-service");
   serviceTypeSelector.value = serviceType;
-  if (serviceType) {
+  if (serviceType && !serviceType.includes("consulting")) {
     serviceTypeSelector.disabled = true;
     serviceTypeSelector.classList.add("hide-select-arrow");
   }
+  serviceTypeConsultSelector.addEventListener("change", () => { configureBookingForm(serviceTypeConsultSelector.value); });
   serviceTypeSelector.addEventListener("change", () => { configureBookingForm(serviceTypeSelector.value); });
 
   configureBookingForm(serviceType);
@@ -50,9 +63,15 @@ function openBookingForm(serviceType) {
 
 function closeBookingForm() {
   document.getElementById("booking-modal-container").style.display = "none";
+  document.getElementById("step-1").style.display = "block";
+  document.getElementById("step-0").style.display = "none";
   serviceTypeSelector.value = "";
+  serviceTypeConsultSelector.value = "";
   serviceTypeSelector.removeEventListener("change", () => { configureBookingForm(serviceTypeSelector.value); });
+  serviceTypeConsultSelector.removeEventListener("change", () => { configureBookingForm(serviceTypeConsultSelector.value); });
   serviceTypeSelector = null;
+  serviceTypeConsultSelector = null;
+  document.getElementById("cliniko").src = "";
   document.body.style.overflow = "auto";
 }
 
