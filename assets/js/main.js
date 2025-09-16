@@ -322,7 +322,7 @@ function setupSmoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault()
-      let hash = this.hash;
+      let hash = this.hash === "#services-section" ? "#services" : this.hash;
       const target = document.querySelector(hash);
       if (target) {
         scrollToSection(target);
@@ -334,8 +334,12 @@ function setupSmoothScrolling() {
 window.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
   setupSmoothScrolling();
+  const servicesSection = document.getElementById("services");
+  const servicesSectionLink = document.getElementById("nav-link-services");
+  servicesSectionLink.addEventListener("click", () => {
+    scrollToSection(servicesSection);
+  });
   if (window.location.href.includes("#services-section")) {
-    const servicesSection = document.getElementById("services");
     scrollToSection(servicesSection);
   }  
 });
