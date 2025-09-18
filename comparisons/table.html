@@ -395,53 +395,8 @@
       'Norwegian','Japanese','Korean','Malay','Polish','Portuguese','Russian','Spanish','Swedish','Thai','Turkish','Ukrainian','Vietnamese',
     ],
   },
-
   {
     id: 5,
-    name: 'Lyrebird',
-    link: { label: '10% Discount', url: 'https://www.lyrebirdhealth.com/us?via=024cf1', code: 'PS10' },
-    appCompliance: true,
-    dataStorage: 'Australia',
-    freeMembership: true,
-    freeTrial: '14 days',
-    pmsIntegration: 'Best Practice (available) & Genie/Gentu (coming very soon)',
-    uniqueFeatures: {
-      sections: [
-        {
-          category: 'Customization',
-          items: [
-            'Deep customisation; upload an example ideal report to learn your style (Heidi Health claims similar feature)',
-            'Avoid robotic tone; letters sound like you',
-          ],
-        },
-        { category: 'Security', items: ['Processes all data on Australian soil'] },
-      ],
-    },
-    coreFeatures: {
-      sections: [{ category: 'AI Medical Scribe', items: ['Listens to consultation and converts to clinical notes and documents'] }],
-    },
-    pricing: {
-      bullets: [
-        'Standard: $300/mo OR $2,400/yr (33% discount)',
-        'Code PS10 for 10% off',
-        'Students: Free for 1 year',
-        'Registrars: 80% off if solo; free if part of a clinic deal',
-        'Part-Time: >25 hrs/wk full price; <25 hrs/wk 50% discount',
-        'Organisations: Special pricing & onboarding for clinics',
-      ],
-    },
-    telehealth: true,
-    headphonesCompatible: true,
-    mobileCompatible: true,
-    multipleNotes: true,
-    aiTrainableOverTime: true,
-    contentTuning: true,
-    trustedSourcesOnly: false,
-    languagesSupported: 'Yes, it supports all languages',
-  },
-
-  {
-    id: 6,
     name: 'Zanda Health',
     link: { label: 'See more', url: 'https://zandahealth.com/?fpr=david67' },
     appCompliance: true,
@@ -491,7 +446,7 @@
   },
 
   {
-    id: 7,
+    id: 6,
     name: 'NovoNote by NovoPsych',
     link: { label: 'See more', url: 'https://novopsych.com/novonote/' },
     appCompliance: true,
@@ -551,7 +506,7 @@
   },
 
   {
-    id: 8,
+    id: 7,
     name: 'Uplift AI',
     link: { label: 'See more', url: 'https://www.upliftgroup.ai/' },
     appCompliance: true,
@@ -592,7 +547,7 @@
   },
 
   {
-    id: 9,
+    id: 8,
     name: 'Everbility',
     link: { label: '10% Discount', url: 'https://www.everbility.com/?via=david-lopis' },
     appCompliance: true,
@@ -779,13 +734,24 @@
         }
 
         const items = allItems.filter(i => comparedItemIds.includes(i.id));
-        const fields = ['price','subscription','audience','support','storage','users','analytics','integrations'];
+        const fields = Object.keys(allItems[0]);
         const headers = items.map(i => i.name);
         const rows = fields.map(f => {
                 const label = f.replace('_',' ');
                 const row = items.map(it => {
                   let v = it[f];
-                  if (f === 'price') v = v>0 ? `$${v}/mo` : 'Free';
+                  console.log(v)
+                  if (v.sections) {
+                    v = v.sections.map(s => `<p class="badge">${s.category}</p><br>${s.items.map(i => `<p>${i}</p>`).join('')}`).join('');
+                  } else if (v.url){
+                    v = `<a href="${v.url}" target="_blank" style="text-decoration: underline">${v.label}</a>`;
+                  } else if (v.bullets) {
+                    v = v.bullets.map(i => `<p>${i}</p>`).join('');
+                  } else if (v.available) {
+                    v = `<p>${v.available}</p><p>${v.note}</p>`;
+                  } else if (Array.isArray(v)) {
+                    v = v.map(i => `<p>${i}</p>`).join('');
+                  }
                   return `<td class="text-center px-6 py-3 border-t">${v}</td>`;
                 }).join('');
                 return `
