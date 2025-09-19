@@ -155,7 +155,8 @@ async function submitForm(token, formData, originalBtnText, id) {
       id
     );
   } finally {
-    const submitBtn = document.getElementById(id);
+    const submitId = id === "email-status-contact" ? "submit-btn-contact" : "submit-btn";
+    const submitBtn = document.getElementById(submitId);
     if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.textContent = originalBtnText || "Submit Request";
