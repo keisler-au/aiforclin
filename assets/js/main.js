@@ -119,14 +119,14 @@ function prevStep() {
   }
 }
 
-function showSendStatus(type, message) {
-  const status = document.getElementById("email-status");
+function showSendStatus(type, message, id = null) {
+  const status = id && document.getElementById(id);
   if (!status) return;
   status.textContent = message;
   status.style.color = type === "success" ? "#48bb78" : "#f56565";
 }
 
-async function submitForm(token, formData, originalBtnText) {
+async function submitForm(token, formData, originalBtnText, id) {
   formData.append("cf-turnstile-response", token);
   formData.append("email_address", document.getElementById("email").value);
   formData.append("name", document.getElementById("name").value);
@@ -144,6 +144,7 @@ async function submitForm(token, formData, originalBtnText) {
     showSendStatus(
       "success",
       "Thank you! Your booking request was submitted successfully. We'll be in touch shortly.",
+      id
     );
     document.getElementById("form").reset();
   } catch (err) {
@@ -151,9 +152,10 @@ async function submitForm(token, formData, originalBtnText) {
     showSendStatus(
       "error",
       "Sorry, there was a problem submitting your request. Please try again later or email david@psychologysquared.com.au",
+      id
     );
   } finally {
-    const submitBtn = document.getElementById("submit-btn");
+    const submitBtn = document.getElementById(id);
     if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.textContent = originalBtnText || "Submit Request";
@@ -161,14 +163,15 @@ async function submitForm(token, formData, originalBtnText) {
   }
 }
 
-function renderTurnstile(formData, originalBtnText, type = "booking") {
-  turnstile.remove(type === "contact" ? "#cf-turnstile-contact" : "#cf-turnstile");
-  turnstile.render(type === "contact" ? "#cf-turnstile-contact" : "#cf-turnstile", {
+function renderTurnstile(formData, originalBtnText, id = "#cf-turnstile") {
+  turnstile.remove(id);
+  turnstile.render(id, {
     sitekey: "0x4AAAAAABx7osAcNS_e9_7w",
     size: "normal",
     theme: "auto",
     callback: async function (token) {
-      await submitForm(token, formData, originalBtnText);
+      const statusId = id === "#cf-turnstile-contact" ? "email-status-contact" : "email-status";
+      await submitForm(token, formData, originalBtnText, id);
     },
   });
 }
@@ -202,7 +205,7 @@ async function submitFormContact() {
       organization: document.getElementById("organization").value,
     }),
   );
-  renderTurnstile(formData, originalBtnText, "contact");
+  renderTurnstile(formData, originalBtnText, "#cf-turnstile-contact");
 }
 
 async function submitFormBooking() {
