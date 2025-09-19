@@ -126,10 +126,9 @@ function showSendStatus(type, message, id = null) {
   status.style.color = type === "success" ? "#48bb78" : "#f56565";
 }
 
-async function submitForm(token, formData, originalBtnText, id) {
+async function submitForm(token, formData, originalBtnText, formType) {
   formData.append("cf-turnstile-response", token);
-  formData.append("email_address", document.getElementById("email").value);
-  formData.append("name", document.getElementById("name").value);
+  const emailStatusId = formType === "contact" ? "email-status-contact" : "email-status";
 
   try {
     const res = await fetch(EMAIL_API_URL, {
@@ -144,19 +143,18 @@ async function submitForm(token, formData, originalBtnText, id) {
     showSendStatus(
       "success",
       "Thank you! Your booking request was submitted successfully. We'll be in touch shortly.",
-      id
+      emailStatusId
     );
-    document.getElementById("form").reset();
+    document.getElementById(formType === "contact" ? "form-contact" : "form").reset();
   } catch (err) {
     console.error("Error: ", err);
     showSendStatus(
       "error",
       "Sorry, there was a problem submitting your request. Please try again later or email david@psychologysquared.com.au",
-      id
+      emailStatusId
     );
   } finally {
-    const submitId = id === "email-status-contact" ? "submit-btn-contact" : "submit-btn";
-    const submitBtn = document.getElementById(submitId);
+    const submitBtn = document.getElementById(formType === "contact" ? "submit-btn-contact" : "submit-btn");
     if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.textContent = originalBtnText || "Submit Request";
@@ -164,21 +162,8 @@ async function submitForm(token, formData, originalBtnText, id) {
   }
 }
 
-function renderTurnstile(formData, originalBtnText, id = "#cf-turnstile") {
-  turnstile.remove(id);
-  turnstile.render(id, {
-    sitekey: "0x4AAAAAABx7osAcNS_e9_7w",
-    size: "normal",
-    theme: "auto",
-    callback: async function (token) {
-      const statusId = id === "#cf-turnstile-contact" ? "email-status-contact" : "email-status";
-      await submitForm(token, formData, originalBtnText, statusId);
-    },
-  });
-}
-
 function setupFormSubmission(type = "booking") {
-  const honeypotField = document.getElementById("website");
+  const honeypotField = document.getElementById(type === "contact" ? "website-contact" : "website");
   if (honeypotField.value) {
     showSendStatus(
       "success",
@@ -196,14 +181,29 @@ function setupFormSubmission(type = "booking") {
   return originalBtnText;
 }
 
+function renderTurnstile(formData, originalBtnText, id = "#cf-turnstile") {
+  turnstile.remove(id);
+  turnstile.render(id, {
+    sitekey: "0x4AAAAAABx7osAcNS_e9_7w",
+    size: "normal",
+    theme: "auto",
+    callback: async function (token) {
+      const formType = id === "#cf-turnstile-contact" ? "contact" : "booking";
+      await submitForm(token, formData, originalBtnText, formType);
+    },
+  });
+}
+
 async function submitFormContact() {
   const originalBtnText = setupFormSubmission("contact");
   const formData = new FormData();
+  formData.append("email_address", document.getElementById("email-contact").value);
+  formData.append("name", document.getElementById("name-contact").value);
   formData.append(
     "message",
     JSON.stringify({
-      message: document.getElementById("message").value,
-      organization: document.getElementById("organization").value,
+      message: document.getElementById("message-contact").value,
+      organization: document.getElementById("organization-contact").value,
     }),
   );
   renderTurnstile(formData, originalBtnText, "#cf-turnstile-contact");
@@ -213,7 +213,8 @@ async function submitFormBooking() {
   const originalBtnText = setupFormSubmission();
   const formData = new FormData();
 
-  // Build message payload
+  formData.append("email_address", document.getElementById("email").value);
+  formData.append("name", document.getElementById("name").value);
   formData.append(
     "message",
     JSON.stringify({
