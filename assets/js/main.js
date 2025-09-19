@@ -161,9 +161,9 @@ async function submitForm(token, formData, originalBtnText) {
   }
 }
 
-function renderTurnstile(formData, originalBtnText) {
-  turnstile.remove("#cf-turnstile");
-  turnstile.render("#cf-turnstile", {
+function renderTurnstile(formData, originalBtnText, type = "booking") {
+  turnstile.remove(type === "contact" ? "#cf-turnstile-contact" : "#cf-turnstile");
+  turnstile.render(type === "contact" ? "#cf-turnstile-contact" : "#cf-turnstile", {
     sitekey: "0x4AAAAAABx7osAcNS_e9_7w",
     size: "normal",
     theme: "auto",
@@ -173,7 +173,7 @@ function renderTurnstile(formData, originalBtnText) {
   });
 }
 
-function setupFormSubmission() {
+function setupFormSubmission(type = "booking") {
   const honeypotField = document.getElementById("website");
   if (honeypotField.value) {
     showSendStatus(
@@ -182,7 +182,7 @@ function setupFormSubmission() {
     );
     return;
   }
-  const submitBtn = document.getElementById("submit-btn");
+  const submitBtn =  document.getElementById(type === "contact" ? "submit-btn-contact" : "submit-btn");
   let originalBtnText;
   if (submitBtn) {
     submitBtn.disabled = true;
@@ -193,7 +193,7 @@ function setupFormSubmission() {
 }
 
 async function submitFormContact() {
-  const originalBtnText = setupFormSubmission();
+  const originalBtnText = setupFormSubmission("contact");
   const formData = new FormData();
   formData.append(
     "message",
@@ -202,7 +202,7 @@ async function submitFormContact() {
       organization: document.getElementById("organization").value,
     }),
   );
-  renderTurnstile(formData, originalBtnText);
+  renderTurnstile(formData, originalBtnText, "contact");
 }
 
 async function submitFormBooking() {

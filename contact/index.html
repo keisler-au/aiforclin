@@ -130,7 +130,7 @@ description: Get in touch with AI for Clinicians for speaking engagements, AI co
       <!-- <h3 class="card-title" style="margin-bottom: 1.5rem;">Send a Message</h3> -->
       <form id="form">
         <div class="form-group">
-          <label class="form-label">Name</label>
+          <label class="form-label">Name *</label>
           <input
             id="name"
             type="text"
@@ -138,10 +138,11 @@ description: Get in touch with AI for Clinicians for speaking engagements, AI co
             required
             class="form-input"
             placeholder="Your full name"
+            required
           />
         </div>
         <div class="form-group">
-          <label class="form-label">Email</label>
+          <label class="form-label">Email *</label>
           <input
             id="email"
             type="email"
@@ -149,26 +150,29 @@ description: Get in touch with AI for Clinicians for speaking engagements, AI co
             required
             class="form-input"
             placeholder="your.email@example.com"
+            required
           />
         </div>
         <div class="form-group">
-          <label class="form-label">Organization</label>
+          <label class="form-label">Organization *</label>
           <input
             id="organization"
             type="text"
             name="organization"
             class="form-input"
             placeholder="Your organization or practice"
+            required
           />
         </div>
         <div class="form-group">
-          <label class="form-label">Message</label>
+          <label class="form-label">Message *</label>
           <textarea
             id="message"
             name="message"
             required
             class="form-textarea"
             placeholder="Tell us about your AI integration needs..."
+            required
           ></textarea>
         </div>
         <input
@@ -179,9 +183,9 @@ description: Get in touch with AI for Clinicians for speaking engagements, AI co
           autocomplete="off"
           tabindex="-1"
         />
-        <div id="cf-turnstile"></div>
+        <div id="cf-turnstile-contact"></div>
         <button
-          id="submit-btn"
+          id="submit-btn-contact"
           type="button"
           class="btn w-100"
           onclick="submitFormContact()"
