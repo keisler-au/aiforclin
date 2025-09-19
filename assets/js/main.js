@@ -171,7 +171,7 @@ function renderTurnstile(formData, originalBtnText, id = "#cf-turnstile") {
     theme: "auto",
     callback: async function (token) {
       const statusId = id === "#cf-turnstile-contact" ? "email-status-contact" : "email-status";
-      await submitForm(token, formData, originalBtnText, id);
+      await submitForm(token, formData, originalBtnText, statusId);
     },
   });
 }
