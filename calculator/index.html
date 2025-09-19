@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Scribe Savings Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .left-panel {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .right-panel {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .app-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background: white;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #14b8a6;
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+        }
+
+        .primary-btn {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: #14b8a6;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .primary-btn:hover {
+            background: #0d9488;
+        }
+
+        .placeholder-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .placeholder-icon {
+            width: 80px;
+            height: 80px;
+            background: #ccfbf1;
+            color: #14b8a6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .placeholder-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .placeholder-description {
+            color: #64748b;
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .results-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            overflow-y: auto;
+            max-height: calc(100vh - 4rem);
+        }
+
+        .results-content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .results-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: #ccfbf1;
+            color: #0d9488;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-card {
+            background: #f8fafc;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .description {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.6;
+            padding: 1rem;
+            background: #f1f5f9;
+            border-radius: 0.5rem;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        .chart-subtitle {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 1.25rem;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: end;
+            gap: 2rem;
+            height: 120px;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+
+        .bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            max-width: 60px;
+        }
+
+        .bar-fill {
+            width: 50px;
+            background: #14b8a6;
+            border-radius: 0.25rem 0.25rem 0 0;
+            margin-bottom: 0.5rem;
+            transition: height 0.8s ease;
+        }
+
+        .bar-fill.without {
+            background: #99f6e4;
+        }
+
+        .bar-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .bar-value {
+            font-size: 0.7rem;
+            color: #0f172a;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ccfbf1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #14b8a6;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        .donut-chart {
+            width: 140px;
+            height: 140px;
+            margin: 1.5rem auto;
+            position: relative;
+        }
+
+        .donut-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .donut-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .donut-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .donut-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .highlight {
+            color: #14b8a6;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .left-panel {
+                max-width: none;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .app-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                gap: 1rem;
+            }
+            
+            .form-section, .results-section, .chart-container, .placeholder-content {
+                padding: 1.5rem;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="app-header">
+                <h1 class="app-title">AI Scribe Calculator</h1>
+                <p class="app-subtitle">Calculate your potential savings</p>
+            </div>
+
+            <div class="form-section">
+                <h2 class="form-title">Enter Your Details</h2>
+                <form id="calculator-form">
+                    <div class="form-group">
+                        <label for="hourly-rate">Hourly Rate ($)</label>
+                        <input type="number" id="hourly-rate" placeholder="e.g., 100" required min="1" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="time-saved">Time Saved Per Hour (minutes)</label>
+                        <input type="number" id="time-saved" placeholder="e.g., 15" required min="1" max="60">
+                    </div>
+                    <div class="form-group">
+                        <label for="daily-hours">Daily Working Hours</label>
+                        <input type="number" id="daily-hours" placeholder="e.g., 8" required min="1" max="24">
+                    </div>
+                    <div class="form-group">
+                        <label for="annual-weeks">Annual Working Weeks</label>
+                        <input type="number" id="annual-weeks" placeholder="e.g., 50" required min="1" max="52">
+                    </div>
+                    <button type="submit" class="primary-btn">Calculate Savings</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="placeholder-content" id="placeholder-content">
+                <div class="placeholder-icon">📊</div>
+                <h2 class="placeholder-title">Discover Your Savings Potential</h2>
+                <p class="placeholder-description">
+                    Our AI Scribe Savings Calculator helps healthcare professionals, legal teams, and other professionals understand the time and cost benefits of implementing AI transcription technology. 
+                    <br><br>
+                    Simply enter your details on the left to see personalized calculations of how much time and money you could save annually with AI-powered transcription services.
+                </p>
+            </div>
+
+            <div class="results-content" id="results-content">
+                <div class="results-section">
+                    <div class="section-header">
+                        <div class="section-icon">⏰</div>
+                        <h2 class="section-title">Time Savings</h2>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Daily</div>
+                            <div class="metric-value" id="daily-time">-</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Weekly</div>
+                            <div class="metric-value" id="weekly-time">-</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Annual</div>
+                            <div class="metric-value" id="annual-time">-</div>
+                        </div>
+                    </div>
+                    <p class="description" id="time-description">-</p>
+                </div>
+
+                <div class="results-section">
+                    <div class="section-header">
+                        <div class="section-icon">💰</div>
+                        <h2 class="section-title">Monetary Value</h2>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Daily</div>
+                            <div class="metric-value" id="daily-money">-</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Weekly</div>
+                            <div class="metric-value" id="weekly-money">-</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Annual</div>
+                            <div class="metric-value" id="annual-money">-</div>
+                        </div>
+                    </div>
+                    <p class="description" id="money-description">-</p>
+                </div>
+
+                <div class="chart-container">
+                    <h3 class="chart-title">Work Time Comparison</h3>
+                    <p class="chart-subtitle">Annual working hours with and without AI scribe</p>
+                    <div class="bar-chart">
+                        <div class="bar">
+                            <div class="bar-value" id="without-value">-</div>
+                            <div class="bar-fill without" id="without-bar" style="height: 100%;"></div>
+                            <div class="bar-label">Without AI</div>
+                        </div>
+                        <div class="bar">
+                            <div class="bar-value" id="with-value">-</div>
+                            <div class="bar-fill" id="with-bar" style="height: 60%;"></div>
+                            <div class="bar-label">With AI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3 class="chart-title">Efficiency Metrics</h3>
+                    <p class="chart-subtitle">Productivity improvement breakdown</p>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Time Savings Per Hour</span>
+                            <span class="highlight" id="time-percentage">-</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="time-progress" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Work Time Recovered</span>
+                            <span class="highlight" id="recovery-percentage-text">-</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="recovery-progress" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3 class="chart-title">Time Recovery</h3>
+                    <p class="chart-subtitle">Total work time that can be recovered</p>
+                    <div class="donut-chart">
+                        <svg class="donut-svg" viewBox="0 0 42 42">
+                            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#ccfbf1" stroke-width="3"></circle>
+                            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#14b8a6" stroke-width="3" 
+                                    stroke-dasharray="0 100" stroke-linecap="round" id="donut-progress"
+                                    transform="rotate(-90 21 21)"></circle>
+                        </svg>
+                        <div class="donut-center">
+                            <div class="donut-value" id="recovery-percentage">0%</div>
+                            <div class="donut-label">Recovered</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        function formatTime(hours) {
+            if (hours < 1) {
+                return Math.round(hours * 60) + ' min';
+            }
+            return Math.round(hours * 10) / 10 + ' hrs';
+        }
+
+        function animateNumber(element, finalValue, formatter, duration = 1000) {
+            const start = 0;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = start + (finalValue - start) * easeOut;
+                
+                element.textContent = formatter(current);
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        function showResults() {
+            const placeholder = document.getElementById('placeholder-content');
+            const results = document.getElementById('results-content');
+            
+            placeholder.style.opacity = '0';
+            
+            setTimeout(() => {
+                placeholder.style.display = 'none';
+                results.style.display = 'block';
+                setTimeout(() => {
+                    results.classList.add('show');
+                }, 50);
+            }, 300);
+        }
+
+        function updateResults(data) {
+            // Animate time savings
+            animateNumber(document.getElementById('daily-time'), data.dailyTimeSaved, formatTime, 800);
+            animateNumber(document.getElementById('weekly-time'), data.weeklyTimeSaved, formatTime, 900);
+            animateNumber(document.getElementById('annual-time'), data.annualTimeSaved, formatTime, 1000);
+            
+            // Animate monetary savings
+            animateNumber(document.getElementById('daily-money'), data.dailyMoneySaved, formatCurrency, 800);
+            animateNumber(document.getElementById('weekly-money'), data.weeklyMoneySaved, formatCurrency, 900);
+            animateNumber(document.getElementById('annual-money'), data.annualMoneySaved, formatCurrency, 1000);
+            
+            // Update descriptions
+            setTimeout(() => {
+                document.getElementById('time-description').innerHTML = 
+                    `You could save <span class="highlight">${formatTime(data.dailyTimeSaved)}</span> per day, <span class="highlight">${formatTime(data.weeklyTimeSaved)}</span> per week, and <span class="highlight">${formatTime(data.annualTimeSaved)}</span> annually with AI scribe technology.`;
+                
+                document.getElementById('money-description').innerHTML = 
+                    `At <span class="highlight">${formatCurrency(data.hourlyRate)}/hour</span>, your time savings translate to <span class="highlight">${formatCurrency(data.annualMoneySaved)}</span> in additional annual productivity value.`;
+            }, 500);
+        }
+
+        function updateVisuals(data) {
+            const totalAnnualWorkHours = data.dailyWorkHours * 5 * data.annualWorkWeeks;
+            const timeRecoveryPercentage = Math.round((data.annualTimeSaved / totalAnnualWorkHours) * 100);
+            const timeSavedPercentage = Math.round((data.timeSavedPerHour / 60) * 100);
+            const effectiveWorkHours = totalAnnualWorkHours - data.annualTimeSaved;
+            
+            // Update bar chart values
+            document.getElementById('without-value').textContent = Math.round(totalAnnualWorkHours) + ' hrs';
+            document.getElementById('with-value').textContent = Math.round(effectiveWorkHours) + ' hrs';
+            
+            // Animate bar chart
+            setTimeout(() => {
+                const withBarHeight = Math.max(15, ((effectiveWorkHours / totalAnnualWorkHours) * 100));
+                document.getElementById('with-bar').style.height = withBarHeight + '%';
+            }, 600);
+            
+            // Update and animate progress bars
+            setTimeout(() => {
+                document.getElementById('time-percentage').textContent = timeSavedPercentage + '%';
+                document.getElementById('time-progress').style.width = timeSavedPercentage + '%';
+                
+                document.getElementById('recovery-percentage-text').textContent = timeRecoveryPercentage + '%';
+                document.getElementById('recovery-progress').style.width = timeRecoveryPercentage + '%';
+            }, 800);
+            
+            // Update and animate donut chart
+            setTimeout(() => {
+                const circumference = 2 * Math.PI * 15.915;
+                const strokeDasharray = `${(timeRecoveryPercentage / 100) * circumference} ${circumference}`;
+                document.getElementById('donut-progress').setAttribute('stroke-dasharray', strokeDasharray);
+                
+                animateNumber(
+                    document.getElementById('recovery-percentage'), 
+                    timeRecoveryPercentage, 
+                    (val) => Math.round(val) + '%',
+                    1200
+                );
+            }, 1000);
+        }
+
+        document.getElementById('calculator-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const hourlyRate = parseFloat(document.getElementById('hourly-rate').value);
+            const timeSavedPerHour = parseFloat(document.getElementById('time-saved').value);
+            const dailyWorkHours = parseFloat(document.getElementById('daily-hours').value);
+            const annualWorkWeeks = parseFloat(document.getElementById('annual-weeks').value);
+            
+            // Calculate savings
+            const timeSavedPerHourDecimal = timeSavedPerHour / 60;
+            const dailyTimeSaved = timeSavedPerHourDecimal * dailyWorkHours;
+            const weeklyTimeSaved = dailyTimeSaved * 5;
+            const annualTimeSaved = weeklyTimeSaved * annualWorkWeeks;
+            
+            const dailyMoneySaved = dailyTimeSaved * hourlyRate;
+            const weeklyMoneySaved = weeklyTimeSaved * hourlyRate;
+            const annualMoneySaved = annualTimeSaved * hourlyRate;
+            
+            const calculationData = {
+                hourlyRate,
+                timeSavedPerHour,
+                dailyWorkHours,
+                annualWorkWeeks,
+                dailyTimeSaved,
+                weeklyTimeSaved,
+                annualTimeSaved,
+                dailyMoneySaved,
+                weeklyMoneySaved,
+                annualMoneySaved
+            };
+            
+            showResults();
+            setTimeout(() => {
+                updateResults(calculationData);
+                updateVisuals(calculationData);
+            }, 400);
+        });
+
+        // Pre-fill with example values
+        window.addEventListener('load', function() {
+            document.getElementById('hourly-rate').value = '100';
+            document.getElementById('time-saved').value = '15';
+            document.getElementById('daily-hours').value = '8';
+            document.getElementById('annual-weeks').value = '50';
+        });
+    </script>
+</body>
+</html>
