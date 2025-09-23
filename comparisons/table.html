@@ -10,6 +10,24 @@
       rel="stylesheet"
     />
     <style>
+      :root {
+        --primary-gold: #d4af37;
+        --gold-light: #f4e4bc;
+        --gold-dark: #b8941f;
+        --navy-dark: #1a2b44;
+        --navy-darker: #14223a;
+        --navy-deepest: #0f1a2e;
+        --text-primary: #d4af37;
+        --text-secondary: #f4e4bc;
+        --text-muted: #c4b078;
+        --border-color: rgba(212, 175, 55, 0.3);
+        --hover-bg: rgba(212, 175, 55, 0.15);
+        --card-bg: rgba(212, 175, 55, 0.08);
+        --card-bg-alt: rgba(212, 175, 55, 0.12);
+        --buy-green: #22c55e;
+        --buy-green-dark: #16a34a;
+        --buy-green-shadow: rgba(34, 197, 94, 0.35);
+      }
       body {
         font-family: "Inter", sans-serif;
       }
@@ -17,31 +35,86 @@
         transition: all 0.2s ease-in-out;
       }
       .comparison-placeholder {
-        border: 2px dashed #d1d5db;
-        color: #6b7280;
+        border: 2px dashed var(--primary-gold);
+        color: var(--navy-deepest);
         min-height: 180px;
       }
       .sticky-header {
         position: sticky;
         top: 0;
-        background: white;
+        background: var(--gold-light);
         z-index: 10;
-        box-shadow: inset 0 -1px 0 0 #e5e7eb;
+        /* box-shadow: inset 0 -1px 0 0 #e5e7eb; */
       }
       dialog::backdrop {
-        background: rgba(0, 0, 0, 0.4);
+        /* background: rgba(0, 0, 0, 0.4); */
+        background: transparent;
+      }
+      .tooltip {
+        position: relative;
+        display: inline-block;
+      }
+      .tooltip-trigger {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 18px;
+        height: 18px;
+        background: var(--navy-deepest);
+        color: white;
+        border-radius: 50%;
+        font-size: 12px;
+        line-height: 18px;
+        margin-left: 6px;
+        cursor: help;
+        transition: background 0.2s ease;
+      }
+      .tooltip-trigger:hover {
+        background: var(--primary-gold);
+        transform: scale(1.1);
+      }
+      .tooltip-text {
+        --width: 200px;
+        --border-width: 1px;
+        visibility: hidden;
+        width: var(--width);
+        background: var(--navy-deepest);
+        color: white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        z-index: 1000;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(
+          calc((var(--border-width) * 2 + 1px) - (var(--width) / 2))
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 12px;
+        line-height: 1.4;
+        border: var(--border-width) solid var(--border-color);
+        box-shadow: 0 4px 12px var(--hover-bg);
+      }
+      .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+      .tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 6px;
+        border-style: solid;
+        border-color: var(--navy-deepest) transparent transparent transparent;
       }
     </style>
   </head>
-  <body class="bg-gray-50 text-gray-800">
+  <body class="bg-[var(--navy-deepest)] text-white">
     <div class="container mx-auto p-4 sm:p-6 lg:p-8">
-      <header class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-gray-900">Compare Our Plans</h1>
-        <p class="mt-2 text-lg text-gray-600">
-          Select up to 3 plans to see a side-by-side comparison.
-        </p>
-      </header>
-
       <main id="main" class="space-y-12">
         <!-- Plan selection + filters -->
         <section aria-labelledby="select-plans-heading">
@@ -50,7 +123,7 @@
           >
             <div>
               <h2 id="select-plans-heading" class="text-xl font-semibold">
-                Select plans to compare
+                Select plans to see a side-by-side comparison
               </h2>
 
               <!-- Active filter chips summary -->
@@ -63,7 +136,7 @@
             <div class="flex items-center gap-3">
               <p
                 id="match-pill"
-                class="hidden sm:inline-flex items-center gap-2 text-sm text-gray-600"
+                class="hidden sm:inline-flex items-center gap-2 text-sm text-white"
                 aria-live="polite"
               >
                 <span id="match-count" class="font-semibold">0</span> matches
@@ -118,15 +191,9 @@
 
         <!-- Comparison table -->
         <section aria-labelledby="comparison-heading">
-          <h2
-            id="comparison-heading"
-            class="text-2xl font-bold text-center mb-6"
-          >
-            Comparison
-          </h2>
           <div
             id="comparison-table-container"
-            class="bg-white rounded-xl shadow-lg overflow-x-auto"
+            class="bg-[var(--gold-light)] border-[var(--primary-gold)] rounded-xl shadow-lg overflow-x-auto"
           >
             <!-- table injected here -->
           </div>
@@ -1061,7 +1128,54 @@
           });
         };
 
+        const createTooltipElement = (symbol, note) => {
+          return `
+            <span class="tooltip">
+              <span class="tooltip-trigger">${symbol}</span>
+              <span class="tooltip-text">${note}</span>
+            </span>
+          `;
+        };
+
         const renderComparisonTable = () => {
+          const EXCLUDED_LABEL_KEYS = ["id", "name"];
+          const labelValues = {
+            id: { title: "ID" },
+            name: { title: "Name" },
+            link: { title: "Link" },
+            appCompliance: {
+              title: "APP Compliance",
+              note: "Australian Privacy Principles",
+            },
+            dataStorage: { title: "Data Storage" },
+            freeMembership: { title: "Free Membership" },
+            freeTrial: { title: "Free Trial" },
+            pmsIntegration: {
+              title: "PMS Integration",
+              note: "Practice Management System",
+            },
+            uniqueFeatures: { title: "Unique Features" },
+            coreFeatures: { title: "Core Features" },
+            pricing: { title: "Pricing" },
+            telehealth: { title: "Telehealth" },
+            headphonesCompatible: { title: "Headphones Compatible" },
+            mobileCompatible: { title: "Mobile Phone Compatible" },
+            multipleNotes: {
+              title: "Multiple notes for a single report?",
+              note: "",
+            },
+            aiTrainableOverTime: {
+              title: "Is the AI trainable over time?",
+              note: "",
+            },
+            contentTuning: {
+              title: "Content Tuning",
+              note: "Can the tool adjust its content based on feedback? (reinforcement learning)",
+            },
+            trustedSourcesOnly: { title: "Trusted Sources Only" },
+            languagesSupported: { title: "Languages Supported" },
+          };
+
           if (comparedItemIds.length === 0) {
             comparisonTableContainer.innerHTML = `
             <div class="comparison-placeholder flex items-center justify-center rounded-xl p-8" role="status" aria-live="polite">
@@ -1074,7 +1188,11 @@
           const fields = Object.keys(allItems[0]);
           const headers = items.map((i) => i.name);
           const rows = fields.map((f) => {
-            const label = f.replace("_", " ");
+            const labelKey = f.replace("_", " ");
+
+            if (EXCLUDED_LABEL_KEYS.includes(labelKey)) return;
+
+            const label = labelValues[labelKey];
             const row = items
               .map((it) => {
                 let v = it[f];
@@ -1083,33 +1201,50 @@
                   v = v.sections
                     .map(
                       (s) =>
-                        `<p class="badge">${s.category}</p><br>${s.items
-                          .map((i) => `<p>${i}</p>`)
-                          .join("")}`
+                        `<div class="flex flex-col gap-2">
+                          <p class="badge font-bold">
+                            ${s.category}
+                          </p>
+                          <ul class="flex flex-col gap-1">
+                            ${s.items.map((i) => `<li>${i}</li>`).join("")}
+                          </ul>
+                        </div>`
                     )
                     .join("");
+                } else if (v === true) {
+                  v = `<p><span class="text-xl text-green-500 font-bold">✓</span></p>`;
+                } else if (v === false) {
+                  v = `<p><span class="text-xl text-red-500 font-bold">✗</span></p>`;
                 } else if (v.url) {
                   v = `<a href="${v.url}" target="_blank" style="text-decoration: underline">${v.label}</a>`;
                 } else if (v.bullets) {
                   v = v.bullets.map((i) => `<p>${i}</p>`).join("");
                 } else if (v.available) {
-                  v = `<p>${v.available}</p><p>${v.note}</p>`;
+                  v = `
+                    <p class="flex items-center justify-center">
+                      <span class="text-xl text-green-500 font-bold">✓</span>
+                      ${createTooltipElement("!", v.note)}
+                    </p>
+                  `;
                 } else if (Array.isArray(v)) {
                   v = v.map((i) => `<p>${i}</p>`).join("");
                 }
-                return `<td class="text-center px-6 py-3 border-t">${v}</td>`;
+                return `<td class="text-center px-6 py-3 border-t border-[var(--primary-gold)]"><div class="flex flex-col gap-4">${v}</div></td>`;
               })
               .join("");
             return `
                   <tr role="row">
-                    <th scope="row" class="text-left font-semibold capitalize px-6 py-3 border-t">${label}</th>
+                    <th scope="row" class="w-[200px] text-left font-semibold px-6 py-3 border-t border-[var(--primary-gold)]">
+                      <span class="capitalize">${label.title}</span>
+                      ${label.note ? createTooltipElement("?", label.note) : ""}
+                    </th>
                     ${row}
                   </tr>`;
           });
 
           // Build semantic table
           let html = `
-          <table class="min-w-full text-sm" role="table">
+          <table class="min-w-full text-sm text-[var(--navy-deepest)]" role="table">
             <caption class="sr-only">Feature comparison of selected plans</caption>
             <thead class="sticky-header">
               <tr role="row">
