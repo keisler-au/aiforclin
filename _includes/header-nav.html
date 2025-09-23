@@ -30,8 +30,19 @@
         <li>
           <a href="{{ '/compliance/' | relative_url }}" class="nav-link">Compliance Pack</a>
         </li>
-        <li>  
-          <a href="{{ '/comparisons/' | relative_url }}" class="nav-link">AI Scribes</a>
+        <li class="dropdown">
+          <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            AI Scribes
+            <span class="dropdown-arrow" aria-hidden="true">▼</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>  
+              <a href="{{ '/affliates/' | relative_url }}" class="nav-link">Discounts</a>
+            </li>
+            <li>  
+              <a href="{{ '/comparisons/' | relative_url }}" class="nav-link">Comparison Table</a>
+            </li>
+          </ul>
         </li>
         <li class="dropdown">
           <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
