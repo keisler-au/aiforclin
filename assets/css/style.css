@@ -251,8 +251,8 @@ h1, h2 {
 
 .container-alt {
     display: flex;
-    flex-direction: column; /* mobile default: stack */
-    gap: 2rem;
+    flex-direction: column;
+    gap: 5rem;
 }
 
 .title-container {
@@ -1313,11 +1313,6 @@ a {
     }
 }
 @media (min-width: 768px) {
-    .container-alt {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
     .title-content { width: 55%; }
 
     .hero-text { text-align: left; }
@@ -1524,4 +1519,7 @@ body {
 @media (min-width: 768px) {
     .mobile-menu-button { display: none; }
     .nav { display: flex !important; position: static; background: transparent; border: none; padding: 0; }
+    .max-w-50 { max-width: 50%; }
+    .max-w-40 { max-width: 40%; }
+    .ml-2 { margin-left: 2rem; }
 }
