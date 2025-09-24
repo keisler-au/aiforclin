@@ -6,6 +6,37 @@ description: "Events and articles on AI for clinicians"
 
 <script>
   const posts = [
+    {title: "Huge news for provisional psychologists.",
+    description: [
+      "I've been working hard to get you free AI and today it's happening ",
+      "So I can finally share my summary of main offerings in the space to get free AI scribe access for provisional psychologists. ",
+    ],
+    link: "https://www.linkedin.com/posts/davidlopis_huge-news-for-provisional-psychologists-activity-7375793863942311936-1XP3?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8",
+    image: "{{ '/assets/images/posts/post-7.png' | relative_url }}",
+    },
+    {title: "So excited for this!",
+    description: [
+      "Already 100+ signups. Don’t miss out.",
+      "📅 Monday, 29 September",
+      " 🕖 7:00pm AEST | 9:00pm NZST",
+      " ⏱ 60 minutes | Live (with replay available)",
+      "",
+      "Artificial intelligence is rapidly reshaping mental health care – but what does that really mean for clinicians in practice?",
+      "Join Dr Angela Lim (Clearhead CEO) and David Lopis (Psychologist & Supervisor) for a practical conversation.",
+      ],
+      link: "https://www.linkedin.com/posts/davidlopis_so-excited-for-this-already-100-signups-activity-7374680603058761728-R6Hq?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8",
+      image: "{{ '/assets/images/posts/post-6.png' | relative_url }}",
+    },
+    {
+      title: "How can provisional psychologists benefit from the use of AI?",
+      description: [
+        "There are plenty of excellent uses but they must be carefully overseen.",
+        "Here are the opportunity I see:",
+        "⤷ AI tools for training and research"
+      ],
+      link: "https://www.linkedin.com/posts/davidlopis_psychology-ai-supervision-activity-7373963487179579393-55Gm?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8",
+      image: "{{ '/assets/images/posts/post-5.png' | relative_url }}",
+    },
     {
       title: "AI in supervision isn’t being talked about but it should be.",
       description: [
@@ -14,7 +45,7 @@ description: "Events and articles on AI for clinicians"
         "⤷ Generate role plays and comprehensive feedback."
       ],
       link: "https://www.linkedin.com/posts/davidlopis_ai-in-supervision-isnt-being-talked-about-activity-7373656442848931840-HBUk?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8",
-      image: "{{ '/assets/images/alt-logo.png' | relative_url }}",
+      image: "{{ '/assets/images/posts/post-4.png' | relative_url }}",
     },
     {
       title: "Are bigger companies using AI more—or less?",
@@ -23,7 +54,7 @@ description: "Events and articles on AI for clinicians"
         "On one hand, larger organisations have the budget to invest in IT, the latest tools, and compliance frameworks. They can afford thorough training and implementation projects.",
       ],
       link: "https://www.linkedin.com/posts/davidlopis_ai-digitalhealth-innovation-activity-7373225128358248448-O_b8?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8",
-      image: "{{ '/assets/images/alt-logo.png' | relative_url }}",
+      image: "{{ '/assets/images/posts/post-3.png' | relative_url }}",
     },
     {
       title: "We're so excited to welcome you to the first edition of AI for Clinicians!",
@@ -31,7 +62,7 @@ description: "Events and articles on AI for clinicians"
         "We're delighted to bring you the latest hints and tips on using AI in clinical practice, with a focus on the Australian context with relevance for clinicians worldwide. We're super keen to share the latest in hints, tips and more!",
       ],
       link: "https://www.linkedin.com/pulse/ai-clinicians-david-lopis-qimbe/?trackingId=SeBkPT3jQWGSr96YJYG5Aw%3D%3D",
-      image: "{{ '/assets/images/alt-logo.png' | relative_url }}",
+      image: "{{ '/assets/images/posts/post-2.png' | relative_url }}",
     },
     {
       title: "AI for clinicians forecast for this year #3. Here’s what I think could be on the horizon.",
@@ -40,7 +71,7 @@ description: "Events and articles on AI for clinicians"
         "Support will make or break success. Clinicians are frustrated by long waits for assistance. Companies will need to prioritise support.",
       ],
       link: "https://www.linkedin.com/posts/davidlopis_aiscribes-mentalhealthai-digitalhealth-activity-7372134924843352064-6iJf?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8",
-      image: "{{ '/assets/images/alt-logo.png' | relative_url }}",
+      image: "{{ '/assets/images/posts/post-1.png' | relative_url }}",
     }
   ];
 
@@ -51,12 +82,12 @@ description: "Events and articles on AI for clinicians"
       const article = document.createElement("article");
       article.classList.add("flex", "items-center", "gap-1");
       article.innerHTML = `
-        <div>
-          <h3 class="card-title mb-05 flex items-center gap-1">${post.title}</h3>
-          <p class="card-text muted mb-075">${post.description.join("<br />")}</p>
+        <div style="min-width: 80%;">
+          <h3 class="mb-05">${post.title}</h3>
+          <p class="card-text muted mb-075" style="max-width: 80%;">${post.description.join("<br />")}</p>
           <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="media-link">View Post →</a>
         </div>
-        <img src="${post.image}" alt="" width="150" height="150" style="margin: 0 5rem" />
+        <img src="${post.image}" alt="" style="width: 250px; height: auto;" />
       `;
       container.appendChild(article);
       const rowDivider = document.createElement("div");
