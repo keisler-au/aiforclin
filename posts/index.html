@@ -1,174 +1,84 @@
 ---
 layout: default
-title: "Updates"
-description: "Updates and articles on AI for clinicians"
+title: "Events and Articles"
+description: "Events and articles on AI for clinicians"
 ---
+
+<script>
+  const posts = [
+    {
+      title: "AI in supervision isn’t being talked about but it should be.",
+      description: [
+        "Whether you’re receiving supervision (as most clinicians do!) or providing it, AI is becoming part of the conversation.",
+        "Using AI supervisors could:",
+        "⤷ Generate role plays and comprehensive feedback."
+      ],
+      link: "https://www.linkedin.com/posts/davidlopis_ai-in-supervision-isnt-being-talked-about-activity-7373656442848931840-HBUk?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8",
+      image: "{{ '/assets/images/alt-logo.png' | relative_url }}",
+    },
+    {
+      title: "Are bigger companies using AI more—or less?",
+      description: [
+        "It could go either way.",
+        "On one hand, larger organisations have the budget to invest in IT, the latest tools, and compliance frameworks. They can afford thorough training and implementation projects.",
+      ],
+      link: "https://www.linkedin.com/posts/davidlopis_ai-digitalhealth-innovation-activity-7373225128358248448-O_b8?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8",
+      image: "{{ '/assets/images/alt-logo.png' | relative_url }}",
+    },
+    {
+      title: "We're so excited to welcome you to the first edition of AI for Clinicians!",
+      description: [
+        "We're delighted to bring you the latest hints and tips on using AI in clinical practice, with a focus on the Australian context with relevance for clinicians worldwide. We're super keen to share the latest in hints, tips and more!",
+      ],
+      link: "https://www.linkedin.com/pulse/ai-clinicians-david-lopis-qimbe/?trackingId=SeBkPT3jQWGSr96YJYG5Aw%3D%3D",
+      image: "{{ '/assets/images/alt-logo.png' | relative_url }}",
+    },
+    {
+      title: "AI for clinicians forecast for this year #3. Here’s what I think could be on the horizon.",
+      description: [
+        "These are not necessarily based on products I've seen.",
+        "Support will make or break success. Clinicians are frustrated by long waits for assistance. Companies will need to prioritise support.",
+      ],
+      link: "https://www.linkedin.com/posts/davidlopis_aiscribes-mentalhealthai-digitalhealth-activity-7372134924843352064-6iJf?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8",
+      image: "{{ '/assets/images/alt-logo.png' | relative_url }}",
+    }
+  ];
+
+  const renderPosts = () => {
+    const container = document.getElementById("posts-container");
+    console.log(container);
+    posts.forEach((post) => {
+      const article = document.createElement("article");
+      article.classList.add("flex", "items-center", "gap-1");
+      article.innerHTML = `
+        <div>
+          <h3 class="card-title mb-05 flex items-center gap-1">${post.title}</h3>
+          <p class="card-text muted mb-075">${post.description.join("<br />")}</p>
+          <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="media-link">View Post →</a>
+        </div>
+        <img src="${post.image}" alt="" width="150" height="150" style="margin: 0 5rem" />
+      `;
+      container.appendChild(article);
+      const rowDivider = document.createElement("div");
+      rowDivider.classList.add("row-between", "row-divider");
+      container.appendChild(rowDivider);
+    });
+  };
+
+  document.addEventListener("DOMContentLoaded", renderPosts);
+</script>
 
 <!-- Header -->
 <header class="title-container">
   <div class="title-content title-content-centered">
-    <h1 class="main-title">Updates and Articles</h1>
+    <h1 class="main-title">Events and Articles</h1>
   </div>
 </header>
 
 <section class="section">
   <div
-    class="container"
-    style="display: flex; flex-direction: column; gap: 4rem"
+    id="posts-container"
+    class="container container-alt container-short"
   >
-    <article class="flex items-center gap-1">
-      <div>
-        <h3 class="card-title mb-05 flex items-center gap-1">
-          AI in supervision isn’t being talked about but it should be.
-        </h3>
-        <p class="card-text muted mb-075">
-          Whether you’re receiving supervision (as most clinicians do!) or
-          providing it, AI is becoming part of the conversation.
-        </p>
-        <p class="card-text muted mb-075">
-          Using AI supervisors could:<br />
-          ⤷ Generate role plays and comprehensive feedback.<br />
-          ⤷ Support ethical decision making by helping you explore issues,
-          consider alternatives, and review a range of options.<br />
-          ⤷ Suggest future PD and track skill development based on your current
-          skill set and examples of your work.<br />
-          ⤷ Bring evidence-based research into case discussions to better
-          support client work.<br />
-          ⤷ Reduce supervision admin with AI scribes for supervision notes (with
-          client/supervisee consent). Risks that supervisors must manage:<br />
-          ⤷ Over reliance on AI instead of building critical skills.<br />
-          ⤷ Ensuring appropriate consent and compliance when supervisees use AI
-          scribes.<br />
-          ⤷ “Shadow use” of AI by supervisees without disclosure to
-          employers.<br />
-          ⤷ False confidence in AI-generated work, which can contain errors.<br />
-          ⤷ Slippage from AI as a support into tool dependence. The balance:<br />
-          AI should only ever add to best-practice supervision, never replace
-          current practices. Responsible AI use should be encouraged.
-        </p>
-        <p class="card-text muted mb-075">
-          👉 Are we ready to bring AI into supervision or are we avoiding the
-          conversation?
-        </p>
-        <a
-          href="https://www.linkedin.com/posts/davidlopis_ai-in-supervision-isnt-being-talked-about-activity-7373656442848931840-HBUk?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="media-link"
-        >
-          View Post →
-        </a>
-      </div>
-      <img
-        src="{{ '/assets/images/alt-logo.png' | relative_url }}"
-        alt=""
-        width="150"
-        height="150"
-        style="margin: 0 5rem"
-      />
-    </article>
-    <div class="row-between row-divider"></div>
-    <article class="flex items-center gap-1">
-      <div>
-        <h3 class="card-title mb-05 flex items-center gap-1">
-          Are bigger companies using AI more—or less?
-        </h3>
-        <p class="card-text muted mb-075">
-          It could go either way.<br />⤷ On one hand, larger organisations have
-          the budget to invest in IT, the latest tools, and compliance
-          frameworks. They can afford thorough training and implementation
-          projects.
-        </p>
-        <a
-          href="https://www.linkedin.com/posts/davidlopis_ai-digitalhealth-innovation-activity-7373225128358248448-O_b8?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="media-link"
-        >
-          View Post →
-        </a>
-      </div>
-      <img
-        src="{{ '/assets/images/alt-logo.png' | relative_url }}"
-        alt=""
-        width="150"
-        height="150"
-        style="margin: 0 5rem"
-      />
-    </article>
-    <div class="row-between row-divider"></div>
-    <article class="flex items-center gap-1">
-      <div>
-        <div class="flex items-center gap-1" style="margin-bottom: 0.5rem">
-          <h3 class="card-title" style="margin-bottom: 0">
-            We're so excited to welcome you to the first edition of AI for
-            Clinicians!
-          </h3>
-          <p
-            class="btn"
-            style="
-              border-radius: 30px 0 30px 0;
-              background: transparent;
-              max-width: 100px;
-              padding: 0.2rem 1rem;
-            "
-          >
-            Article
-          </p>
-        </div>
-        <p class="card-text muted mb-075">
-          We're delighted to bring you the latest hints and tips on using AI in
-          clinical practice, with a focus on the Australian context with
-          relevance for clinicians worldwide. We're super keen to share the
-          latest in hints, tips and more!
-        </p>
-        <a
-          href="https://www.linkedin.com/pulse/ai-clinicians-david-lopis-qimbe/?trackingId=SeBkPT3jQWGSr96YJYG5Aw%3D%3D"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="media-link"
-        >
-          Read Article →
-        </a>
-      </div>
-      <img
-        src="{{ '/assets/images/alt-logo.png' | relative_url }}"
-        alt=""
-        width="150"
-        height="150"
-        style="margin: 0 5rem"
-      />
-    </article>
-    <div class="row-between row-divider"></div>
-    <article class="flex items-center gap-1">
-      <div>
-        <h3 class="card-title mb-05 flex items-center gap-1">Forecast</h3>
-        <p class="card-text mb-075 fs-11">
-          AI for clinicians forecast for this year #3. Here’s what I think could
-          be on the horizon.
-        </p>
-
-        <p class="card-text muted mb-075">
-          These are not necessarily based on products I've seen.<br />
-          ⤷ Support will make or break success. Clinicians are frustrated by
-          long waits for assistance. Companies will need to prioritise support.
-        </p>
-        <a
-          href="https://www.linkedin.com/posts/davidlopis_aiscribes-mentalhealthai-digitalhealth-activity-7372134924843352064-6iJf?utm_source=share&utm_medium=member_desktop&rcm=ACoAABWLTD8BOzDiuRpAif43kDJS0aHswA4tdM8"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="media-link"
-        >
-          View Post →
-        </a>
-      </div>
-      <img
-        src="{{ '/assets/images/alt-logo.png' | relative_url }}"
-        alt=""
-        width="150"
-        height="150"
-        style="margin: 0 5rem"
-      />
-    </article>
   </div>
 </section>

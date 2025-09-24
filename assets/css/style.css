@@ -251,8 +251,8 @@ h1, h2 {
 
 .container-alt {
     display: flex;
-    flex-direction: column;
-    gap: 5rem;
+    flex-direction: column; /* mobile default: stack */
+    gap: 4rem;
 }
 
 .title-container {
@@ -1314,6 +1314,11 @@ a {
     }
 }
 @media (min-width: 768px) {
+    .container-main {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
     .title-content { width: 55%; }
 
     .hero-text { text-align: left; }
