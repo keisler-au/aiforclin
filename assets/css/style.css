@@ -1174,6 +1174,7 @@ h1, h2 {
 
 .mb-4 { margin-bottom: 1rem; }
 .mb-8 { margin-bottom: 2rem; }
+.mb-24 { margin-bottom: 6rem; }
 .mt-1 { margin-top: 0.25rem; }
 .mt-8 { margin-top: 2rem; }
 .mt-12 { margin-top: 3rem; }
@@ -1299,6 +1300,12 @@ a {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+}
+
+/* Provisional Psychologists */
+.prov-psych-card {
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 
