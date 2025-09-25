@@ -1,6 +1,7 @@
 <header class="site-header">
   <a class="skip-link" href="#main">Skip to main content</a>
   <div class="header-container">
+    <a href="{{ '/comparisons/' | relative_url }}" class="nav-link comparison-nav-margin">Comparison Table</a>
     <a href="{{ '/' | relative_url }}" aria-label="AI for Clinicians home">
       <img
         src="{{ '/assets/images/base/logo-header.png' | relative_url }}"
@@ -24,25 +25,14 @@
 
     <nav class="nav" id="primary-nav" aria-label="Primary" hidden>
       <ul class="nav-list">
-        <li>
+        <!-- <li>
           <a href="{{ '/#services-section' | relative_url }}" id="nav-link-services" class="nav-link">Services</a>
-        </li>
+        </li> -->
         <li>
           <a href="{{ '/compliance/' | relative_url }}" class="nav-link">Compliance Pack</a>
         </li>
         <li class="dropdown">
-          <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
-            AI Scribes
-            <span class="dropdown-arrow" aria-hidden="true">▼</span>
-          </button>
-          <ul class="dropdown-menu">
-            <li>  
-              <a href="{{ '/affliates/' | relative_url }}" class="nav-link">Discounts</a>
-            </li>
-            <li>  
-              <a href="{{ '/comparisons/' | relative_url }}" class="nav-link">Comparison Table</a>
-            </li>
-          </ul>
+          <a href="{{ '/affliates/' | relative_url }}" class="nav-link">Provisional Psychologists</a>
         </li>
         <li class="dropdown">
           <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">

@@ -88,12 +88,13 @@ h1, h2 {
 }
 
 .header-container {
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
+    text-align: center;
 }
 
 .nav {
@@ -122,6 +123,10 @@ h1, h2 {
 .nav-link:hover {
     color: var(--primary-gold);
     background: var(--hover-bg);
+}
+
+.comparison-nav-margin {
+    margin-right: 5rem;
 }
 
 /* Dropdown styles */
@@ -262,6 +267,7 @@ h1, h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 1200px;
 }
 
 
@@ -1314,11 +1320,6 @@ a {
     }
 }
 @media (min-width: 768px) {
-    .container-main {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
     .title-content { width: 55%; }
 
     .hero-text { text-align: left; }
@@ -1380,9 +1381,9 @@ a {
 }
 
 @media (max-width: 1600px) {
-.container-short {
-    max-width: 1000px;
-}
+    .container-short {
+        max-width: 1000px;
+    }
 }
 
 /* Print */
