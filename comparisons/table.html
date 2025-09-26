@@ -239,124 +239,166 @@
         </header>
 
         <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto">
-          <!-- Subscription -->
+          <!-- APP Compliance -->
           <fieldset class="border rounded-lg p-3">
             <legend class="px-1 text-sm font-medium text-gray-600">
-              Subscription
+              APP Compliance
             </legend>
             <div class="mt-2 flex flex-wrap gap-2">
               <label class="flex items-center">
                 <input
                   type="checkbox"
-                  data-filter-group="subscription"
-                  value="Free"
+                  data-filter-group="appCompliance"
+                  value="yes"
                   class="peer hidden"
                 />
                 <span
                   class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Free</span
+                  >Yes</span
                 >
               </label>
               <label class="flex items-center">
                 <input
                   type="checkbox"
-                  data-filter-group="subscription"
-                  value="Paid"
+                  data-filter-group="appCompliance"
+                  value="no"
                   class="peer hidden"
                 />
                 <span
                   class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Paid</span
+                  >No</span
                 >
               </label>
             </div>
           </fieldset>
 
-          <!-- Audience -->
+          <!-- Mobile Compatible -->
           <fieldset class="border rounded-lg p-3">
             <legend class="px-1 text-sm font-medium text-gray-600">
-              Target audience
+              Mobile Compatible
             </legend>
             <div class="mt-2 flex flex-wrap gap-2">
               <label class="flex items-center">
                 <input
                   type="checkbox"
-                  data-filter-group="audience"
-                  value="Personal"
+                  data-filter-group="mobileCompatible"
+                  value="yes"
                   class="peer hidden"
                 />
                 <span
                   class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Personal</span
+                  >Yes</span
                 >
               </label>
               <label class="flex items-center">
                 <input
                   type="checkbox"
-                  data-filter-group="audience"
-                  value="Business"
+                  data-filter-group="mobileCompatible"
+                  value="no"
                   class="peer hidden"
                 />
                 <span
                   class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Business</span
-                >
-              </label>
-              <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  data-filter-group="audience"
-                  value="Enterprise"
-                  class="peer hidden"
-                />
-                <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Enterprise</span
+                  >No</span
                 >
               </label>
             </div>
           </fieldset>
 
-          <!-- Support -->
+          <!-- Free Membership -->
+          <fieldset class="border rounded-lg p-3">
+            <legend class="px-1 text-sm font-medium text-gray-600">
+              Free Membership
+            </legend>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  data-filter-group="freeMembership"
+                  value="yes"
+                  class="peer hidden"
+                />
+                <span
+                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
+                  >Yes</span
+                >
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  data-filter-group="freeMembership"
+                  value="no"
+                  class="peer hidden"
+                />
+                <span
+                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
+                  >No</span
+                >
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Telehealth -->
+          <fieldset class="border rounded-lg p-3">
+            <legend class="px-1 text-sm font-medium text-gray-600">
+              Telehealth
+            </legend>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  data-filter-group="telehealth"
+                  value="yes"
+                  class="peer hidden"
+                />
+                <span
+                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
+                  >Yes</span
+                >
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  data-filter-group="telehealth"
+                  value="no"
+                  class="peer hidden"
+                />
+                <span
+                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
+                  >No</span
+                >
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Headphones Compatible -->
           <fieldset class="border rounded-lg p-3 md:col-span-2">
             <legend class="px-1 text-sm font-medium text-gray-600">
-              Support level
+              Headphones Compatible
             </legend>
             <div class="mt-2 flex flex-wrap gap-2">
               <label class="flex items-center">
                 <input
                   type="checkbox"
-                  data-filter-group="support"
-                  value="Community"
+                  data-filter-group="headphonesCompatible"
+                  value="yes"
                   class="peer hidden"
                 />
                 <span
                   class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Community</span
+                  >Yes</span
                 >
               </label>
               <label class="flex items-center">
                 <input
                   type="checkbox"
-                  data-filter-group="support"
-                  value="Email"
+                  data-filter-group="headphonesCompatible"
+                  value="no"
                   class="peer hidden"
                 />
                 <span
                   class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Email</span
-                >
-              </label>
-              <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  data-filter-group="support"
-                  value="Dedicated"
-                  class="peer hidden"
-                />
-                <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Dedicated</span
+                  >No</span
                 >
               </label>
             </div>
@@ -977,9 +1019,57 @@
         ];
 
         const MAX_COMPARE_ITEMS = 3;
+        // --- FILTERS (options, normalizers, predicates) ---
+
+        // What the UI can select (ensure your checkboxes use these values)
+        const FILTER_OPTIONS = {
+          appCompliance: ["yes", "no"],
+          mobileCompatible: ["yes", "no"],
+          freeMembership: ["yes", "no"],
+          telehealth: ["yes", "no"],
+          headphonesCompatible: ["yes", "no"],
+        };
+
+        // normalizers turn raw item fields into comparable buckets
+        const normalizer = {
+          yesNoUnknown(v) {
+            if (
+              v === true ||
+              (typeof v === "string" && v.toLowerCase() === "true")
+            )
+              return "yes";
+            else {
+              return "no";
+            }
+          },
+          yesNo(v) {
+            return v ? "yes" : "no";
+          },
+        };
+
+        // per-group predicates (AND across groups, OR within each group)
+        const FILTER_PREDICATES = {
+          appCompliance: (item, selected) =>
+            selected.includes(normalizer.yesNo(item.appCompliance)),
+          freeMembership: (item, selected) =>
+            selected.includes(normalizer.yesNo(item.freeMembership)),
+          telehealth: (item, selected) =>
+            selected.includes(normalizer.yesNo(item.telehealth)),
+          headphonesCompatible: (item, selected) =>
+            selected.includes(
+              normalizer.yesNoUnknown(item.headphonesCompatible)
+            ),
+          mobileCompatible: (item, selected) =>
+            selected.includes(normalizer.yesNo(item.mobileCompatible)),
+        };
+
+        const FILTER_GROUPS = Object.keys(FILTER_PREDICATES);
 
         // --- STATE ---
-        let activeFilters = { subscription: [], audience: [], support: [] };
+        // --- STATE ---
+        let activeFilters = Object.fromEntries(
+          FILTER_GROUPS.map((g) => [g, []])
+        );
         let comparedItemIds = [];
 
         // --- DOM ---
@@ -1295,15 +1385,17 @@
 
         // --- FILTER LOGIC ---
         const getFilteredItems = () => {
-          const hasFilters = Object.values(activeFilters).some(
-            (arr) => arr.length
+          const entries = Object.entries(activeFilters).filter(
+            ([, vals]) => vals.length
           );
-          if (!hasFilters) return allItems;
+          if (!entries.length) return allItems;
+
           return allItems.filter((item) =>
-            Object.entries(activeFilters).every(
-              ([group, values]) =>
-                !values.length || values.includes(item[group])
-            )
+            entries.every(([group, values]) => {
+              const pred = FILTER_PREDICATES[group];
+              if (!pred) return true; // unknown group => ignore
+              return pred(item, values);
+            })
           );
         };
 
@@ -1316,8 +1408,8 @@
         // --- EVENTS ---
         filterDialog.addEventListener("change", (e) => {
           if (e.target.matches('input[type="checkbox"]')) {
-            const g = e.target.dataset.filterGroup;
-            const val = e.target.value;
+            const g = e.target.dataset.filterGroup; // must match one of FILTER_GROUPS
+            const val = e.target.value; // must match one of FILTER_OPTIONS[g]
             if (e.target.checked) {
               if (!activeFilters[g].includes(val)) activeFilters[g].push(val);
             } else {
@@ -1332,7 +1424,7 @@
           filterDialog
             .querySelectorAll('input[type="checkbox"]')
             .forEach((cb) => (cb.checked = false));
-          activeFilters = { subscription: [], audience: [], support: [] };
+          activeFilters = Object.fromEntries(FILTER_GROUPS.map((g) => [g, []]));
           update();
         });
 
