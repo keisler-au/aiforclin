@@ -13,6 +13,7 @@
       :root {
         --primary-gold: #d4af37;
         --gold-light: #f4e4bc;
+        --gold-lighter: #fbf8f0;
         --gold-dark: #b8941f;
         --navy-dark: #1a2b44;
         --navy-darker: #14223a;
@@ -27,6 +28,7 @@
         --buy-green: #22c55e;
         --buy-green-dark: #16a34a;
         --buy-green-shadow: rgba(34, 197, 94, 0.35);
+        --hover-background: rgba(212, 175, 55, 0.1);
       }
       body {
         font-family: "Inter", sans-serif;
@@ -42,7 +44,7 @@
       .sticky-header {
         position: sticky;
         top: 0;
-        background: var(--gold-light);
+        background: var(--gold-lighter);
         z-index: 10;
         /* box-shadow: inset 0 -1px 0 0 #e5e7eb; */
       }
@@ -114,7 +116,7 @@
     </style>
   </head>
   <body class="bg-[var(--navy-deepest)] text-white">
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="container mx-auto sm:p-6 lg:p-8">
       <main id="main" class="space-y-12">
         <!-- Plan selection + filters -->
         <section aria-labelledby="select-plans-heading">
@@ -151,7 +153,7 @@
                 aria-haspopup="dialog"
                 aria-controls="filter-dialog"
                 aria-expanded="false"
-                class="inline-flex items-center gap-2 rounded-lg border border-[var(--primary-gold)] bg-[var(--gold-light)] px-3 py-2 text-sm font-semibold text-[var(--navy-deepest)] hover:bg-[var(--primary-gold)] hover:text-white transition"
+                class="inline-flex items-center gap-2 rounded-lg border border-[var(--primary-gold)] bg-[var(--gold-lighter)] px-3 py-2 text-sm font-semibold text-[var(--navy-deepest)] hover:bg-[var(--primary-gold)] hover:text-white transition"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +198,7 @@
         <section aria-labelledby="comparison-heading">
           <div
             id="comparison-table-container"
-            class="bg-[var(--gold-light)] border-[var(--primary-gold)] rounded-xl shadow-lg overflow-x-auto"
+            class="bg-[var(--gold-lighter)] border-[var(--primary-gold)] rounded-xl shadow-lg overflow-x-auto"
           >
             <!-- table injected here -->
           </div>
@@ -443,7 +445,7 @@
               ],
             },
             pricing: {
-              bullets: [
+              prices: [
                 "$59 per month for UNLIMITED clients, prompts, transcriptions",
                 "Includes use of FULL platform - AI transcriptions, homework tasks, customisable activities, and continuous engagement support with AI therapist chatbot, jAlmee",
                 "Discounts for clinic owners requiring multiple licences for practitioners",
@@ -457,12 +459,10 @@
             aiTrainableOverTime: true,
             contentTuning: true,
             trustedSourcesOnly: true,
-            languagesSupported: {
-              bullets: [
-                "Not at this time, but will be adding languages as we go.",
-                "Message us at help@ANTSA.com.au for requests at this stage.",
-              ],
-            },
+            languagesSupported: [
+              "Not at this time, but will be adding languages as we go.",
+              "Message us at help@ANTSA.com.au for requests at this stage.",
+            ],
           },
 
           {
@@ -514,7 +514,7 @@
               ],
             },
             pricing: {
-              bullets: [
+              prices: [
                 "$20/mo - Professional: High quality psychology-tailored AI models, unlimited prompts, input documents up to 10,000 words each",
                 "$45/mo - Professional Plus: Enhanced features such as greater memory that supports documents up to 35,000 words each, cloud synchronizing saved prompts across multiple devices, and processing of images and graphics",
                 "$60/mo - Enterprise: Features designed for large enterprises, such as customizable security policies and Single-Sign-On",
@@ -527,11 +527,9 @@
             aiTrainableOverTime: true,
             contentTuning: true,
             trustedSourcesOnly: true,
-            languagesSupported: {
-              bullets: [
-                "English primarily supported, but content can be generated in many other language.",
-              ],
-            },
+            languagesSupported: [
+              "English primarily supported, but content can be generated in many other language.",
+            ],
           },
 
           {
@@ -579,7 +577,7 @@
               ],
             },
             pricing: {
-              bullets: [
+              prices: [
                 "Essential Plan: $29 AUD / $19 USD",
                 "Professional Plan: $79 AUD / $49 USD",
                 "Code: AIPSYCH2024 (for affiliate: 10% off)",
@@ -593,53 +591,55 @@
               "We have a prompt review tool which we have found better than training.",
             contentTuning: true,
             trustedSourcesOnly: false,
-            languagesSupported: [
-              "Bulgarian",
-              "Catalan",
-              "Chinese (Mandarin, Simplified)",
-              "Chinese (Mandarin, Traditional)",
-              "Chinese (Cantonese, Traditional)",
-              "Czech",
-              "Danish",
-              "Dutch",
-              "English Australian",
-              "English British",
-              "English Indian",
-              "English New Zealand",
-              "English U.S.",
-              "Estonian",
-              "Finnish",
-              "Flemish",
-              "French Canadian",
-              "French Swiss",
-              "French",
-              "German Swiss",
-              "German",
-              "Greek",
-              "Hindi",
-              "Hungarian",
-              "Indonesian",
-              "Italian",
-              "Japanese",
-              "Korean",
-              "Latvian",
-              "Lithuanian",
-              "Malay",
-              "Spanish",
-              "Norwegian",
-              "Polish",
-              "Portuguese Brazilian",
-              "Portuguese",
-              "Romanian",
-              "Russian",
-              "Slovak",
-              "Spanish",
-              "Swedish",
-              "Thai",
-              "Turkish",
-              "Ukrainian",
-              "Vietnamese",
-            ],
+            languagesSupported: {
+              languages: [
+                "Bulgarian",
+                "Catalan",
+                "Chinese (Mandarin, Simplified)",
+                "Chinese (Mandarin, Traditional)",
+                "Chinese (Cantonese, Traditional)",
+                "Czech",
+                "Danish",
+                "Dutch",
+                "English Australian",
+                "English British",
+                "English Indian",
+                "English New Zealand",
+                "English U.S.",
+                "Estonian",
+                "Finnish",
+                "Flemish",
+                "French Canadian",
+                "French Swiss",
+                "French",
+                "German Swiss",
+                "German",
+                "Greek",
+                "Hindi",
+                "Hungarian",
+                "Indonesian",
+                "Italian",
+                "Japanese",
+                "Korean",
+                "Latvian",
+                "Lithuanian",
+                "Malay",
+                "Spanish",
+                "Norwegian",
+                "Polish",
+                "Portuguese Brazilian",
+                "Portuguese",
+                "Romanian",
+                "Russian",
+                "Slovak",
+                "Spanish",
+                "Swedish",
+                "Thai",
+                "Turkish",
+                "Ukrainian",
+                "Vietnamese",
+              ],
+            },
           },
 
           {
@@ -698,7 +698,7 @@
               ],
             },
             pricing: {
-              bullets: [
+              prices: [
                 "Free Tier (Free): Cost - Free. Benefits - Access to world class AI scribe with no cost. Limitations: 10 pro actions a month which can be used on custom templates, document generation or Ask Heidi",
                 "Pro Tier ($99/mo or $799/yr): Cost - $99 per month or $799 upfront for the year. Benefits - Unlimited usage of the Heidi platform! No limits on number of sessions or documents generated (Pro Actions). Limits: Self-Serve system where you must create your own templates or utilise community templates",
                 "Together Tier ($1299/yr per user): Cost - $1299 for the year per user. Benefits: Team features that allow you to share templates across the team, Integration with your PMS, Full Heidi Support where the Medical Knowledge team will create templates for you! Limitations: None at all!",
@@ -711,33 +711,35 @@
             aiTrainableOverTime: false,
             contentTuning: true,
             trustedSourcesOnly: true,
-            languagesSupported: [
-              "Cantonese",
-              "Czech",
-              "Danish",
-              "Dutch",
-              "Flemish",
-              "French",
-              "German",
-              "Greek",
-              "Hindi",
-              "Indonesian",
-              "Italian",
-              "Mandarin",
-              "Norwegian",
-              "Japanese",
-              "Korean",
-              "Malay",
-              "Polish",
-              "Portuguese",
-              "Russian",
-              "Spanish",
-              "Swedish",
-              "Thai",
-              "Turkish",
-              "Ukrainian",
-              "Vietnamese",
-            ],
+            languagesSupported: {
+              languages: [
+                "Cantonese",
+                "Czech",
+                "Danish",
+                "Dutch",
+                "Flemish",
+                "French",
+                "German",
+                "Greek",
+                "Hindi",
+                "Indonesian",
+                "Italian",
+                "Mandarin",
+                "Norwegian",
+                "Japanese",
+                "Korean",
+                "Malay",
+                "Polish",
+                "Portuguese",
+                "Russian",
+                "Spanish",
+                "Swedish",
+                "Thai",
+                "Turkish",
+                "Ukrainian",
+                "Vietnamese",
+              ],
+            },
           },
           {
             id: 5,
@@ -847,7 +849,7 @@
               ],
             },
             pricing: {
-              bullets: [
+              prices: [
                 "All NovoNote plans include access to NovoPsych Psychometrics",
                 "Free Tier: 30 notes a month",
                 "Pro: $25 - 50 notes a month",
@@ -957,7 +959,7 @@
               ],
             },
             pricing: {
-              bullets: [
+              prices: [
                 "Everbility has one subscription level: $50 AUD per month per clinician or $420 AUD per year per clinician (≈30% discount on monthly cost)",
                 "There are no additional costs for template support, training calls, etc.",
               ],
@@ -969,11 +971,8 @@
             aiTrainableOverTime: true,
             contentTuning: true,
             trustedSourcesOnly: true,
-            languagesSupported: {
-              bullets: [
-                "Everbility can be used in many other languages, reach out to us if you have any issues and we're happy to help.",
-              ],
-            },
+            languagesSupported:
+              "Everbility can be used in many other languages, reach out to us if you have any issues and we're happy to help.",
           },
         ];
 
@@ -1117,12 +1116,12 @@
               btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>${label}`;
             } else if (atLimit) {
               cls +=
-                "bg-[var(--gold-light)] text-[var(--navy-deepest)] border-[var(--primary-gold)] cursor-not-allowed opacity-70";
+                "bg-[var(--gold-lighter)] text-[var(--navy-deepest)] border-[var(--primary-gold)] cursor-not-allowed opacity-70";
               btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>${label}`;
               btn.disabled = true;
             } else {
               cls +=
-                "bg-[var(--gold-light)] text-[var(--navy-deepest)] border-[var(--primary-gold)] hover:bg-[var(--primary-gold)] hover:text-white";
+                "bg-[var(--gold-lighter)] text-[var(--navy-deepest)] border-[var(--primary-gold)] hover:bg-[var(--primary-gold)] hover:text-white";
               btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>${label}`;
             }
 
@@ -1204,13 +1203,18 @@
                 if (v.sections) {
                   v = v.sections
                     .map(
-                      (s) =>
-                        `<div class="flex flex-col gap-2">
+                      (s, i) =>
+                        `<div class="flex flex-col gap-2 text-left">
                           <p class="badge font-bold">
                             ${s.category}
                           </p>
-                          <ul class="flex flex-col gap-1">
-                            ${s.items.map((i) => `<li>${i}</li>`).join("")}
+                          <ul class="flex flex-col gap-2 text-sm">
+                            ${s.items
+                              .map(
+                                (i) =>
+                                  `<li class="relative pl-5 before:content-['→'] before:absolute before:left-0 before:text-[var(--text-primary)] before:font-bold before:text-sm">${i}</li>`
+                              )
+                              .join("")}
                           </ul>
                         </div>`
                     )
@@ -1223,6 +1227,26 @@
                   v = `<a href="${v.url}" target="_blank" style="text-decoration: underline">${v.label}</a>`;
                 } else if (v.bullets) {
                   v = v.bullets.map((i) => `<p>${i}</p>`).join("");
+                } else if (v.prices) {
+                  v = `
+                    <ul class="flex flex-col gap-2 text-left">
+                      ${v.prices
+                        .map(
+                          (
+                            text
+                          ) => `<li class="relative pl-5 before:content-['→'] before:absolute before:left-0 before:text-[var(--text-primary)] before:font-bold before:text-sm">
+                          ${text}
+                        </li>`
+                        )
+                        .join("")}
+                    </ul>
+                  `;
+                } else if (v.languages) {
+                  v = `
+                    <ul class="flex flex-col gap-1">
+                      ${v.languages.map((lng) => `<li>${lng}</li>`).join("")}
+                    </ul>
+                  `;
                 } else if (v.available) {
                   v = `
                     <p class="flex items-center justify-center">
@@ -1233,12 +1257,12 @@
                 } else if (Array.isArray(v)) {
                   v = v.map((i) => `<p>${i}</p>`).join("");
                 }
-                return `<td class="text-center px-6 py-3 border-t border-[var(--primary-gold)]"><div class="flex flex-col gap-4">${v}</div></td>`;
+                return `<td class="text-center px-6 py-3 border-t border-r border-[var(--primary-gold)]"><div class="flex flex-col gap-4">${v}</div></td>`;
               })
               .join("");
             return `
-                  <tr role="row">
-                    <th scope="row" class="w-[200px] text-left font-semibold px-6 py-3 border-t border-[var(--primary-gold)]">
+                  <tr class="hover:bg-[var(--hover-background)] duration-200 ease-initial" role="row">
+                    <th scope="row" class="text-left font-semibold px-6 py-3 border-t border-r border-[var(--primary-gold)]">
                       <span class="capitalize">${label.title}</span>
                       ${label.note ? createTooltipElement("?", label.note) : ""}
                     </th>
@@ -1248,7 +1272,7 @@
 
           // Build semantic table
           let html = `
-          <table class="min-w-full text-sm text-[var(--navy-deepest)]" role="table">
+          <table class="table-fixed w-auto sm:w-full min-w-[400px] text-sm text-[var(--navy-deepest)]" role="table">
             <caption class="sr-only">Feature comparison of selected plans</caption>
             <thead class="sticky-header">
               <tr role="row">
@@ -1256,7 +1280,7 @@
                 ${headers
                   .map(
                     (h) =>
-                      `<th scope="col" class="text-center font-bold text-lg px-6 py-4 text-indigo-600">${h}</th>`
+                      `<th scope="col" class="text-center font-bold text-lg px-6 py-4">${h}</th>`
                   )
                   .join("")}
               </tr>
