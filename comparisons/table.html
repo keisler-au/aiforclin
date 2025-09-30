@@ -153,7 +153,7 @@
                 aria-haspopup="dialog"
                 aria-controls="filter-dialog"
                 aria-expanded="false"
-                class="inline-flex items-center gap-2 rounded-lg border border-[var(--primary-gold)] bg-[var(--gold-lighter)] px-3 py-2 text-sm font-semibold text-[var(--navy-deepest)] hover:bg-[var(--primary-gold)] hover:text-white transition"
+                class="group inline-flex items-center gap-2 rounded-lg border border-[var(--primary-gold)] bg-[var(--gold-lighter)] px-3 py-2 text-sm font-semibold text-[var(--navy-deepest)] hover:bg-[var(--primary-gold)] hover:text-white transition"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +169,7 @@
                 Filters
                 <span
                   id="active-count"
-                  class="ml-1 hidden rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-bold text-indigo-700"
+                  class="ml-1 hidden rounded-full flex items-center justify-center w-5 h-5 p-0.5 bg-[var(--navy-deepest)] text-xs font-bold text-white group-hover:bg-[var(--gold-lighter)] group-hover:text-[var(--primary-gold)]"
                   >0</span
                 >
               </button>
@@ -214,36 +214,32 @@
     <!-- Filters Modal as native dialog -->
     <dialog
       id="filter-dialog"
-      class="w-full max-w-3xl rounded-2xl bg-white shadow-2xl border border-gray-200 p-0"
+      class="w-full max-w-3xl rounded-2xl bg-[var(--gold-lighter)] shadow-2xl border border-[var(--primary-gold)] p-0"
     >
       <form method="dialog" class="flex flex-col max-h-[80vh]">
-        <header class="p-5 border-b flex items-center justify-between">
-          <h3 id="filter-title" class="text-lg font-semibold text-gray-900">
-            Filter options
-          </h3>
+        <header
+          class="p-5 border-b border-[var(--primary-gold)] flex items-center justify-between text-[var(--navy-deepest)] font-semibold"
+        >
+          <h3 id="filter-title" class="text-lg">Filter options</h3>
           <div class="flex items-center gap-2">
-            <button
-              type="button"
-              id="clear-filters"
-              class="text-sm font-semibold text-indigo-600 hover:text-indigo-800"
-            >
+            <button type="button" id="clear-filters" class="text-sm">
               Clear all
             </button>
             <button
               id="close-filters"
-              class="inline-flex items-center rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+              class="inline-flex items-center gap-2 rounded-lg font-semibold text-sm transition-all-smooth px-4 py-2 border border-[var(--navy-deepest)] hover:bg-[var(--navy-deepest)] hover:text-white"
             >
               Close
             </button>
           </div>
         </header>
 
-        <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-auto">
-          <!-- APP Compliance -->
-          <fieldset class="border rounded-lg p-3">
-            <legend class="px-1 text-sm font-medium text-gray-600">
-              APP Compliance
+        <div class="p-5 grid grid-cols-1 gap-4 overflow-auto">
+          <fieldset class="border border-[var(--primary-gold)] rounded-lg p-3">
+            <legend class="px-1 text-sm font-medium text-[var(--navy-deepest)]">
+              Features
             </legend>
+
             <div class="mt-2 flex flex-wrap gap-2">
               <label class="flex items-center">
                 <input
@@ -253,31 +249,11 @@
                   class="peer hidden"
                 />
                 <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Yes</span
+                  class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
+                  APP Compliance
+                </span>
               </label>
-              <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  data-filter-group="appCompliance"
-                  value="no"
-                  class="peer hidden"
-                />
-                <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >No</span
-                >
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Mobile Compatible -->
-          <fieldset class="border rounded-lg p-3">
-            <legend class="px-1 text-sm font-medium text-gray-600">
-              Mobile Compatible
-            </legend>
-            <div class="mt-2 flex flex-wrap gap-2">
               <label class="flex items-center">
                 <input
                   type="checkbox"
@@ -286,31 +262,11 @@
                   class="peer hidden"
                 />
                 <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Yes</span
+                  class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
+                  Mobile Compatible
+                </span>
               </label>
-              <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  data-filter-group="mobileCompatible"
-                  value="no"
-                  class="peer hidden"
-                />
-                <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >No</span
-                >
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Free Membership -->
-          <fieldset class="border rounded-lg p-3">
-            <legend class="px-1 text-sm font-medium text-gray-600">
-              Free Membership
-            </legend>
-            <div class="mt-2 flex flex-wrap gap-2">
               <label class="flex items-center">
                 <input
                   type="checkbox"
@@ -319,31 +275,11 @@
                   class="peer hidden"
                 />
                 <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Yes</span
+                  class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
+                  Free Membership
+                </span>
               </label>
-              <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  data-filter-group="freeMembership"
-                  value="no"
-                  class="peer hidden"
-                />
-                <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >No</span
-                >
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Telehealth -->
-          <fieldset class="border rounded-lg p-3">
-            <legend class="px-1 text-sm font-medium text-gray-600">
-              Telehealth
-            </legend>
-            <div class="mt-2 flex flex-wrap gap-2">
               <label class="flex items-center">
                 <input
                   type="checkbox"
@@ -352,31 +288,11 @@
                   class="peer hidden"
                 />
                 <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Yes</span
+                  class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
+                  Telehealth
+                </span>
               </label>
-              <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  data-filter-group="telehealth"
-                  value="no"
-                  class="peer hidden"
-                />
-                <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >No</span
-                >
-              </label>
-            </div>
-          </fieldset>
-
-          <!-- Headphones Compatible -->
-          <fieldset class="border rounded-lg p-3 md:col-span-2">
-            <legend class="px-1 text-sm font-medium text-gray-600">
-              Headphones Compatible
-            </legend>
-            <div class="mt-2 flex flex-wrap gap-2">
               <label class="flex items-center">
                 <input
                   type="checkbox"
@@ -385,34 +301,14 @@
                   class="peer hidden"
                 />
                 <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >Yes</span
+                  class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
-              </label>
-              <label class="flex items-center">
-                <input
-                  type="checkbox"
-                  data-filter-group="headphonesCompatible"
-                  value="no"
-                  class="peer hidden"
-                />
-                <span
-                  class="cursor-pointer rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 transition-colors peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600"
-                  >No</span
-                >
+                  Headphones Compatible
+                </span>
               </label>
             </div>
           </fieldset>
         </div>
-
-        <footer class="p-5 border-t flex items-center justify-end gap-2">
-          <button
-            id="apply-filters"
-            class="inline-flex items-center rounded-lg bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700"
-          >
-            Apply
-          </button>
-        </footer>
       </form>
     </dialog>
 
@@ -1030,6 +926,29 @@
           headphonesCompatible: ["yes", "no"],
         };
 
+        const CHIP_TEXT = {
+          appCompliance: {
+            yes: "APP Compliance",
+            no: "Without APP Compliance",
+          },
+          mobileCompatible: {
+            yes: "Mobile Compatible",
+            no: "Not Mobile Compatible",
+          },
+          freeMembership: {
+            yes: "Free Membership",
+            no: "No Free Membership",
+          },
+          telehealth: {
+            yes: "Telehealth",
+            no: "No Telehealth",
+          },
+          headphonesCompatible: {
+            yes: "Headphones Compatible",
+            no: "Not Headphones Compatible",
+          },
+        };
+
         // normalizers turn raw item fields into comparable buckets
         const normalizer = {
           yesNoUnknown(v) {
@@ -1077,7 +996,6 @@
         const filterDialog = document.getElementById("filter-dialog");
         const clearFiltersBtn = document.getElementById("clear-filters");
         const closeFiltersBtn = document.getElementById("close-filters");
-        const applyFiltersBtn = document.getElementById("apply-filters");
         const activeCount = document.getElementById("active-count");
         const chipsWrap = document.getElementById("active-chips");
 
@@ -1106,10 +1024,6 @@
           e.preventDefault();
           closeModal();
         });
-        applyFiltersBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          closeModal();
-        });
 
         // Close on backdrop click
         filterDialog.addEventListener("click", (event) => {
@@ -1128,6 +1042,7 @@
           const entries = Object.entries(activeFilters).flatMap(
             ([group, values]) => values.map((v) => ({ group, value: v }))
           );
+
           activeCount.textContent = entries.length;
           activeCount.classList.toggle("hidden", entries.length === 0);
 
@@ -1136,9 +1051,13 @@
             const chip = document.createElement("button");
             chip.type = "button";
             chip.className =
-              "inline-flex items-center gap-1 rounded-full bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:bg-gray-200";
-            chip.innerHTML = `${value}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true"><path d="M6.28 5.22a.75.75 0 1 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 1 0-1.06-1.06L10 8.94 6.28 5.22Z"/></svg>`;
-            chip.setAttribute("aria-label", `Remove filter ${value}`);
+              "inline-flex items-center gap-1 rounded-full bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200";
+
+            const adaptedChipText = CHIP_TEXT[group][value];
+
+            chip.innerHTML = `${adaptedChipText}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true"><path d="M6.28 5.22a.75.75 0 1 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 1 0-1.06-1.06L10 8.94 6.28 5.22Z"/></svg>`;
+            chip.setAttribute("aria-label", `Remove filter ${adaptedChipText}`);
+
             chip.addEventListener("click", () => {
               activeFilters[group] = activeFilters[group].filter(
                 (x) => x !== value
@@ -1148,6 +1067,7 @@
               if (input) input.checked = false;
               update();
             });
+
             li.appendChild(chip);
             chipsWrap.appendChild(li);
           });
@@ -1266,7 +1186,10 @@
               note: "Can the tool adjust its content based on feedback? (reinforcement learning)",
             },
             trustedSourcesOnly: { title: "Trusted Sources Only" },
-            languagesSupported: { title: "Languages Supported" },
+            languagesSupported: {
+              title: "Languages Supported",
+              expandable: true,
+            },
           };
 
           if (comparedItemIds.length === 0) {
@@ -1280,88 +1203,111 @@
           const items = allItems.filter((i) => comparedItemIds.includes(i.id));
           const fields = Object.keys(allItems[0]);
           const headers = items.map((i) => i.name);
-          const rows = fields.map((f) => {
-            const labelKey = f.replace("_", " ");
+          const rows = fields
+            .map((f) => {
+              const labelKey = f.replace("_", " ");
 
-            if (EXCLUDED_LABEL_KEYS.includes(labelKey)) return;
+              if (EXCLUDED_LABEL_KEYS.includes(labelKey)) return;
 
-            const label = labelValues[labelKey];
-            const row = items
-              .map((it) => {
-                let v = it[f];
-                console.log(v);
-                if (v.sections) {
-                  v = v.sections
-                    .map(
-                      (s, i) =>
-                        `<div class="flex flex-col gap-2 text-left">
-                          <p class="badge font-bold">
-                            ${s.category}
-                          </p>
-                          <ul class="flex flex-col gap-2 text-sm">
-                            ${s.items
-                              .map(
-                                (i) =>
-                                  `<li class="relative pl-5 before:content-['→'] before:absolute before:left-0 before:text-[var(--text-primary)] before:font-bold before:text-sm">${i}</li>`
-                              )
-                              .join("")}
-                          </ul>
-                        </div>`
-                    )
-                    .join("");
-                } else if (v === true) {
-                  v = `<p><span class="text-xl text-green-500 font-bold">✓</span></p>`;
-                } else if (v === false) {
-                  v = `<p><span class="text-xl text-red-500 font-bold">✗</span></p>`;
-                } else if (v.url) {
-                  v = `<a href="${v.url}" target="_blank" style="text-decoration: underline">${v.label}</a>`;
-                } else if (v.bullets) {
-                  v = v.bullets.map((i) => `<p>${i}</p>`).join("");
-                } else if (v.prices) {
-                  v = `
-                    <ul class="flex flex-col gap-2 text-left">
-                      ${v.prices
-                        .map(
-                          (
-                            text
-                          ) => `<li class="relative pl-5 before:content-['→'] before:absolute before:left-0 before:text-[var(--text-primary)] before:font-bold before:text-sm">
-                          ${text}
-                        </li>`
-                        )
-                        .join("")}
-                    </ul>
-                  `;
-                } else if (v.languages) {
-                  v = `
-                    <ul class="flex flex-col gap-1">
-                      ${v.languages.map((lng) => `<li>${lng}</li>`).join("")}
-                    </ul>
-                  `;
-                } else if (v.available) {
-                  v = `
-                    <p class="flex items-center justify-center">
-                      <span class="text-xl text-green-500 font-bold">✓</span>
-                      ${createTooltipElement("!", v.note)}
-                    </p>
-                  `;
-                } else if (Array.isArray(v)) {
-                  v = v.map((i) => `<p>${i}</p>`).join("");
-                }
-                return `<td class="text-center px-6 py-3 border-t border-r border-[var(--primary-gold)]"><div class="flex flex-col gap-4">${v}</div></td>`;
-              })
-              .join("");
-            return `
-                  <tr class="hover:bg-[var(--hover-background)] duration-200 ease-initial" role="row">
-                    <th scope="row" class="text-left font-semibold px-6 py-3 border-t border-r border-[var(--primary-gold)]">
+              const label = labelValues[labelKey] || { title: labelKey };
+              const isExpandable = !!label.expandable;
+              const isExpanded = !!rowExpanded[labelKey];
+
+              const rowCells = items
+                .map((it) => {
+                  let v = it[f];
+
+                  if (v.sections) {
+                    v = v.sections
+                      .map(
+                        (s) => `
+                          <div class="flex flex-col gap-2 text-left">
+                            <p class="badge font-bold">${s.category}</p>
+                            <ul class="flex flex-col gap-2 text-sm">
+                              ${s.items
+                                .map(
+                                  (i) =>
+                                    `<li class="relative pl-5 before:content-['→'] before:absolute before:left-0 before:text-[var(--text-primary)] before:font-bold before:text-sm">${i}</li>`
+                                )
+                                .join("")}
+                            </ul>
+                          </div>`
+                      )
+                      .join("");
+                  } else if (v === true) {
+                    v = `<p><span class="text-xl text-green-500 font-bold">✓</span></p>`;
+                  } else if (v === false) {
+                    v = `<p><span class="text-xl text-red-500 font-bold">✗</span></p>`;
+                  } else if (v?.url) {
+                    v = `<a href="${v.url}" target="_blank" class="underline">${v.label}</a>`;
+                  } else if (v?.bullets) {
+                    v = v.bullets.map((i) => `<p>${i}</p>`).join("");
+                  } else if (v?.prices) {
+                    v = `
+                      <ul class="flex flex-col gap-2 text-left">
+                        ${v.prices
+                          .map(
+                            (text) =>
+                              `<li class="relative pl-5 before:content-['→'] before:absolute before:left-0 before:text-[var(--text-primary)] before:font-bold before:text-sm">${text}</li>`
+                          )
+                          .join("")}
+                      </ul>`;
+                  } else if (v?.languages) {
+                    v = `
+                      <ul class="flex flex-col gap-0.5 text-sm leading-snug">
+                        ${v.languages.map((lng) => `<li>${lng}</li>`).join("")}
+                      </ul>`;
+                  } else if (v.available) {
+                    v = `
+                      <p class="flex items-center justify-center">
+                        <span class="text-xl text-green-500 font-bold">✓</span>
+                        ${createTooltipElement("!", v.note)}
+                      </p>
+                    `;
+                  } else if (Array.isArray(v)) {
+                    v = v.map((i) => `<p>${i}</p>`).join("");
+                  }
+
+                  const limiterClass =
+                    isExpandable && !isExpanded
+                      ? "max-h-[160px] overflow-hidden"
+                      : "";
+
+                  return `
+                    <td class="text-center px-6 py-4 border-t border-r border-[var(--primary-gold)]">
+                      <div class="flex flex-col gap-4 ${limiterClass}" data-row-content="${labelKey}">
+                        ${v ?? ""}
+                      </div>
+                    </td>`;
+                })
+                .join("");
+
+              const toggleBtn = isExpandable
+                ? `<button
+                    type="button"
+                    class="mt-1 text-xs underline hover:no-underline focus:outline-none"
+                    data-row-toggle="${labelKey}"
+                    aria-expanded="${isExpanded}">
+                    ${isExpanded ? "Show less ↑" : "Show more ↓"}
+                  </button>`
+                : "";
+
+              return `
+                <tr class="hover:bg-[var(--hover-background)] duration-200 ease-in-out" role="row">
+                  <th scope="row" class="text-left font-semibold px-6 py-4 border-t border-r border-[var(--primary-gold)]">
+                    <p>
                       <span class="capitalize">${label.title}</span>
                       ${label.note ? createTooltipElement("?", label.note) : ""}
-                    </th>
-                    ${row}
-                  </tr>`;
-          });
+                    </p>
+                    ${toggleBtn}  
+                  </th>
+                  ${rowCells}
+                </tr>`;
+            })
+            .filter(Boolean);
 
           // Build semantic table
-          let html = `
+          comparisonTableContainer.innerHTML = `
           <table class="table-fixed w-auto sm:w-full min-w-[400px] text-sm text-[var(--navy-deepest)]" role="table">
             <caption class="sr-only">Feature comparison of selected plans</caption>
             <thead class="sticky-header">
@@ -1378,9 +1324,7 @@
             <tbody>
               ${rows.join("")}
             </tbody>
-          </table>
-        `;
-          comparisonTableContainer.innerHTML = html;
+          </table>`;
         };
 
         // --- FILTER LOGIC ---
@@ -1405,7 +1349,17 @@
           renderComparisonTable();
         };
 
+        let rowExpanded = {};
+
         // --- EVENTS ---
+        comparisonTableContainer.addEventListener("click", (e) => {
+          const btn = e.target.closest("[data-row-toggle]");
+          if (!btn) return;
+          const key = btn.dataset.rowToggle;
+          rowExpanded[key] = !rowExpanded[key];
+          renderComparisonTable();
+        });
+
         filterDialog.addEventListener("change", (e) => {
           if (e.target.matches('input[type="checkbox"]')) {
             const g = e.target.dataset.filterGroup; // must match one of FILTER_GROUPS
