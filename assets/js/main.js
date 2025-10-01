@@ -63,7 +63,7 @@ function openBookingForm(serviceType) {
 
 function closeBookingForm() {
   document.getElementById("booking-modal-container").style.display = "none";
-  document.getElementById("step-1").style.display = "block";
+  document.getElementById("step-1").style.display = "";
   document.getElementById("step-0").style.display = "none";
   serviceTypeSelector.value = "";
   serviceTypeConsultSelector.value = "";
