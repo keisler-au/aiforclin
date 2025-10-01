@@ -1,419 +1,86 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Tools Comparison Widget</title>
+    <title>Product Comparison Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        /* Light Theme Color Palette for Maximum Readability */
-        --primary-gold: #d4af37; /* Accent gold for highlights */
-        --light-gold: #f4e4bc; /* Subtle gold tints */
-        --dark-gold: #b8941f; /* Darker gold accents */
-        --navy-dark: #1a2b44; /* Deep navy for text */
-        --navy-darker: #14223a; /* Darker navy for emphasis */
-        --navy-deepest: #0f1a2e; /* Deepest navy for headers */
-
-        /* Background Colors (Light Theme) */
-        --bg-primary: #fffcf5; /* Off-white with subtle cream tint */
-        --bg-secondary: #fbf8f0; /* Slightly warmer cream */
-        --bg-tertiary: #f7f4eb; /* Subtle cream gold background */
-
-        /* Text Colors (Dark Navy) */
-        --text-primary: #0f1a2e; /* Deepest navy for headers */
-        --text-secondary: #1a2b44; /* Dark navy for body text */
-        --text-muted: #4a5568; /* Lighter navy for muted text */
-        --text-accent: #b8941f; /* Dark gold for accents */
-
-        /* Border and Hover (Light Theme) */
-        --border-color: rgba(212, 175, 55, 0.25); /* Subtle gold borders */
-        --hover-background: rgba(212, 175, 55, 0.1); /* Light gold hover */
+        --primary-gold: #d4af37;
+        --gold-light: #f4e4bc;
+        --gold-lighter: #fbf8f0;
+        --gold-dark: #b8941f;
+        --navy-dark: #1a2b44;
+        --navy-darker: #14223a;
+        --navy-deepest: #0f1a2e;
+        --text-primary: #d4af37;
+        --text-secondary: #f4e4bc;
+        --text-muted: #c4b078;
+        --border-color: rgba(212, 175, 55, 0.3);
+        --hover-bg: rgba(212, 175, 55, 0.15);
+        --card-bg: rgba(212, 175, 55, 0.08);
+        --card-bg-alt: rgba(212, 175, 55, 0.12);
+        --buy-green: #22c55e;
+        --buy-green-dark: #16a34a;
+        --buy-green-shadow: rgba(34, 197, 94, 0.35);
+        --hover-background: rgba(212, 175, 55, 0.1);
       }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
       body {
-        font-family: "Lora", serif;
-        background: var(--bg-primary);
-        padding: 20px;
-        line-height: 1.6;
-        color: var(--text-secondary);
-        letter-spacing: 0.025em;
+        font-family: "Inter", sans-serif;
       }
-
-      .dropdown-wrapper {
-        position: relative;
-        margin-bottom: 16px;
+      .transition-all-smooth {
+        transition: all 0.2s ease-in-out;
       }
-
-      .dropdown-toggle-btn {
-        padding: 10px 18px;
-        border-radius: 8px;
-        border: 1px solid var(--border-color);
-        background: var(--bg-secondary);
-        color: var(--text-primary);
-        font-weight: 600;
-        font-size: 14px;
-        font-family: "Lora", serif;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(15, 26, 46, 0.1);
-        transition:
-          background 0.2s ease,
-          transform 0.2s ease;
+      .comparison-placeholder {
+        border: 2px dashed var(--primary-gold);
+        color: var(--navy-deepest);
+        min-height: 180px;
       }
-
-      .dropdown-toggle-btn:hover {
-        background: var(--hover-background);
-        transform: translateY(-1px);
-      }
-
-      .dropdown-panel {
-        display: none;
-        position: absolute;
-        z-index: 100;
-        background: var(--bg-primary);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(15, 26, 46, 0.15);
-        padding: 12px;
-        min-width: 240px;
-        max-height: 300px;
-        overflow-y: auto;
-      }
-
-      .dropdown-option {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 14px;
-        font-family: "Lora", serif;
-        color: var(--text-secondary);
-      }
-
-      .table-container {
-        position: relative;
-        background: var(--bg-secondary);
-        border-radius: 12px;
-        box-shadow: 0 8px 32px rgba(15, 26, 46, 0.15);
-        overflow: hidden;
-        min-height: 400px;
-        border: 1px solid var(--border-color);
-      }
-
-      .table-wrapper {
-        position: relative;
-        overflow-x: auto;
-        overflow-y: auto;
-        max-height: 90vh;
-        scroll-behavior: smooth;
-        scrollbar-width: thin;
-        scrollbar-color: var(--primary-gold) var(--navy-darker);
-      }
-      .scrollbar-spacer {
-        height: 16px;
-        border-top: 2px solid var(--border-color);
-        background: var(--bg-secondary);
-      }
-
-      .table-wrapper::-webkit-scrollbar {
-        height: 8px;
-      }
-      .table-wrapper::-webkit-scrollbar-track {
-        background: var(--bg-tertiary);
-      }
-      .table-wrapper::-webkit-scrollbar-thumb {
-        background: var(--primary-gold);
-        border-radius: 4px;
-      }
-      .table-wrapper::-webkit-scrollbar-thumb:hover {
-        background: var(--dark-gold);
-      }
-
-      .comparison-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: clamp(12px, 2vw, 14px);
-        min-width: 1000px;
-        font-family: "Lora", serif;
-      }
-
-      .comparison-table th {
-        background: var(--bg-tertiary);
-        padding: 24px 20px;
-        text-align: center;
-        font-weight: 700;
-        font-size: clamp(15px, 3vw, 17px);
-        color: var(--text-primary);
-        border-bottom: 2px solid var(--border-color);
-        border-right: 1px solid var(--border-color);
+      .sticky-header {
         position: sticky;
         top: 0;
+        background: var(--gold-lighter);
         z-index: 10;
-        letter-spacing: 0.05em;
-        text-shadow: none;
+        /* box-shadow: inset 0 -1px 0 0 #e5e7eb; */
       }
-
-      .comparison-table th:first-child {
-        text-align: center;
-        background: var(--bg-secondary);
-        min-width: 180px;
-        width: 180px;
-        position: sticky;
-        top: 0;
-        left: 0;
-        z-index: 2;
-        box-shadow: 2px 0 4px rgba(15, 26, 46, 0.08);
+      dialog::backdrop {
+        /* background: rgba(0, 0, 0, 0.4); */
+        background: transparent;
       }
-
-      .comparison-table th:last-child {
-        border-right: none;
-      }
-
-      .comparison-table td {
-        padding: 20px 18px;
-        border-bottom: 1px solid var(--border-color);
-        border-right: 1px solid var(--border-color);
-        text-align: center;
-        vertical-align: top;
-        min-width: 200px;
-        transition: background-color 0.2s ease;
-        background: var(--bg-primary);
-        color: var(--text-secondary);
-      }
-
-      .comparison-table tr:nth-child(even) td {
-        background: var(--bg-secondary);
-      }
-
-      .comparison-table tr:hover td {
-        background: var(--hover-background);
-      }
-
-      .comparison-table td:first-child {
-        text-align: left;
-        font-weight: 600;
-        background: var(--bg-secondary);
-        color: var(--text-primary);
-        border-right: 2px solid var(--border-color);
-        font-size: clamp(13px, 2.5vw, 15px);
-        position: sticky;
-        left: 0;
-        z-index: 15;
-        box-shadow: 2px 0 4px rgba(15, 26, 46, 0.08);
-        letter-spacing: 0.025em;
-      }
-
-      .comparison-table td:last-child {
-        border-right: none;
-      }
-
-      .scroll-button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 30;
-        width: 40px;
-        height: 40px;
-        border: none;
-        background: var(--primary-gold);
-        color: white;
-        font-size: 22px;
-        border-radius: 50%;
-        box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
-        cursor: pointer;
-        transition: all 0.2s ease;
-        opacity: 0.9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .scroll-button:hover {
-        transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 4px 16px rgba(212, 175, 55, 0.6);
-        background: var(--dark-gold);
-      }
-
-      .scroll-button.scroll-left {
-        left: 8px;
-      }
-      .scroll-button.scroll-right {
-        right: 8px;
-      }
-
-      .scroll-button.disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-        background: var(--text-muted);
-      }
-
-      .scroll-button.disabled:hover {
-        transform: translateY(-50%);
-        box-shadow: 0 4px 16px rgba(74, 85, 104, 0.2);
-      }
-
-      .see-more-btn {
-        background: var(--primary-gold);
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 8px;
-        font-size: clamp(12px, 2vw, 14px);
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-bottom: 12px;
-        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-        text-decoration: none;
-        font-family: "Lora", serif;
-      }
-
-      .see-more-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-        background: var(--dark-gold);
-      }
-
-      .check-icon {
-        color: #16a34a;
-        font-size: 20px;
-        font-weight: bold;
-      }
-
-      .cross-icon {
-        color: #dc2626;
-        font-size: 20px;
-        font-weight: bold;
-      }
-
-      .question-mark {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background: var(--text-muted);
-        color: white;
-        border-radius: 50%;
-        text-align: center;
-        font-size: 12px;
-        line-height: 18px;
-        margin-left: 6px;
-        cursor: help;
-        transition: all 0.2s ease;
-      }
-
-      .question-mark:hover {
-        background: var(--primary-gold);
-        transform: scale(1.1);
-      }
-
-      .feature-list {
-        text-align: left;
-        color: var(--text-secondary);
-        line-height: 1.6;
-        font-size: clamp(11px, 2vw, 13px);
-      }
-
-      .feature-list ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .feature-list li {
-        padding: 6px 0;
-        padding-left: 20px;
-        position: relative;
-        border-bottom: 1px solid var(--border-color);
-      }
-
-      .feature-list li:last-child {
-        border-bottom: none;
-      }
-
-      .feature-list li:before {
-        content: "→";
-        position: absolute;
-        left: 0;
-        color: var(--text-accent);
-        font-weight: bold;
-        font-size: 14px;
-      }
-
-      .feature-section {
-        margin-bottom: 16px;
-      }
-
-      .feature-section:last-child {
-        margin-bottom: 0;
-      }
-
-      .section-divider {
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent 0%,
-          var(--border-color) 50%,
-          transparent 100%
-        );
-        margin: 12px 0;
-      }
-
-      .expandable-content {
-        max-height: 150px;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        position: relative;
-      }
-
-      .expandable-content.expanded {
-        max-height: none;
-      }
-
-      .expand-btn {
-        background: none;
-        border: none;
-        color: var(--text-accent);
-        cursor: pointer;
-        font-size: 18px;
-        font-weight: bold;
-        padding: 4px 8px;
-        margin-top: 8px;
-        border-radius: 4px;
-        transition: all 0.2s ease;
-        font-family: "Lora", serif;
-      }
-
-      .expand-btn:hover {
-        background-color: var(--hover-background);
-      }
-
-      .feature-category {
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: 8px;
-        font-size: clamp(12px, 2vw, 14px);
-        display: flex;
-        align-items: center;
-      }
-
-      .feature-category:before {
-        content: "●";
-        color: var(--text-accent);
-        margin-right: 8px;
-      }
-
       .tooltip {
         position: relative;
         display: inline-block;
       }
-
-      .tooltip .tooltiptext {
+      .tooltip-trigger {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 18px;
+        height: 18px;
+        background: var(--navy-deepest);
+        color: white;
+        border-radius: 50%;
+        font-size: 12px;
+        line-height: 18px;
+        margin-left: 6px;
+        cursor: help;
+        transition: background 0.2s ease;
+      }
+      .tooltip-trigger:hover {
+        background: var(--primary-gold);
+        transform: scale(1.1);
+      }
+      .tooltip-text {
+        --width: 200px;
+        --border-width: 1px;
         visibility: hidden;
-        width: 200px;
-        background: var(--text-primary);
+        width: var(--width);
+        background: var(--navy-deepest);
         color: white;
         text-align: center;
         border-radius: 6px;
@@ -422,1462 +89,1287 @@
         z-index: 1000;
         bottom: 125%;
         left: 50%;
-        margin-left: -100px;
+        transform: translateX(
+          calc((var(--border-width) * 2 + 1px) - (var(--width) / 2))
+        );
         opacity: 0;
         transition: opacity 0.3s;
         font-size: 12px;
         line-height: 1.4;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 4px 12px rgba(15, 26, 46, 0.2);
+        border: var(--border-width) solid var(--border-color);
+        box-shadow: 0 4px 12px var(--hover-bg);
       }
-
-      .tooltip .tooltiptext::after {
+      .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+      .tooltip-text::after {
         content: "";
         position: absolute;
         top: 100%;
         left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
+        transform: translateX(-50%);
+        border-width: 6px;
         border-style: solid;
-        border-color: var(--text-primary) transparent transparent transparent;
-      }
-
-      .tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
-      }
-
-      /* Mobile Responsive Design */
-      @media (max-width: 768px) {
-        body {
-          padding: 10px;
-        }
-
-        .table-container {
-          margin: 5px;
-        }
-
-        .comparison-table {
-          font-size: clamp(10px, 3vw, 12px);
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-          padding: 12px 8px;
-        }
-
-        .feature-list {
-          font-size: clamp(9px, 3vw, 11px);
-        }
-
-        .scroll-button {
-          width: 35px;
-          height: 35px;
-          font-size: 16px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .comparison-table th,
-        .comparison-table td {
-          padding: 8px 6px;
-        }
-
-        .scroll-button {
-          width: 30px;
-          height: 30px;
-          font-size: 14px;
-        }
+        border-color: var(--navy-deepest) transparent transparent transparent;
       }
     </style>
   </head>
-  <body>
-    <div class="dropdown-wrapper">
-      <button id="columnDropdownBtn" class="dropdown-toggle-btn">
-        Show/Hide Companies ▼
-      </button>
-      <div id="columnDropdown" class="dropdown-panel">
-        <label class="dropdown-option"
-          ><input type="checkbox" class="column-toggle" data-col="1" checked />
-          ANTSA</label
-        >
-        <label class="dropdown-option"
-          ><input type="checkbox" class="column-toggle" data-col="2" checked />
-          Bastion GPT</label
-        >
-        <label class="dropdown-option"
-          ><input type="checkbox" class="column-toggle" data-col="3" checked />
-          Patient Notes</label
-        >
-        <label class="dropdown-option"
-          ><input type="checkbox" class="column-toggle" data-col="4" checked />
-          Heidi Health</label
-        >
-        <label class="dropdown-option"
-          ><input type="checkbox" class="column-toggle" data-col="5" checked />
-          Lyrebird</label
-        >
-        <label class="dropdown-option"
-          ><input type="checkbox" class="column-toggle" data-col="6" checked />
-          Zanda Health</label
-        >
-        <label class="dropdown-option"
-          ><input type="checkbox" class="column-toggle" data-col="7" checked />
-          NovoNote by NovoPsych</label
-        >
-        <label class="dropdown-option"
-          ><input type="checkbox" class="column-toggle" data-col="8" checked />
-          Uplift AI</label
-        >
-        <label class="dropdown-option"
-          ><input type="checkbox" class="column-toggle" data-col="9" checked />
-          Everbility</label
-        >
-      </div>
+  <body class="bg-[var(--navy-deepest)] text-white">
+    <div class="container mx-auto sm:p-6 lg:p-8">
+      <main id="main" class="space-y-12">
+        <!-- Plan selection + filters -->
+        <section aria-labelledby="select-plans-heading">
+          <div
+            class="flex items-start sm:items-center justify-between gap-3 mb-3"
+          >
+            <div>
+              <h2
+                id="select-plans-heading"
+                class="text-xl text-[var(--text-secondary)] font-semibold"
+              >
+                Select plans to see a side-by-side comparison
+              </h2>
+
+              <!-- Active filter chips summary -->
+              <nav aria-label="Active filters">
+                <ul id="active-chips" class="mt-2 flex flex-wrap gap-2"></ul>
+              </nav>
+            </div>
+
+            <!-- Filters toolbar -->
+            <div class="flex items-center gap-3">
+              <p
+                id="match-pill"
+                class="hidden sm:inline-flex items-center gap-2 text-sm text-[var(--text-secondary)]"
+                aria-live="polite"
+              >
+                <span id="match-count" class="font-semibold">0</span> matches
+              </p>
+
+              <button
+                id="filter-btn"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="filter-dialog"
+                aria-expanded="false"
+                class="group inline-flex items-center gap-2 rounded-lg border border-[var(--primary-gold)] bg-[var(--gold-lighter)] px-3 py-2 text-sm font-semibold text-[var(--navy-deepest)] hover:bg-[var(--primary-gold)] hover:text-white transition"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="h-5 w-5"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.25 4A.75.75 0 0 1 4 3.25h12a.75.75 0 0 1 .53 1.28l-4.78 4.78v4.19a.75.75 0 0 1-.33.62l-2.5 1.67A.75.75 0 0 1 7.5 15.5V9.31L2.72 4.53A.75.75 0 0 1 3.25 4Z"
+                  />
+                </svg>
+                Filters
+                <span
+                  id="active-count"
+                  class="ml-1 hidden rounded-full flex items-center justify-center w-5 h-5 p-0.5 bg-[var(--navy-deepest)] text-xs font-bold text-white group-hover:bg-[var(--gold-lighter)] group-hover:text-[var(--primary-gold)]"
+                  >0</span
+                >
+              </button>
+            </div>
+          </div>
+
+          <p
+            id="eligible-pill"
+            class="hidden text-sm text-gray-600 mb-2"
+            aria-live="polite"
+          >
+            <span id="eligible-extra" class="font-semibold"></span>
+          </p>
+
+          <!-- Selectable items as a list -->
+          <ul
+            id="selectable-items-container"
+            class="flex flex-wrap gap-3"
+            role="list"
+          >
+            <!-- plan <li> injected here -->
+          </ul>
+        </section>
+
+        <!-- Comparison table -->
+        <section aria-labelledby="comparison-heading">
+          <div
+            id="comparison-table-container"
+            class="bg-[var(--gold-lighter)] border-[var(--primary-gold)] rounded-xl shadow-lg overflow-x-auto"
+          >
+            <!-- table injected here -->
+          </div>
+        </section>
+      </main>
+
+      <!-- Optional footer -->
+      <footer class="sr-only">
+        <p>End of comparison tool.</p>
+      </footer>
     </div>
-    <div class="table-container">
-      <button
-        class="scroll-button scroll-left"
-        onclick="scrollTable('left')"
-        id="scrollLeft"
-      >
-        ‹
-      </button>
-      <button
-        class="scroll-button scroll-right"
-        onclick="scrollTable('right')"
-        id="scrollRight"
-      >
-        ›
-      </button>
-      <div class="table-wrapper" id="tableWrapper">
-        <table id="tableId" class="comparison-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>ANTSA</th>
-              <th>Bastion GPT</th>
-              <th>Patient Notes</th>
-              <th>Heidi Health</th>
-              <th>Lyrebird</th>
-              <th>Zanda Health</th>
-              <th>NovoNote by NovoPsych</th>
-              <th>Uplift AI</th>
-              <th>Everbility</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Header -->
-            <tr>
-              <th scope="row"></th>
-              <td>
-                <a
-                  href="https://www.antsa.com.au/"
-                  target="_blank"
-                  class="see-more-btn"
-                  >See more</a
+
+    <!-- Filters Modal as native dialog -->
+    <dialog
+      id="filter-dialog"
+      class="w-full max-w-3xl rounded-2xl bg-[var(--gold-lighter)] shadow-2xl border border-[var(--primary-gold)] p-0"
+    >
+      <form method="dialog" class="flex flex-col max-h-[80vh]">
+        <header
+          class="p-5 border-b border-[var(--primary-gold)] flex items-center justify-between text-[var(--navy-deepest)] font-semibold"
+        >
+          <h3 id="filter-title" class="text-lg">Filter options</h3>
+          <div class="flex items-center gap-2">
+            <button type="button" id="clear-filters" class="text-sm">
+              Clear all
+            </button>
+            <button
+              id="close-filters"
+              class="inline-flex items-center gap-2 rounded-lg font-semibold text-sm transition-all-smooth px-4 py-2 border border-[var(--navy-deepest)] hover:bg-[var(--navy-deepest)] hover:text-white"
+            >
+              Close
+            </button>
+          </div>
+        </header>
+
+        <div class="p-5 grid grid-cols-1 gap-4 overflow-auto">
+          <fieldset class="border border-[var(--primary-gold)] rounded-lg p-3">
+            <legend class="px-1 text-sm font-medium text-[var(--navy-deepest)]">
+              Features
+            </legend>
+
+            <div class="mt-2 flex flex-wrap gap-2">
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  data-filter-group="appCompliance"
+                  value="yes"
+                  class="peer hidden"
+                />
+                <span
+                  class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
-              </td>
-              <td>
-                <a
-                  href="https://buy.stripe.com/eVa8yH6Akcs35I48wQ"
-                  target="_blank"
-                  class="see-more-btn"
-                  >30 day free trial</a
+                  APP Compliance
+                </span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  data-filter-group="mobileCompatible"
+                  value="yes"
+                  class="peer hidden"
+                />
+                <span
+                  class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
-              </td>
-              <td>
-                <a
-                  href="https://www.patientnotes.app/"
-                  target="_blank"
-                  class="see-more-btn"
-                  >10% Discount</a
-                ><br /><br />
-                <div><b>Code:</b> AIPSYCH2024</div>
-                <br />
-              </td>
-              <td>
-                <a
-                  href="https://scribe.heidihealth.com/?via=psychologysquared"
-                  target="_blank"
-                  class="see-more-btn"
-                  >30 day free trial</a
+                  Mobile Compatible
+                </span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  data-filter-group="freeMembership"
+                  value="yes"
+                  class="peer hidden"
+                />
+                <span
+                  class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
-                <br />
-              </td>
-              <td>
-                <a
-                  href="https://www.lyrebirdhealth.com/us?via=024cf1"
-                  target="_blank"
-                  class="see-more-btn"
-                  >10% Discount</a
-                ><br /><br />
-                <div><b>Code:</b> PS10</div>
-                <br />
-              </td>
-              <td>
-                <a
-                  href="https://zandahealth.com/?fpr=david67"
-                  target="_blank"
-                  class="see-more-btn"
-                  >See more</a
+                  Free Level of Membership Available
+                </span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  data-filter-group="telehealth"
+                  value="yes"
+                  class="peer hidden"
+                />
+                <span
+                  class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
-              </td>
-              <td>
-                <a
-                  href="https://novopsych.com/novonote/"
-                  target="_blank"
-                  class="see-more-btn"
-                  >See more</a
+                  Telehealth
+                </span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  data-filter-group="headphonesCompatible"
+                  value="yes"
+                  class="peer hidden"
+                />
+                <span
+                  class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
-              </td>
-              <td>
-                <a
-                  href="https://www.upliftgroup.ai/"
-                  target="_blank"
-                  class="see-more-btn"
-                  >See more</a
-                >
-              </td>
-              <td>
-                <a
-                  href="https://www.everbility.com/?via=david-lopis"
-                  target="_blank"
-                  class="see-more-btn"
-                  >10% Discount</a
-                >
-              </td>
-            </tr>
+                  Headphones Compatible
+                </span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </form>
+    </dialog>
 
-            <!-- 1. APP Compliance -->
-            <tr>
-              <th scope="row">
-                <div class="tooltip">
-                  APP Compliance<span class="question-mark">?</span>
-                  <span class="tooltiptext">Australian Privacy Principles</span>
-                </div>
-              </th>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-            </tr>
-
-            <!-- 2. Where is the data stored? -->
-            <tr>
-              <th scope="row">Data storage</th>
-              <td>Australia</td>
-              <td>Australia</td>
-              <td>Australia</td>
-              <td>Australian AWS servers</td>
-              <td>Australia</td>
-              <td>
-                Australia (For Aus users). Stored according to the practice's
-                location
-              </td>
-              <td>Australia</td>
-              <td>Australia</td>
-              <td>Australia</td>
-            </tr>
-
-            <!-- 3. Free Membership Option -->
-            <tr>
-              <th scope="row">Free membership</th>
-              <td><span class="cross-icon">✗</span></td>
-              <td><span class="cross-icon">✗</span></td>
-              <td><span class="cross-icon">✗</span></td>
-              <td>
-                <div class="tooltip">
-                  <span class="question-mark">!</span>
-                  <span class="tooltiptext"
-                    >Heidi offer unlimited usage without being limited by the
-                    number of actions</span
-                  >
-                  <span class="check-icon">✓</span>
-                </div>
-              </td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="cross-icon">✗</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="cross-icon">✗</span></td>
-            </tr>
-
-            <!-- 4. Free Trial Option -->
-            <tr>
-              <th scope="row">Free trial</th>
-              <td>
-                <span class="check-icon">✓</span><br /><span>30 days</span>
-              </td>
-              <td>
-                <span class="check-icon">✓</span><br /><span>30 days</span>
-              </td>
-              <td>
-                <span class="check-icon">✓</span><br /><span>14 days</span>
-              </td>
-              <td>
-                <span class="check-icon">✓</span><br /><span>30 days</span>
-              </td>
-              <td>
-                <span class="check-icon">✓</span><br /><span>14 days</span>
-              </td>
-              <td>
-                <span class="check-icon">✓</span><br /><span>14 days</span>
-              </td>
-              <td>
-                <span class="check-icon">✓</span><br /><span>3 months</span>
-              </td>
-              <td>
-                <span class="check-icon">✓</span><br /><span
-                  >Ongoing for now</span
-                >
-              </td>
-              <td>
-                <span class="check-icon">✓</span><br /><span>7 days</span>
-              </td>
-            </tr>
-
-            <!-- 5. PMS Integration -->
-            <tr>
-              <th scope="row">
-                <div class="tooltip">
-                  PMS Integration <span class="question-mark">?</span>
-                  <span class="tooltiptext">Practice Management System</span>
-                </div>
-              </th>
-              <td>
-                The AI scribe is currently able to be saved straight into any
-                PMS. We are new so this information is changing daily - contact
-                us at help@ANTSA.com.au for updates
-              </td>
-              <td>Copy+Paste typical, if needed</td>
-              <td>Cliniko and Nookal</td>
-              <td>
-                Yes, Cliniko, Best Practice, Medirecords and many to come. If
-                you would like to know if we are currently building an
-                integration for your PMS please contact Support@heidihealth.com
-              </td>
-              <td>
-                Best Practice (available) & Genie / Gentu (coming very soon)
-              </td>
-              <td>
-                The tool is built natively within the Zanda practice management
-                system
-              </td>
-              <td>
-                Copy and paste into practice management software. Integration
-                with NovoPsych
-              </td>
-              <td>
-                Can use it as a standalone AI-powered, all-inclusive PMS OR use
-                it alongside your existing PMS
-              </td>
-              <td>
-                Everbility is building integrations with many Australian
-                practice management softwares, reach out to us if you want an
-                integration with yours.
-              </td>
-            </tr>
-
-            <!-- 6. Unique Features -->
-            <tr>
-              <th scope="row">
-                Unique features<br /><button
-                  class="expand-btn"
-                  onclick="toggleExpansion(this)"
-                >
-                  Show more ↓
-                </button>
-              </th>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <div class="feature-section">
-                      <div class="feature-category">AI Scribe Integration</div>
-                      <ul>
-                        <li>
-                          AI scribe (converts voice to text) and will be
-                          exportable to PMS (coming January 2025)
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="section-divider"></div>
-                    <div class="feature-section">
-                      <div class="feature-category">24/7 AI Therapy</div>
-                      <ul>
-                        <li>
-                          jAlmee (AI therapy chatbot - extremely popular with
-                          clients) is available 24/7.
-                        </li>
-                        <li>
-                          Clinicians can observe jAlmee live or during the
-                          client's next session.
-                        </li>
-                        <li>
-                          ANTSA's AI interventions are supervised by clinicians.
-                        </li>
-                        <li>Practitioner oversight & customisability.</li>
-                        <li>
-                          Continuous client engagement - "therapy takes place
-                          between the sessions".
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <div class="feature-section">
-                      <div class="feature-category">Advanced Transcription</div>
-                      <ul>
-                        <li>
-                          Transcription service with speaker recognition
-                          included
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="section-divider"></div>
-                    <div class="feature-section">
-                      <div class="feature-category">
-                        Specialized Healthcare AI
-                      </div>
-                      <ul>
-                        <li>
-                          AI models customized for over 200 healthcare and
-                          mental health use cases.
-                        </li>
-                        <li>
-                          Increased use of evidence-based output relative to
-                          other models like ChatGPT.
-                        </li>
-                        <li>
-                          Stay up to date with the latest high-end AI models
-                          with only one monthly subscription and APP compliance.
-                        </li>
-                        <li>
-                          Reduced content filters when dealing with dealing with
-                          psychology topics around violence and sexual abuse.
-                        </li>
-                        <li>Searchable chat history.</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <div class="feature-section">
-                      <div class="feature-category">Advanced Tools</div>
-                      <ul>
-                        <li>Smart dictate</li>
-                        <li>Multi session reports</li>
-                        <li>Speech-to-text editing</li>
-                        <li>Prompt creation tool</li>
-                        <li>Extensive prompt library</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <div class="feature-section">
-                      <div class="feature-category">Security & Compliance</div>
-                      <ul>
-                        <li>Highest level of security (SOC2 and ISO27001)</li>
-                        <li>Fully regulated in multiple countries</li>
-                      </ul>
-                    </div>
-                    <div class="section-divider"></div>
-                    <div class="feature-section">
-                      <div class="feature-category">Medical Specialization</div>
-                      <ul>
-                        <li>
-                          AI is trained on medical language and built by
-                          clinicians, making transcription unmatched
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <div class="feature-section">
-                      <div class="feature-category">Customization</div>
-                      <ul>
-                        <li>
-                          Deep levels of customisation, Lyrebird is the only
-                          scribe that allows you upload an example of your ideal
-                          report for it to learn how you would like Lyrebird to
-                          write (NB Heidi Health say they offer this feature
-                          too).
-                        </li>
-                        <li>
-                          This means you won't sound like a robot, and your
-                          letters will still very much sound like you wrote
-                          them.
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="feature-section">
-                      <div class="feature-category">Security</div>
-                      <ul>
-                        <li>
-                          Only AI scribe (to our knowledge) that processes all
-                          data on Australian soil. Especially in Psychology, it
-                          is so important that security and privacy is front of
-                          mind, for Lyrebird, it is.
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        Purpose-built for psychologists and allied health
-                        professionals
-                      </li>
-                      <li>
-                        Ability to set custom note output preferences per user
-                      </li>
-                      <li>
-                        Seamlessly integrated with the client profile in Zanda -
-                        no copying and pasting required
-                      </li>
-                      <li>
-                        Free usage of the refine tool to make changes to the
-                        note using AI
-                      </li>
-                      <li>Custom retention period for transcript storage</li>
-                      <li>
-                        Usage report to see recording time per user in a
-                        specific date range
-                      </li>
-                      <li>
-                        Compliant with Australian privacy and security
-                        regulation, and ISO 27001 certified
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        Specifically designed for mental health practitioners by
-                        the team at NovoPsych
-                      </li>
-                      <li>Multi session reports (coming in January 2025)</li>
-                      <li>
-                        Integration of psychometric results of NovoPsych (coming
-                        in January 2025)
-                      </li>
-                      <li>
-                        Template library designed by a team of psychologists
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        The Only Fully Inclusive AI-Driven Operating System –
-                        Combines AI therapy, practice management, and patient
-                        engagement in one seamless ecosystem.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        Everbility's ability to write very long reports from as
-                        much context is very unique, it also has features to
-                        find peer reviewed research, additional NDIS knowledge,
-                        upload PDF (including handwriting).
-                      </li>
-                      <li>
-                        Everbility provides unlimited customer support to all
-                        customers with no additional fees for template creation
-                        and as much help as you need.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <!-- 7. Core Features -->
-            <tr id="core-features">
-              <th scope="row">
-                Core features<br /><button
-                  class="expand-btn"
-                  onclick="toggleExpansion(this)"
-                >
-                  Show more ↓
-                </button>
-              </th>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <div class="feature-section">
-                      <div class="feature-category">AI Transcription</div>
-                      <ul>
-                        <li>
-                          AI scribe (no recordings made - converts straight to
-                          notes) - Available January 2025
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="section-divider"></div>
-                    <div class="feature-section">
-                      <div class="feature-category">Therapy Tools</div>
-                      <ul>
-                        <li>
-                          World's first overseen AI therapy chatbot (jAlmee)
-                        </li>
-                        <li>Automated homework tasks (fully customisable)</li>
-                        <li>
-                          On-demand evidence-based psychoeducation library
-                        </li>
-                        <li>Journalling activities</li>
-                      </ul>
-                    </div>
-                    <div class="section-divider"></div>
-                    <div class="feature-section">
-                      <div class="feature-category">Monitoring & Analytics</div>
-                      <ul>
-                        <li>
-                          AI algorithms detect client distress levels in
-                          real-time
-                        </li>
-                        <li>
-                          Mood Tracking (graphed feedback for both clinician &
-                          client)
-                        </li>
-                        <li>Real-time data collection & monitoring</li>
-                        <li>Gamified engagement</li>
-                      </ul>
-                    </div>
-                    <div class="section-divider"></div>
-                    <div class="feature-section">
-                      <div class="feature-category">
-                        Security & Communication
-                      </div>
-                      <ul>
-                        <li>Secure client-practitioner communication</li>
-                        <li>Designed for clinician oversight</li>
-                        <li>
-                          Privacy & data security is our number one priority!!!
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <div class="feature-section">
-                      <div class="feature-category">AI Assistant</div>
-                      <ul>
-                        <li>
-                          AI assistant with the ease of use of ChatGPT but with
-                          AI models and features tailored for the needs of
-                          Psychologists
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="section-divider"></div>
-                    <div class="feature-section">
-                      <div class="feature-category">Privacy & AI Models</div>
-                      <ul>
-                        <li>
-                          The tool allows for use with personal information
-                          (APP\Privacy Act compliant), and automatic selection
-                          of the leading AI models (e.g., OpenAI GPT-4, Google
-                          Gemini, Anthropic Claude) based on what is being asked
-                          of it
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <div class="feature-section">
-                      <div class="feature-category">Session Management</div>
-                      <ul>
-                        <li>
-                          Creation of session data from session audio for
-                          clinical notes for in rooms or telehealth sessions
-                        </li>
-                        <li>
-                          Creation of medical reports and letters using either
-                          the captured session data or a manual option to insert
-                          one or several sets of clinical notes
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="section-divider"></div>
-                    <div class="feature-section">
-                      <div class="feature-category">Smart Features</div>
-                      <ul>
-                        <li>
-                          Smart dictate feature to allow flexible clinical admin
-                          tasks such as clinical notes, letter writing,
-                          recording phone sessions
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <div class="feature-section">
-                      <div class="feature-category">Documentation</div>
-                      <ul>
-                        <li>Transcription</li>
-                        <li>Document and note generation</li>
-                        <li>Custom templates</li>
-                      </ul>
-                    </div>
-                    <div class="section-divider"></div>
-                    <div class="feature-section">
-                      <div class="feature-category">Integration & Support</div>
-                      <ul>
-                        <li>Ask AI feature</li>
-                        <li>Practice Management System (PMS) integrations</li>
-                        <li>Team and enterprise infrastructure</li>
-                        <li>Full Telehealth Support</li>
-                        <li>Heidi Health App</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content"></div>
-                <div class="feature-list">
-                  <div class="feature-section">
-                    <div class="feature-category">AI Medical Scribe</div>
-                    <ul>
-                      <li>
-                        AI medical scribe, Lyrebird listens to a consultation
-                        and converts it into clinical notes and documents
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>Real-time transcription</li>
-                      <li>
-                        Ability to add typed context notes while transcribing
-                      </li>
-                      <li>Fully customisable note templates</li>
-                      <li>
-                        Per user custom note preferences to control the note
-                        formatting, style and more
-                      </li>
-                      <li>Option to refine the note using AI</li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>In Session Transcription</li>
-                      <li>Document and note generation</li>
-                      <li>Dictation of notes</li>
-                      <li>Mental health specific template library</li>
-                      <li>Custom templates</li>
-                      <li>Integration with NovoPsych Psychometrics</li>
-                      <li>Practice Plans for teams</li>
-                      <li>Telehealth Support</li>
-                      <li>Works on computers, phones and tablets</li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>AI-Powered:</li>
-                      <li>- scheduling, billing, Workflow automation</li>
-                      <li>
-                        - clinical notes, session summaries, Treatment plans,
-                        reports, Diagnoses
-                      </li>
-                      <li>- Patient risk alerts & insights</li>
-                      <li>
-                        - Therapy support to patients between sessions = reduces
-                        dropout rates, maintains engagement
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        Clinical documentation. Everbility supports clinicians
-                        to use any amount of context to write any length
-                        documentation. If you're writing a case note, you can
-                        transcribe and generate a note from that transcription.
-                      </li>
-                      <li>
-                        If you're writing a long detailed report, you can use
-                        historical information about your client and provide as
-                        much additional context as required and generate a very
-                        detailed report.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <!-- 8. Cost of the tool -->
-            <tr>
-              <th scope="row">
-                Pricing<br /><button
-                  class="expand-btn"
-                  onclick="toggleExpansion(this)"
-                >
-                  Show more ↓
-                </button>
-              </th>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        $59 per month for UNLIMITED clients, prompts,
-                        transcriptions.
-                      </li>
-                      <li>
-                        Includes use of FULL platform - AI transcriptions,
-                        homework tasks, customisable activities, and continuous
-                        engagement support with AI therapist chatbot, jAlmee.
-                      </li>
-                      <li>
-                        Discounts for clinic owners requiring multiple licences
-                        for practitioners.
-                      </li>
-                      <li>
-                        Details on our website -
-                        <a href="https://www.antsa.com.au/pricing-plans"
-                          >www.antsa.com.au/pricing-plans</a
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        $20/mo - Professional: High quality psychology-tailored
-                        AI models, unlimited prompts, input documents up to
-                        10,000 words each
-                      </li>
-                      <li>
-                        $45/mo - Professional Plus: Enhanced features such as
-                        greater memory that supports documents up to 35,000
-                        words each, cloud synchronizing saved prompts across
-                        multiple devices, and processing of images and graphics
-                      </li>
-                      <li>
-                        $60/mo - Enterprise: Features designed for large
-                        enterprises, such as customizable security policies and
-                        Single-Sign-On
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>Essential plan $29 AUD $19USD</li>
-                      <li>Professional Plan $79 AUD $49USD</li>
-                      <li>Code: AIPSYCH2024 (for affiliate: 10% off)</li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        Free Tier: Cost - Free. Benefits - Access to world class
-                        AI scribe with no cost. Limitations: 10 pro actions a
-                        month which can be used on custom templates, document
-                        generation or Ask Heidi
-                      </li>
-                      <li>
-                        Pro Tier: Cost - $99 per month or $799 upfront for the
-                        year. Benefits - Unlimited usage of the Heidi platform!
-                        No limits on number of sessions or documents generated
-                        (Pro Actions). Limits: Self-Serve system where you must
-                        create your own templates or utilise community templates
-                      </li>
-                      <li>
-                        Together Tier: Cost - $1299 for the year per user.
-                        Benefits: Team features that allow you to share
-                        templates across the team, Integration with your PMS,
-                        Full Heidi Support where the Medical Knowledge team will
-                        create templates for you! Limitations: None at all!
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        Standard Pricing: $300 per month OR $2,400 per year (33%
-                        discount)
-                      </li>
-                      <li>Use code PS10 for 10% off</li>
-                      <li>
-                        Special Discounts: Students: Free subscription for 1
-                        year
-                      </li>
-                      <li>
-                        Registrars: 80% off if solo, free if part of a clinic
-                        deal
-                      </li>
-                      <li>
-                        Part-Time Pricing: More than 25 hours/week: Full price.
-                        Less than 25 hours/week: 50% discount
-                      </li>
-                      <li>
-                        Organisation: If you are a part of a clinic wanting to
-                        join Lyrebird, we discuss a special price and organise
-                        an onboarding session to make sure it is a smooth roll
-                        out of a new tool in the clinic.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Our AI Refine tool is free for all users. Transcription is
-                invoiced based on actual use at $1 +gst per hour (prorata).
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        All NovoNote plans include access to NovoPsych
-                        Psychometrics:
-                      </li>
-                      <li>Free Tier: 30 notes a month</li>
-                      <li>Pro: $25 - 50 notes a month</li>
-                      <li>Pro Plus: $60 - 100 notes per month</li>
-                      <li>Platinum: $99 - Unlimited usage</li>
-                      <li>
-                        Practice Plans starting from $50 per clinician per month
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Free. Future pricing packages to be determined end 2025/start
-                2026
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        Everbility has one subscription level, $50AUD per month
-                        per clinician or $420AUD per year per clinician which is
-                        30% discount on monthly cost.
-                      </li>
-                      <li>
-                        There's no additional costs for template support,
-                        training calls, etc.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <!-- 9. Telehealth -->
-            <tr>
-              <th scope="row">Telehealth</th>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td>
-                <div class="tooltip">
-                  <span class="question-mark">!</span>
-                  <span class="tooltiptext">
-                    Yes, if you use speaker mode on your device for the audio.
-                    We are working with Zoom to provide an option where
-                    headphones can be used.
-                  </span>
-                </div>
-                <span class="check-icon">✓</span>
-              </td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-            </tr>
-
-            <!-- 9. Headphones compatible -->
-            <tr>
-              <th scope="row">Headphones compatible</th>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="cross-icon">✗</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">Not sure</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-            </tr>
-
-            <!-- 10. Mobile Phone compatible -->
-            <tr>
-              <th scope="row">Mobile Phone compatible</th>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="cross-icon">✗</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="cross-icon">✗</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-            </tr>
-
-            <!-- 11. Can multiple notes inform the report? -->
-            <tr>
-              <th scope="row">Multiple notes for a single report?</th>
-              <td>Not sure</td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="cross-icon">✗</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td>Under development</td>
-              <td><span class="check-icon">✓</span></td>
-              <td>
-                Can use as a standalone AI-powered, all-inclusive PMS OR use it
-                alongside your existing PMS
-              </td>
-              <td><span class="check-icon">✓</span></td>
-            </tr>
-
-            <!-- 12. Is the AI trainable over time? -->
-            <tr>
-              <th scope="row">Is the AI trainable over time?</th>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td>
-                We have a prompt review tool which we have found better than
-                training
-              </td>
-              <td><span class="cross-icon">✗</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td>This is on our roadmap.</td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-            </tr>
-
-            <!-- 13. Content Tuning -->
-            <tr>
-              <th scope="row">
-                <div class="tooltip">
-                  Content Tuning <span class="question-mark">?</span>
-                  <span class="tooltiptext"
-                    >Can the tool adjust its content based on feedback?
-                    (reinforcement learning)</span
-                  >
-                </div>
-              </th>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td>
-                Yes, each user can prove instructions on their preferences that
-                the tool will abide when producing a note.
-              </td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-            </tr>
-
-            <!-- 14. Trusted Sources Only -->
-            <tr>
-              <th scope="row">
-                <div class="tooltip">
-                  Trusted Sources Only <span class="question-mark">?</span>
-                  <span class="tooltiptext"
-                    >Can the tool be limited to use only top quality,
-                    evidence-based sources for info, assessments, and
-                    plans?</span
-                  >
-                </div>
-              </th>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="cross-icon">✗</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="cross-icon">✗</span></td>
-              <td>
-                This can be achieved applying the user's custom preferences.
-              </td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-            </tr>
-
-            <!-- 15. Languages -->
-            <tr>
-              <th scope="row">
-                Languages Supported<br /><button
-                  class="expand-btn"
-                  onclick="toggleExpansion(this)"
-                >
-                  Show more ↓
-                </button>
-              </th>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        Not at this time, but will be adding languages as we go
-                      </li>
-                      <li>
-                        Message us at help@ANTSA.com.au for requests at this
-                        stage.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        English primarily supported, but content can be
-                        generated in many other languages
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>Bulgarian</li>
-                      <li>Catalan</li>
-                      <li>Chinese (Mandarin, Simplified)</li>
-                      <li>Chinese (Mandarin, Traditional)</li>
-                      <li>Chinese (Cantonese, Traditional)</li>
-                      <li>Czech</li>
-                      <li>Danish</li>
-                      <li>Dutch</li>
-                      <li>English Australian</li>
-                      <li>English British</li>
-                      <li>English Indian</li>
-                      <li>English New Zealand</li>
-                      <li>English U.S.</li>
-                      <li>Estonian</li>
-                      <li>Finnish</li>
-                      <li>Flemish</li>
-                      <li>French Canadian</li>
-                      <li>French Swiss</li>
-                      <li>French</li>
-                      <li>German Swiss</li>
-                      <li>German</li>
-                      <li>Greek</li>
-                      <li>Hindi</li>
-                      <li>Hungarian</li>
-                      <li>Indonesian</li>
-                      <li>Italian</li>
-                      <li>Japanese</li>
-                      <li>Korean</li>
-                      <li>Latvian</li>
-                      <li>Lithuanian</li>
-                      <li>Malay</li>
-                      <li>Spanish and English</li>
-                      <li>Norwegian</li>
-                      <li>Polish</li>
-                      <li>Portuguese Brazilian</li>
-                      <li>Portuguese</li>
-                      <li>Romanian</li>
-                      <li>Russian</li>
-                      <li>Slovak</li>
-                      <li>Spanish</li>
-                      <li>Swedish</li>
-                      <li>Thai</li>
-                      <li>Turkish</li>
-                      <li>Ukrainian</li>
-                      <li>Vietnamese</li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>Cantonese</li>
-                      <li>Czech</li>
-                      <li>Danish</li>
-                      <li>Dutch</li>
-                      <li>Flemish</li>
-                      <li>French</li>
-                      <li>German</li>
-                      <li>Greek</li>
-                      <li>Hindi</li>
-                      <li>Indonesian</li>
-                      <li>Italian</li>
-                      <li>Mandarin</li>
-                      <li>Norwegian</li>
-                      <li>Japanese</li>
-                      <li>Korean</li>
-                      <li>Malay</li>
-                      <li>Polish</li>
-                      <li>Portuguese</li>
-                      <li>Russian</li>
-                      <li>Spanish</li>
-                      <li>Swedish</li>
-                      <li>Thai</li>
-                      <li>Turkish</li>
-                      <li>Ukrainian</li>
-                      <li>Vietnamese</li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>Yes, it supports all languages</li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>Currently only available in English.</li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>Primarily English</li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>Not currently. It will in future development</li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="expandable-content">
-                  <div class="feature-list">
-                    <ul>
-                      <li>
-                        Everbility can be used in many other languages, reach
-                        out to us if you have any issues and we're happy to
-                        help.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="scrollbar-spacer" aria-hidden="true"></div>
-      </div>
-    </div>
     <script>
-      const tableWrapper = document.getElementById("tableWrapper");
-      const scrollLeftBtn = document.getElementById("scrollLeft");
-      const scrollRightBtn = document.getElementById("scrollRight");
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- DATA SOURCE ---
+        const allItems = [
+          {
+            id: 1,
+            name: "ANTSA",
+            link: { label: "See more", url: "https://www.antsa.com.au/" },
+            appCompliance: true, // Australian Privacy Principles
+            dataStorage: "Australia",
+            freeMembership: false,
+            freeTrial: "30 days",
+            pmsIntegration: false,
+            uniqueFeatures: {
+              sections: [
+                {
+                  category: "AI Scribe Integration",
+                  items: [
+                    "AI scribe (converts voice to text) and will be exportable to PMS (coming January 2025)",
+                  ],
+                },
+                {
+                  category: "24/7 AI Therapy",
+                  items: [
+                    "jAlmee (AI therapy chatbot - extremely popular with clients) is available 24/7.",
+                    "Clinicians can observe jAlmee live or during the client's next session.",
+                    "ANTSA's AI interventions are supervised by clinicians.",
+                    "Practitioner oversight & customisability.",
+                    'Continuous client engagement - "therapy takes place between the sessions.',
+                  ],
+                },
+              ],
+            },
+            coreFeatures: {
+              sections: [
+                {
+                  category: "AI Transcription",
+                  items: [
+                    "AI scribe (no recordings made - converts straight to notes) - Available January 2025",
+                    "Can use external audio to transcribe",
+                  ],
+                },
+                {
+                  category: "Therapy Tools",
+                  items: [
+                    "World's first overseen AI therapy chatbot (jAlmee)",
+                    "Automated homework tasks (fully customisable)",
+                    "On-demand evidence-based psychoeducation library",
+                    "Journalling activities",
+                  ],
+                },
+                {
+                  category: "Monitoring & Analytics",
+                  items: [
+                    "AI algorithms detect client distress levels in real-time",
+                    "Mood Tracking (graphed feedback for both clinician & client)",
+                    "Real-time data collection & monitoring",
+                    "Gamified engagement",
+                  ],
+                },
+                {
+                  category: "Security & Communication",
+                  items: [
+                    "Secure client-practitioner communication",
+                    "Designed for clinician oversight",
+                    "Privacy & data security is our number one priority!",
+                  ],
+                },
+              ],
+            },
+            pricing: {
+              prices: [
+                "$59 per month for UNLIMITED clients, prompts, transcriptions",
+                "Includes use of FULL platform - AI transcriptions, homework tasks, customisable activities, and continuous engagement support with AI therapist chatbot, jAlmee",
+                "Discounts for clinic owners requiring multiple licences for practitioners",
+                "Details on our website - www.antsa.com.au/pricing-plans",
+              ],
+            },
+            telehealth: true,
+            headphonesCompatible: true,
+            mobileCompatible: true,
+            multipleNotes: true,
+            aiTrainableOverTime: true,
+            languagesSupported: [
+              "Not at this time, but will be adding languages as we go.",
+              "Message us at help@ANTSA.com.au for requests at this stage.",
+            ],
+          },
 
-      function scrollTable(direction) {
-        const scrollAmount = 300;
-        const currentScroll = tableWrapper.scrollLeft;
+          {
+            id: 2,
+            name: "Bastion GPT",
+            link: {
+              label: "30 day free trial",
+              url: "https://buy.stripe.com/eVa8yH6Akcs35I48wQ",
+            },
+            appCompliance: true,
+            dataStorage: "Australia",
+            freeMembership: false,
+            freeTrial: "30 days",
+            pmsIntegration: "Works with ANY practice management system through copy-paste or document upload-download.",
+            uniqueFeatures: {
+              sections: [
+                {
+                  category: "Advanced Transcription",
+                  items: [
+                    "Multi-speaker recognition for higher quality documentation",
+                    "Generate documentation via voice, written notes, or a combination of both.",
+                    "Can match your voice, tone, and style when examples are used",
+                    "Reduced content filters for sensitive clinical topics such as violence, abuse or suicidality",
+                    "Powered by the latest AI models from OpenAI, Google and Anthropic",
+                  ],
+                },
+              ],
+            },
+            coreFeatures: {
+              sections: [
+                {
+                  category: "AI Scribe",
+                  items: [
+                    "Unlimited sessions, up to 4 hours long",
+                    "Record sessions live or upload prerecorded audio",
+                    "Record in-person or virtual sessions",
+                    "99.9% Uptime Guarantee",
+                    "AI assistant with the ease of use of ChatGPT",
+                  ],
+                },
+              ],
+            },
+            pricing: {
+              prices: [
+                "AUD $30 per user per month for unlimited use of all AI scribe features.",
+                "No per-session costs.",
+                "Australian pricing page:  " + "<a style='text-decoration: underline;' href='https://bastiongpt.com/australia'>https://bastiongpt.com/australia</a>",
+              ],
+            },
+            telehealth: true,
+            headphonesCompatible: true,
+            mobileCompatible: true,
+            multipleNotes: true,
+            aiTrainableOverTime: true,
+            languagesSupported: [
+              "16 languages supported, including specific models for US English and Australian English",
+            ],
+          },
 
-        if (direction === "left") {
-          tableWrapper.scrollTo({
-            left: currentScroll - scrollAmount,
-            behavior: "smooth",
-          });
-        } else {
-          tableWrapper.scrollTo({
-            left: currentScroll + scrollAmount,
-            behavior: "smooth",
-          });
-        }
-      }
+          {
+            id: 3,
+            name: "Patient Notes",
+            link: {
+              label: "10% Discount",
+              url: "https://www.patientnotes.app/",
+              code: "AIPSYCH2024",
+            },
+            appCompliance: true,
+            dataStorage: "Australia",
+            freeMembership: false,
+            freeTrial: "14 days",
+            pmsIntegration: "Cliniko and Nookal",
+            uniqueFeatures: {
+              sections: [
+                {
+                  category: "Advanced Tools",
+                  items: [
+                    "Smart dictate",
+                    "Multi session reports",
+                    "Speech-to-text editing",
+                    "Prompt creation tool",
+                    "Extensive prompt library",
+                  ],
+                },
+              ],
+            },
+            coreFeatures: {
+              sections: [
+                {
+                  category: "Session Management",
+                  items: [
+                    "Creation of session data from session audio for clinical notes for in rooms or telehealth sessions",
+                    "Creation of medical reports and letters using either the captured session data or a manual option to insert one or several sets of clinical notes",
+                  ],
+                },
+                {
+                  category: "Smart Features",
+                  items: [
+                    "Smart dictate feature to allow flexible clinical admin tasks such as clinical notes, letter writing, recording phone sessions",
+                  ],
+                },
+              ],
+            },
+            pricing: {
+              prices: [
+                "Essential Plan: $29 AUD / $19 USD",
+                "Professional Plan: $79 AUD / $49 USD",
+                "Code: AIPSYCH2024 (for affiliate: 10% off)",
+              ],
+            },
+            telehealth: true,
+            headphonesCompatible: false,
+            mobileCompatible: true,
+            multipleNotes: true,
+            aiTrainableOverTime:
+              "We have a prompt review tool which we have found better than training.",
+            languagesSupported: {
+              languages: [
+                "Bulgarian",
+                "Catalan",
+                "Chinese (Mandarin, Simplified)",
+                "Chinese (Mandarin, Traditional)",
+                "Chinese (Cantonese, Traditional)",
+                "Czech",
+                "Danish",
+                "Dutch",
+                "English Australian",
+                "English British",
+                "English Indian",
+                "English New Zealand",
+                "English U.S.",
+                "Estonian",
+                "Finnish",
+                "Flemish",
+                "French Canadian",
+                "French Swiss",
+                "French",
+                "German Swiss",
+                "German",
+                "Greek",
+                "Hindi",
+                "Hungarian",
+                "Indonesian",
+                "Italian",
+                "Japanese",
+                "Korean",
+                "Latvian",
+                "Lithuanian",
+                "Malay",
+                "Spanish",
+                "Norwegian",
+                "Polish",
+                "Portuguese Brazilian",
+                "Portuguese",
+                "Romanian",
+                "Russian",
+                "Slovak",
+                "Spanish",
+                "Swedish",
+                "Thai",
+                "Turkish",
+                "Ukrainian",
+                "Vietnamese",
+              ],
+            },
+          },
 
-      function updateScrollButtons() {
-        const maxScroll = tableWrapper.scrollWidth - tableWrapper.clientWidth;
-        const currentScroll = tableWrapper.scrollLeft;
+          {
+            id: 4,
+            name: "Heidi Health",
+            link: {
+              label: "30 day free trial",
+              url: "https://scribe.heidihealth.com/?via=psychologysquared",
+            },
+            appCompliance: true,
+            dataStorage: "Australian AWS servers",
+            freeMembership: {
+              available: true,
+              note: "Heidi offer unlimited usage without being limited by the number of actions",
+            },
+            freeTrial: "30 days",
+            pmsIntegration:
+              "Yes, Cliniko, Best Practice, Medirecords and many to come. If you would like to know if we are currently building an integration for your PMS please contact Support@heidihealth.com",
+            uniqueFeatures: {
+              sections: [
+                {
+                  category: "Security & Compliance",
+                  items: [
+                    "Highest level of security (SOC2 and ISO27001)",
+                    "Fully regulated in multiple countries",
+                  ],
+                },
+                {
+                  category: "Medical Specialization",
+                  items: [
+                    "AI is trained on medical language and built by clinicians, making transcription unmatched",
+                  ],
+                },
+              ],
+            },
+            coreFeatures: {
+              sections: [
+                {
+                  category: "Documentation",
+                  items: [
+                    "Transcription",
+                    "Document and note generation",
+                    "Custom templates",
+                  ],
+                },
+                {
+                  category: "Integration & Support",
+                  items: [
+                    "Ask AI feature",
+                    "Practice Management System (PMS) integrations",
+                    "Team and enterprise infrastructure",
+                    "Full Telehealth Support",
+                    "Heidi Health App",
+                  ],
+                },
+              ],
+            },
+            pricing: {
+              prices: [
+                "Free Tier (Free): Cost - Free. Benefits - Access to world class AI scribe with no cost. Limitations: 10 pro actions a month which can be used on custom templates, document generation or Ask Heidi",
+                "Pro Tier ($99/mo or $799/yr): Cost - $99 per month or $799 upfront for the year. Benefits - Unlimited usage of the Heidi platform! No limits on number of sessions or documents generated (Pro Actions). Limits: Self-Serve system where you must create your own templates or utilise community templates",
+                "Together Tier ($1299/yr per user): Cost - $1299 for the year per user. Benefits: Team features that allow you to share templates across the team, Integration with your PMS, Full Heidi Support where the Medical Knowledge team will create templates for you! Limitations: None at all!",
+              ],
+            },
+            telehealth: true,
+            headphonesCompatible: true,
+            mobileCompatible: true,
+            multipleNotes: false,
+            aiTrainableOverTime: false,
+            languagesSupported: {
+              languages: [
+                "Cantonese",
+                "Czech",
+                "Danish",
+                "Dutch",
+                "Flemish",
+                "French",
+                "German",
+                "Greek",
+                "Hindi",
+                "Indonesian",
+                "Italian",
+                "Mandarin",
+                "Norwegian",
+                "Japanese",
+                "Korean",
+                "Malay",
+                "Polish",
+                "Portuguese",
+                "Russian",
+                "Spanish",
+                "Swedish",
+                "Thai",
+                "Turkish",
+                "Ukrainian",
+                "Vietnamese",
+              ],
+            },
+          },
+          {
+            id: 5,
+            name: "Zanda Health",
+            link: {
+              label: "See more",
+              url: "https://zandahealth.com/?fpr=david67",
+            },
+            appCompliance: true,
+            dataStorage:
+              "Australia (For Aus users). Stored according to the practice's location",
+            freeMembership: false,
+            freeTrial: "14 days",
+            pmsIntegration:
+              "The tool is built natively within the Zanda practice management system",
+            uniqueFeatures: {
+              sections: [
+                {
+                  category: "Purpose-built",
+                  items: [
+                    "Purpose-built for psychologists and allied health professionals",
+                    "Ability to set custom note output preferences per user",
+                    "Seamlessly integrated with the client profile in Zanda - no copying and pasting required",
+                    "Free usage of the refine tool to make changes to the note using AI",
+                    "Custom retention period for transcript storage",
+                    "Usage report to see recording time per user in a specific date range",
+                    "Compliant with Australian privacy and security regulation, and ISO 27001 certified",
+                  ],
+                },
+              ],
+            },
+            coreFeatures: {
+              sections: [
+                {
+                  category: "Transcription & Notes",
+                  items: [
+                    "Real-time transcription",
+                    "Ability to add typed context notes while transcribing",
+                    "Fully customisable note templates",
+                    "Per user custom note preferences to control the note formatting, style and more",
+                    "Option to refine the note using AI",
+                  ],
+                },
+              ],
+            },
+            pricing:
+              "Our AI Refine tool is free for all users. Transcription is invoiced based on actual use at $1 +gst per hour (prorata).",
+            telehealth: {
+              available: true,
+              note: "Yes, if you use speaker mode on your device for the audio. We are working with Zoom to provide an option where headphones can be used.",
+            },
+            headphonesCompatible: true,
+            mobileCompatible: true,
+            multipleNotes: "Under development",
+            aiTrainableOverTime: "This is on our roadmap.",
+            languagesSupported: "Currently only available in English.",
+          },
 
-        if (currentScroll <= 0) {
-          scrollLeftBtn.classList.add("disabled");
-        } else {
-          scrollLeftBtn.classList.remove("disabled");
-        }
+          {
+            id: 6,
+            name: "NovoNote by NovoPsych",
+            link: { label: "See more", url: "https://novopsych.com/novonote/" },
+            appCompliance: true,
+            dataStorage: "Australia",
+            freeMembership: true,
+            freeTrial: "15 day trial",
+            pmsIntegration:
+              "Copy and paste into practice management software. Integration with NovoPsych",
+            uniqueFeatures: {
+              sections: [
+                {
+                  category: "Designed for Mental Health",
+                  items: [
+                    "Specifically designed for mental health practitioners by the team at NovoPsych",
+                    "Multi session reports (combine multiple sessions)",
+                    "Psychometric integration (reports blend therapy content + psychometrics)",
+                    "Large library of report templates",
+                    "Customisable templates",
+                    "Context editing after the fact (add context later and regenerate)",
+                  ],
+                },
+              ],
+            },
+            coreFeatures: {
+              sections: [
+                {
+                  category: "Documentation & Templates",
+                  items: [
+                    "In Session Transcription",
+                    "Document and note generation",
+                    "Dictation of notes",
+                    "Mental health specific template library",
+                    "Custom templates",
+                  ],
+                },
+                {
+                  category: "Integrations & Platform",
+                  items: [
+                    "Integration with NovoPsych Psychometrics",
+                    "Practice Plans for teams",
+                    "Telehealth Support",
+                    "Works on computers, phones and tablets",
+                  ],
+                },
+              ],
+            },
+            pricing: {
+              prices: [
+               
+                "$30, $60, $99, Depending on client load.",
+                "All NovoNote plans include access to NovoPsych Psychometrics",
+              ],
+            },
+            telehealth: true,
+            headphonesCompatible: "Not sure",
+            mobileCompatible: "Accessible on any device via your web browser (desktop, tablet, mobile)",
+            multipleNotes: true,
+            aiTrainableOverTime: true,
+            languagesSupported: "Primarily English",
+          },
 
-        if (currentScroll >= maxScroll - 1) {
-          scrollRightBtn.classList.add("disabled");
-        } else {
-          scrollRightBtn.classList.remove("disabled");
-        }
-      }
+          {
+            id: 7,
+            name: "Uplift AI",
+            link: { label: "See more", url: "https://www.upliftgroup.ai/" },
+            appCompliance: true,
+            dataStorage: "Australia",
+            freeMembership: true,
+            freeTrial: "Ongoing for now",
+            pmsIntegration:
+              "Can use it as a standalone AI-powered, all-inclusive PMS OR use it alongside your existing PMS",
+            uniqueFeatures: {
+              sections: [
+                {
+                  category: "Inclusive Operating System",
+                  items: [
+                    "The Only Fully Inclusive AI-Driven Operating System – Combines AI therapy, practice management, and patient engagement in one seamless ecosystem.",
+                  ],
+                },
+              ],
+            },
+            coreFeatures: {
+              sections: [
+                {
+                  category: "AI-Powered",
+                  items: [
+                    "Scheduling, billing, workflow automation",
+                    "Clinical notes, session summaries, treatment plans, reports, diagnoses",
+                    "Patient risk alerts & insights",
+                    "Therapy support to patients between sessions to reduce dropout rates and maintain engagement",
+                  ],
+                },
+              ],
+            },
+            pricing:
+              "Free. Future pricing packages to be determined end 2025/start 2026",
+            telehealth: true,
+            headphonesCompatible: true,
+            mobileCompatible: true,
+            multipleNotes:
+              "Can use as a standalone AI-powered, all-inclusive PMS OR use it alongside your existing PMS",
+            aiTrainableOverTime: true,
+            languagesSupported: "Not currently. It will in future development.",
+          },
 
-      tableWrapper.addEventListener("scroll", updateScrollButtons);
+          {
+            id: 8,
+            name: "Everbility",
+            link: {
+              label: "10% Discount",
+              url: "https://www.everbility.com/?via=david-lopis",
+            },
+            appCompliance: true,
+            dataStorage: "Australia",
+            freeMembership: false,
+            freeTrial: "7 days",
+            pmsIntegration:
+              "Everbility is building integrations with many Australian practice management softwares, reach out to us if you want an integration with yours.",
+            uniqueFeatures: {
+              sections: [
+                {
+                  category: "Long-form capability",
+                  items: [
+                    "Everbility's ability to write very long reports from as much context as needed",
+                    "Find peer reviewed research",
+                    "Additional NDIS knowledge",
+                    "Upload PDFs (including handwriting)",
+                  ],
+                },
+                {
+                  category: "Support",
+                  items: [
+                    "Everbility provides unlimited customer support with no additional fees for template creation and as much help as you need",
+                  ],
+                },
+              ],
+            },
+            coreFeatures: {
+              sections: [
+                {
+                  category: "Clinical documentation",
+                  items: [
+                    "Everbility supports clinicians to use any amount of context to write any length documentation",
+                    "If you're writing a case note, you can transcribe and generate a note from that transcription",
+                    "If you're writing a long detailed report, you can use historical information about your client and provide as much additional context as required to generate a very detailed report",
+                  ],
+                },
+              ],
+            },
+            pricing: {
+              prices: [
+                "Everbility has one subscription level: $50 AUD per month per clinician or $420 AUD per year per clinician (≈30% discount on monthly cost)",
+                "There are no additional costs for template support, training calls, etc.",
+              ],
+            },
+            telehealth: true,
+            headphonesCompatible: true,
+            mobileCompatible: true,
+            multipleNotes: true,
+            aiTrainableOverTime: true,
+            languagesSupported:
+              "Everbility can be used in many other languages, reach out to us if you have any issues and we're happy to help.",
+          },
+        ];
 
-      window.addEventListener("load", updateScrollButtons);
-      window.addEventListener("resize", updateScrollButtons);
+        const MAX_COMPARE_ITEMS = 3;
+        // --- FILTERS (options, normalizers, predicates) ---
 
-      function toggleExpansion(button) {
-        const row = button.closest("tr");
-        const expandableSections = row.querySelectorAll(".expandable-content");
-        const isExpanded = [...expandableSections].some((el) =>
-          el.classList.contains("expanded"),
+        // What the UI can select (ensure your checkboxes use these values)
+        const FILTER_OPTIONS = {
+          appCompliance: ["yes", "no"],
+          mobileCompatible: ["yes", "no"],
+          freeMembership: ["yes", "no"],
+          telehealth: ["yes", "no"],
+          headphonesCompatible: ["yes", "no"],
+        };
+
+        const CHIP_TEXT = {
+          appCompliance: {
+            yes: "APP Compliance",
+            no: "Without APP Compliance",
+          },
+          mobileCompatible: {
+            yes: "Mobile Compatible",
+            no: "Not Mobile Compatible",
+          },
+          freeMembership: {
+            yes: "Free Level of Membership Available",
+            no: "No Free Level of Membership Available",
+          },
+          telehealth: {
+            yes: "Telehealth",
+            no: "No Telehealth",
+          },
+          headphonesCompatible: {
+            yes: "Headphones Compatible",
+            no: "Not Headphones Compatible",
+          },
+        };
+
+        // normalizers turn raw item fields into comparable buckets
+        const normalizer = {
+          yesNoUnknown(v) {
+            if (
+              v === true ||
+              (typeof v === "string" && v.toLowerCase() === "true")
+            )
+              return "yes";
+            else {
+              return "no";
+            }
+          },
+          yesNo(v) {
+            return v ? "yes" : "no";
+          },
+        };
+
+        // per-group predicates (AND across groups, OR within each group)
+        const FILTER_PREDICATES = {
+          appCompliance: (item, selected) =>
+            selected.includes(normalizer.yesNo(item.appCompliance)),
+          freeMembership: (item, selected) =>
+            selected.includes(normalizer.yesNo(item.freeMembership)),
+          telehealth: (item, selected) =>
+            selected.includes(normalizer.yesNo(item.telehealth)),
+          headphonesCompatible: (item, selected) =>
+            selected.includes(
+              normalizer.yesNoUnknown(item.headphonesCompatible)
+            ),
+          mobileCompatible: (item, selected) =>
+            selected.includes(normalizer.yesNo(item.mobileCompatible)),
+        };
+
+        const FILTER_GROUPS = Object.keys(FILTER_PREDICATES);
+
+        // --- STATE ---
+        // --- STATE ---
+        let activeFilters = Object.fromEntries(
+          FILTER_GROUPS.map((g) => [g, []])
         );
+        let comparedItemIds = [];
 
-        expandableSections.forEach((section) => {
-          section.classList.toggle("expanded", !isExpanded);
-        });
+        // --- DOM ---
+        const filterBtn = document.getElementById("filter-btn");
+        const filterDialog = document.getElementById("filter-dialog");
+        const clearFiltersBtn = document.getElementById("clear-filters");
+        const closeFiltersBtn = document.getElementById("close-filters");
+        const activeCount = document.getElementById("active-count");
+        const chipsWrap = document.getElementById("active-chips");
 
-        button.textContent = isExpanded ? "Show more ↓" : "Show less ↑";
-      }
-
-      function sendHeight() {
-        const height = document.body.scrollHeight;
-        parent.postMessage(
-          { type: "resize", height: height },
-          window.location.origin,
+        const selectableItemsContainer = document.getElementById(
+          "selectable-items-container"
         );
-      }
+        const comparisonTableContainer = document.getElementById(
+          "comparison-table-container"
+        );
+        const matchCountEl = document.getElementById("match-count");
+        const matchPill = document.getElementById("match-pill");
+        const eligiblePill = document.getElementById("eligible-pill");
+        const eligibleExtra = document.getElementById("eligible-extra");
 
-      window.addEventListener("load", sendHeight);
-      window.addEventListener("resize", sendHeight);
-
-      // --- COLUMN TOGGLE DROPDOWN LOGIC ---
-      const dropdownBtn = document.getElementById("columnDropdownBtn");
-      const dropdown = document.getElementById("columnDropdown");
-      dropdownBtn.addEventListener("click", function (e) {
-        dropdown.style.display =
-          dropdown.style.display === "block" ? "none" : "block";
-        e.stopPropagation();
-      });
-      document.addEventListener("click", function (e) {
-        if (dropdown.style.display === "block") dropdown.style.display = "none";
-      });
-      dropdown.addEventListener("click", function (e) {
-        e.stopPropagation();
-      });
-
-      function setColumnVisibility(colIdx, visible) {
-        const table = document.getElementById("tableId");
-        if (!table) return;
-        // th
-        const ths = table.querySelectorAll("thead tr th");
-        if (ths[colIdx]) ths[colIdx].style.display = visible ? "" : "none";
-        // all rows
-        const rows = table.querySelectorAll("tbody tr");
-        rows.forEach((row) => {
-          const cells = row.querySelectorAll("td, th");
-          if (cells[colIdx])
-            cells[colIdx].style.display = visible ? "" : "none";
+        // --- MODAL helpers (native dialog) ---
+        const openModal = () => {
+          filterDialog.showModal();
+          filterBtn.setAttribute("aria-expanded", "true");
+        };
+        const closeModal = () => {
+          filterDialog.close();
+          filterBtn.setAttribute("aria-expanded", "false");
+        };
+        filterBtn.addEventListener("click", openModal);
+        closeFiltersBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          closeModal();
         });
-      }
 
-      // Initial setup: all checked
-      const toggles = document.querySelectorAll(".column-toggle");
-      toggles.forEach((toggle) => {
-        toggle.addEventListener("change", function () {
-          const col = parseInt(this.getAttribute("data-col"));
-          setColumnVisibility(col, this.checked);
+        // Close on backdrop click
+        filterDialog.addEventListener("click", (event) => {
+          const rect = filterDialog.getBoundingClientRect();
+          const inDialog =
+            event.clientX >= rect.left &&
+            event.clientX <= rect.right &&
+            event.clientY >= rect.top &&
+            event.clientY <= rect.bottom;
+          if (!inDialog) closeModal();
         });
-      });
 
-      // Utility: on load, ensure all columns visible
-      toggles.forEach((toggle) => {
-        const col = parseInt(toggle.getAttribute("data-col"));
-        setColumnVisibility(col, toggle.checked);
+        // --- RENDERERS ---
+        const renderActiveChips = () => {
+          chipsWrap.innerHTML = "";
+          const entries = Object.entries(activeFilters).flatMap(
+            ([group, values]) => values.map((v) => ({ group, value: v }))
+          );
+
+          activeCount.textContent = entries.length;
+          activeCount.classList.toggle("hidden", entries.length === 0);
+
+          entries.forEach(({ group, value }) => {
+            const li = document.createElement("li");
+            const chip = document.createElement("button");
+            chip.type = "button";
+            chip.className =
+              "inline-flex items-center gap-1 rounded-full bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200";
+
+            const adaptedChipText = CHIP_TEXT[group][value];
+
+            chip.innerHTML = `${adaptedChipText}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true"><path d="M6.28 5.22a.75.75 0 1 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 1 0-1.06-1.06L10 8.94 6.28 5.22Z"/></svg>`;
+            chip.setAttribute("aria-label", `Remove filter ${adaptedChipText}`);
+
+            chip.addEventListener("click", () => {
+              activeFilters[group] = activeFilters[group].filter(
+                (x) => x !== value
+              );
+              const selector = `input[data-filter-group="${group}"][value="${value}"]`;
+              const input = filterDialog.querySelector(selector);
+              if (input) input.checked = false;
+              update();
+            });
+
+            li.appendChild(chip);
+            chipsWrap.appendChild(li);
+          });
+        };
+
+        const renderSelectableItems = () => {
+          const filtered = getFilteredItems();
+          selectableItemsContainer.innerHTML = "";
+
+          matchCountEl.textContent = filtered.length;
+          matchPill.classList.remove("hidden");
+
+          const overflow = Math.max(
+            0,
+            filtered.length - comparedItemIds.length
+          );
+          eligiblePill.classList.toggle(
+            "hidden",
+            overflow <= MAX_COMPARE_ITEMS
+          );
+
+          if (filtered.length === 0) {
+            const li = document.createElement("li");
+            li.className = "text-gray-500 w-full text-center py-8";
+            li.textContent =
+              "No plans match your criteria. Try adjusting the filters.";
+            selectableItemsContainer.appendChild(li);
+            return;
+          }
+
+          filtered.forEach((item) => {
+            const isCompared = comparedItemIds.includes(item.id);
+            const atLimit = comparedItemIds.length >= MAX_COMPARE_ITEMS;
+
+            const li = document.createElement("li");
+            li.className = "flex";
+
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.dataset.id = item.id;
+            btn.setAttribute("aria-pressed", String(isCompared));
+            btn.setAttribute(
+              "aria-label",
+              `${isCompared ? "Remove" : "Add"} ${item.name} ${
+                isCompared ? "from" : "to"
+              } comparison`
+            );
+
+            let cls =
+              "add-to-compare-btn flex items-center gap-2 rounded-lg font-semibold text-sm transition-all-smooth px-4 py-2 border ";
+            let label = item.name;
+
+            if (isCompared) {
+              cls +=
+                "bg-[var(--primary-gold)] text-white border-[var(--primary-gold)]";
+              btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>${label}`;
+            } else if (atLimit) {
+              cls +=
+                "bg-[var(--gold-lighter)] text-[var(--navy-deepest)] border-[var(--primary-gold)] cursor-not-allowed opacity-70";
+              btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>${label}`;
+              btn.disabled = true;
+            } else {
+              cls +=
+                "bg-[var(--gold-lighter)] text-[var(--navy-deepest)] border-[var(--primary-gold)] hover:bg-[var(--primary-gold)] hover:text-white";
+              btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>${label}`;
+            }
+
+            btn.className = cls;
+            li.appendChild(btn);
+            selectableItemsContainer.appendChild(li);
+          });
+        };
+
+        const createTooltipElement = (symbol, note) => {
+          return `
+            <span class="tooltip">
+              <span class="tooltip-trigger">${symbol}</span>
+              <span class="tooltip-text">${note}</span>
+            </span>
+          `;
+        };
+
+        const renderComparisonTable = () => {
+          const EXCLUDED_LABEL_KEYS = ["id", "name"];
+          const labelValues = {
+            id: { title: "ID" },
+            name: { title: "Name" },
+            link: { title: "Link" },
+            appCompliance: {
+              title: "APP Compliance",
+              note: "Australian Privacy Principles",
+            },
+            dataStorage: { title: "Data Storage" },
+            freeMembership: { title: "Free Level of Membership Available" },
+            freeTrial: { title: "Free Trial" },
+            pmsIntegration: {
+              title: "PMS Integration",
+              note: "Practice Management System",
+            },
+            uniqueFeatures: { title: "Unique Features" },
+            coreFeatures: { title: "Core Features" },
+            pricing: { title: "Pricing" },
+            telehealth: { title: "Telehealth" },
+            headphonesCompatible: { title: "Headphones Compatible" },
+            mobileCompatible: { title: "Mobile Phone Compatible" },
+            multipleNotes: {
+              title: "Multiple notes for a single report?",
+              note: "",
+            },
+            aiTrainableOverTime: {
+              title: "Is the AI trainable over time?",
+              note: "",
+            },
+            languagesSupported: {
+              title: "Languages Supported",
+              expandable: true,
+            },
+          };
+
+          if (comparedItemIds.length === 0) {
+            comparisonTableContainer.innerHTML = `
+            <div class="comparison-placeholder flex items-center justify-center rounded-xl p-8" role="status" aria-live="polite">
+              <p class="text-center">Add up to 3 plans from the list above to compare them.</p>
+            </div>`;
+            return;
+          }
+
+          const items = allItems.filter((i) => comparedItemIds.includes(i.id));
+          const fields = Object.keys(allItems[0]);
+          const headers = items.map((i) => i.name);
+          const rows = fields
+            .map((f) => {
+              const labelKey = f.replace("_", " ");
+
+              if (EXCLUDED_LABEL_KEYS.includes(labelKey)) return;
+
+              const label = labelValues[labelKey] || { title: labelKey };
+              const isExpandable = !!label.expandable;
+              const isExpanded = !!rowExpanded[labelKey];
+
+              const rowCells = items
+                .map((it) => {
+                  let v = it[f];
+
+                  if (v.sections) {
+                    v = v.sections
+                      .map(
+                        (s) => `
+                          <div class="flex flex-col gap-2 text-left">
+                            <p class="badge font-bold">${s.category}</p>
+                            <ul class="flex flex-col gap-2 text-sm">
+                              ${s.items
+                                .map(
+                                  (i) =>
+                                    `<li class="relative pl-5 before:content-['→'] before:absolute before:left-0 before:text-[var(--text-primary)] before:font-bold before:text-sm">${i}</li>`
+                                )
+                                .join("")}
+                            </ul>
+                          </div>`
+                      )
+                      .join("");
+                  } else if (v === true) {
+                    v = `<p><span class="text-xl text-green-500 font-bold">✓</span></p>`;
+                  } else if (v === false) {
+                    v = `<p><span class="text-xl text-red-500 font-bold">✗</span></p>`;
+                  } else if (v?.url) {
+                    v = `<a href="${v.url}" target="_blank" class="underline">${v.label}</a>`;
+                  } else if (v?.bullets) {
+                    v = v.bullets.map((i) => `<p>${i}</p>`).join("");
+                  } else if (v?.prices) {
+                    v = `
+                      <ul class="flex flex-col gap-2 text-left">
+                        ${v.prices
+                          .map(
+                            (text) =>
+                              `<li class="relative pl-5 before:content-['→'] before:absolute before:left-0 before:text-[var(--text-primary)] before:font-bold before:text-sm">${text}</li>`
+                          )
+                          .join("")}
+                      </ul>`;
+                  } else if (v?.languages) {
+                    v = `
+                      <ul class="flex flex-col gap-0.5 text-sm leading-snug">
+                        ${v.languages.map((lng) => `<li>${lng}</li>`).join("")}
+                      </ul>`;
+                  } else if (v.available) {
+                    v = `
+                      <p class="flex items-center justify-center">
+                        <span class="text-xl text-green-500 font-bold">✓</span>
+                        ${createTooltipElement("!", v.note)}
+                      </p>
+                    `;
+                  } else if (Array.isArray(v)) {
+                    v = v.map((i) => `<p>${i}</p>`).join("");
+                  }
+
+                  const limiterClass =
+                    isExpandable && !isExpanded
+                      ? "max-h-[160px] overflow-hidden"
+                      : "";
+
+                  return `
+                    <td class="text-center px-6 py-4 border-t border-r border-[var(--primary-gold)]">
+                      <div class="flex flex-col gap-4 ${limiterClass}" data-row-content="${labelKey}">
+                        ${v ?? ""}
+                      </div>
+                    </td>`;
+                })
+                .join("");
+
+              const toggleBtn = isExpandable
+                ? `<button
+                    type="button"
+                    class="mt-1 text-xs underline hover:no-underline focus:outline-none"
+                    data-row-toggle="${labelKey}"
+                    aria-expanded="${isExpanded}">
+                    ${isExpanded ? "Show less ↑" : "Show more ↓"}
+                  </button>`
+                : "";
+
+              return `
+                <tr class="hover:bg-[var(--hover-background)] duration-200 ease-in-out" role="row">
+                  <th scope="row" class="text-left font-semibold px-6 py-4 border-t border-r border-[var(--primary-gold)]">
+                    <p>
+                      <span class="capitalize">${label.title}</span>
+                      ${label.note ? createTooltipElement("?", label.note) : ""}
+                    </p>
+                    ${toggleBtn}  
+                  </th>
+                  ${rowCells}
+                </tr>`;
+            })
+            .filter(Boolean);
+
+          // Build semantic table
+          comparisonTableContainer.innerHTML = `
+          <table class="table-fixed w-auto sm:w-full min-w-[400px] text-sm text-[var(--navy-deepest)]" role="table">
+            <caption class="sr-only">Feature comparison of selected plans</caption>
+            <thead class="sticky-header">
+              <tr role="row">
+                <th scope="col" class="text-left font-bold text-lg px-6 py-4">Feature</th>
+                ${headers
+                  .map(
+                    (h) =>
+                      `<th scope="col" class="text-center font-bold text-lg px-6 py-4">${h}</th>`
+                  )
+                  .join("")}
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.join("")}
+            </tbody>
+          </table>`;
+        };
+
+        // --- FILTER LOGIC ---
+        const getFilteredItems = () => {
+          const entries = Object.entries(activeFilters).filter(
+            ([, vals]) => vals.length
+          );
+          if (!entries.length) return allItems;
+
+          return allItems.filter((item) =>
+            entries.every(([group, values]) => {
+              const pred = FILTER_PREDICATES[group];
+              if (!pred) return true; // unknown group => ignore
+              return pred(item, values);
+            })
+          );
+        };
+
+        const update = () => {
+          renderActiveChips();
+          renderSelectableItems();
+          renderComparisonTable();
+        };
+
+        let rowExpanded = {};
+
+        // --- EVENTS ---
+        comparisonTableContainer.addEventListener("click", (e) => {
+          const btn = e.target.closest("[data-row-toggle]");
+          if (!btn) return;
+          const key = btn.dataset.rowToggle;
+          rowExpanded[key] = !rowExpanded[key];
+          renderComparisonTable();
+        });
+
+        filterDialog.addEventListener("change", (e) => {
+          if (e.target.matches('input[type="checkbox"]')) {
+            const g = e.target.dataset.filterGroup; // must match one of FILTER_GROUPS
+            const val = e.target.value; // must match one of FILTER_OPTIONS[g]
+            if (e.target.checked) {
+              if (!activeFilters[g].includes(val)) activeFilters[g].push(val);
+            } else {
+              activeFilters[g] = activeFilters[g].filter((v) => v !== val);
+            }
+            update();
+          }
+        });
+
+        clearFiltersBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          filterDialog
+            .querySelectorAll('input[type="checkbox"]')
+            .forEach((cb) => (cb.checked = false));
+          activeFilters = Object.fromEntries(FILTER_GROUPS.map((g) => [g, []]));
+          update();
+        });
+
+        selectableItemsContainer.addEventListener("click", (e) => {
+          const btn = e.target.closest(".add-to-compare-btn");
+          if (!btn) return;
+          const id = parseInt(btn.dataset.id, 10);
+          const isSelected = comparedItemIds.includes(id);
+          const atLimit = comparedItemIds.length >= MAX_COMPARE_ITEMS;
+
+          if (isSelected) {
+            comparedItemIds = comparedItemIds.filter((x) => x !== id);
+          } else if (!atLimit) {
+            comparedItemIds.push(id);
+          }
+          // reflect pressed state for a11y
+          btn.setAttribute("aria-pressed", String(!isSelected));
+          update();
+        });
+
+        // INIT
+        update();
       });
-      // --- END COLUMN TOGGLE ---
     </script>
   </body>
 </html>
