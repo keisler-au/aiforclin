@@ -277,7 +277,7 @@
                 <span
                   class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
-                  Free Membership
+                  Free Level of Membership Available
                 </span>
               </label>
               <label class="flex items-center">
@@ -324,8 +324,7 @@
             dataStorage: "Australia",
             freeMembership: false,
             freeTrial: "30 days",
-            pmsIntegration:
-              "The AI scribe is currently able to be saved straight into any PMS. We are new so this information is changing daily - contact us at help@ANTSA.com.au for updates",
+            pmsIntegration: false,
             uniqueFeatures: {
               sections: [
                 {
@@ -352,6 +351,7 @@
                   category: "AI Transcription",
                   items: [
                     "AI scribe (no recordings made - converts straight to notes) - Available January 2025",
+                    "Can use external audio to transcribe",
                   ],
                 },
                 {
@@ -393,7 +393,7 @@
             telehealth: true,
             headphonesCompatible: true,
             mobileCompatible: true,
-            multipleNotes: "Not sure",
+            multipleNotes: true,
             aiTrainableOverTime: true,
             contentTuning: true,
             trustedSourcesOnly: true,
@@ -936,8 +936,8 @@
             no: "Not Mobile Compatible",
           },
           freeMembership: {
-            yes: "Free Membership",
-            no: "No Free Membership",
+            yes: "Free Level of Membership Available",
+            no: "No Free Level of Membership Available",
           },
           telehealth: {
             yes: "Telehealth",
@@ -1161,7 +1161,7 @@
               note: "Australian Privacy Principles",
             },
             dataStorage: { title: "Data Storage" },
-            freeMembership: { title: "Free Membership" },
+            freeMembership: { title: "Free Level of Membership Available" },
             freeTrial: { title: "Free Trial" },
             pmsIntegration: {
               title: "PMS Integration",
