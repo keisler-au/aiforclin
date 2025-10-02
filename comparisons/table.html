@@ -277,7 +277,7 @@
                 <span
                   class="cursor-pointer rounded-full inline-flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1 text-sm text-[var(--navy-deepest)] hover:bg-gray-200 peer-checked:text-white peer-checked:border-[var(--navy-deepest)] peer-checked:bg-[var(--navy-deepest)] duration-300 ease-in-out"
                 >
-                  Free Membership
+                  Free Level of Membership Available
                 </span>
               </label>
               <label class="flex items-center">
@@ -324,8 +324,7 @@
             dataStorage: "Australia",
             freeMembership: false,
             freeTrial: "30 days",
-            pmsIntegration:
-              "The AI scribe is currently able to be saved straight into any PMS. We are new so this information is changing daily - contact us at help@ANTSA.com.au for updates",
+            pmsIntegration: false,
             uniqueFeatures: {
               sections: [
                 {
@@ -352,6 +351,7 @@
                   category: "AI Transcription",
                   items: [
                     "AI scribe (no recordings made - converts straight to notes) - Available January 2025",
+                    "Can use external audio to transcribe",
                   ],
                 },
                 {
@@ -393,10 +393,8 @@
             telehealth: true,
             headphonesCompatible: true,
             mobileCompatible: true,
-            multipleNotes: "Not sure",
+            multipleNotes: true,
             aiTrainableOverTime: true,
-            contentTuning: true,
-            trustedSourcesOnly: true,
             languagesSupported: [
               "Not at this time, but will be adding languages as we go.",
               "Message us at help@ANTSA.com.au for requests at this stage.",
@@ -414,23 +412,17 @@
             dataStorage: "Australia",
             freeMembership: false,
             freeTrial: "30 days",
-            pmsIntegration: "Copy+Paste typical, if needed",
+            pmsIntegration: "Works with ANY practice management system through copy-paste or document upload-download.",
             uniqueFeatures: {
               sections: [
                 {
                   category: "Advanced Transcription",
                   items: [
-                    "Transcription service with speaker recognition included",
-                  ],
-                },
-                {
-                  category: "Specialized Healthcare AI",
-                  items: [
-                    "AI models customized for over 200 healthcare and mental health use cases",
-                    "Increased use of evidence-based output relative to other models like ChatGPT",
-                    "Stay up to date with the latest high-end AI models with only one monthly subscription and APP compliance",
-                    "Reduced content filters when dealing with psychology topics around violence and sexual abuse",
-                    "Searchable chat history",
+                    "Multi-speaker recognition for higher quality documentation",
+                    "Generate documentation via voice, written notes, or a combination of both.",
+                    "Can match your voice, tone, and style when examples are used",
+                    "Reduced content filters for sensitive clinical topics such as violence, abuse or suicidality",
+                    "Powered by the latest AI models from OpenAI, Google and Anthropic",
                   ],
                 },
               ],
@@ -438,35 +430,31 @@
             coreFeatures: {
               sections: [
                 {
-                  category: "AI Assistant",
+                  category: "AI Scribe",
                   items: [
-                    "AI assistant with the ease of use of ChatGPT but with AI models and features tailored for the needs of Psychologists",
-                  ],
-                },
-                {
-                  category: "Privacy & AI Models",
-                  items: [
-                    "The tool allows for use with personal information (APP/Privacy Act compliant), and automatic selection of the leading AI models (e.g., OpenAI GPT-4, Google Gemini, Anthropic Claude) based on what is being asked of it",
+                    "Unlimited sessions, up to 4 hours long",
+                    "Record sessions live or upload prerecorded audio",
+                    "Record in-person or virtual sessions",
+                    "99.9% Uptime Guarantee",
+                    "AI assistant with the ease of use of ChatGPT",
                   ],
                 },
               ],
             },
             pricing: {
               prices: [
-                "$20/mo - Professional: High quality psychology-tailored AI models, unlimited prompts, input documents up to 10,000 words each",
-                "$45/mo - Professional Plus: Enhanced features such as greater memory that supports documents up to 35,000 words each, cloud synchronizing saved prompts across multiple devices, and processing of images and graphics",
-                "$60/mo - Enterprise: Features designed for large enterprises, such as customizable security policies and Single-Sign-On",
+                "AUD $30 per user per month for unlimited use of all AI scribe features.",
+                "No per-session costs.",
+                "Australian pricing page:  " + "<a style='text-decoration: underline;' href='https://bastiongpt.com/australia'>https://bastiongpt.com/australia</a>",
               ],
             },
             telehealth: true,
             headphonesCompatible: true,
-            mobileCompatible: false,
+            mobileCompatible: true,
             multipleNotes: true,
             aiTrainableOverTime: true,
-            contentTuning: true,
-            trustedSourcesOnly: true,
             languagesSupported: [
-              "English primarily supported, but content can be generated in many other language.",
+              "16 languages supported, including specific models for US English and Australian English",
             ],
           },
 
@@ -527,8 +515,6 @@
             multipleNotes: true,
             aiTrainableOverTime:
               "We have a prompt review tool which we have found better than training.",
-            contentTuning: true,
-            trustedSourcesOnly: false,
             languagesSupported: {
               languages: [
                 "Bulgarian",
@@ -647,8 +633,6 @@
             mobileCompatible: true,
             multipleNotes: false,
             aiTrainableOverTime: false,
-            contentTuning: true,
-            trustedSourcesOnly: true,
             languagesSupported: {
               languages: [
                 "Cantonese",
@@ -733,10 +717,6 @@
             mobileCompatible: true,
             multipleNotes: "Under development",
             aiTrainableOverTime: "This is on our roadmap.",
-            contentTuning:
-              "Yes, each user can prove instructions on their preferences that the tool will abide when producing a note.",
-            trustedSourcesOnly:
-              "This can be achieved applying the user's custom preferences.",
             languagesSupported: "Currently only available in English.",
           },
 
@@ -747,7 +727,7 @@
             appCompliance: true,
             dataStorage: "Australia",
             freeMembership: true,
-            freeTrial: "3 months",
+            freeTrial: "15 day trial",
             pmsIntegration:
               "Copy and paste into practice management software. Integration with NovoPsych",
             uniqueFeatures: {
@@ -756,9 +736,11 @@
                   category: "Designed for Mental Health",
                   items: [
                     "Specifically designed for mental health practitioners by the team at NovoPsych",
-                    "Multi session reports (coming in January 2025)",
-                    "Integration of psychometric results of NovoPsych (coming in January 2025)",
-                    "Template library designed by a team of psychologists",
+                    "Multi session reports (combine multiple sessions)",
+                    "Psychometric integration (reports blend therapy content + psychometrics)",
+                    "Large library of report templates",
+                    "Customisable templates",
+                    "Context editing after the fact (add context later and regenerate)",
                   ],
                 },
               ],
@@ -788,21 +770,16 @@
             },
             pricing: {
               prices: [
+               
+                "$30, $60, $99, Depending on client load.",
                 "All NovoNote plans include access to NovoPsych Psychometrics",
-                "Free Tier: 30 notes a month",
-                "Pro: $25 - 50 notes a month",
-                "Pro Plus: $60 - 100 notes per month",
-                "Platinum: $99 - Unlimited usage",
-                "Practice Plans starting from $50 per clinician per month",
               ],
             },
             telehealth: true,
             headphonesCompatible: "Not sure",
-            mobileCompatible: false,
+            mobileCompatible: "Accessible on any device via your web browser (desktop, tablet, mobile)",
             multipleNotes: true,
             aiTrainableOverTime: true,
-            contentTuning: true,
-            trustedSourcesOnly: true,
             languagesSupported: "Primarily English",
           },
 
@@ -847,8 +824,6 @@
             multipleNotes:
               "Can use as a standalone AI-powered, all-inclusive PMS OR use it alongside your existing PMS",
             aiTrainableOverTime: true,
-            contentTuning: true,
-            trustedSourcesOnly: true,
             languagesSupported: "Not currently. It will in future development.",
           },
 
@@ -907,8 +882,6 @@
             mobileCompatible: true,
             multipleNotes: true,
             aiTrainableOverTime: true,
-            contentTuning: true,
-            trustedSourcesOnly: true,
             languagesSupported:
               "Everbility can be used in many other languages, reach out to us if you have any issues and we're happy to help.",
           },
@@ -936,8 +909,8 @@
             no: "Not Mobile Compatible",
           },
           freeMembership: {
-            yes: "Free Membership",
-            no: "No Free Membership",
+            yes: "Free Level of Membership Available",
+            no: "No Free Level of Membership Available",
           },
           telehealth: {
             yes: "Telehealth",
@@ -1162,7 +1135,7 @@
               note: "Australian Privacy Principles",
             },
             dataStorage: { title: "Data Storage" },
-            freeMembership: { title: "Free Membership" },
+            freeMembership: { title: "Free Level of Membership Available" },
             freeTrial: { title: "Free Trial" },
             pmsIntegration: {
               title: "PMS Integration",
@@ -1182,11 +1155,6 @@
               title: "Is the AI trainable over time?",
               note: "",
             },
-            contentTuning: {
-              title: "Content Tuning",
-              note: "Can the tool adjust its content based on feedback? (reinforcement learning)",
-            },
-            trustedSourcesOnly: { title: "Trusted Sources Only" },
             languagesSupported: {
               title: "Languages Supported",
               expandable: true,
