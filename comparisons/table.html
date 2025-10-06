@@ -1047,22 +1047,23 @@
         };
 
         const renderSelectableItems = () => {
-          const filtered = getFilteredItems();
+          const { filteredOnly, union } = getFilterResults();
+
           selectableItemsContainer.innerHTML = "";
 
-          matchCountEl.textContent = filtered.length;
+          matchCountEl.textContent = filteredOnly.length;
           matchPill.classList.remove("hidden");
 
           const overflow = Math.max(
             0,
-            filtered.length - comparedItemIds.length
+            filteredOnly.length - comparedItemIds.length
           );
           eligiblePill.classList.toggle(
             "hidden",
             overflow <= MAX_COMPARE_ITEMS
           );
 
-          if (filtered.length === 0) {
+          if (union.length === 0) {
             const li = document.createElement("li");
             li.className = "text-gray-500 w-full text-center py-8";
             li.textContent =
@@ -1071,7 +1072,7 @@
             return;
           }
 
-          filtered.forEach((item) => {
+          union.forEach((item) => {
             const isCompared = comparedItemIds.includes(item.id);
             const atLimit = comparedItemIds.length >= MAX_COMPARE_ITEMS;
 
@@ -1296,19 +1297,40 @@
         };
 
         // --- FILTER LOGIC ---
-        const getFilteredItems = () => {
+        const getFilterResults = () => {
+          const byId = (a, b) => a.id - b.id;
           const entries = Object.entries(activeFilters).filter(
             ([, vals]) => vals.length
           );
-          if (!entries.length) return allItems;
 
-          return allItems.filter((item) =>
-            entries.every(([group, values]) => {
-              const pred = FILTER_PREDICATES[group];
-              if (!pred) return true; // unknown group => ignore
-              return pred(item, values);
-            })
+          const filteredOnly = entries.length
+            ? allItems.filter((item) =>
+                entries.every(([group, values]) => {
+                  const pred = FILTER_PREDICATES[group];
+                  if (!pred) return true;
+                  return pred(item, values);
+                })
+              )
+            : allItems;
+
+          // sticky: always include currently selected, even if filtered out
+          const forcedSelected = allItems.filter((i) =>
+            comparedItemIds.includes(i.id)
           );
+
+          // de-dupe by id, then sort by id
+          const union = [...forcedSelected, ...filteredOnly].reduce(
+            (acc, item) => {
+              acc.set(item.id, item);
+              return acc;
+            },
+            new Map()
+          );
+
+          return {
+            filteredOnly: [...filteredOnly].sort(byId),
+            union: [...union.values()].sort(byId),
+          };
         };
 
         const update = () => {
