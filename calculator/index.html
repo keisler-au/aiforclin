@@ -3,15 +3,14 @@ layout: default
 title: AI Scribe Savings Calculator
 ---
 
-<main id="main">
-<div class="container two-col-grid">
-        <div class="left-panel">
-            <div class="text-center mb-8">
+<div class="container two-col-grid page-container">
+        <section class="left-panel">
+            <header class="text-center mb-8">
                 <h1 class="section-title">AI Scribe <span class="section-title-accent">Calculator</span></h1>
                 <p class="section-subtitle">Calculate your potential savings</p>
-            </div>
+            </header>
 
-            <div class="card">
+            <section class="card">
                 <h2 class="card-title">Enter Your Details</h2>
                 <form id="calculator-form" class="space-y-3">
                     <div class="form-group">
@@ -32,11 +31,11 @@ title: AI Scribe Savings Calculator
                     </div>
                     <button type="submit" class="btn w-100 justify-center">Calculate Savings</button>
                 </form>
-            </div>
-        </div>
+            </section>
+        </section>
 
-        <div class="right-panel">
-            <div class="card text-center" id="placeholder-content">
+        <aside class="right-panel">
+            <section class="card text-center" id="placeholder-content">
                 <div class="card-icon text-lg">📊</div>
                 <h2 class="card-title">Discover Your Savings Potential</h2>
                 <p class="card-text">
@@ -44,10 +43,10 @@ title: AI Scribe Savings Calculator
                     <br><br>
                     Simply enter your details on the left to see personalized calculations of how much time and money you could save annually with AI-powered transcription services.
                 </p>
-            </div>
+            </section>
 
-            <div class="results-content" id="results-content">
-                <div class="card mb-4">
+            <div class="results-content" id="results-content" role="region" aria-live="polite">
+                <section class="card mb-4">
                     <div class="flex items-center gap-1 mb-2">
                         <div class="card-icon">⏰</div>
                         <h2 class="card-title">Time Savings</h2>
@@ -67,9 +66,9 @@ title: AI Scribe Savings Calculator
                         </div>
                     </div>
                     <p class="section-text-alt mt-1" id="time-description">-</p>
-                </div>
+                </section>
 
-                <div class="card mb-4">
+                <section class="card mb-4">
                     <div class="flex items-center gap-1 mb-2">
                         <div class="card-icon">💰</div>
                         <h2 class="card-title">Monetary Value</h2>
@@ -89,9 +88,9 @@ title: AI Scribe Savings Calculator
                         </div>
                     </div>
                     <p class="section-text-alt mt-1" id="money-description">-</p>
-                </div>
+                </section>
 
-                <div class="card mb-4">
+                <section class="card mb-4">
                     <h3 class="card-title">Work Time Comparison</h3>
                     <p class="text-sm text-muted">Annual working hours with and without AI scribe</p>
                     <div class="bar-chart">
@@ -106,9 +105,9 @@ title: AI Scribe Savings Calculator
                             <div class="bar-label">With AI</div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="card mb-4">
+                <section class="card mb-4">
                     <h3 class="card-title">Efficiency Metrics</h3>
                     <p class="text-sm text-muted">Productivity improvement breakdown</p>
                     <div class="progress-item">
@@ -129,9 +128,9 @@ title: AI Scribe Savings Calculator
                             <div class="progress-fill" id="recovery-progress" style="width: 0%;"></div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="card">
+                <section class="card">
                     <h3 class="card-title">Time Recovery</h3>
                     <p class="text-sm text-muted">Total work time that can be recovered</p>
                     <div class="donut-chart">
@@ -146,16 +145,14 @@ title: AI Scribe Savings Calculator
                             <div class="donut-label">Recovered</div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </div>
-    </div>
+        </aside>
 
     <script>
         function formatCurrency(amount) {
             return new Intl.NumberFormat('en-US', {
                 style: 'currency',
-                currency: 'USD',
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0
             }).format(amount);
@@ -310,4 +307,3 @@ title: AI Scribe Savings Calculator
             document.getElementById('annual-weeks').value = '50';
         });
     </script>
-</main>
