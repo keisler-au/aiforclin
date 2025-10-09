@@ -1373,6 +1373,11 @@ a {
     .pricing-grid { grid-template-columns: 1fr; }
 
     /* Calculator specific styles */
+    .calc-footer {
+        max-width: 500px; 
+        justify-self: center; 
+        text-align: center;
+    }
     .bar-chart {
         display: flex;
         align-items: flex-end;
