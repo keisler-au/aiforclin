@@ -1,448 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Scribe Savings Calculator</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+---
+layout: default
+title: AI Scribe Savings Calculator
+---
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8fafc;
-            color: #334155;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            min-height: 100vh;
-            display: flex;
-            gap: 2rem;
-        }
-
-        .left-panel {
-            flex: 1;
-            max-width: 400px;
-        }
-
-        .right-panel {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .app-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .app-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-        }
-
-        .app-subtitle {
-            color: #64748b;
-            font-size: 1.1rem;
-        }
-
-        .form-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #0f172a;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: #475569;
-            font-size: 0.95rem;
-        }
-
-        input {
-            width: 100%;
-            padding: 0.875rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            background: white;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #14b8a6;
-            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
-        }
-
-        .primary-btn {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            background: #14b8a6;
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .primary-btn:hover {
-            background: #0d9488;
-        }
-
-        .placeholder-content {
-            background: white;
-            padding: 3rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: opacity 0.3s ease;
-        }
-
-        .placeholder-icon {
-            width: 80px;
-            height: 80px;
-            background: #ccfbf1;
-            color: #14b8a6;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin: 0 auto 1.5rem;
-        }
-
-        .placeholder-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 1rem;
-        }
-
-        .placeholder-description {
-            color: #64748b;
-            font-size: 1rem;
-            line-height: 1.7;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .results-content {
-            display: none;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-            overflow-y: auto;
-            max-height: calc(100vh - 4rem);
-        }
-
-        .results-content.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .results-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1.5rem;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-icon {
-            width: 40px;
-            height: 40px;
-            background: #ccfbf1;
-            color: #0d9488;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-
-        .section-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #0f172a;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .metric-card {
-            background: #f8fafc;
-            padding: 1.25rem;
-            border-radius: 0.75rem;
-            text-align: center;
-            border: 1px solid #e2e8f0;
-        }
-
-        .metric-label {
-            font-size: 0.8rem;
-            color: #64748b;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .metric-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #0f172a;
-        }
-
-        .description {
-            font-size: 0.9rem;
-            color: #64748b;
-            line-height: 1.6;
-            padding: 1rem;
-            background: #f1f5f9;
-            border-radius: 0.5rem;
-        }
-
-        .chart-container {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1.5rem;
-        }
-
-        .chart-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #0f172a;
-        }
-
-        .chart-subtitle {
-            font-size: 0.8rem;
-            color: #64748b;
-            margin-bottom: 1.25rem;
-        }
-
-        .bar-chart {
-            display: flex;
-            align-items: end;
-            gap: 2rem;
-            height: 120px;
-            margin: 1.5rem 0;
-            justify-content: center;
-        }
-
-        .bar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            max-width: 60px;
-        }
-
-        .bar-fill {
-            width: 50px;
-            background: #14b8a6;
-            border-radius: 0.25rem 0.25rem 0 0;
-            margin-bottom: 0.5rem;
-            transition: height 0.8s ease;
-        }
-
-        .bar-fill.without {
-            background: #99f6e4;
-        }
-
-        .bar-label {
-            font-size: 0.75rem;
-            color: #64748b;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .bar-value {
-            font-size: 0.7rem;
-            color: #0f172a;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-item {
-            margin-bottom: 1.25rem;
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-label {
-            font-size: 0.85rem;
-            color: #475569;
-            font-weight: 500;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #ccfbf1;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #14b8a6;
-            border-radius: 4px;
-            transition: width 1s ease;
-        }
-
-        .donut-chart {
-            width: 140px;
-            height: 140px;
-            margin: 1.5rem auto;
-            position: relative;
-        }
-
-        .donut-svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .donut-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .donut-value {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #0f172a;
-        }
-
-        .donut-label {
-            font-size: 0.75rem;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        .highlight {
-            color: #14b8a6;
-            font-weight: 600;
-        }
-
-        @media (max-width: 1024px) {
-            .container {
-                flex-direction: column;
-                padding: 1rem;
-            }
-            
-            .left-panel {
-                max-width: none;
-            }
-            
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .app-title {
-                font-size: 2rem;
-            }
-            
-            .container {
-                gap: 1rem;
-            }
-            
-            .form-section, .results-section, .chart-container, .placeholder-content {
-                padding: 1.5rem;
-            }
-            
-            .metrics-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
+<main id="main">
+<div class="container two-col-grid">
         <div class="left-panel">
-            <div class="app-header">
-                <h1 class="app-title">AI Scribe Calculator</h1>
-                <p class="app-subtitle">Calculate your potential savings</p>
+            <div class="text-center mb-8">
+                <h1 class="section-title">AI Scribe <span class="section-title-accent">Calculator</span></h1>
+                <p class="section-subtitle">Calculate your potential savings</p>
             </div>
 
-            <div class="form-section">
-                <h2 class="form-title">Enter Your Details</h2>
-                <form id="calculator-form">
+            <div class="card">
+                <h2 class="card-title">Enter Your Details</h2>
+                <form id="calculator-form" class="space-y-3">
                     <div class="form-group">
-                        <label for="hourly-rate">Hourly Rate ($)</label>
-                        <input type="number" id="hourly-rate" placeholder="e.g., 100" required min="1" step="0.01">
+                        <label for="hourly-rate" class="form-label">Hourly Rate ($)</label>
+                        <input type="number" id="hourly-rate" class="form-input" placeholder="e.g., 100" required min="1" step="0.01">
                     </div>
                     <div class="form-group">
-                        <label for="time-saved">Time Saved Per Hour (minutes)</label>
-                        <input type="number" id="time-saved" placeholder="e.g., 15" required min="1" max="60">
+                        <label for="time-saved" class="form-label">Time Saved Per Hour (minutes)</label>
+                        <input type="number" id="time-saved" class="form-input" placeholder="e.g., 15" required min="1" max="60">
                     </div>
                     <div class="form-group">
-                        <label for="daily-hours">Daily Working Hours</label>
-                        <input type="number" id="daily-hours" placeholder="e.g., 8" required min="1" max="24">
+                        <label for="daily-hours" class="form-label">Daily Working Hours</label>
+                        <input type="number" id="daily-hours" class="form-input" placeholder="e.g., 8" required min="1" max="24">
                     </div>
                     <div class="form-group">
-                        <label for="annual-weeks">Annual Working Weeks</label>
-                        <input type="number" id="annual-weeks" placeholder="e.g., 50" required min="1" max="52">
+                        <label for="annual-weeks" class="form-label">Annual Working Weeks</label>
+                        <input type="number" id="annual-weeks" class="form-input" placeholder="e.g., 50" required min="1" max="52">
                     </div>
-                    <button type="submit" class="primary-btn">Calculate Savings</button>
+                    <button type="submit" class="btn w-100 justify-center">Calculate Savings</button>
                 </form>
             </div>
         </div>
 
         <div class="right-panel">
-            <div class="placeholder-content" id="placeholder-content">
-                <div class="placeholder-icon">📊</div>
-                <h2 class="placeholder-title">Discover Your Savings Potential</h2>
-                <p class="placeholder-description">
+            <div class="card text-center" id="placeholder-content">
+                <div class="card-icon text-lg">📊</div>
+                <h2 class="card-title">Discover Your Savings Potential</h2>
+                <p class="card-text">
                     Our AI Scribe Savings Calculator helps healthcare professionals, legal teams, and other professionals understand the time and cost benefits of implementing AI transcription technology. 
                     <br><br>
                     Simply enter your details on the left to see personalized calculations of how much time and money you could save annually with AI-powered transcription services.
@@ -450,53 +47,53 @@
             </div>
 
             <div class="results-content" id="results-content">
-                <div class="results-section">
-                    <div class="section-header">
-                        <div class="section-icon">⏰</div>
-                        <h2 class="section-title">Time Savings</h2>
+                <div class="card mb-4">
+                    <div class="flex items-center gap-1 mb-2">
+                        <div class="card-icon">⏰</div>
+                        <h2 class="card-title">Time Savings</h2>
                     </div>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Daily</div>
-                            <div class="metric-value" id="daily-time">-</div>
+                    <div class="auto-grid-300">
+                        <div class="card-alt">
+                            <div class="text-sm text-muted">Daily</div>
+                            <div class="text-lg" id="daily-time">-</div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Weekly</div>
-                            <div class="metric-value" id="weekly-time">-</div>
+                        <div class="card-alt">
+                            <div class="text-sm text-muted">Weekly</div>
+                            <div class="text-lg" id="weekly-time">-</div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Annual</div>
-                            <div class="metric-value" id="annual-time">-</div>
+                        <div class="card-alt">
+                            <div class="text-sm text-muted">Annual</div>
+                            <div class="text-lg" id="annual-time">-</div>
                         </div>
                     </div>
-                    <p class="description" id="time-description">-</p>
+                    <p class="section-text-alt mt-1" id="time-description">-</p>
                 </div>
 
-                <div class="results-section">
-                    <div class="section-header">
-                        <div class="section-icon">💰</div>
-                        <h2 class="section-title">Monetary Value</h2>
+                <div class="card mb-4">
+                    <div class="flex items-center gap-1 mb-2">
+                        <div class="card-icon">💰</div>
+                        <h2 class="card-title">Monetary Value</h2>
                     </div>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Daily</div>
-                            <div class="metric-value" id="daily-money">-</div>
+                    <div class="auto-grid-300">
+                        <div class="card-alt">
+                            <div class="text-sm text-muted">Daily</div>
+                            <div class="text-lg" id="daily-money">-</div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Weekly</div>
-                            <div class="metric-value" id="weekly-money">-</div>
+                        <div class="card-alt">
+                            <div class="text-sm text-muted">Weekly</div>
+                            <div class="text-lg" id="weekly-money">-</div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Annual</div>
-                            <div class="metric-value" id="annual-money">-</div>
+                        <div class="card-alt">
+                            <div class="text-sm text-muted">Annual</div>
+                            <div class="text-lg" id="annual-money">-</div>
                         </div>
                     </div>
-                    <p class="description" id="money-description">-</p>
+                    <p class="section-text-alt mt-1" id="money-description">-</p>
                 </div>
 
-                <div class="chart-container">
-                    <h3 class="chart-title">Work Time Comparison</h3>
-                    <p class="chart-subtitle">Annual working hours with and without AI scribe</p>
+                <div class="card mb-4">
+                    <h3 class="card-title">Work Time Comparison</h3>
+                    <p class="text-sm text-muted">Annual working hours with and without AI scribe</p>
                     <div class="bar-chart">
                         <div class="bar">
                             <div class="bar-value" id="without-value">-</div>
@@ -511,22 +108,22 @@
                     </div>
                 </div>
 
-                <div class="chart-container">
-                    <h3 class="chart-title">Efficiency Metrics</h3>
-                    <p class="chart-subtitle">Productivity improvement breakdown</p>
+                <div class="card mb-4">
+                    <h3 class="card-title">Efficiency Metrics</h3>
+                    <p class="text-sm text-muted">Productivity improvement breakdown</p>
                     <div class="progress-item">
-                        <div class="progress-header">
-                            <span class="progress-label">Time Savings Per Hour</span>
-                            <span class="highlight" id="time-percentage">-</span>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-sm">Time Savings Per Hour</span>
+                            <span class="text-gold" id="time-percentage">-</span>
                         </div>
                         <div class="progress-bar">
                             <div class="progress-fill" id="time-progress" style="width: 0%;"></div>
                         </div>
                     </div>
                     <div class="progress-item">
-                        <div class="progress-header">
-                            <span class="progress-label">Work Time Recovered</span>
-                            <span class="highlight" id="recovery-percentage-text">-</span>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-sm">Work Time Recovered</span>
+                            <span class="text-gold" id="recovery-percentage-text">-</span>
                         </div>
                         <div class="progress-bar">
                             <div class="progress-fill" id="recovery-progress" style="width: 0%;"></div>
@@ -534,13 +131,13 @@
                     </div>
                 </div>
 
-                <div class="chart-container">
-                    <h3 class="chart-title">Time Recovery</h3>
-                    <p class="chart-subtitle">Total work time that can be recovered</p>
+                <div class="card">
+                    <h3 class="card-title">Time Recovery</h3>
+                    <p class="text-sm text-muted">Total work time that can be recovered</p>
                     <div class="donut-chart">
                         <svg class="donut-svg" viewBox="0 0 42 42">
-                            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#ccfbf1" stroke-width="3"></circle>
-                            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#14b8a6" stroke-width="3" 
+                            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--card-bg-alt)" stroke-width="3"></circle>
+                            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--primary-gold)" stroke-width="3" 
                                     stroke-dasharray="0 100" stroke-linecap="round" id="donut-progress"
                                     transform="rotate(-90 21 21)"></circle>
                         </svg>
@@ -713,5 +310,4 @@
             document.getElementById('annual-weeks').value = '50';
         });
     </script>
-</body>
-</html>
+</main>
