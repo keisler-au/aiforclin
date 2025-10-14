@@ -3,309 +3,490 @@ layout: default
 title: AI Scribe Savings Calculator
 ---
 
-<div class="container two-col-grid">
-        <section class="left-panel">
-            <header class="text-center mb-8">
-                <h1 class="section-title">AI Scribe <span class="section-title-accent">Calculator</span></h1>
-                <p class="section-subtitle">Calculate your potential savings</p>
-            </header>
+<div class="container two-col-grid two-col-grid-calculator">
+  <section class="left-panel">
+    <div class="sticky-calculator">
+      <header class="text-center mb-8">
+        <h1 class="section-title">
+          AI Scribe <span class="section-title-accent">Calculator</span>
+        </h1>
+        <p class="section-subtitle">Calculate your potential savings</p>
+      </header>
 
-            <section class="card">
-                <h2 class="card-title">Enter Your Details</h2>
-                <form id="calculator-form" class="space-y-3">
-                    <div class="form-group">
-                        <label for="hourly-rate" class="form-label">Hourly Rate ($)</label>
-                        <input type="number" id="hourly-rate" class="form-input" placeholder="e.g., 100" required min="1" step="0.01">
-                    </div>
-                    <div class="form-group">
-                        <label for="time-saved" class="form-label">Time Saved Per Hour (minutes)</label>
-                        <input type="number" id="time-saved" class="form-input" placeholder="e.g., 15" required min="1" max="60">
-                    </div>
-                    <div class="form-group">
-                        <label for="daily-hours" class="form-label">Daily Working Hours</label>
-                        <input type="number" id="daily-hours" class="form-input" placeholder="e.g., 8" required min="1" max="24">
-                    </div>
-                    <div class="form-group">
-                        <label for="annual-weeks" class="form-label">Annual Working Weeks</label>
-                        <input type="number" id="annual-weeks" class="form-input" placeholder="e.g., 50" required min="1" max="52">
-                    </div>
-                    <button type="submit" class="btn w-100 justify-center">Calculate Savings</button>
-                </form>
-            </section>
+      <section class="card">
+        <h2 class="card-title">Enter Your Details</h2>
+        <form id="calculator-form" class="space-y-3">
+          <div class="form-group">
+            <label for="hourly-rate" class="form-label">Hourly Rate ($)</label>
+            <input
+              type="number"
+              id="hourly-rate"
+              class="form-input"
+              placeholder="e.g., 100"
+              required
+              min="1"
+              step="0.01"
+            />
+          </div>
+          <div class="form-group">
+            <label for="time-saved" class="form-label"
+              >Time Saved Per Hour (minutes)</label
+            >
+            <input
+              type="number"
+              id="time-saved"
+              class="form-input"
+              placeholder="e.g., 15"
+              required
+              min="1"
+              max="60"
+            />
+          </div>
+          <div class="form-group">
+            <label for="daily-hours" class="form-label"
+              >Daily Working Hours</label
+            >
+            <input
+              type="number"
+              id="daily-hours"
+              class="form-input"
+              placeholder="e.g., 8"
+              required
+              min="1"
+              max="24"
+            />
+          </div>
+          <div class="form-group">
+            <label for="annual-weeks" class="form-label"
+              >Annual Working Weeks</label
+            >
+            <input
+              type="number"
+              id="annual-weeks"
+              class="form-input"
+              placeholder="e.g., 50"
+              required
+              min="1"
+              max="52"
+            />
+          </div>
+          <button type="submit" class="btn w-100 justify-center">
+            Calculate Savings
+          </button>
+        </form>
+      </section>
 
-            <section class="calc-footer mt-8">For more information on AI Scribes see the <br><a href="../comparisons/" style="text-decoration: underline;">AI Scribe Comparison Table</a></section>
-        </section>
+      <section class="calc-footer mt-8">
+        For more information on AI Scribes see the <br /><a
+          href="../comparisons/"
+          style="text-decoration: underline"
+          >AI Scribe Comparison Table</a
+        >
+      </section>
+    </div>
+  </section>
 
-        <aside class="right-panel">
-            <section class="card text-center" id="placeholder-content">
-                <div class="card-icon text-lg">📊</div>
-                <h2 class="card-title">Discover Your Savings Potential</h2>
-                <p class="card-text">
-                    Our AI Scribe Savings Calculator helps healthcare professionals, legal teams, and other professionals understand the time and cost benefits of implementing AI transcription technology. 
-                    <br><br>
-                    Simply enter your details on the left to see personalized calculations of how much time and money you could save annually with AI-powered transcription services.
-                </p>
-            </section>
+  <aside class="right-panel">
+    <section
+      class="card text-center sticky-calculator sticky-calculator--placeholder"
+      id="placeholder-content"
+    >
+      <div class="card-icon text-lg">📊</div>
+      <h2 class="card-title">Discover Your Savings Potential</h2>
+      <p class="card-text">
+        Our AI Scribe Savings Calculator helps healthcare professionals, legal
+        teams, and other professionals understand the time and cost benefits of
+        implementing AI transcription technology.
+        <br /><br />
+        Simply enter your details on the left to see personalized calculations
+        of how much time and money you could save annually with AI-powered
+        transcription services.
+      </p>
+    </section>
 
-            <div class="results-content" id="results-content" role="region" aria-live="polite">
-                <section class="card mb-4">
-                    <div class="flex items-center gap-1 mb-2">
-                        <div class="card-icon">⏰</div>
-                        <h2 class="card-title">Time Savings</h2>
-                    </div>
-                    <div class="auto-grid-300">
-                        <div class="card-alt">
-                            <div class="text-sm text-muted">Daily</div>
-                            <div class="text-lg" id="daily-time">-</div>
-                        </div>
-                        <div class="card-alt">
-                            <div class="text-sm text-muted">Weekly</div>
-                            <div class="text-lg" id="weekly-time">-</div>
-                        </div>
-                        <div class="card-alt">
-                            <div class="text-sm text-muted">Annual</div>
-                            <div class="text-lg" id="annual-time">-</div>
-                        </div>
-                    </div>
-                    <p class="section-text-alt mt-1" id="time-description">-</p>
-                </section>
+    <div
+      class="results-content"
+      id="results-content"
+      role="region"
+      aria-live="polite"
+    >
+      <section class="card mb-4">
+        <div class="flex items-center gap-1 mb-2">
+          <div class="card-icon">⏰</div>
+          <h2 class="card-title">Time Savings</h2>
+        </div>
+        <div class="auto-grid-300">
+          <div class="card-alt card-alt-calculator">
+            <div class="text-sm text-muted">Daily</div>
+            <div class="text-lg" id="daily-time">-</div>
+          </div>
+          <div class="card-alt card-alt-calculator">
+            <div class="text-sm text-muted">Weekly</div>
+            <div class="text-lg" id="weekly-time">-</div>
+          </div>
+          <div class="card-alt card-alt-calculator">
+            <div class="text-sm text-muted">Annual</div>
+            <div class="text-lg" id="annual-time">-</div>
+          </div>
+        </div>
+        <p
+          class="section-text-alt section-text-alt-calculator mt-8"
+          id="time-description"
+        >
+          -
+        </p>
+      </section>
 
-                <section class="card mb-4">
-                    <div class="flex items-center gap-1 mb-2">
-                        <div class="card-icon">💰</div>
-                        <h2 class="card-title">Monetary Value</h2>
-                    </div>
-                    <div class="auto-grid-300">
-                        <div class="card-alt">
-                            <div class="text-sm text-muted">Daily</div>
-                            <div class="text-lg" id="daily-money">-</div>
-                        </div>
-                        <div class="card-alt">
-                            <div class="text-sm text-muted">Weekly</div>
-                            <div class="text-lg" id="weekly-money">-</div>
-                        </div>
-                        <div class="card-alt">
-                            <div class="text-sm text-muted">Annual</div>
-                            <div class="text-lg" id="annual-money">-</div>
-                        </div>
-                    </div>
-                    <p class="section-text-alt mt-1" id="money-description">-</p>
-                </section>
+      <section class="card mb-4">
+        <div class="flex items-center gap-1 mb-2">
+          <div class="card-icon">💰</div>
+          <h2 class="card-title">Monetary Value</h2>
+        </div>
+        <div class="auto-grid-300">
+          <div class="card-alt card-alt-calculator">
+            <div class="text-sm text-muted">Daily</div>
+            <div class="text-lg" id="daily-money">-</div>
+          </div>
+          <div class="card-alt card-alt-calculator">
+            <div class="text-sm text-muted">Weekly</div>
+            <div class="text-lg" id="weekly-money">-</div>
+          </div>
+          <div class="card-alt card-alt-calculator">
+            <div class="text-sm text-muted">Annual</div>
+            <div class="text-lg" id="annual-money">-</div>
+          </div>
+        </div>
+        <p
+          class="section-text-alt section-text-alt-calculator mt-8"
+          id="money-description"
+        >
+          -
+        </p>
+      </section>
 
-                <section class="card mb-4">
-                    <h3 class="card-title">Work Time Comparison</h3>
-                    <p class="text-sm text-muted">Annual working hours with and without AI scribe</p>
-                    <div class="bar-chart">
-                        <div class="bar">
-                            <div class="bar-value" id="without-value">-</div>
-                            <div class="bar-fill without" id="without-bar" style="height: 100%;"></div>
-                            <div class="bar-label">Without AI</div>
-                        </div>
-                        <div class="bar">
-                            <div class="bar-value" id="with-value">-</div>
-                            <div class="bar-fill" id="with-bar" style="height: 60%;"></div>
-                            <div class="bar-label">With AI</div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="card mb-4">
-                    <h3 class="card-title">Efficiency Metrics</h3>
-                    <p class="text-sm text-muted">Productivity improvement breakdown</p>
-                    <div class="progress-item">
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-sm">Time Savings Per Hour</span>
-                            <span class="text-gold" id="time-percentage">-</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="time-progress" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-sm">Work Time Recovered</span>
-                            <span class="text-gold" id="recovery-percentage-text">-</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="recovery-progress" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="card">
-                    <h3 class="card-title">Time Recovery</h3>
-                    <p class="text-sm text-muted">Total work time that can be recovered</p>
-                    <div class="donut-chart">
-                        <svg class="donut-svg" viewBox="0 0 42 42">
-                            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--card-bg-alt)" stroke-width="3"></circle>
-                            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--primary-gold)" stroke-width="3" 
-                                    stroke-dasharray="0 100" stroke-linecap="round" id="donut-progress"
-                                    transform="rotate(-90 21 21)"></circle>
-                        </svg>
-                        <div class="donut-center">
-                            <div class="donut-value" id="recovery-percentage">0%</div>
-                            <div class="donut-label">Recovered</div>
-                        </div>
-                    </div>
-                </section>
+      <section class="card mb-4">
+        <h3 class="card-title">Work Time Comparison</h3>
+        <p class="text-sm text-muted text-center">
+          Annual working hours with and without AI scribe
+        </p>
+        <div class="bar-chart">
+          <div class="bar">
+            <div class="bar-value" id="without-value">-</div>
+            <div class="bar-fill-container">
+              <div
+                class="bar-fill without"
+                id="without-bar"
+                style="height: 100%"
+              ></div>
             </div>
-        </aside>
+            <div class="bar-label">Without AI</div>
+          </div>
+          <div class="bar">
+            <div class="bar-value" id="with-value">-</div>
+            <div class="bar-fill-container">
+              <div class="bar-fill" id="with-bar" style="height: 1%"></div>
+            </div>
+            <div class="bar-label">With AI</div>
+          </div>
+        </div>
+      </section>
 
-    <script>
-        function formatCurrency(amount) {
-            return new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            }).format(amount);
+      <section class="card mb-4">
+        <h3 class="card-title">Efficiency Metrics</h3>
+        <p class="text-sm text-muted text-center">
+          Productivity improvement breakdown
+        </p>
+        <div class="progress-item">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm">Time Savings Per Hour</span>
+            <span class="text-gold" id="time-percentage">-</span>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              id="time-progress"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+        <div class="progress-item">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm">Work Time Recovered</span>
+            <span class="text-gold" id="recovery-percentage-text">-</span>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              id="recovery-progress"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 class="card-title">Time Recovery</h3>
+        <p class="text-sm text-muted text-center">
+          Total work time that can be recovered
+        </p>
+        <div class="donut-chart">
+          <svg class="donut-svg" viewBox="0 0 42 42">
+            <circle
+              cx="21"
+              cy="21"
+              r="15.915"
+              fill="transparent"
+              stroke="var(--card-bg-alt)"
+              stroke-width="3"
+            ></circle>
+            <circle
+              cx="21"
+              cy="21"
+              r="15.915"
+              fill="transparent"
+              stroke="var(--primary-gold)"
+              stroke-width="3"
+              stroke-dasharray="0 100"
+              stroke-linecap="round"
+              id="donut-progress"
+              transform="rotate(-90 21 21)"
+            ></circle>
+          </svg>
+          <div class="donut-center">
+            <div class="donut-value" id="recovery-percentage">0%</div>
+            <div class="donut-label">Recovered</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </aside>
+
+  <script>
+    // initial state
+    toggleResultsVisibility(false);
+
+    function toggleResultsVisibility(isVisible) {
+      const placeholder = document.getElementById("placeholder-content");
+      const results = document.getElementById("results-content");
+
+      placeholder.style.display = isVisible ? "none" : "block";
+      results.style.display = isVisible ? "block" : "none";
+    }
+
+    function formatCurrency(amount) {
+      return new Intl.NumberFormat("en-US", {
+        currency: "USD",
+        style: "currency",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(amount);
+    }
+
+    function formatTime(hours) {
+      if (hours < 1) {
+        return Math.round(hours * 60) + " min";
+      }
+      return Math.round(hours * 10) / 10 + " hrs";
+    }
+
+    function animateNumber(element, finalValue, formatter, duration = 1000) {
+      const start = 0;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const current = start + (finalValue - start) * easeOut;
+
+        element.textContent = formatter(current);
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
         }
+      }
 
-        function formatTime(hours) {
-            if (hours < 1) {
-                return Math.round(hours * 60) + ' min';
-            }
-            return Math.round(hours * 10) / 10 + ' hrs';
-        }
+      requestAnimationFrame(update);
+    }
 
-        function animateNumber(element, finalValue, formatter, duration = 1000) {
-            const start = 0;
-            const startTime = performance.now();
-            
-            function update(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const easeOut = 1 - Math.pow(1 - progress, 3);
-                const current = start + (finalValue - start) * easeOut;
-                
-                element.textContent = formatter(current);
-                
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                }
-            }
-            
-            requestAnimationFrame(update);
-        }
+    function updateResults(data) {
+      // Animate time savings
+      animateNumber(
+        document.getElementById("daily-time"),
+        data.dailyTimeSaved,
+        formatTime,
+        800
+      );
+      animateNumber(
+        document.getElementById("weekly-time"),
+        data.weeklyTimeSaved,
+        formatTime,
+        900
+      );
+      animateNumber(
+        document.getElementById("annual-time"),
+        data.annualTimeSaved,
+        formatTime,
+        1000
+      );
 
-        function showResults() {
-            const placeholder = document.getElementById('placeholder-content');
-            const results = document.getElementById('results-content');
-            
-            placeholder.style.opacity = '0';
-            
-            setTimeout(() => {
-                placeholder.style.display = 'none';
-                results.style.display = 'block';
-                setTimeout(() => {
-                    results.classList.add('show');
-                }, 50);
-            }, 300);
-        }
+      // Animate monetary savings
+      animateNumber(
+        document.getElementById("daily-money"),
+        data.dailyMoneySaved,
+        formatCurrency,
+        800
+      );
+      animateNumber(
+        document.getElementById("weekly-money"),
+        data.weeklyMoneySaved,
+        formatCurrency,
+        900
+      );
+      animateNumber(
+        document.getElementById("annual-money"),
+        data.annualMoneySaved,
+        formatCurrency,
+        1000
+      );
 
-        function updateResults(data) {
-            // Animate time savings
-            animateNumber(document.getElementById('daily-time'), data.dailyTimeSaved, formatTime, 800);
-            animateNumber(document.getElementById('weekly-time'), data.weeklyTimeSaved, formatTime, 900);
-            animateNumber(document.getElementById('annual-time'), data.annualTimeSaved, formatTime, 1000);
-            
-            // Animate monetary savings
-            animateNumber(document.getElementById('daily-money'), data.dailyMoneySaved, formatCurrency, 800);
-            animateNumber(document.getElementById('weekly-money'), data.weeklyMoneySaved, formatCurrency, 900);
-            animateNumber(document.getElementById('annual-money'), data.annualMoneySaved, formatCurrency, 1000);
-            
-            // Update descriptions
-            setTimeout(() => {
-                document.getElementById('time-description').innerHTML = 
-                    `You could save <span class="highlight">${formatTime(data.dailyTimeSaved)}</span> per day, <span class="highlight">${formatTime(data.weeklyTimeSaved)}</span> per week, and <span class="highlight">${formatTime(data.annualTimeSaved)}</span> annually with AI scribe technology.`;
-                
-                document.getElementById('money-description').innerHTML = 
-                    `At <span class="highlight">${formatCurrency(data.hourlyRate)}/hour</span>, your time savings translate to <span class="highlight">${formatCurrency(data.annualMoneySaved)}</span> in additional annual productivity value.`;
-            }, 500);
-        }
+      // Update descriptions
+      setTimeout(() => {
+        document.getElementById(
+          "time-description"
+        ).innerHTML = `You could save <span class="highlight">${formatTime(
+          data.dailyTimeSaved
+        )}</span> per day, <span class="highlight">${formatTime(
+          data.weeklyTimeSaved
+        )}</span> per week, and <span class="highlight">${formatTime(
+          data.annualTimeSaved
+        )}</span> annually with AI scribe technology.`;
 
-        function updateVisuals(data) {
-            const totalAnnualWorkHours = data.dailyWorkHours * 5 * data.annualWorkWeeks;
-            const timeRecoveryPercentage = Math.round((data.annualTimeSaved / totalAnnualWorkHours) * 100);
-            const timeSavedPercentage = Math.round((data.timeSavedPerHour / 60) * 100);
-            const effectiveWorkHours = totalAnnualWorkHours - data.annualTimeSaved;
-            
-            // Update bar chart values
-            document.getElementById('without-value').textContent = Math.round(totalAnnualWorkHours) + ' hrs';
-            document.getElementById('with-value').textContent = Math.round(effectiveWorkHours) + ' hrs';
-            
-            // Animate bar chart
-            setTimeout(() => {
-                const withBarHeight = Math.max(15, ((effectiveWorkHours / totalAnnualWorkHours) * 100));
-                document.getElementById('with-bar').style.height = withBarHeight + '%';
-            }, 600);
-            
-            // Update and animate progress bars
-            setTimeout(() => {
-                document.getElementById('time-percentage').textContent = timeSavedPercentage + '%';
-                document.getElementById('time-progress').style.width = timeSavedPercentage + '%';
-                
-                document.getElementById('recovery-percentage-text').textContent = timeRecoveryPercentage + '%';
-                document.getElementById('recovery-progress').style.width = timeRecoveryPercentage + '%';
-            }, 800);
-            
-            // Update and animate donut chart
-            setTimeout(() => {
-                const circumference = 2 * Math.PI * 15.915;
-                const strokeDasharray = `${(timeRecoveryPercentage / 100) * circumference} ${circumference}`;
-                document.getElementById('donut-progress').setAttribute('stroke-dasharray', strokeDasharray);
-                
-                animateNumber(
-                    document.getElementById('recovery-percentage'), 
-                    timeRecoveryPercentage, 
-                    (val) => Math.round(val) + '%',
-                    1200
-                );
-            }, 1000);
-        }
+        document.getElementById(
+          "money-description"
+        ).innerHTML = `At <span class="highlight">${formatCurrency(
+          data.hourlyRate
+        )}/hour</span>, your time savings translate to <span class="highlight">${formatCurrency(
+          data.annualMoneySaved
+        )}</span> in additional annual productivity value.`;
+      }, 500);
+    }
 
-        document.getElementById('calculator-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const hourlyRate = parseFloat(document.getElementById('hourly-rate').value);
-            const timeSavedPerHour = parseFloat(document.getElementById('time-saved').value);
-            const dailyWorkHours = parseFloat(document.getElementById('daily-hours').value);
-            const annualWorkWeeks = parseFloat(document.getElementById('annual-weeks').value);
-            
-            // Calculate savings
-            const timeSavedPerHourDecimal = timeSavedPerHour / 60;
-            const dailyTimeSaved = timeSavedPerHourDecimal * dailyWorkHours;
-            const weeklyTimeSaved = dailyTimeSaved * 5;
-            const annualTimeSaved = weeklyTimeSaved * annualWorkWeeks;
-            
-            const dailyMoneySaved = dailyTimeSaved * hourlyRate;
-            const weeklyMoneySaved = weeklyTimeSaved * hourlyRate;
-            const annualMoneySaved = annualTimeSaved * hourlyRate;
-            
-            const calculationData = {
-                hourlyRate,
-                timeSavedPerHour,
-                dailyWorkHours,
-                annualWorkWeeks,
-                dailyTimeSaved,
-                weeklyTimeSaved,
-                annualTimeSaved,
-                dailyMoneySaved,
-                weeklyMoneySaved,
-                annualMoneySaved
-            };
-            
-            showResults();
-            setTimeout(() => {
-                updateResults(calculationData);
-                updateVisuals(calculationData);
-            }, 400);
-        });
+    function updateVisuals(data) {
+      const totalAnnualWorkHours =
+        data.dailyWorkHours * 5 * data.annualWorkWeeks;
+      const timeRecoveryPercentage = Math.round(
+        (data.annualTimeSaved / totalAnnualWorkHours) * 100
+      );
+      const timeSavedPercentage = Math.round(
+        (data.timeSavedPerHour / 60) * 100
+      );
+      const effectiveWorkHours = totalAnnualWorkHours - data.annualTimeSaved;
 
-        // Pre-fill with example values
-        window.addEventListener('load', function() {
-            document.getElementById('hourly-rate').value = '100';
-            document.getElementById('time-saved').value = '15';
-            document.getElementById('daily-hours').value = '8';
-            document.getElementById('annual-weeks').value = '50';
-        });
-    </script>
+      // Update bar chart values
+      document.getElementById("without-value").textContent =
+        Math.round(totalAnnualWorkHours) + " hrs";
+      document.getElementById("with-value").textContent =
+        Math.round(effectiveWorkHours) + " hrs";
+
+      // Animate bar chart
+      setTimeout(() => {
+        const withBarHeight = Math.max(
+          15,
+          (effectiveWorkHours / totalAnnualWorkHours) * 100
+        );
+        document.getElementById("with-bar").style.height = withBarHeight + "%";
+      }, 600);
+
+      // Update and animate progress bars
+      setTimeout(() => {
+        document.getElementById("time-percentage").textContent =
+          timeSavedPercentage + "%";
+        document.getElementById("time-progress").style.width =
+          timeSavedPercentage + "%";
+
+        document.getElementById("recovery-percentage-text").textContent =
+          timeRecoveryPercentage + "%";
+        document.getElementById("recovery-progress").style.width =
+          timeRecoveryPercentage + "%";
+      }, 800);
+
+      // Update and animate donut chart
+      setTimeout(() => {
+        const circumference = 2 * Math.PI * 15.915;
+        const strokeDasharray = `${
+          (timeRecoveryPercentage / 100) * circumference
+        } ${circumference}`;
+        document
+          .getElementById("donut-progress")
+          .setAttribute("stroke-dasharray", strokeDasharray);
+
+        animateNumber(
+          document.getElementById("recovery-percentage"),
+          timeRecoveryPercentage,
+          (val) => Math.round(val) + "%",
+          1200
+        );
+      }, 1000);
+    }
+
+    document
+      .getElementById("calculator-form")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const hourlyRate = parseFloat(
+          document.getElementById("hourly-rate").value
+        );
+        const timeSavedPerHour = parseFloat(
+          document.getElementById("time-saved").value
+        );
+        const dailyWorkHours = parseFloat(
+          document.getElementById("daily-hours").value
+        );
+        const annualWorkWeeks = parseFloat(
+          document.getElementById("annual-weeks").value
+        );
+
+        // Calculate savings
+        const timeSavedPerHourDecimal = timeSavedPerHour / 60;
+        const dailyTimeSaved = timeSavedPerHourDecimal * dailyWorkHours;
+        const weeklyTimeSaved = dailyTimeSaved * 5;
+        const annualTimeSaved = weeklyTimeSaved * annualWorkWeeks;
+
+        const dailyMoneySaved = dailyTimeSaved * hourlyRate;
+        const weeklyMoneySaved = weeklyTimeSaved * hourlyRate;
+        const annualMoneySaved = annualTimeSaved * hourlyRate;
+
+        const calculationData = {
+          hourlyRate,
+          timeSavedPerHour,
+          dailyWorkHours,
+          annualWorkWeeks,
+          dailyTimeSaved,
+          weeklyTimeSaved,
+          annualTimeSaved,
+          dailyMoneySaved,
+          weeklyMoneySaved,
+          annualMoneySaved,
+        };
+
+        setTimeout(() => {
+          toggleResultsVisibility(true);
+        }, 300);
+
+        setTimeout(() => {
+          updateResults(calculationData);
+          updateVisuals(calculationData);
+        }, 400);
+      });
+
+    // Pre-fill with example values
+    window.addEventListener("load", function () {
+      document.getElementById("hourly-rate").value = "100";
+      document.getElementById("time-saved").value = "15";
+      document.getElementById("daily-hours").value = "8";
+      document.getElementById("annual-weeks").value = "50";
+    });
+  </script>
+</div>
