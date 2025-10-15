@@ -310,43 +310,43 @@ function toggleSection(sectionId) {
   }
 }
 
-function scrollToSection(target) {
-  const headerOffset = 100;
-  const elementPosition = target.getBoundingClientRect().top;
-  const offsetPosition =
-    elementPosition + window.pageYOffset - headerOffset;
+// function scrollToSection(target) {
+//   const headerOffset = 100;
+//   const elementPosition = target.getBoundingClientRect().top;
+//   const offsetPosition =
+//     elementPosition + window.pageYOffset - headerOffset;
 
-  window.scrollTo({
-    top: offsetPosition,
-    behavior: "smooth",
-  });
-}
+//   window.scrollTo({
+//     top: offsetPosition,
+//     behavior: "smooth",
+//   });
+// }
 
 // Smooth scrolling for navigation links
-function setupSmoothScrolling() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault()
-      let hash = this.hash === "#services-section" ? "#services" : this.hash;
-      const target = document.querySelector(hash);
-      if (target) {
-        scrollToSection(target);
-      }
-    });
-  });
-}
+// function setupSmoothScrolling() {
+//   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+//     anchor.addEventListener("click", function (e) {
+//       e.preventDefault()
+//       let hash = this.hash === "#services-section" ? "#services" : this.hash;
+//       const target = document.querySelector(hash);
+//       if (target) {
+//         scrollToSection(target);
+//       }
+//     });
+//   });
+// }
 
 window.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
-  setupSmoothScrolling();
-  const servicesSection = document.getElementById("services");
-  const servicesSectionLink = document.getElementById("nav-link-services");
-  servicesSectionLink.addEventListener("click", () => {
-    scrollToSection(servicesSection);
-  });
-  if (window.location.href.includes("#services-section")) {
-    scrollToSection(servicesSection);
-  }  
+  // setupSmoothScrolling();
+  // const servicesSection = document.getElementById("services");
+  // const servicesSectionLink = document.getElementById("nav-link-services");
+  // servicesSectionLink.addEventListener("click", () => {
+  //   scrollToSection(servicesSection);
+  // });
+  // if (window.location.href.includes("#services-section")) {
+  //   scrollToSection(servicesSection);
+  // }  
 });
 
 const downloadPDF = () => {

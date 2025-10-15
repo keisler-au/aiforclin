@@ -1523,11 +1523,6 @@ a {
   text-align: center;
 }
 
-.two-col-grid-calculator {
-  margin-top: 10rem;
-  margin-bottom: 5rem;
-}
-
 .card-alt-calculator {
   padding: 1rem;
   border: 1px solid var(--border-color);
@@ -1884,6 +1879,11 @@ a {
 
 /* ≤480px */
 @media (max-width: 480px) {
+  .dropdown:hover .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu {
+    transform: translateX(-25%);
+  }
+
   .company-links {
     padding: var(--spacing-sm);
     border-radius: var(--spacing-xs);
@@ -1915,7 +1915,8 @@ a {
   }
 
   .title-container {
-    margin: 6rem auto 4rem;
+    margin: 8rem auto 4rem;
+    margin-bottom: 1rem;
   }
 
   .main-subtitle {
