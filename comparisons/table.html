@@ -316,8 +316,79 @@
       document.addEventListener("DOMContentLoaded", () => {
         // --- DATA SOURCE ---
         const allItems = [
+        {
+          id: 1,
+          name: "PractaLuma",
+          link: { label: "See more", url: "https://www.practaluma.com/" },
+          appCompliance: true, // Australian Privacy Principles
+          dataStorage: "Secure Australian-based servers (with option for enterprise hosting)",
+          freeMembership: true,
+          freeTrial: "30 days",
+          pmsIntegration: "No external PMS integration (Internal PMS available)",
+          uniqueFeatures: {
+            sections: [
+              {
+                category: "Clinician-Centric Design",
+                items: [
+                  "Built by Psychologists for mental health practitioners",
+                  "AI-First EHR (coming soon)",
+                  "Private Slack channel with engineers & founders",
+                  "Reliability promise (98% uptime or your money back)",
+                  "Custom healthcare model built in, ensuring notes are clinically aligned and for documentation accuracy",
+                ],
+              },
+              {
+                category: "Advanced Tools & Integrations",
+                items: [
+                  "5P case formulation template builder",
+                  "Customised treatment plan generator (based on selected approaches, clinician authored)",
+                  "Integration with Zoom/Teams/Google Meet via meeting bot for enhanced audio transcription and accuracy",
+                  "AI-powered client search",
+                  "Ability to create custom forms to send to clients (e.g. intake forms, parent/teacher info forms, coming soon)",
+                ],
+              },
+            ],
+          },
+          coreFeatures: {
+            sections: [
+              {
+                category: "Session & Documentation",
+                items: [
+                  "Session transcription",
+                  "Clinical note generation (Therapy initial, progress notes, SOAP, DAP, EMDR, TF-CBT etc.)",
+                  "Automated psychometric scoring & classification",
+                  "Secure document storage",
+                  "Multiple session selection for letter / document generation",
+                ],
+              },
+              {
+                category: "Security & Compliance",
+                items: [
+                  "Zero data retention",
+                  "Practitioner sets storage settings",
+                  "Triple-layered compliance - APP, GDPR, HIPAA (ISO27001 in progress)",
+                ],
+              },
+            ],
+          },
+          pricing: {
+            prices: [
+              "$99 AUD / month",
+              "Integrated practice management software included free for users (email support@practaluma.com to switch on)",
+            ],
+          },
+          telehealth: true, // integrates with Zoom, Teams, Google Meet via bot recording
+          headphonesCompatible: true, // works with any standard audio input
+          mobileCompatible: false, // not specified, assuming no mention
+          multipleNotes: true,
+          aiTrainableOverTime: true,
+          languagesSupported: [
+            "No, but this is on our roadmap",
+          ],
+        },
+
           {
-            id: 1,
+            id: 2,
             name: "ANTSA",
             link: { label: "See more", url: "https://www.antsa.com.au/" },
             appCompliance: true, // Australian Privacy Principles
@@ -402,7 +473,7 @@
           },
 
           {
-            id: 2,
+            id: 3,
             name: "Zanda Health",
             link: {
               label: "See more",
@@ -459,7 +530,7 @@
           },
 
           {
-            id: 3,
+            id: 4,
             name: "NovoNote by NovoPsych",
             link: { label: "See more", url: "https://novopsych.com/novonote/" },
             appCompliance: true,
@@ -522,7 +593,7 @@
           },
 
           {
-            id: 4,
+            id: 5,
             name: "Bastion GPT",
             link: {
               label: "30 day free trial",
@@ -579,7 +650,7 @@
           },
 
           {
-            id: 5,
+            id: 6,
             name: "Patient Notes",
             link: {
               label: "10% Discount",
@@ -686,7 +757,7 @@
             },
           },
           {
-            id: 6,
+            id: 7,
             name: "Heidi Health",
             link: {
               label: "30 day free trial",
@@ -783,7 +854,7 @@
             },
           },
           {
-            id: 7,
+            id: 8,
             name: "Uplift AI",
             link: { label: "See more", url: "https://www.upliftgroup.ai/" },
             appCompliance: true,
@@ -826,7 +897,7 @@
             languagesSupported: "Not currently. It will in future development.",
           },
           {
-            id: 8,
+            id: 9,
             name: "Everbility",
             link: {
               label: "10% Discount",
