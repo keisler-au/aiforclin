@@ -46,6 +46,7 @@
         header {
             text-align: center;
             padding: 20px 20px 15px;
+            padding-top: 10px;
             animation: fadeInDown 0.8s ease-out;
         }
 
@@ -88,7 +89,7 @@
         .hero {
             background: linear-gradient(135deg, #FFFFFF 0%, #f8f9fa 100%);
             border-radius: 24px;
-            padding: 40px 35px;
+            padding: 30px 35px;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
             margin-bottom: 25px;
             position: relative;
@@ -143,7 +144,7 @@
         h1 {
             color: #0A1D3A;
             font-size: 2.2rem;
-            margin-bottom: 15px;
+            margin-top: 15px;
             line-height: 1.15;
             font-weight: 800;
             letter-spacing: -1.5px;
@@ -351,6 +352,84 @@
         input::placeholder {
             color: #0A1D3A;
             opacity: 0.4;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #EBEBEB;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            background: #FFFFFF;
+            color: #0A1D3A;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #00A389;
+            box-shadow: 0 0 0 4px rgba(0, 163, 137, 0.1);
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #00A389;
+        }
+
+        .checkbox-wrapper label {
+            color: #0A1D3A;
+            font-size: 0.95rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .contributor-fields {
+            display: none;
+            margin-top: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 14px;
+            border: 2px solid #EBEBEB;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .contributor-fields.show {
+            display: block;
+        }
+
+        .contributor-fields h4 {
+            color: #0A1D3A;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .field-group {
+            margin-bottom: 15px;
+        }
+
+        .field-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .field-group label {
+            display: block;
+            color: #0A1D3A;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            font-weight: 500;
         }
 
         .button-wrapper {
@@ -636,6 +715,45 @@
                             <input type="text" id="name" placeholder="Your Name" required>
                             <input type="email" id="email" placeholder="Your Email" required>
                         </div>
+                        
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="contributorCheckbox">
+                            <label for="contributorCheckbox">I want to join as a contributor</label>
+                        </div>
+                        
+                        <div class="contributor-fields" id="contributorFields">
+                            <h4>Contributor Information</h4>
+                            <div class="field-group">
+                                <label for="profession">What is your profession?</label>
+                                <select id="profession">
+                                    <option value="">Select your profession</option>
+                                    <option value="physiotherapist">Physiotherapist</option>
+                                    <option value="occupational-therapist">Occupational Therapist</option>
+                                    <option value="speech-pathologist">Speech Pathologist</option>
+                                    <option value="dietitian">Dietitian</option>
+                                    <option value="exercise-physiologist">Exercise Physiologist</option>
+                                    <option value="psychologist">Psychologist</option>
+                                    <option value="podiatrist">Podiatrist</option>
+                                    <option value="chiropractor">Chiropractor</option>
+                                    <option value="osteopath">Osteopath</option>
+                                    <option value="other">Other Allied Health Professional</option>
+                                </select>
+                            </div>
+                            <div class="field-group">
+                                <label for="contentType">What content would you like to contribute?</label>
+                                <select id="contentType">
+                                    <option value="">Select content type</option>
+                                    <option value="case-studies">Case Studies & Clinical Examples</option>
+                                    <option value="guides">Educational Guides & Tutorials</option>
+                                    <option value="research">Research & Evidence Reviews</option>
+                                    <option value="tools">AI Tools & Resources</option>
+                                    <option value="best-practices">Best Practices & Workflows</option>
+                                    <option value="discussions">Discussion Topics & Questions</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
                         <div class="button-wrapper">
                             <button type="submit">Join the Waitlist</button>
                         </div>
@@ -658,18 +776,37 @@
     <script>
         const form = document.getElementById('waitlistForm');
         const successMessage = document.getElementById('successMessage');
+        const contributorCheckbox = document.getElementById('contributorCheckbox');
+        const contributorFields = document.getElementById('contributorFields');
+
+        // Toggle contributor fields visibility
+        contributorCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                contributorFields.classList.add('show');
+            } else {
+                contributorFields.classList.remove('show');
+            }
+        });
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
+            const isContributor = contributorCheckbox.checked;
 
             const waitlistEntry = {
                 name: name,
                 email: email,
+                isContributor: isContributor,
                 timestamp: new Date().toISOString()
             };
+
+            // Add contributor data if checkbox is checked
+            if (isContributor) {
+                waitlistEntry.profession = document.getElementById('profession').value;
+                waitlistEntry.contentType = document.getElementById('contentType').value;
+            }
 
             console.log('Waitlist entry:', waitlistEntry);
 
@@ -678,6 +815,7 @@
 
             setTimeout(() => {
                 form.reset();
+                contributorFields.classList.remove('show');
                 form.style.display = 'block';
                 successMessage.classList.remove('show');
             }, 5000);
