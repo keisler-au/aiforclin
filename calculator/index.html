@@ -29,7 +29,7 @@ title: AI Scribe Savings Calculator
           <br /><br />
           Simply enter your details on the left to see personalized calculations
           of how much time and money you could save annually with AI-powered
-          transcription services.
+          transcription services.          
         </p>
       </section>
 
@@ -207,22 +207,8 @@ title: AI Scribe Savings Calculator
               />
             </div>
             <div class="form-group">
-              <label for="time-saved" class="form-label"
-                >Time Saved Per Hour (minutes)</label
-              >
-              <input
-                type="number"
-                id="time-saved"
-                class="form-input"
-                placeholder="e.g., 15"
-                required
-                min="1"
-                max="60"
-              />
-            </div>
-            <div class="form-group">
               <label for="daily-hours" class="form-label"
-                >Daily Working Hours</label
+                >Hours Spent on Documentation per Week</label
               >
               <input
                 type="number"
@@ -232,6 +218,20 @@ title: AI Scribe Savings Calculator
                 required
                 min="1"
                 max="24"
+              />
+            </div>
+            <div class="form-group">
+              <label for="time-saved" class="form-label"
+                >Minutes Saved from AI Scribe per Hour</label
+              >
+              <input
+                type="number"
+                id="time-saved"
+                class="form-input"
+                placeholder="e.g., 15"
+                required
+                min="1"
+                max="60"
               />
             </div>
             <div class="form-group">
@@ -379,7 +379,7 @@ title: AI Scribe Savings Calculator
 
     function updateVisuals(data) {
       const totalAnnualWorkHours =
-        data.dailyWorkHours * 5 * data.annualWorkWeeks;
+        data.documentationHoursPerWeek * 5 * data.annualWorkWeeks;
       const timeRecoveryPercentage = Math.round(
         (data.annualTimeSaved / totalAnnualWorkHours) * 100
       );
@@ -445,7 +445,7 @@ title: AI Scribe Savings Calculator
         const timeSavedPerHour = parseFloat(
           document.getElementById("time-saved").value
         );
-        const dailyWorkHours = parseFloat(
+        const documentationHoursPerWeek = parseFloat(
           document.getElementById("daily-hours").value
         );
         const annualWorkWeeks = parseFloat(
@@ -454,7 +454,7 @@ title: AI Scribe Savings Calculator
 
         // Calculate savings
         const timeSavedPerHourDecimal = timeSavedPerHour / 60;
-        const dailyTimeSaved = timeSavedPerHourDecimal * dailyWorkHours;
+        const dailyTimeSaved = timeSavedPerHourDecimal * (documentationHoursPerWeek / 5);
         const weeklyTimeSaved = dailyTimeSaved * 5;
         const annualTimeSaved = weeklyTimeSaved * annualWorkWeeks;
 
@@ -465,7 +465,7 @@ title: AI Scribe Savings Calculator
         const calculationData = {
           hourlyRate,
           timeSavedPerHour,
-          dailyWorkHours,
+          documentationHoursPerWeek,
           annualWorkWeeks,
           dailyTimeSaved,
           weeklyTimeSaved,
@@ -494,9 +494,9 @@ title: AI Scribe Savings Calculator
     // Pre-fill with example values
     window.addEventListener("load", function () {
       document.getElementById("hourly-rate").value = "100";
-      document.getElementById("time-saved").value = "15";
-      document.getElementById("daily-hours").value = "8";
-      document.getElementById("annual-weeks").value = "50";
+      document.getElementById("time-saved").value = "20";
+      document.getElementById("daily-hours").value = "7";
+      document.getElementById("annual-weeks").value = "48";
     });
   </script>
 </div>
