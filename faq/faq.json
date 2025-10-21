@@ -1,0 +1,92 @@
+[
+  {
+    "id": "general",
+    "title": "General",
+    "faqs": [
+      {
+        "question": "Who is David Lopis and what is his background in AI and mental health?",
+        "answer": "David is an Australian registered psychologist, AI consultant, and board‑approved supervisor. He leads Psychology Squared (3,500+ clinicians) and has presented/trained with APS, AAPi, and ACPA. Learn more on <a href=\"/#services\">Services</a>."
+      },
+      {
+        "question": "Do you provide services outside Australia or virtually?",
+        "answer": "Yes. Virtual/online sessions are available. In‑person and hybrid formats can be arranged depending on needs."
+      }
+    ]
+  },
+  {
+    "id": "services",
+    "title": "Services and Booking",
+    "faqs": [
+      {
+        "question": "What kinds of services do you offer?",
+        "answer": "• Individual AI consultation<br />• Group training and workshops<br />• Speaking engagements and keynotes<br />• AI Compliance Pack (templates and guidance)<br />• Company collaborations (product reviews and ongoing assistance)<br />See <a href=\"/#services\">Services</a> and <a href=\"/compliance/\">Compliance Pack</a>."
+      },
+      {
+        "question": "What information do I need to provide when booking?",
+        "answer": "Name, email, organisation, role, expected group size, preferred dates, budget (optional), location/format (in‑person/virtual/hybrid), and any specific topics or additional info. You can start from <a href=\"/#pricing\">our booking options</a>."
+      },
+      {
+        "question": "Do you offer tailored workshops for different professional groups?",
+        "answer": "Yes. Examples include AI Basics for Clinicians, AI for Social Workers, and Social Media & AI for Psychologists. Sessions are tailored to your context."
+      },
+      {
+        "question": "What topics do you cover in talks and workshops?",
+        "answer": "Getting started with AI in practice, ethical use and governance, AI tool demonstrations, social media and AI for psychologists, and discipline‑specific trainings."
+      },
+      {
+        "question": "Do you consult with companies on product development and positioning?",
+        "answer": "Yes. Our Product Review includes tool trial, debrief, 1‑month follow‑up, and written recommendations. Ongoing Assistance covers planning, implementation, governance, and risk management. See <a href=\"/#pricing\">Company Consulting and Collaborations</a>."
+      }
+    ]
+  },
+  {
+    "id": "ethics",
+    "title": "Ethics, Compliance, and Legal",
+    "faqs": [
+      {
+        "question": "How do you address ethics?",
+        "answer": "We align with the Australian AI Ethics principles and professional competencies, emphasising transparency, accountability, privacy, and safety. See <a href=\"/standards/\">AI Ethical Standards</a>."
+      },
+      {
+        "question": "What is the AI Compliance Pack?",
+        "answer": "A ready‑to‑use set of templates and guidance drafted by PGC Legal Pty Ltd: AI Policy, Privacy Policy, Consent Form for AI use, Implementation Checklist, and transcript inclusion guidance. Instant access after purchase. See <a href=\"/compliance/\">AI Compliance Pack</a>."
+      },
+      {
+        "question": "Who is the AI Compliance Pack for?",
+        "answer": "Psychologists using or planning to use AI. Individual licence is $199 (inc GST); practice bundles available on request."
+      },
+      {
+        "question": "Is the Compliance Pack legal advice? What are the limitations?",
+        "answer": "The content is informational, not legal advice, and comes with limitations of liability. Using it does not create a solicitor‑client relationship. See <a href=\"/compliance/#legal\">Important Legal Information</a>."
+      }
+    ]
+  },
+  {
+    "id": "speaking",
+    "title": "Speaking, Media, and Community",
+    "faqs": [
+      {
+        "question": "Do you do keynotes at conferences?",
+        "answer": "Yes. Examples include APS, AAPi, ACPA events, and ASAICP Symposium 2025. See <a href=\"/#speaking\">Speaking & Events</a>."
+      },
+      {
+        "question": "Where can I hear or watch your interviews and presentations?",
+        "answer": "• Mastering Therapy Podcast: “Using AI in Your Therapy Practice (Part 2)”<br />• YouTube: “ChatGPT and Beyond: AI’s Impact on Psychology”<br />Links on <a href=\"/#media\">Media & Interviews</a>."
+      },
+      {
+        "question": "Is there a community I can join to learn about AI in psychology?",
+        "answer": "Yes. Join the “Australian Psychology AI Community” Facebook group. See <a href=\"/compliance/#contact\">Contact Information</a>."
+      }
+    ]
+  },
+  {
+    "id": "tools",
+    "title": "Choosing AI Tools",
+    "faqs": [
+      {
+        "question": "Do you compare AI tools for clinicians?",
+        "answer": "Yes. See our overview of AI scribe companies, including features, pricing, and trials on <a href=\"/comparisons/\">Comparisons</a>."
+      }
+    ]
+  }
+]
