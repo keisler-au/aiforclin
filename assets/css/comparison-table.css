@@ -1,0 +1,112 @@
+:root {
+    --primary-gold: #d4af37;
+    --gold-light: #f4e4bc;
+    --gold-lighter: #fbf8f0;
+    --gold-dark: #b8941f;
+    --navy-dark: #1a2b44;
+    --navy-darker: #14223a;
+    --navy-deepest: #0f1a2e;
+    --text-primary: #d4af37;
+    --text-secondary: #f4e4bc;
+    --text-muted: #c4b078;
+    --border-color: rgba(212, 175, 55, 0.3);
+    --hover-bg: rgba(212, 175, 55, 0.15);
+    --card-bg: rgba(212, 175, 55, 0.08);
+    --card-bg-alt: rgba(212, 175, 55, 0.12);
+    --buy-green: #22c55e;
+    --buy-green-dark: #16a34a;
+    --buy-green-shadow: rgba(34, 197, 94, 0.35);
+    --hover-background: rgba(212, 175, 55, 0.1);
+}
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.transition-all-smooth {
+    transition: all 0.2s ease-in-out;
+}
+
+.comparison-placeholder {
+    border: 2px dashed var(--primary-gold);
+    color: var(--navy-deepest);
+    min-height: 180px;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background: var(--gold-lighter);
+    z-index: 10;
+    /* box-shadow: inset 0 -1px 0 0 #e5e7eb; */
+}
+
+dialog::backdrop {
+    /* background: rgba(0, 0, 0, 0.4); */
+    background: transparent;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-trigger {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    background: var(--navy-deepest);
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    line-height: 18px;
+    margin-left: 6px;
+    cursor: help;
+    transition: background 0.2s ease;
+}
+
+.tooltip-trigger:hover {
+    background: var(--primary-gold);
+    transform: scale(1.1);
+}
+
+.tooltip-text {
+    --width: 200px;
+    --border-width: 1px;
+    visibility: hidden;
+    width: var(--width);
+    background: var(--navy-deepest);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(calc((var(--border-width) * 2 + 1px) - (var(--width) / 2)));
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    line-height: 1.4;
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: 0 4px 12px var(--hover-bg);
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--navy-deepest) transparent transparent transparent;
+}

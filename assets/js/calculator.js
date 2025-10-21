@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   // initial state
-  toggleResultsVisibility(false);
+  if (window.location.href.includes("calculator")) {
+    toggleResultsVisibility(false);
+    setupCalculator();
+  };
 
   function toggleResultsVisibility(isVisible) {
     const placeholder = document.getElementById("placeholder-content");
@@ -110,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateVisuals(data) {
-    const totalAnnualWorkHours = data.dailyWorkHours * 5 * data.annualWorkWeeks;
+    const totalAnnualWorkHours = data.documentationHoursPerWeek * 5 * data.annualWorkWeeks;
     const timeRecoveryPercentage = Math.round(
       (data.annualTimeSaved / totalAnnualWorkHours) * 100
     );
@@ -164,64 +167,66 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 1000);
   }
 
-  const calculatorForm = document.getElementById("calculator-form");
-  calculatorForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+  function setupCalculator() {
+    const calculatorForm = document.getElementById("calculator-form");
+    calculatorForm.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    const hourlyRate = parseFloat(document.getElementById("hourly-rate").value);
-    const timeSavedPerHour = parseFloat(
-      document.getElementById("time-saved").value
-    );
-    const dailyWorkHours = parseFloat(
-      document.getElementById("daily-hours").value
-    );
-    const annualWorkWeeks = parseFloat(
-      document.getElementById("annual-weeks").value
-    );
+      const hourlyRate = parseFloat(document.getElementById("hourly-rate").value);
+      const timeSavedPerHour = parseFloat(
+        document.getElementById("time-saved").value
+      );
+      const documentationHoursPerWeek = parseFloat(
+        document.getElementById("daily-hours").value
+      );
+      const annualWorkWeeks = parseFloat(
+        document.getElementById("annual-weeks").value
+      );
 
-    // Calculate savings
-    const timeSavedPerHourDecimal = timeSavedPerHour / 60;
-    const dailyTimeSaved = timeSavedPerHourDecimal * dailyWorkHours;
-    const weeklyTimeSaved = dailyTimeSaved * 5;
-    const annualTimeSaved = weeklyTimeSaved * annualWorkWeeks;
+      // Calculate savings
+      const timeSavedPerHourDecimal = timeSavedPerHour / 60;
+      const dailyTimeSaved = timeSavedPerHourDecimal * (documentationHoursPerWeek / 5);
+      const weeklyTimeSaved = dailyTimeSaved * 5;
+      const annualTimeSaved = weeklyTimeSaved * annualWorkWeeks;
 
-    const dailyMoneySaved = dailyTimeSaved * hourlyRate;
-    const weeklyMoneySaved = weeklyTimeSaved * hourlyRate;
-    const annualMoneySaved = annualTimeSaved * hourlyRate;
+      const dailyMoneySaved = dailyTimeSaved * hourlyRate;
+      const weeklyMoneySaved = weeklyTimeSaved * hourlyRate;
+      const annualMoneySaved = annualTimeSaved * hourlyRate;
 
-    const calculationData = {
-      hourlyRate,
-      timeSavedPerHour,
-      dailyWorkHours,
-      annualWorkWeeks,
-      dailyTimeSaved,
-      weeklyTimeSaved,
-      annualTimeSaved,
-      dailyMoneySaved,
-      weeklyMoneySaved,
-      annualMoneySaved,
-    };
+      const calculationData = {
+        hourlyRate,
+        timeSavedPerHour,
+        documentationHoursPerWeek,
+        annualWorkWeeks,
+        dailyTimeSaved,
+        weeklyTimeSaved,
+        annualTimeSaved,
+        dailyMoneySaved,
+        weeklyMoneySaved,
+        annualMoneySaved,
+      };
 
-    setTimeout(() => {
-      toggleResultsVisibility(true);
-    }, 300);
+      setTimeout(() => {
+        toggleResultsVisibility(true);
+      }, 300);
 
-    setTimeout(() => {
-      updateResults(calculationData);
-      updateVisuals(calculationData);
-    }, 400);
+      setTimeout(() => {
+        updateResults(calculationData);
+        updateVisuals(calculationData);
+      }, 400);
 
-    window.scrollTo({
-      top: window.innerWidth < 700 ? 190 : 270,
-      behavior: "smooth",
+      window.scrollTo({
+        top: window.innerWidth < 700 ? 190 : 270,
+        behavior: "smooth",
+      });
     });
-  });
 
-  // Pre-fill with example values
-  window.addEventListener("load", function () {
-    document.getElementById("hourly-rate").value = "100";
-    document.getElementById("time-saved").value = "15";
-    document.getElementById("daily-hours").value = "8";
-    document.getElementById("annual-weeks").value = "50";
-  });
+    // Pre-fill with example values
+    window.addEventListener("load", function () {
+      document.getElementById("hourly-rate").value = "100";
+      document.getElementById("time-saved").value = "40";
+      document.getElementById("daily-hours").value = "8";
+      document.getElementById("annual-weeks").value = "48";
+    });
+  } 
 });
