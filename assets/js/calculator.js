@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateVisuals(data) {
-    const totalAnnualWorkHours = data.documentationHoursPerWeek * 5 * data.annualWorkWeeks;
+    const totalAnnualWorkHours = data.documentationHoursPerWeek * data.annualWorkWeeks;
     const timeRecoveryPercentage = Math.round(
       (data.annualTimeSaved / totalAnnualWorkHours) * 100
     );
@@ -136,35 +136,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 600);
 
     // Update and animate progress bars
-    setTimeout(() => {
-      document.getElementById("time-percentage").textContent =
-        timeSavedPercentage + "%";
-      document.getElementById("time-progress").style.width =
-        timeSavedPercentage + "%";
+    // setTimeout(() => {
+    //   document.getElementById("time-percentage").textContent =
+    //     timeSavedPercentage + "%";
+    //   document.getElementById("time-progress").style.width =
+    //     timeSavedPercentage + "%";
 
-      document.getElementById("recovery-percentage-text").textContent =
-        timeRecoveryPercentage + "%";
-      document.getElementById("recovery-progress").style.width =
-        timeRecoveryPercentage + "%";
-    }, 800);
+    //   document.getElementById("recovery-percentage-text").textContent =
+    //     timeRecoveryPercentage + "%";
+    //   document.getElementById("recovery-progress").style.width =
+    //     timeRecoveryPercentage + "%";
+    // }, 800);
 
     // Update and animate donut chart
-    setTimeout(() => {
-      const circumference = 2 * Math.PI * 15.915;
-      const strokeDasharray = `${
-        (timeRecoveryPercentage / 100) * circumference
-      } ${circumference}`;
-      document
-        .getElementById("donut-progress")
-        .setAttribute("stroke-dasharray", strokeDasharray);
+    // setTimeout(() => {
+    //   const circumference = 2 * Math.PI * 15.915;
+    //   const strokeDasharray = `${
+    //     (timeRecoveryPercentage / 100) * circumference
+    //   } ${circumference}`;
+    //   document
+    //     .getElementById("donut-progress")
+    //     .setAttribute("stroke-dasharray", strokeDasharray);
 
-      animateNumber(
-        document.getElementById("recovery-percentage"),
-        timeRecoveryPercentage,
-        (val) => Math.round(val) + "%",
-        1200
-      );
-    }, 1000);
+    //   animateNumber(
+    //     document.getElementById("recovery-percentage"),
+    //     timeRecoveryPercentage,
+    //     (val) => Math.round(val) + "%",
+    //     1200
+    //   );
+    // }, 1000);
   }
 
   function setupCalculator() {
