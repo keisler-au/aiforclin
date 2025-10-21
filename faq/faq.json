@@ -10,6 +10,10 @@
       {
         "question": "Do you provide services outside Australia or virtually?",
         "answer": "Yes. Virtual/online sessions are available. In‑person and hybrid formats can be arranged depending on needs."
+      },
+      {
+        "question": "What is AI for clinicians, and how is it used in psychology?",
+        "answer": "AI in clinical settings typically involves the use of technology through a computer or phone, usually via a web browser, to help clinicians work more efficiently and make use of research to better support clients. One of the most common applications is through AI scribes, which reduce the workload associated with writing notes and reports by automating an initial draft and assisting clinicians in finalizing it quickly. Tasks that once took 10 to 20 minutes can now be completed in just a few minutes, while reports that previously took hours can often be finished within 15 to 45 minutes, depending on their complexity. Beyond documentation, AI is also being used to leverage research for deeper client understanding and more effective therapeutic support."
       }
     ]
   },
@@ -40,6 +44,38 @@
     ]
   },
   {
+    "id": "speaking",
+    "title": "Speaking, Media, and Community",
+    "faqs": [
+      {
+        "question": "Do you do keynotes at conferences?",
+        "answer": "Yes. Examples include APS, AAPi, ACPA events, and ASAICP Symposium 2025. See <a href=\"/#speaking\">Speaking & Events</a>."
+      },
+      {
+        "question": "Where can I hear or watch your interviews and presentations?",
+        "answer": "• Mastering Therapy Podcast: “Using AI in Your Therapy Practice (Part 2)”<br />• YouTube: “ChatGPT and Beyond: AI’s Impact on Psychology”<br />Links on <a href=\"/#media\">Media & Interviews</a>."
+      },
+      {
+        "question": "Is there a community I can join to learn about AI in psychology?",
+        "answer": "Yes. Join the “Australian Psychology AI Community” Facebook group. See <a href=\"/compliance/#contact\">Contact Information</a>."
+      }
+    ]
+  },
+  {
+    "id": "usage",
+    "title": "Using AI in Practice",
+    "faqs": [
+      {
+        "question": "What are some of the examples of AI uses within therapy sessions specifically?",
+        "answer": "AI scribes are one of the most common tools, with examples including Heidi, Practaluma, ANSA, NovoNote, and several others that can be found on the <a href=\"/comparisons\">comparison table</a>. Other emerging uses include therapy bots or AI companions, where individuals may interact directly with the tool, though this raises important ethical and professional considerations. AI is also being used to generate graphics that assist in developing social stories or visual aids for clients, as well as to create diagrams, videos, and audio materials. A wide range of new applications is emerging, and our understanding of these tools continues to evolve over time."
+      },
+      {
+        "question": "How can ChatGPT help psychologists in daily clinical work?",
+        "answer": "ChatGPT should not be used for client work that involves sensitive or protected client information, as it is important to avoid using tools that are not compliant with privacy and security requirements. However, it can be a valuable tool for other purposes, such as understanding different clinical presentations, developing schedules, creating workshops, building psychoeducation resources, and supporting business development. ChatGPT offers a practical introduction to AI and serves as a foundational tool for clinicians who want to build their understanding of how AI can support their professional work."
+      }
+    ]
+  },
+  {
     "id": "ethics",
     "title": "Ethics, Compliance, and Legal",
     "faqs": [
@@ -58,24 +94,6 @@
       {
         "question": "Is the Compliance Pack legal advice? What are the limitations?",
         "answer": "The content is informational, not legal advice, and comes with limitations of liability. Using it does not create a solicitor‑client relationship. See <a href=\"/compliance/#legal\">Important Legal Information</a>."
-      }
-    ]
-  },
-  {
-    "id": "speaking",
-    "title": "Speaking, Media, and Community",
-    "faqs": [
-      {
-        "question": "Do you do keynotes at conferences?",
-        "answer": "Yes. Examples include APS, AAPi, ACPA events, and ASAICP Symposium 2025. See <a href=\"/#speaking\">Speaking & Events</a>."
-      },
-      {
-        "question": "Where can I hear or watch your interviews and presentations?",
-        "answer": "• Mastering Therapy Podcast: “Using AI in Your Therapy Practice (Part 2)”<br />• YouTube: “ChatGPT and Beyond: AI’s Impact on Psychology”<br />Links on <a href=\"/#media\">Media & Interviews</a>."
-      },
-      {
-        "question": "Is there a community I can join to learn about AI in psychology?",
-        "answer": "Yes. Join the “Australian Psychology AI Community” Facebook group. See <a href=\"/compliance/#contact\">Contact Information</a>."
       }
     ]
   },
