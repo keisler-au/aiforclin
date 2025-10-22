@@ -1,3 +1,4 @@
+const SERVER_CHECK_URL = "https://api.aiforclin.com/ping";
 const EMAIL_API_URL_PROD = "https://api.aiforclin.com/contact";
 const EMAIL_API_URL_DEV = "http://localhost:10000/contact";
 const EMAIL_API_URL = [
@@ -40,6 +41,9 @@ function configureBookingForm(serviceType) {
 }
 
 function openBookingForm(serviceType) {
+  try { fetch(SERVER_CHECK_URL) } 
+  catch (error) { console.error("Error checking server:", error); }
+
   document.getElementById("booking-modal-container").style.display = "flex";
   serviceTypeConsultSelector = document.getElementById("selected-service-consult");
   serviceTypeSelector = document.getElementById("selected-service");
@@ -123,7 +127,10 @@ function showSendStatus(type, message, id = null) {
   const status = id && document.getElementById(id);
   if (!status) return;
   status.textContent = message;
-  status.style.color = type === "success" ? "#48bb78" : "#f56565";
+  let textColor = "#48bb78";
+  if (type === "warning") textColor = "#ed8936";
+  if (type === "error") textColor = "#f56565";
+  status.style.color = textColor;
 }
 
 async function submitForm(token, formData, originalBtnText, formType) {
@@ -131,6 +138,13 @@ async function submitForm(token, formData, originalBtnText, formType) {
   const emailStatusId = formType === "contact" ? "email-status-contact" : "email-status";
 
   try {
+    hardTimeout = setTimeout(() => {
+      showSendStatus(
+        'warning',
+        'Still working… it may take up to a minute on the free plan. You can keep this tab open.',
+        emailStatusId
+      );
+    }, 3000);
     const res = await fetch(EMAIL_API_URL, {
       method: "POST",
       body: formData,
@@ -154,6 +168,7 @@ async function submitForm(token, formData, originalBtnText, formType) {
       emailStatusId
     );
   } finally {
+    clearTimeout(hardTimeout);
     const submitBtn = document.getElementById(formType === "contact" ? "submit-btn-contact" : "submit-btn");
     if (submitBtn) {
       submitBtn.disabled = false;
