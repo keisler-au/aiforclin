@@ -22,9 +22,14 @@
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/calculator.js' | relative_url }}"></script>
+    <!-- Banner -->
+    <link rel="stylesheet" href="{{ '/assets/css/banner.css' | relative_url }}" />
+    <script src="{{ '/assets/js/banner.js' | relative_url }}"></script>
+    <!-- End Banner -->
   </head>
   <body>
     {% include header-nav.html %}
+    {% include banner.html %}
     <!-- {% if page.subnav %} {% include sub-nav.html %} {% endif %} -->
 
     <main id="main" role="main">
