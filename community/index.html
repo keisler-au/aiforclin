@@ -711,6 +711,14 @@
                 
                 <form id="waitlistForm">
                     <div class="form-wrapper">
+                        <input
+                            type="text"
+                            name="website"
+                            id="hp"
+                            style="position: absolute; left: -9999px;"
+                            autocomplete="off"
+                            tabindex="-1"
+                        />
                         <div class="form-grid">
                             <input type="text" id="name" placeholder="Your Name" required>
                             <input type="email" id="email" placeholder="Your Email" required>
@@ -790,7 +798,7 @@
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+            if (document.getElementById('hp').value) return;
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const isContributor = contributorCheckbox.checked;
@@ -807,8 +815,6 @@
                 waitlistEntry.profession = document.getElementById('profession').value;
                 waitlistEntry.contentType = document.getElementById('contentType').value;
             }
-
-            console.log('Waitlist entry:', waitlistEntry);
 
             form.style.display = 'none';
             successMessage.classList.add('show');
