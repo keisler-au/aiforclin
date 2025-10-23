@@ -815,11 +815,10 @@
             const waitlistEntry = {
                 name: name,
                 email: email,
-                contributing: isContributor,
             };
 
-            // Add contributor data if checkbox is checked
             if (isContributor) {
+                waitlistEntry.contributing = true;
                 waitlistEntry.profession = document.getElementById('profession').value;
                 waitlistEntry.content = document.getElementById('contentType').value;
             }
