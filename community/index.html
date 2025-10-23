@@ -816,11 +816,12 @@
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.classList.add('disabled');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
             const waitingTImer = setTimeout(() => {
                 waitingMessage.classList.add('show');
-                submitBtn.classList.add('disabled');
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Processing...';
             }, 3000);
             if (document.getElementById('hp').value) return;
             const name = document.getElementById('name').value;
