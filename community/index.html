@@ -765,7 +765,7 @@
                         </div>
                         
                         <div class="button-wrapper">
-                            <button type="submit">Join the Waitlist</button>
+                            <button id="submitBtn" type="submit">Join the Waitlist</button>
                         </div>
                     </div>
                 </form>
@@ -780,6 +780,11 @@
                     <h3>Something went wrong</h3>
                     <p>There was an error submitting your waitlist entry. Please contact our support team <a href="mailto:joshkeisler.au@gmail.com">here</a>.</p>
                 </div>
+                <div class="waiting-message" id="waitingMessage">
+                    <div class="waiting-icon">⏳</div>
+                    <h3>Processing your waitlist entry</h3>
+                    <p>Your entry is being processed but there is a delay from the server. Please leave this page open if you would like to see that the entry was successful.</p>
+                </div>
             </div>
         </main>
 
@@ -791,6 +796,8 @@
     <script>
         const form = document.getElementById('waitlistForm');
         const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const waitingMessage = document.getElementById('waitingMessage');
         const contributorCheckbox = document.getElementById('contributorCheckbox');
         const contributorFields = document.getElementById('contributorFields');
 
@@ -805,6 +812,12 @@
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
+            const waitingTImer = setTimeout(() => {
+                waitingMessage.classList.add('show');
+                submitBtn.classList.add('disabled');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Processing...';
+            }, 3000);
             if (document.getElementById('hp').value) return;
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
@@ -830,13 +843,20 @@
 
                 if (response.ok && response.status === 200) {
                     form.style.display = 'none';
+                    waitingMessage.classList.remove('show');
                     successMessage.classList.add('show');
                 } else { 
                     throw new Error(response.statusText); 
                 }
             } catch (error) {
                 console.error('Error submitting waitlist entry:', error);
+                waitingMessage.classList.remove('show');
                 errorMessage.classList.add('show');
+            } finally {
+                clearTimeout(waitingTImer);
+                submitBtn.classList.remove('disabled');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join the Waitlist';
             }
      
         });
