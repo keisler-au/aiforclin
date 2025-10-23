@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/assets/images/base/favicon.ico" />
     <title>Unified Intelligence - Join the Waitlist</title>
     <style>
         * {
@@ -829,7 +830,8 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(waitlistEntry)
                 })
-                if (response.ok) {
+
+                if (response.ok && response.status === 200) {
                     form.style.display = 'none';
                     successMessage.classList.add('show');
                 } else { 
