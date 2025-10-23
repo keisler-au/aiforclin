@@ -788,9 +788,9 @@
             }
         });
 
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+            if (document.getElementById('hp').value) return;
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const isContributor = contributorCheckbox.checked;
@@ -798,26 +798,34 @@
             const waitlistEntry = {
                 name: name,
                 email: email,
-                isContributor: isContributor,
-                timestamp: new Date().toISOString()
+                contributing: isContributor,
             };
 
             // Add contributor data if checkbox is checked
             if (isContributor) {
                 waitlistEntry.profession = document.getElementById('profession').value;
-                waitlistEntry.contentType = document.getElementById('contentType').value;
+                waitlistEntry.content = document.getElementById('contentType').value;
             }
 
-            console.log('Waitlist entry:', waitlistEntry);
-
-            form.style.display = 'none';
-            successMessage.classList.add('show');
-
+            try {
+                const response = await fetch('/api/circle-waitlist', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(waitlistEntry)
+                })
+                const data = await response.json();
+                form.style.display = 'none';
+                successMessage.classList.add('show');
+            } catch (error) {
+                console.error('Error submitting waitlist entry:', error);
+                errorMessage.classList.add('show');
+            }
             setTimeout(() => {
                 form.reset();
                 contributorFields.classList.remove('show');
                 form.style.display = 'block';
                 successMessage.classList.remove('show');
+                errorMessage.classList.remove('show');
             }, 5000);
         });
     </script>
