@@ -773,6 +773,11 @@
                     <h3>Welcome to the Community!</h3>
                     <p>You're on the list. We'll send you an email confirmation and notify you the moment we launch.</p>
                 </div>
+                <div class="error-message" id="errorMessage">
+                    <div class="error-icon">✗</div>
+                    <h3>Something went wrong</h3>
+                    <p>There was an error submitting your waitlist entry. Please contact our support team <a href="mailto:joshkeisler.au@gmail.com">here</a>.</p>
+                </div>
             </div>
         </main>
 
@@ -796,7 +801,7 @@
             }
         });
 
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
             if (document.getElementById('hp').value) return;
             const name = document.getElementById('name').value;
@@ -806,24 +811,34 @@
             const waitlistEntry = {
                 name: name,
                 email: email,
-                isContributor: isContributor,
-                timestamp: new Date().toISOString()
+                contributing: isContributor,
             };
 
             // Add contributor data if checkbox is checked
             if (isContributor) {
                 waitlistEntry.profession = document.getElementById('profession').value;
-                waitlistEntry.contentType = document.getElementById('contentType').value;
+                waitlistEntry.content = document.getElementById('contentType').value;
             }
 
-            form.style.display = 'none';
-            successMessage.classList.add('show');
-
+            try {
+                const response = await fetch('/api/circle-waitlist', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(waitlistEntry)
+                })
+                const data = await response.json();
+                form.style.display = 'none';
+                successMessage.classList.add('show');
+            } catch (error) {
+                console.error('Error submitting waitlist entry:', error);
+                errorMessage.classList.add('show');
+            }
             setTimeout(() => {
                 form.reset();
                 contributorFields.classList.remove('show');
                 form.style.display = 'block';
                 successMessage.classList.remove('show');
+                errorMessage.classList.remove('show');
             }, 5000);
         });
     </script>
