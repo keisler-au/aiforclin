@@ -479,7 +479,7 @@
             transform: translateY(-1px);
         }
 
-        .success-message, .error-message {
+        .success-message, .error-message, .waiting-message {
             display: none;
             background: linear-gradient(135deg, #00A389, #00d4a8);
             padding: 50px 40px;
@@ -494,7 +494,11 @@
             background: linear-gradient(135deg, #FF6B6B, #ff8a8a);
         }
 
-        .success-message.show, .error-message.show {
+        .waiting-message {
+            background: linear-gradient(135deg, #e4ff6b, #c2df20);
+        }
+
+        .success-message.show, .error-message.show, .waiting-message.show {
             display: block;
         }
 
