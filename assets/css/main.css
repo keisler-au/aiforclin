@@ -130,10 +130,6 @@ a:focus {
   padding: 40px 20px;
 }
 
-.container--short {
-  padding: 0 20px;
-}
-
 .btn {
   display: inline-flex;
   align-items: center;
