@@ -1,0 +1,93 @@
+@media (min-width: 768px) {
+  .mobile-menu-button {
+    display: none;
+  }
+  .nav {
+    display: flex !important;
+    position: static;
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+  .ml-2 {
+    margin-left: 2rem;
+  }
+    .title-content {
+    width: 55%;
+  }
+
+  .hero-text {
+    text-align: left;
+  }
+
+  .two-col-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .three-col-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .cards-grid.four-col {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .container {
+    padding: var(--spacing-sm);
+  }
+
+  .subtitle {
+    font-size: var(--font-lg);
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .compliance-symbols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contents-grid {
+    grid-template-columns: 1fr;
+  }
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: var(--font-7xl);
+  }
+  .section-title {
+    font-size: var(--font-5xl);
+  }
+
+  .toc-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .header-content {
+    flex-wrap: nowrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .card-header,
+  .card-content {
+    padding: 1.25rem;
+  }
+
+  .hero {
+    padding: 6rem 0 3rem;
+  }
+  .section {
+    padding: 3rem 0;
+  }
+  .table-section {
+    padding: 0;
+  }
+}

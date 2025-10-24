@@ -1,0 +1,28 @@
+@media print {
+  .back-to-top,
+  .btn {
+    display: none !important;
+  }
+
+  .card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  body {
+    background: var(--white) !important;
+    color: var(--black) !important;
+  }
+
+  .company-button {
+    background: var(--white);
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+
+  .table-iframe {
+    display: none;
+  }
+}
+

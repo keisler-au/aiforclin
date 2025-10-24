@@ -11,22 +11,27 @@
     {%- seo -%}
     <!-- inserts canonical, OG, Twitter, etc. -->
 
+    <link rel="icon" type="image/x-icon" href="{{ '/assets/images/base/favicon.ico' | relative_url }}" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
-    <link rel="stylesheet" href="{{ '/assets/css/calculator.css' | relative_url }}" />
-    <link rel="stylesheet" href="{{ '/assets/css/tooltip.css' | relative_url }}" />
-    {%- if page.styles -%}
-      {%- for style in page.styles -%}
-    <link rel="stylesheet" href="{{ style | relative_url }}" />
-      {%- endfor -%}
-    {%- endif -%}
-    <link rel="icon" type="image/x-icon" href="{{ '/assets/images/base/favicon.ico' | relative_url }}" />
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
+
+    <!-- Page Styles -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/calculator.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/provisional-psychologists.css' | relative_url }}" />
+        <link rel="stylesheet" href="{{ '/assets/css/tooltip.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/media-queries/max-width-480.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/media-queries/max-width-1600.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/media-queries/min-width-768.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/media-queries/min-width-1024.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/media-queries/print.css' | relative_url }}" />
+
+    <!-- Page Scripts -->
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/calculator.js' | relative_url }}"></script>
+
   </head>
   <body>
     {% include header-nav.html %}

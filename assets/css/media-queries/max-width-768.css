@@ -1,0 +1,66 @@
+@media (max-width: 768px) {
+  .hero-cta {
+    align-self: center;
+    margin-bottom: 2rem;
+  }
+  .section {
+    padding: 2rem;
+  }
+  .sub-nav {
+    display: none;
+  }
+
+  .compliance-symbols {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .buy-button-container {
+    margin: 2rem 0;
+  }
+  .pricing-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .header-container {
+    padding: 0.2rem 0;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+  }
+  .nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--overlay-navy-lighter);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 220px;
+    box-shadow: 0 8px 24px var(--shadow-darker);
+  }
+  .nav-list {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .nav-link {
+    display: block;
+  }
+
+  .title-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .flex.gap-2,
+  .flex.gap-1 {
+    flex-wrap: wrap;
+  }
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}

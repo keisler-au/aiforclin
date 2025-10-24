@@ -13,19 +13,23 @@ subnav:
     href: "#pricing"
 ---
 
-<div class="container title-container" style="margin-top: 13rem; margin-bottom: 6vh;">
-  <div class="header">
+<div class="container">
+  <header class="page-header page-header--two-col">
+  <div class="page-header__content">
     <h1>AI FOR <br /> <span class="highlight">CLINICIANS</span></h1>
     <p>Building effective and responsible AI use in clinical practice</p>
-    <button onclick="openBookingForm()" class="hero-cta">BOOK NOW</button>
+    <button onclick="openBookingForm()" class="cta">BOOK NOW</button>
   </div>
+  <div class="page-header__media">
     <img
       src="../assets/images/landing-page/professionalHeadshot-no-background.png"
       alt="David Lopis - AI Consultant"
     />
+  </div>
+</header>
 </div>
 <!-- About Section -->
-<section id="about" class="section bg1">
+<section id="about" class="section bg-gradient">
   <div class="container container-short">
     <h2 class="section-title">
       About <span class="section-title-accent">David Lopis</span>
@@ -53,24 +57,25 @@ subnav:
 
     <div class="cards-grid">
       <article class="card">
-        <span class="card-icon">&#128483;</span>
-        <h3 class="card-title">Speaking and Training</h3>
+        
+        <h3 class="card-title">Speaking and Training<span style=>&#128483;</span></h3>
+        
         <p class="card-text">
           Keynote speaker at major conferences including APS, AAPi, and ACPA
           events
         </p>
       </article>
       <article class="card">
-        <span class="card-icon">&#128101;</span>
-        <h3 class="card-title">Psychology Squared</h3>
+        
+        <h3 class="card-title">Psychology Squared<span >&#128101;</span></h3>
         <p class="card-text">
           Runs Facebook community with 3,500+ clinicians learning to use and
           keep up with changes in AI
         </p>
       </article>
       <article class="card">
-        <span class="card-icon">&#128214;</span>
-        <h3 class="card-title">AI Tools Expertise</h3>
+        
+        <h3 class="card-title">AI Tools Expertise<span>&#128214;</span></h3>
         <p class="card-text">
           David has run demo events with Heidi, BastionGPT, Everbility, and
           Zanda
@@ -81,7 +86,7 @@ subnav:
 </section>
 
 <!-- Speaking & Events Section -->
-<section id="speaking" class="section bg2">
+<section id="speaking" class="section bg-gradient bg-gradient-2">
   <div class="container container-short">
     <h2 class="section-title">
       Speaking and <span class="section-title-accent">Events</span>
@@ -169,7 +174,7 @@ subnav:
 </section>
 
 <!-- Media Section -->
-<section id="media" class="section bg3">
+<section id="media" class="section bg-gradient bg-gradient-3">
   <div class="container container-short" style="max-width: 800px">
     <h2 class="section-title">
       Media and <span class="section-title-accent">Interviews</span>
@@ -179,12 +184,12 @@ subnav:
       <article class="card">
         <div class="flex items-center gap-1">
           <h3 class="card-title mb-05">Mastering Therapy Podcast</h3>
-          <span class="fs-15 card-icon">&#128101;</span>
+          <span class="text-3xl card-icon">&#128101;</span>
         </div>
-        <p class="card-text mb-075 fs-09">
+        <p class="card-text mb-075 text-base">
           "Using AI in Your Therapy Practice (Part 2)" with Dr. Natalie Stott
         </p>
-        <p class="card-text muted mb-075 fs-08">
+        <p class="card-text muted mb-075 text-sm">
           45-minute interview covering AI for session transcription, clinical
           notes, and client engagement
         </p>
@@ -200,12 +205,12 @@ subnav:
       <article class="card">
         <div class="flex items-start gap-1">
           <h3 class="card-title mb-05">AI in Allied Health Series</h3>
-          <span class="fs-15 card-icon">&#128214;</span>
+          <span class="text-3xl card-icon">&#128214;</span>
         </div>
-        <p class="card-text mb-075 fs-09">
+        <p class="card-text mb-075 text-base">
           "ChatGPT and Beyond: AI's Impact on Psychology" with Barry T. Nguyen
         </p>
-        <p class="card-text muted mb-075 fs-08">
+        <p class="card-text muted mb-075 text-sm">
           YouTube interview on AI revolutionizing mental health practice and
           ethical safeguards
         </p>
@@ -223,7 +228,7 @@ subnav:
 </section>
 
 <!-- Services Section -->
-<section id="services" class="section bg4">
+<section id="services" class="section bg-gradient bg-gradient-4">
   <div class="container container-short">
     <h2 class="section-title">
       Our <span class="section-title-accent">Services</span>
@@ -284,7 +289,7 @@ subnav:
 </section>
 
 <!-- Billing & Pricing Section -->
-<section id="pricing" class="section bg5 gap-2">
+<section id="pricing" class="section bg-gradient bg-gradient-5 gap-2">
   <h2 class="section-title">
     Billing and <span class="section-title-accent">Pricing</span>
   </h2>
@@ -292,7 +297,7 @@ subnav:
     Transparent pricing for all professional AI consulting services
   </p>
   <div class="flex gap-2">
-    <article class="card card-alt">
+    <article class="card card--transparent">
       <div>
         <div class="flex items-center gap-1 mb-2">
           <h3 class="card-title">Speaking Engagement Pricing</h3>
@@ -301,26 +306,26 @@ subnav:
 
         <div class="my-2">
           <div class="row-between row-divider gap-2">
-            <span class="fs-11 text-secondary">Non-profit organizations</span>
+            <span class="text-lg">Non-profit organizations</span>
             <span class="price">$440 (Inc GST)</span>
           </div>
           <div class="row-between row-divider gap-2">
-            <span class="fs-11 text-secondary">Small group</span>
+            <span class="text-lg">Small group</span>
             <span class="price">$880 (Inc GST)</span>
           </div>
           <div class="row-between gap-2">
-            <span class="fs-11 text-secondary">Large group</span>
+            <span class="text-lg">Large group</span>
             <span class="price">$1,650 (Inc GST)</span>
           </div>
         </div>
       </div>
-      <div class="center">
+      <div class="text-center">
         <button class="btn" onclick="openBookingForm('speaking')">
           Book Speaking Engagement
         </button>
       </div>
     </article>
-    <article class="card card-alt">
+    <article class="card card--transparent">
       <div>
         <div class="flex items-center gap-1 mb-2">
           <h3 class="card-title">AI Consultation</h3>
@@ -329,15 +334,15 @@ subnav:
 
         <div class="my-2">
           <div class="row-between row-divider gap-2">
-            <span class="fs-11 text-secondary">Individual consultation</span>
+            <span class="text-lg">Individual consultation</span>
             <span class="price">$220/hr (Inc GST)</span>
           </div>
           <div class="row-between row-divider gap-2">
-            <span class="fs-11 text-secondary">Two person consultation</span>
+            <span class="text-lg">Two person consultation</span>
             <span class="price">$330/hr (Inc GST)</span>
           </div>
           <div class="row-between gap-2">
-            <span class="fs-11 text-secondary">Larger groups</span>
+            <span class="text-lg">Larger groups</span>
             <span class="price">Contact for pricing</span>
           </div>
         </div>
@@ -354,29 +359,29 @@ subnav:
           </li>
         </ul>
       </div>
-      <div class="center">
+      <div class="text-center">
         <button class="btn" onclick="openBookingForm('consulting')">
           Book Consultation
         </button>
       </div>
     </article>
   </div>
-  <article class="card card-alt">
+  <article class="card card--transparent">
     <div class="flex items-center gap-1 mb-2">
       <h3 class="card-title">Company Consulting and Collaborations</h3>
       <span class="card-icon">&#128188;</span>
     </div>
 
     <div class="flex gap-2">
-      <div class="card card-alt">
+      <div class="card card--transparent">
         <div>
-          <h4 class="text-gold fs-13 mb-1 center">
+          <h4 class="text-gold text-2xl mb-1 text-center">
             Product Review<br />
             (Private, not for public distribution)
           </h4>
-          <div class="center mb-15">
+          <div class="text-center mb-15">
             <span class="price-lg">$770</span>
-            <p class="subtitle-muted">(Inc GST)</p>
+            <p class="subtitle--muted">(Inc GST)</p>
           </div>
           <ul class="text-muted list-unstyled mb-2">
             <li class="flex items-center gap-05 mb-075">
@@ -393,7 +398,7 @@ subnav:
             </li>
           </ul>
         </div>
-        <div class="center">
+        <div class="text-center">
           <button
             class="btn"
             onclick="openBookingForm('company-product-review')"
@@ -403,30 +408,30 @@ subnav:
         </div>
       </div>
 
-      <div class="card card-alt">
+      <div class="card card--transparent">
         <div>
-          <h4 class="text-gold fs-13 mb-1 center">Ongoing Assistance</h4>
-          <div class="center mb-15">
+          <h4 class="text-gold text-2xl mb-1 text-center">Ongoing Assistance</h4>
+          <div class="text-center mb-15">
             <span class="price-range">$1,000-2,000</span>
-            <p class="subtitle-muted">per month (by negotiation)</p>
+            <p class="subtitle--muted">per month (by negotiation)</p>
           </div>
-          <ul class="text-muted list-unstyled mb-15">
+          <ul class="sectionlist-unstyled mb-15">
             <li class="flex items-center gap-05 mb-075">
-              <span class="text-gold">✓</span> Initial meeting and planning
+              <span>✓</span> Initial meeting and planning
             </li>
             <li class="flex items-center gap-05 mb-075">
-              <span class="text-gold">✓</span> Regular reviews
+              <span>✓</span> Regular reviews
             </li>
             <li class="flex items-center gap-05 mb-075">
-              <span class="text-gold">✓</span> Focus on features
+              <span>✓</span> Focus on features
             </li>
             <li class="flex items-center gap-05">
-              <span class="text-gold">✓</span> Focus on reaching target
+              <span>✓</span> Focus on reaching target
               clinicians
             </li>
           </ul>
         </div>
-        <div class="center">
+        <div class="text-center">
           <button
             class="btn"
             onclick="openBookingForm('company-ongoing-assistance')"
