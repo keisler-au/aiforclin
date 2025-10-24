@@ -74,11 +74,16 @@
   flex-shrink: 0;
 }
 
-.card-text {
+.card-text, .card-text--bulk {
   color: var(--text-light);
   line-height: 1.6;
   position: relative;
   z-index: 1;
+}
+
+.card-text--bulk {
+  padding-top: 0.75rem;
+  color: var(--white);
 }
 
 .card-title {
