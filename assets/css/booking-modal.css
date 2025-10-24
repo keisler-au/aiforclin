@@ -122,3 +122,9 @@
 .btn-secondary:hover {
   background: linear-gradient(135deg, var(--bg-gray) 0%, var(--bg-dark) 100%);
 }
+
+
+.hp-field {
+  position: absolute;
+  left: -9999px;
+}

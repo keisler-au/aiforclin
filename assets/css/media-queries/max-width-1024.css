@@ -7,7 +7,4 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
