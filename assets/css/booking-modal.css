@@ -64,3 +64,61 @@
   font-size: var(--font-base);
   text-align: center;
 }
+
+.booking-form {
+  background: linear-gradient(135deg, var(--bg-gray) 0%, var(--bg-gray-light) 100%);
+  border: 2px solid var(--bg-gray-light);
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+  border: none;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--primary-gold);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--bg-gray-light);
+  border-radius: 6px;
+  background: var(--bg-dark);
+  color: var(--text-gray);
+  font-size: var(--font-md);
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--focus-yellow);
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--bg-gray-light) 0%, var(--bg-gray) 100%);
+  color: var(--text-gray);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, var(--bg-gray) 0%, var(--bg-dark) 100%);
+}

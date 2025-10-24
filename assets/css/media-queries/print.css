@@ -1,5 +1,4 @@
 @media print {
-  .back-to-top,
   .btn {
     display: none !important;
   }
