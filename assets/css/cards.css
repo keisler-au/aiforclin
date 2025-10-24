@@ -51,6 +51,15 @@
   box-shadow: 0 10px 30px var(--shadow-gold);
 }
 
+.card.no-hover:hover::before {
+  transform: scaleX(0);
+}
+.card.no-hover:hover {
+  border-color: var(--border-dark);
+  transform: none;
+  box-shadow: none;
+}
+
 .card-icon {
   font-size: var(--font-5xl);
   margin-bottom: 1rem;

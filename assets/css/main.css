@@ -56,7 +56,6 @@
   --font-base: 0.9rem;
   --font-base-plus: 0.95rem;
   --font-md: 1rem;
-  --font-md-plus: 1.05rem;
   --font-lg: 1.1rem;
   --font-lg-plus: 1.125rem;
   --font-xl: 1.2rem;
@@ -202,10 +201,6 @@ a:focus {
   letter-spacing: 0.05em;
 }
 
-.section-title-accent {
-  color: var(--primary-gold);
-}
-
 .section-subtitle {
   font-size: var(--font-xl-plus);
   color: var(--text-light);
@@ -256,6 +251,10 @@ a:focus {
 .flex {
   display: flex;
 }
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
 .wrap {
   flex-wrap: wrap;
 }
@@ -278,6 +277,9 @@ a:focus {
   gap: 2rem;
 }
 
+.m-0 {
+  margin: 0;
+}
 .mb-05 {
   margin-bottom: 0.5rem;
 }
@@ -368,6 +370,9 @@ a:focus {
 }
 .text-sm {
   font-size: var(--font-sm-plus);
+}
+.text-md {
+  font-size: var(--font-md);
 }
 .text-lg {
   font-size: var(--font-lg-plus);

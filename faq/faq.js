@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
         container.appendChild(sectionTitle);
 
         const contentContainer = document.createElement("div");
-        contentContainer.className = "content-container";
 
         section.faqs.forEach((faq) => {
           const article = document.createElement("article");

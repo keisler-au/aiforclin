@@ -17,16 +17,23 @@
 .page-header--two-col {
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .page-header__content {
-  flex: 1;
+  flex: 1 1 450px;
   min-width: 300px;
+  max-width: 550px;
   text-align: center;
 }
 
 .page-header__media {
-  flex: 0 0 auto;
+  flex: 1 1 450px;
+  min-width: 300px;
+  max-width: 550px;
   display: flex;
   align-items: center;
   justify-content: center;
