@@ -1,0 +1,51 @@
+[
+    { 
+      "name": "ANTSA",
+      "description": "AI-powered therapy and clinical scribe tools with jAImee chatbot. Features 30-day free trial, Australian privacy compliance, and $59/month unlimited access.",
+      "link": "companies/antsa.html",
+      "ariaDescription": "Learn more about ANTSA's AI scribe services and pricing"
+    },
+    { 
+      "name": "BastionGPT",
+      "description": "Powerful and easy-to-use AI assistant and scribe tailored for clinicians and mental health professionals. Powered by the AI models used by ChatGPT, Gemini and Claude, but adapted for clinical use and compliance with APP. Unlimited AI scribe access for only AUD $30/month.",
+      "link": "companies/bastiongpt.html",
+      "ariaDescription": "Learn more about BastionGPT's AI assistant for psychology professionals"
+    },
+    { 
+      "name": "Everbility",
+      "description": "Clinical documentation with extensive context and research integration. Supports long reports, PDF uploads, and unlimited customer support. $10 off first 3 months.",
+      "link": "companies/everbility.html",
+      "ariaDescription": "Learn more about Everbility's research-integrated clinical documentation"
+    },
+    { 
+      "name": "Heidi Health",
+      "description": "AI-powered medical documentation with SOC2 and ISO27001 security. Multi-language support, PMS integrations, and dedicated telehealth platform. Free tier to $1299/year.",
+      "link": "companies/heidi.html",
+      "ariaDescription": "Learn more about Heidi Health's secure AI medical documentation"  
+    },
+    { 
+      "name": "NovoPsych (NovoNote)",
+      "description": "Mental health-specific AI scribe with psychometrics integration. 3-month free trial, template library by psychologists. Free until March 2025!",
+      "link": "companies/novopsych.html",
+      "ariaDescription": "Learn more about NovoPsych's NovoNote AI scribe for mental health"        
+    },
+    { 
+      "name": "Patient Notes",
+      "description": "AI-powered clinical documentation and note generation. Real-time transcription, clinical templates, and quality assurance features. 14-day free trial available.",
+      "link": "companies/patientnotes.html",
+      "ariaDescription": "Learn more about Patient Notes' AI clinical documentation platform"
+    },
+    { 
+      "name": "UpliftGroup (UpLift AI)",
+      "description": "Fully AI-driven operating system combining AI therapy, practice management, and patient engagement. AI co-therapist for human-AI collaboration with open-ended early access.",
+      "link": "companies/upliftgroup.html",
+      "ariaDescription": "Learn more about UpliftGroup's comprehensive AI therapy platform"
+    },
+    { 
+      "name": "Zanda Health (BizzyAI)",
+      "description": "AI-powered practice management with BizzyAI: Scribe for live session transcription. Thoughtfully-built for allied health practices with 14-day free trial including 3 hours of AI scribe.",
+      "link": "companies/zanda.html",
+      "ariaDescription": "Learn more about Zanda Health's BizzyAI AI scribe services and pricing"
+    }
+]
+  

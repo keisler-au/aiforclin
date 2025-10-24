@@ -290,14 +290,23 @@ a:focus {
 .mb-075 {
   margin-bottom: 0.75rem;
 }
+.mb-1 {
+  margin-bottom: 1rem;
+}
 .mb-15 {
   margin-bottom: 1.5rem;
 }
 .mb-2 {
   margin-bottom: 2rem;
 }
-.w-100 {
-  width: 100%;
+.mb-6 {
+  margin-bottom: 6rem;
+}
+.mt-025 {
+  margin-top: 0.25rem;
+}
+.mt-2 {
+  margin-top: 2rem;
 }
 
 .text-left {
@@ -324,6 +333,9 @@ a:focus {
   list-style: none;
 }
 
+.w-100 {
+  width: 100%;
+}
 .max-w-40 {
   max-width: 40%;
 }
@@ -365,22 +377,6 @@ a:focus {
 }
 .text-lg {
   font-size: var(--font-lg-plus);
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-.mb-8 {
-  margin-bottom: 2rem;
-}
-.mb-24 {
-  margin-bottom: 6rem;
-}
-.mt-1 {
-  margin-top: 0.25rem;
-}
-.mt-8 {
-  margin-top: 2rem;
 }
 
 
