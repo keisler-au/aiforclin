@@ -47,9 +47,6 @@
   .main-subtitle {
     font-size: var(--font-md-plus);
   }
-  .hero-info {
-    font-size: var(--font-xl);
-  }
 
   .symbol {
     font-size: var(--font-6xl);

@@ -94,19 +94,19 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       document.getElementById(
         "time-description"
-      ).innerHTML = `You could save <span class="highlight">${formatTime(
+      ).innerHTML = `You could save <span class="text-gold">${formatTime(
         data.dailyTimeSaved
-      )}</span> per day, <span class="highlight">${formatTime(
+      )}</span> per day, <span class="text-gold">${formatTime(
         data.weeklyTimeSaved
-      )}</span> per week, and <span class="highlight">${formatTime(
+      )}</span> per week, and <span class="text-gold">${formatTime(
         data.annualTimeSaved
       )}</span> annually with AI scribe technology.`;
 
       document.getElementById(
         "money-description"
-      ).innerHTML = `At <span class="highlight">${formatCurrency(
+      ).innerHTML = `At <span class="text-gold">${formatCurrency(
         data.hourlyRate
-      )}/hour</span>, your time savings translate to <span class="highlight">${formatCurrency(
+      )}/hour</span>, your time savings translate to <span class="text-gold">${formatCurrency(
         data.annualMoneySaved
       )}</span> in additional annual productivity value.`;
     }, 500);
