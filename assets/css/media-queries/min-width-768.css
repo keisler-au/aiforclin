@@ -76,11 +76,6 @@
     text-align: center;
   }
 
-  .card-header,
-  .card-content {
-    padding: 1.25rem;
-  }
-
   .hero {
     padding: 6rem 0 3rem;
   }

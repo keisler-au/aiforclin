@@ -1,32 +1,10 @@
-.card-header {
-  padding: 1.5rem;
-  border-bottom: 1px solid var(--border-color);
-  position: relative;
-  z-index: 1;
-}
 
-.card-title {
-  font-size: var(--font-3xl);
-  color: var(--primary-gold);
-  letter-spacing: 0.025em;
-  margin-bottom: 1rem;
-  z-index: 1;
-}
-
-.card-content {
-  padding: 1.5rem;
-  z-index: 1;
-}
-
-.card-header:hover {
-  background: var(--hover-bg);
-}
 
 .toc-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.5rem;
-}
+  }
 
 .toc-button {
   text-align: left;
