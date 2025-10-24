@@ -63,9 +63,10 @@
   background: var(--hover-bg);
 }
 
-.comparison-nav-margin {
-margin-top: 0;  
+.comparison-nav-btn {
+  margin-top: 0;  
   margin-right: 5rem;
+  color: var(--focus-yellow);
 }
 
 .dropdown {
