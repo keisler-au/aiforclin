@@ -56,16 +56,16 @@ description: Carefully curated AI scribe tools to help provisional psychologists
         style="border-radius: 20px;"
       />
       <article class="card card--transparent card-bordered prov-psych-card">
-        <div class="mb-2">
+        <div>
           <h3 class="card-title">${company.name}</h3>
           <ul class="card-list">
-            ${company.description.map((description) => `<li class="flex gap-05 mb-075"><span class="text-gold">✓</span>${description}</li>`).join("")}
+            ${company.description.map((description) => `<li class="flex gap-05"><span class="text-gold">✓</span>${description}</li>`).join("")}
           </ul>
         </div>
         <a
           href="${company.link}"
           data-affiliate="${company.name.toLowerCase()}"
-          class="btn js-affiliate"
+          class="btn mt-025"
           >Try it Free</a
         >
       </article>`;
@@ -97,6 +97,6 @@ description: Carefully curated AI scribe tools to help provisional psychologists
     </p>
   </section>
 
-  <section id="prov-psych-container" class="container" style="margin-bottom: 5rem">
+  <section id="prov-psych-container" class="container flex-col gap-4">
   </section>
 </div>
