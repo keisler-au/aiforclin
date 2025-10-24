@@ -47,13 +47,11 @@ description: Carefully curated AI scribe tools to help provisional psychologists
     const container = document.getElementById("prov-psych-container");
     companies.forEach((company) => {
       const div = document.createElement("div");
-      div.classList.add("flex", "gap-2", "items-center");
+      div.classList.add("prov-psych-item");
       div.innerHTML = `
       <img
         src="${company.image}"
         alt="${company.name} Logo"
-        class="max-w-50"
-        style="border-radius: 20px;"
       />
       <article class="card card--transparent card-bordered prov-psych-card">
         <div>

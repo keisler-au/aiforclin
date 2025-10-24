@@ -24,7 +24,18 @@
   }
 
   .nav-container {
-    padding: 0.2rem 0;
+    padding: 0.75rem 1rem;
+    gap: 1rem;
+  }
+
+  .nav-container > a[aria-label*="home"] img {
+    width: 100px;
+  }
+
+  .comparison-nav-margin {
+    margin-right: 0;
+    font-size: var(--font-sm);
+    padding: 0.5rem 0.75rem;
   }
 
   .mobile-menu-button {
@@ -60,7 +71,64 @@
   .flex.gap-1 {
     flex-wrap: wrap;
   }
-  .card-grid {
+  .card-grid,
+  .grid-2,
+  .grid-3 {
     grid-template-columns: 1fr;
+  }
+  .prov-psych-item {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .prov-psych-item img {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .prov-psych-card {
+    height: auto;
+    min-height: 320px;
+    max-width: 100%;
+  }
+
+  /* Page header mobile fixes */
+  .page-header {
+    padding: 40px 20px;
+    margin: 6rem auto 2rem;
+  }
+
+  .page-header--two-col {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .page-header__content,
+  .page-header__media {
+    flex: 1 1 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .page-header__media img {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .page-header h1 {
+    font-size: var(--font-6xl);
+  }
+
+  .page-header p {
+    font-size: var(--font-lg);
+  }
+
+  /* Ensure nav is visible when menu is open */
+  .nav[hidden] {
+    display: none;
+  }
+
+  .nav:not([hidden]) {
+    display: flex;
   }
 }
