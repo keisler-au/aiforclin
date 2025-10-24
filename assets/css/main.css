@@ -130,9 +130,7 @@ a:focus {
   padding: 40px 20px;
 }
 
-.container-short {
-  max-width: 1200px;
-  margin: 0 auto;
+.container--short {
   padding: 0 20px;
 }
 

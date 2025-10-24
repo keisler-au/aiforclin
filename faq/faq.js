@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sectionElement.className = `section bg${index}`;
 
         const container = document.createElement("div");
-        container.className = "container container-short";
+        container.className = "container";
 
         const sectionTitle = document.createElement("h2");
         sectionTitle.className = "section-title";
