@@ -66,11 +66,38 @@
   display: block;
 }
 
+.card-icon--large {
+  font-size: var(--font-8xl);
+}
+
+.card-icon--shrink {
+  flex-shrink: 0;
+}
+
 .card-text {
   color: var(--text-light);
   line-height: 1.6;
   position: relative;
   z-index: 1;
+}
+
+.card-title {
+  font-size: var(--font-xl);
+  color: var(--primary-gold);
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-title--large {
+  font-size: var(--font-2xl-plus);
+  margin-bottom: 1rem;
+}
+
+.card-desc {
+  font-size: var(--font-base);
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.6;
 }
 
 .card-list {

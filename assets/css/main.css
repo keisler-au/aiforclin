@@ -158,9 +158,6 @@ a:focus {
   outline: none;
 }
 
-
-
-/* Main Section */
 .section {
   padding: 60px 20px;
 }
@@ -173,8 +170,6 @@ a:focus {
 .bg-gradient {
   background: linear-gradient(135deg, var(--gradient-from, var(--bg-primary)) 0%, var(--gradient-to, var(--bg-secondary)) 100%);
 }
-
-/* Predefined gradient combinations for convenience */
 .bg-gradient-2 {
   --gradient-from: var(--bg-secondary);
   --gradient-to: var(--bg-tertiary);
@@ -248,6 +243,18 @@ a:focus {
   margin-top: 3rem;
 }
 
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
 .flex {
   display: flex;
 }
@@ -266,6 +273,9 @@ a:focus {
 }
 .justify-between {
   justify-content: space-between;
+}
+.gap-025 {
+  gap: 0.25rem;
 }
 .gap-05 {
   gap: 0.5rem;
@@ -337,6 +347,18 @@ a:focus {
 }
 .max-w-50 {
   max-width: 50%;
+}
+.max-w-450 {
+  max-width: 450px;
+}
+
+.max-w-900 {
+  max-width: 900px;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .row-between {
