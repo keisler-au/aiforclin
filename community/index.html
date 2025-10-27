@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +29,7 @@
             width: 100%;
             height: 100%;
             opacity: 0.03;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 20% 50%, #00A389 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, #FF6B6B 0%, transparent 50%),
                 radial-gradient(circle at 40% 20%, #00A389 0%, transparent 50%);
@@ -309,7 +310,7 @@
             font-weight: 800;
         }
 
-        .waitlist-section > p {
+        .waitlist-section>p {
             color: #0A1D3A;
             margin-bottom: 25px;
             font-size: 1rem;
@@ -437,6 +438,7 @@
             position: relative;
             display: inline-block;
             width: 100%;
+            margin-top: 20px;
         }
 
         button {
@@ -479,7 +481,9 @@
             transform: translateY(-1px);
         }
 
-        .success-message, .error-message, .waiting-message {
+        .success-message,
+        .error-message,
+        .waiting-message {
             display: none;
             background: linear-gradient(135deg, #00A389, #00d4a8);
             padding: 50px 40px;
@@ -498,7 +502,9 @@
             background: linear-gradient(135deg, #cfb74c, #ccaf09);
         }
 
-        .success-message.show, .error-message.show, .waiting-message.show {
+        .success-message.show,
+        .error-message.show,
+        .waiting-message.show {
             display: block;
         }
 
@@ -543,6 +549,7 @@
                 opacity: 0;
                 transform: translateY(-40px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -554,6 +561,7 @@
                 opacity: 0;
                 transform: translateY(40px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -564,24 +572,31 @@
             from {
                 width: 0;
             }
+
             to {
                 width: 100%;
             }
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0) translateX(0);
             }
+
             50% {
                 transform: translateY(-20px) translateX(10px);
             }
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.05);
             }
@@ -591,9 +606,11 @@
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
@@ -603,6 +620,7 @@
             from {
                 transform: scale(0);
             }
+
             to {
                 transform: scale(1);
             }
@@ -652,46 +670,119 @@
                 font-size: 2.5rem;
             }
         }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-trigger {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 18px;
+            height: 18px;
+            background: #00A389;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 18px;
+            margin-left: 6px;
+            cursor: help;
+            transition: all 0.3s ease;
+        }
+
+        .tooltip-trigger:hover {
+            background: #FF6B6B;
+            transform: scale(1.1);
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 220px;
+            background-color: #0A1D3A;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 10px;
+            position: absolute;
+            z-index: 10;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(10px);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #0A1D3A transparent transparent transparent;
+        }
     </style>
 </head>
+
 <body>
     <div class="background-pattern"></div>
-    
+
     <div class="container">
         <header>
             <div class="logo-container">
-                <div class="logo">Unified <span class="logo-accent">Intelligence</span></div>
+                <div class="logo">AI for <span class="logo-accent">Clinicians</span></div>
                 <div class="logo-underline"></div>
             </div>
-            <div class="tagline">Where Clinicians Meet AI Innovation</div>
+            <div class="tagline">What you need to know about AI from other clinicians</div>
         </header>
 
         <main>
             <div class="hero">
                 <div class="hero-content">
-                    <!-- <span class="badge">
+                    <span class="badge">
                         <span>🚀</span>
                         <span>Launching Soon</span>
-                        
-                    </span> -->
-                    <!-- <h1>Transform Your Practice with <span class="highlight">AI-Powered Intelligence</span></h1>
-                    <p class="subtitle">Join a thriving community of forward-thinking allied health clinicians who are revolutionizing their business and clinical practices through efficient AI adoption.</p> -->
-                    <h1 style="width: 80%; font-size: 2.5rem;">Join dedicated clinicians<br><span class="highlight">Advance your AI adoption</span><br>Improve your business<br><span class="highlight">Improve your clinical practice</span></h1>
+                    </span>
+
+                    <h1 style="width: 80%; font-size: 2.5rem;">
+                        Discounts on AI tools<br>
+                        <span class="highlight">Join like-minded clinicans</span>
+                        <br>Stay up to date on the latest issues<br>
+                        <span class="highlight">Learn about the newest tools and features</span>
+                        <br>Network
+                    </h1>
                     <div class="features">
                         <div class="feature">
                             <div class="feature-icon">💡</div>
-                            <h3>Expert Resources</h3>
-                            <p>Access an organised community platform and explore hot topics and cutting-edge tools designed specifically for clinicians navigating the AI landscape.</p>
+                            <h3>Resources</h3>
+                            <p>We are adding to a resource library so your subscription gets you more value over time.
+                            </p>
                         </div>
                         <div class="feature">
                             <div class="feature-icon">🤝</div>
-                            <h3>Collaborative Network</h3>
-                            <p>Network with industry experts and passionate peers to explore nuanced topics, share experiences, and solve real-world challenges together.</p>
+                            <h3>Collaborative Community</h3>
+                            <p>Learn from cinicians using the tools you are using and learn about exciting new ones. You
+                                will also be able to connect to founders, developers, IT and legal experts.</p>
                         </div>
                         <div class="feature">
                             <div class="feature-icon">⚡</div>
-                            <h3>Practical Implementation</h3>
-                            <p>Get actionable strategies and step-by-step guidance to integrate AI into your practice efficiently, ethically, and effectively.</p>
+                            <h3>Courses and Events</h3>
+                            <p>Learn how to use AI, get started and develop mastery within the platform. Ask questoins
+                                and access live or past events.</p>
                         </div>
                     </div>
                 </div>
@@ -716,30 +807,32 @@
 
             <div class="waitlist-section">
                 <h2>Secure Your Early Access</h2>
-                <p>Be among the first to experience the future of AI-enhanced clinical practice. Get exclusive resources and help shape our community.</p>
-                
+                <p>Be among the first to experience the future of AI-enhanced clinical practice. Get exclusive resources
+                    and help shape our community.</p>
+
                 <form id="waitlistForm">
                     <div class="form-wrapper">
-                        <input
-                            type="text"
-                            name="website"
-                            id="hp"
-                            style="position: absolute; left: -9999px;"
-                            autocomplete="off"
-                            tabindex="-1"
-                        />
+                        <input type="text" name="website" id="hp" style="position: absolute; left: -9999px;"
+                            autocomplete="off" tabindex="-1" />
                         <div class="form-grid">
                             <input type="text" id="name" placeholder="Your Name" required>
                             <input type="email" id="email" placeholder="Your Email" required>
                         </div>
-                        
+
                         <div class="checkbox-wrapper">
                             <input type="checkbox" id="contributorCheckbox">
-                            <label for="contributorCheckbox">I want to gain Exclusive Discounts and Join as a Facilitator</label>
+                            <label for="contributorCheckbox">
+                                I want to gain Exclusive Discounts and Join as a Super Member
+                                <span class="tooltip">
+                                    <span class="tooltip-trigger">?</span>
+                                    <span class="tooltip-text">Exclusive discounts and access to resources for members who actively help build the community. Spots are limited and subject to approval.</span>
+                                </span>
+                            </label>
+
                         </div>
-                        
+
                         <div class="contributor-fields" id="contributorFields">
-                            <h4>Facilitator Information</h4>
+                            <h4>Super Member</h4>
                             <div class="field-group">
                                 <label for="profession">What is your profession?</label>
                                 <select id="profession">
@@ -761,13 +854,14 @@
                                     <option value="courses-and-workshops">Courses and Workshops</option>
                                     <option value="events-and-webinars">Events and Webinars</option>
                                     <option value="regular-socials">Regular Posts and Discussions</option>
-                                    <option value="resources">Resources (Learning Materials, Articles, Best Practices)</option>
+                                    <option value="resources">Resources (Learning Materials, Articles, Best Practices)
+                                    </option>
                                     <option value="products">Products</option>
                                     <option value="other">Other</option>
                                 </select>
                             </div>
+                            <p>Please reach out to <a href="mailto:david@psychologysquared.com.au" style="color: var(--primary-gold);">david@psychologysquared.com.au</a> if you have any questions!</p>
                         </div>
-                        
                         <div class="button-wrapper">
                             <button id="submitBtn" type="submit">Join the Waitlist</button>
                         </div>
@@ -782,12 +876,14 @@
                 <div class="error-message" id="errorMessage">
                     <div class="error-icon">✗</div>
                     <h3>Something went wrong</h3>
-                    <p>There was an error submitting your waitlist entry. Please contact our support team <a href="mailto:joshkeisler.au@gmail.com">here</a>.</p>
+                    <p>There was an error submitting your waitlist entry. Please contact our support team <a
+                            href="mailto:joshkeisler.au@gmail.com">here</a>.</p>
                 </div>
                 <div class="waiting-message" id="waitingMessage">
                     <div class="waiting-icon">⏳</div>
                     <h3>Processing your waitlist entry</h3>
-                    <p>Your entry is being processed but there is a delay from the server. Please leave this page open if you would like to see that the entry was successful.</p>
+                    <p>Your entry is being processed but there is a delay from the server. Please leave this page open
+                        if you would like to see that the entry was successful.</p>
                 </div>
             </div>
         </main>
@@ -806,7 +902,7 @@
         const contributorFields = document.getElementById('contributorFields');
 
         // Toggle contributor fields visibility
-        contributorCheckbox.addEventListener('change', function() {
+        contributorCheckbox.addEventListener('change', function () {
             if (this.checked) {
                 contributorFields.classList.add('show');
             } else {
@@ -814,7 +910,7 @@
             }
         });
 
-        form.addEventListener('submit', async function(e) {
+        form.addEventListener('submit', async function (e) {
             e.preventDefault();
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.classList.add('disabled');
@@ -850,8 +946,8 @@
                     form.style.display = 'none';
                     waitingMessage.classList.remove('show');
                     successMessage.classList.add('show');
-                } else { 
-                    throw new Error(response.statusText); 
+                } else {
+                    throw new Error(response.statusText);
                 }
             } catch (error) {
                 console.error('Error submitting waitlist entry:', error);
@@ -863,8 +959,9 @@
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Join the Waitlist';
             }
-     
+
         });
     </script>
 </body>
+
 </html>
