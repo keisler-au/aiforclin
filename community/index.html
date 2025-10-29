@@ -913,7 +913,7 @@
                     <h3>Welcome to the Community!</h3>
                     <p>You're on the list.</p>
                     <p>We have sent you an email to <strong id="address-entered">your address</strong>.</p>
-                    <p>If you haven’t received an email please check the address is correct, otherwise please get in touch with <a href="mailto:david@psychologysquared.com.au">david@psychologysquared.com.au</a></p>
+                    <p>If you haven’t received an email please check the address is correct, otherwise please get in touch with <a href="mailto:david@psychologysquared.com.au" style="color: var(--primary-accent);">david@psychologysquared.com.au</a></p>
                 </div>
                 <div class="error-message" id="errorMessage">
                     <div class="error-icon">✗</div>
@@ -985,7 +985,7 @@
                     body: JSON.stringify(waitlistEntry)
                 })
 
-                if (response.ok && response.status === 200) {
+                if (response.ok && response.status === 200 && response.message === "Email sent successfully!") {
                     form.style.display = 'none';
                     waitingMessage.classList.remove('show');
                     successMessage.classList.add('show');
