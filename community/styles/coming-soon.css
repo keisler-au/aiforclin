@@ -8,26 +8,6 @@
     gap: 20px;
 }
 
-.timeline-header {
-    text-align: center;
-    margin-bottom: 40px;
-    animation: fadeInUp 0.8s ease-out 0.3s both;
-}
-
-.timeline-header h2 {
-    color: var(--primary-accent);
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-    letter-spacing: -1px;
-}
-
-.timeline-header p {
-    color: var(--text-light);
-    opacity: 0.65;
-    font-size: 1.05rem;
-}
-
 /* Timeline Card Layout - Horizontal with date on left */
 .cs-timeline-card {
     display: flex;

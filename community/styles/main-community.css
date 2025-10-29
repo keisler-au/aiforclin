@@ -8,6 +8,7 @@
     --background-light: #FFFFFF;
     --text-dark: #0A1D3A;
     --text-light: #EBEBEB;
+    --text-stable: #EBEBEB;
     --text-white: #FFFFFF;
     --background-gradient-start: #FFFFFF;
     --background-gradient-end: #f8f9fa;
@@ -38,6 +39,17 @@
     --tooltip-text: #fff;
     --tooltip-shadow: rgba(0, 0, 0, 0.3);
     --tooltip-arrow: #0A1D3A;
+}
+
+[data-theme="dark"] {
+    --background-light: #1a3a5a;
+    --background-gradient-start: #0A1D3A;
+    --background-gradient-end: #1a3a5a;
+    --text-dark: #EBEBEB;
+    --text-light: #0A1D3A;
+    --shadow-main: rgba(0, 0, 0, 0.6);
+    --input-border: #0A1D3A;
+    --contributor-background: #0A1D3A;
 }
 
 * {
@@ -114,7 +126,7 @@ body {
 }
 
 .c-tagline {
-    color: var(--text-light);
+    color: var(--text-stable);
     font-size: 0.95rem;
     font-weight: 300;
     margin-top: 10px;
@@ -126,7 +138,7 @@ body {
     border-radius: 24px;
     padding: 30px 35px;
     box-shadow: 0 30px 80px var(--shadow-main);
-    margin-bottom: 25px;
+    margin: 2.5rem 0 5rem;
     position: relative;
     overflow: hidden;
     animation: fadeInUp 0.8s ease-out 0.2s both;

@@ -18,18 +18,21 @@
     <!-- Media Queries -->
     <link rel="stylesheet" href="/community/styles/media-queries/max-width-640.css">
     <link rel="stylesheet" href="/community/styles/media-queries/max-width-968.css">
+    <link rel="stylesheet" href="/assets/css/theme-switch.css">
 
     <!-- JS -->
     <script src="/community/scripts/coming-soon.js"></script>
     <script src="/community/scripts/landing-page.js"></script>
     <script src="/community/scripts/memberships.js"></script>
     <script src="/community/scripts/waitlist.js"></script>
+    <script src="/assets/js/theme-switch.js"></script>
 </head>
 
 <body>
     <div class="background-pattern"></div>
 
 <div class="container">
+    
     <header class="c-header">
         <div class="c-logo-container">
             <div class="c-logo">AI for <span class="c-logo-accent">Clinicians</span></div>
@@ -37,6 +40,11 @@
         </div>
         <div class="c-tagline">What you need to know about AI from other clinicians</div>
     </header>
+
+    <button id="theme-switch" class="theme-switch-button" aria-label="Toggle theme">
+        <span class="theme-icon-light">☀️</span>
+        <span class="theme-icon-dark">🌙</span>
+    </button>
 
     <main>
         {{ content }}
