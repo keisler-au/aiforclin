@@ -1,815 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unified Intelligence - Choose Your Membership</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-gold: #d4af37;
-            --gold-light: #f4e4bc;
-            --gold-dark: #b8941f;
-            --navy-dark: #1a2b44;
-            --navy-darker: #14223a;
-            --navy-deepest: #0f1a2e;
-            --text-primary: #d4af37;
-            --text-secondary: #f4e4bc;
-            --text-muted: #c4b078;
-            --border-color: rgba(212, 175, 55, 0.3);
-            --hover-bg: rgba(212, 175, 55, 0.15);
-            --card-bg: rgba(212, 175, 55, 0.08);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--navy-deepest);
-            color: var(--text-secondary);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .background-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.05;
-            background-image: 
-                radial-gradient(circle at 20% 50%, var(--primary-gold) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, var(--gold-dark) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, var(--primary-gold) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 20px 30px;
-            animation: fadeInDown 0.8s ease-out;
-        }
-
-        .logo-container {
-            display: inline-block;
-            position: relative;
-        }
-
-        .logo {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            letter-spacing: -1px;
-        }
-
-        .logo-accent {
-            background: linear-gradient(135deg, var(--primary-gold), var(--gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logo-underline {
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-gold), var(--gold-dark));
-            border-radius: 2px;
-            margin-top: 8px;
-            animation: expandWidth 1s ease-out 0.5s both;
-        }
-
-        .tagline {
-            color: var(--text-muted);
-            font-size: 1rem;
-            font-weight: 300;
-            margin-top: 15px;
-            letter-spacing: 0.5px;
-        }
-
-        .pricing-header {
-            text-align: center;
-            padding: 40px 20px 20px;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-            position: relative;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .toggle-container-small {
-            display: flex;
-            align-items: center;
-        }
-
-        .toggle-switch-small {
-            position: relative;
-            width: 50px;
-            height: 26px;
-            background: var(--card-bg);
-            border-radius: 50px;
-            border: 2px solid var(--border-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-switch-small:hover {
-            border-color: var(--primary-gold);
-        }
-
-        .toggle-slider-small {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 18px;
-            height: 18px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--gold-dark));
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
-        }
-
-        .toggle-switch-small.standard .toggle-slider-small {
-            transform: translateX(24px);
-        }
-
-        .toggle-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin: 30px 0 50px;
-        }
-
-        .toggle-label {
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-label.active {
-            color: var(--primary-gold);
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 70px;
-            height: 36px;
-            background: var(--card-bg);
-            border-radius: 50px;
-            border: 2px solid var(--border-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-switch:hover {
-            border-color: var(--primary-gold);
-        }
-
-        .toggle-slider {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 26px;
-            height: 26px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--gold-dark));
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .toggle-switch.standard .toggle-slider {
-            transform: translateX(34px);
-        }
-
-        .pricing-header h1 {
-            color: var(--text-secondary);
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            font-weight: 800;
-            letter-spacing: -1.5px;
-        }
-
-        .highlight {
-            background: linear-gradient(135deg, var(--primary-gold), var(--gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .billing-toggle-global {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
-        .pricing-header p {
-            color: var(--text-secondary);
-            font-size: 1.15rem;
-            opacity: 0.85;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        .toggle-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin: 30px 0 50px;
-        }
-
-        .toggle-label {
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-label.active {
-            color: var(--primary-gold);
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 70px;
-            height: 36px;
-            background: var(--card-bg);
-            border-radius: 50px;
-            border: 2px solid var(--border-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-switch:hover {
-            border-color: var(--primary-gold);
-        }
-
-        .toggle-slider {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 26px;
-            height: 26px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--gold-dark));
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .toggle-switch.standard .toggle-slider {
-            transform: translateX(34px);
-        }
-
-        .deadline-notice {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.08));
-            border: 2px solid var(--primary-gold);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .deadline-notice .icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .deadline-notice h3 {
-            color: var(--primary-gold);
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .deadline-notice p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin: 50px 0;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-
-        .pricing-card {
-            background: linear-gradient(135deg, var(--navy-darker) 0%, var(--navy-dark) 100%);
-            border-radius: 24px;
-            padding: 40px 30px;
-            border: 2px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary-gold), var(--gold-dark));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .pricing-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-gold);
-            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
-        }
-
-        .pricing-card.featured {
-            border-color: var(--primary-gold);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.25);
-        }
-
-        .pricing-card.featured::before {
-            transform: scaleX(1);
-        }
-
-        .header-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-
-        .header-title h2 {
-            margin: 0;
-        }
-
-        .card-header {
-            min-height: 120px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--gold-dark));
-            color: var(--navy-deepest);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
-            flex-shrink: 0;
-        }
-
-        .card-header h2 {
-            color: var(--primary-gold);
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .card-header p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            opacity: 0.85;
-            margin-bottom: 0;
-        }
-
-        .price-container {
-            margin: 30px 0;
-            padding: 25px 0;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .billing-option {
-            padding: 10px 24px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            color: var(--text-muted);
-            border: 2px solid var(--border-color);
-            background: var(--card-bg);
-        }
-
-        .billing-option.active {
-            background: var(--hover-bg);
-            color: var(--primary-gold);
-            border-color: var(--primary-gold);
-        }
-
-        .billing-option:hover {
-            border-color: var(--primary-gold);
-        }
-
-        .price {
-            text-align: center;
-        }
-
-        .price-amount {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary-gold);
-            line-height: 1;
-        }
-
-        .price-currency {
-            font-size: 1.8rem;
-        }
-
-        .price-period {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-top: 5px;
-        }
-
-        .features-list {
-            list-style: none;
-            margin: 30px 0;
-            flex-grow: 1;
-        }
-
-        .features-list li {
-            padding: 12px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .features-list li::before {
-            content: '✓';
-            color: var(--primary-gold);
-            font-weight: 700;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .special-note {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 15px;
-            margin: 20px 0;
-            border-left: 4px solid var(--primary-gold);
-        }
-
-        .special-note p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 18px 30px;
-            border-radius: 14px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            border: none;
-            margin-top: 10px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-gold), var(--gold-dark));
-            color: var(--navy-deepest);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-gold);
-            border: 2px solid var(--primary-gold);
-        }
-
-        .btn-secondary:hover {
-            background: var(--hover-bg);
-            transform: translateY(-3px);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            margin-top: 60px;
-        }
-
-        footer p {
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes expandWidth {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.02);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .pricing-header h1 {
-                font-size: 2rem;
-            }
-
-            .pricing-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .toggle-label {
-                font-size: 0.95rem;
-            }
-
-            .header-title {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .badge {
-                align-self: flex-start;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 1.8rem;
-            }
-
-            .pricing-header h1 {
-                font-size: 1.6rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="background-pattern"></div>
-    
-    <div class="container">
-        <!-- <header>
-            <div class="logo-container">
-                <div class="logo">Unified <span class="logo-accent">Intelligence</span></div>
-                <div class="logo-underline"></div>
-            </div>
-            <div class="tagline">Where Clinicians Meet AI Innovation</div>
-        </header> -->
-       <div class="toggle-container-small">
-                        <div class="toggle-switch-small" id="pricingToggle">
-                            <div class="toggle-slider-small"></div>
-                        </div>
-                    </div>
-        <main>
-            <div class="pricing-header">
-        
-
-                <h1>Choose Your <span class="highlight">Membership Plan</span></h1>
-                <p>Join our community of forward-thinking clinicians and unlock exclusive resources, expert guidance, and collaborative opportunities.</p>
-
-                <div class="deadline-notice" id="deadlineNotice">
-                    <div class="icon">⏰</div>
-                    <h3>Limited Time Offer</h3>
-                    <p>Lock in Early Adopter pricing before December 31st and save!</p>
-                </div>
-
-                <div class="billing-toggle-global">
-                    <div class="billing-option active" data-billing="annual">Annual</div>
-                    <div class="billing-option" data-billing="monthly">Monthly</div>
-                </div>
-            </div>
-
-            <div class="pricing-cards">
-                <!-- Facilitators Plan -->
-                <div class="pricing-card">
-                    <div class="card-header">
-                        <div class="header-title">
-                            <h2>Facilitators</h2>
-                        </div>
-                        <p>For active community contributors who help shape discussions and support fellow members.</p>
-                    </div>
-
-                    <div class="price-container">
-                        <div class="price">
-                            <div class="price-amount">
-                                <span class="price-currency">$</span>1
-                            </div>
-                            <div class="price-period">per month</div>
-                        </div>
-                    </div>
-
-                    <ul class="features-list">
-                        <li>All standard member benefits</li>
-                        <li>Contribute to community discussions</li>
-                        <li>Help onboard new members</li>
-                        <li>Share expertise and insights</li>
-                        <li>Recognition as community facilitator</li>
-                    </ul>
-
-                    <div class="special-note">
-                        <p><strong>Engagement Requirements:</strong> Facilitator rates are subject to minimum engagement requirements.</p>
-                    </div>
-
-                    <button class="btn btn-secondary">Apply to Facilitate</button>
-                </div>
-
-                <!-- Early Adopter / Standard Plan -->
-                <div class="pricing-card featured">
-                    <div class="card-header">
-                        <div class="header-title">
-                            <h2 id="memberPlanTitle">Early Adopter</h2>
-                            <span class="badge" id="planBadge">
-                                <span id="planBadgeIcon">🌟</span>
-                                <span id="planBadgeText">Limited Time</span>
-                            </span>
-                        </div>
-                        <p>Full access to our community platform, resources, and collaborative network of AI-forward clinicians.</p>
-                    </div>
-
-                    <div class="price-container">
-                        <div class="price">
-                            <div class="price-amount">
-                                <span class="price-currency">$</span><span id="priceValue">9</span>
-                            </div>
-                            <div class="price-period" id="pricePeriod">per month</div>
-                        </div>
-                    </div>
-
-                    <ul class="features-list">
-                        <li>Unlimited access to community platform</li>
-                        <li>Curated knowledge base & resources</li>
-                        <li>Active discussion forums</li>
-                        <li>AI tool recommendations & reviews</li>
-                        <li>Case studies & best practices</li>
-                        <li>Expert contributor content</li>
-                        <li>Monthly live sessions & workshops</li>
-                        <li>Priority support</li>
-                    </ul>
-
-                    <button class="btn btn-primary">Get Started</button>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2025 Unified Intelligence. Empowering allied health professionals with AI innovation.</p>
-        </footer>
+---
+layout: circle-community
+title: Choose Your Membership
+---
+
+<div class="c-hero">
+    <div class="c-hero-content text-center">
+
+
+        <h1 class="c-main-heading">Choose Your <span class="c-highlight">Membership Plan</span></h1>
+        <p class="c-subtitle">Join our community of forward-thinking clinicians and unlock exclusive resources, expert
+            guidance, and
+            collaborative opportunities.</p>
+
+        <div class="deadline-notice" id="deadlineNotice">
+            <div class="icon">⏰</div>
+            <h3>Limited Time Offer</h3>
+            <p>Lock in Early Adopter pricing before December 31st and save!</p>
+        </div>
+
+        <div class="billing-toggle-global">
+            <div class="billing-option active" data-billing="annual">Annual</div>
+            <div class="billing-option" data-billing="monthly">Monthly</div>
+        </div>
     </div>
 
-    <script>
-        // Pricing data
-        const pricing = {
-            early: {
-                annual: 9,
-                monthly: 14
-            },
-            standard: {
-                annual: 14,
-                monthly: 19
-            }
-        };
+</div>
+<div class="c-features">
+    <!-- Facilitators Plan -->
+    <div class="c-feature">
+        <div class="card-header">
+            <div class="header-title">
+                <h3>Facilitators</h3>
+            </div>
+            <p>For active community contributors who help shape discussions and support fellow members.</p>
+        </div>
 
-        let currentPricing = 'early';
-        let currentBilling = 'annual';
+        <div class="price-container">
+            <div class="price">
+                <div class="price-amount">
+                    <span class="price-currency">$</span>1
+                </div>
+                <div class="price-period">per month</div>
+            </div>
+        </div>
 
-        // Toggle between Early Adopter and Standard pricing
-        const toggle = document.getElementById('pricingToggle');
-        const deadlineNotice = document.getElementById('deadlineNotice');
-        const planTitle = document.getElementById('memberPlanTitle');
-        const planBadgeText = document.getElementById('planBadgeText');
-        const planBadgeIcon = document.getElementById('planBadgeIcon');
+        <ul class="features-list">
+            <li>All standard member benefits</li>
+            <li>Contribute to community discussions</li>
+            <li>Help onboard new members</li>
+            <li>Share expertise and insights</li>
+            <li>Recognition as community facilitator</li>
+        </ul>
 
-        toggle.addEventListener('click', function() {
-            toggle.classList.toggle('standard');
-            
-            if (toggle.classList.contains('standard')) {
-                currentPricing = 'standard';
-                deadlineNotice.style.display = 'none';
-                planTitle.textContent = 'Standard';
-                planBadgeText.textContent = 'Most Popular';
-                planBadgeIcon.textContent = '⭐';
-                document.getElementById('planBadge').style.display = 'flex';
-            } else {
-                currentPricing = 'early';
-                deadlineNotice.style.display = 'block';
-                planTitle.textContent = 'Early Adopter';
-                planBadgeText.textContent = 'Limited Time';
-                planBadgeIcon.textContent = '🌟';
-                document.getElementById('planBadge').style.display = 'flex';
-            }
-            
-            updatePrice();
-        });
+        <div class="special-note">
+            <p><strong>Engagement Requirements:</strong> Facilitator rates are subject to minimum engagement
+                requirements.</p>
+        </div>
 
-        // Handle billing toggle (Annual/Monthly)
-        const billingOptions = document.querySelectorAll('.billing-option');
-        billingOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                billingOptions.forEach(opt => opt.classList.remove('active'));
-                this.classList.add('active');
-                currentBilling = this.dataset.billing;
-                updatePrice();
-            });
-        });
+        <button class="c-submit-button">Apply to Facilitate</button>
+    </div>
 
-        // Update price display
-        function updatePrice() {
-            const priceValue = document.getElementById('priceValue');
-            const pricePeriod = document.getElementById('pricePeriod');
-            
-            const price = pricing[currentPricing][currentBilling];
-            priceValue.textContent = price;
-        }
+    <!-- Early Adopter / Standard Plan -->
+    <div class="c-feature featured">
+        <div class="card-header">
+            <div class="header-title">
+                <h3 id="memberPlanTitle">Early Adopter</h3>
+                <span class="c-badge" id="planBadge">
+                    <span id="planBadgeIcon">🌟</span>
+                    <span id="planBadgeText">Limited Time</span>
+                </span>
+            </div>
+            <p>Full access to our community platform, resources, and collaborative network of AI-forward
+                clinicians.</p>
+        </div>
 
-        // Button handlers
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const buttonText = this.textContent;
-                console.log(`Button clicked: ${buttonText}`);
-                // Add your Circle.so integration here
-            });
-        });
+        <div class="price-container">
+            <div class="price">
+                <div class="price-amount">
+                    <span class="price-currency">$</span><span id="priceValue">9</span>
+                </div>
+                <div class="price-period" id="pricePeriod">per month</div>
+            </div>
+        </div>
 
-        // Parallax effect
-        // window.addEventListener('scroll', function() {
-        //     const scrolled = window.pageYOffset;
-        //     const pattern = document.querySelector('.background-pattern');
-        //     if (pattern) {
-        //         pattern.style.transform = `translateY(${scrolled * 0.5}px)`;
-        //     }
-        // });
-    </script>
-</body>
-</html>
+        <ul class="features-list">
+            <li>Unlimited access to community platform</li>
+            <li>Curated knowledge base & resources</li>
+            <li>Active discussion forums</li>
+            <li>AI tool recommendations & reviews</li>
+            <li>Case studies & best practices</li>
+            <li>Expert contributor content</li>
+            <li>Monthly live sessions & workshops</li>
+            <li>Priority support</li>
+        </ul>
+
+        <button class="c-submit-button">Get Started</button>
+    </div>
+</div>

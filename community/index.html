@@ -1,1012 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/assets/images/base/favicon.ico" />
-    <title>AI for Clinicians - Join the Waitlist</title>
-    <style>
-        :root {
-            --primary-accent: #dfbd4f;
-            --primary-accent-light: #f4e4bc;
-            --primary-accent-dark: #b8941f;
-            --secondary-accent: #b8941f;
-            --secondary-accent-light: #ff8a8a;
-            --background-dark: #0A1D3A;
-            --background-light: #FFFFFF;
-            --text-dark: #0A1D3A;
-            --text-light: #EBEBEB;
-            --text-white: #FFFFFF;
-            --background-gradient-start: #FFFFFF;
-            --background-gradient-end: #f8f9fa;
-            --shadow-main: rgba(0, 0, 0, 0.4);
-            --glow-primary: rgba(212, 175, 55, 0.08);
-            --glow-secondary: rgba(255, 107, 107, 0.06);
-            --glow-secondary-strong: rgba(255, 107, 107, 0.3);
-            --feature-hover-shadow: rgba(212, 175, 55, 0.15);
-            --feature-icon-shadow: rgba(212, 175, 55, 0.2);
-            --stats-background-gradient-start: #0A1D3A;
-            --stats-background-gradient-end: #1a3a5a;
-            --stats-shadow: rgba(0, 0, 0, 0.3);
-            --input-border: #EBEBEB;
-            --input-focus-shadow: rgba(212, 175, 55, 0.1);
-            --input-placeholder: rgba(10, 29, 58, 0.4);
-            --contributor-background: #f8f9fa;
-            --button-shadow: rgba(255, 107, 107, 0.4);
-            --button-hover-shadow: rgba(255, 107, 107, 0.5);
-            --success-gradient-start: #d4af37;
-            --success-gradient-end: #b8941f;
-            --error-gradient-start: #FF6B6B;
-            --error-gradient-end: #ff8a8a;
-            --waiting-gradient-start: #cfb74c;
-            --waiting-gradient-end: #ccaf09;
-            --success-icon-background: #FFFFFF;
-            --success-icon-color: #d4af37;
-            --tooltip-background: #0A1D3A;
-            --tooltip-text: #fff;
-            --tooltip-shadow: rgba(0, 0, 0, 0.3);
-            --tooltip-arrow: #0A1D3A;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--background-dark);
-            color: var(--text-dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .background-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            background-image:
-                radial-gradient(circle at 20% 50%, var(--primary-accent) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, var(--secondary-accent) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, var(--primary-accent) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 15px;
-        }
-
-        header {
-            text-align: center;
-            padding: 20px 20px 15px;
-            padding-top: 10px;
-            animation: fadeInDown 0.8s ease-out;
-        }
-
-        .logo-container {
-            display: inline-block;
-            position: relative;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--text-white);
-            margin-bottom: 6px;
-            letter-spacing: -1px;
-        }
-
-        .logo-accent {
-            background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logo-underline {
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
-            border-radius: 2px;
-            margin-top: 5px;
-            animation: expandWidth 1s ease-out 0.5s both;
-        }
-
-        .tagline {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            font-weight: 300;
-            margin-top: 10px;
-            letter-spacing: 0.3px;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, var(--background-gradient-start) 0%, var(--background-gradient-end) 100%);
-            border-radius: 24px;
-            padding: 30px 35px;
-            box-shadow: 0 30px 80px var(--shadow-main);
-            margin-bottom: 25px;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--glow-primary) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--glow-secondary) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 15s ease-in-out infinite reverse;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
-            color: var(--text-white);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 20px var(--glow-secondary-strong);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        h1 {
-            color: var(--text-dark);
-            font-size: 2.5rem;
-            margin-top: 15px;
-            line-height: 1.15;
-            font-weight: 800;
-            letter-spacing: -1.5px;
-        }
-
-        .highlight {
-            background: linear-gradient(135deg, var(--primary-accent-dark), var(--primary-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .subtitle {
-            color: var(--text-dark);
-            font-size: 1rem;
-            margin-bottom: 25px;
-            opacity: 0.75;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.5;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0 0 0;
-        }
-
-        .feature {
-            padding: 25px 20px;
-            background: var(--background-light);
-            border-radius: 20px;
-            border: 2px solid transparent;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-accent-dark), var(--primary-accent));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .feature:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-accent);
-            box-shadow: 0 20px 40px var(--feature-hover-shadow);
-        }
-
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-light));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-            box-shadow: 0 10px 30px var(--feature-icon-shadow);
-            transition: transform 0.4s ease;
-        }
-
-        .feature:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .feature h3 {
-            color: var(--text-dark);
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .feature p {
-            color: var(--text-dark);
-            opacity: 0.65;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .stats-container {
-            background: linear-gradient(135deg, var(--stats-background-gradient-start), var(--stats-background-gradient-end));
-            padding: 30px 25px;
-            border-radius: 24px;
-            margin: 25px 0;
-            box-shadow: 0 20px 60px var(--stats-shadow);
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 25px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-            margin-bottom: 6px;
-            line-height: 1;
-        }
-
-        .stat-label {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .waitlist-section {
-            background: var(--background-light);
-            padding: 40px 35px;
-            border-radius: 24px;
-            text-align: center;
-            box-shadow: 0 30px 80px var(--shadow-main);
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .waitlist-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent), var(--primary-accent));
-            background-size: 200% 100%;
-            animation: gradientShift 3s ease infinite;
-        }
-
-        .waitlist-section h2 {
-            color: var(--text-dark);
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
-
-        .waitlist-section>p {
-            color: var(--text-dark);
-            margin-bottom: 25px;
-            font-size: 1rem;
-            opacity: 0.7;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .form-wrapper {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        input[type="email"],
-        input[type="text"] {
-            width: 100%;
-            padding: 14px 20px;
-            border: 2px solid var(--input-border);
-            border-radius: 14px;
-            font-size: 0.95rem;
-            background: var(--background-light);
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 0 4px var(--input-focus-shadow);
-        }
-
-        input::placeholder {
-            color: var(--text-dark);
-            opacity: 0.4;
-        }
-
-        select {
-            width: 100%;
-            padding: 14px 20px;
-            border: 2px solid var(--input-border);
-            border-radius: 14px;
-            font-size: 0.95rem;
-            background: var(--background-light);
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-            font-family: inherit;
-            cursor: pointer;
-        }
-
-        select:focus {
-            outline: none;
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 0 4px var(--input-focus-shadow);
-        }
-
-        .checkbox-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .checkbox-wrapper input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: var(--primary-accent);
-        }
-
-        .checkbox-wrapper label {
-            color: var(--text-dark);
-            font-size: 0.95rem;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .contributor-fields {
-            display: none;
-            margin-top: 15px;
-            padding: 20px;
-            background: var(--contributor-background);
-            border-radius: 14px;
-            border: 2px solid var(--input-border);
-            animation: fadeInUp 0.3s ease-out;
-        }
-
-        .contributor-fields.show {
-            display: block;
-        }
-
-        .contributor-fields h4 {
-            color: var(--text-dark);
-            font-size: 1rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .field-group {
-            margin-bottom: 15px;
-        }
-
-        .field-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .field-group label {
-            display: block;
-            color: #0A1D3A;
-            font-size: 0.85rem;
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-
-        .button-wrapper {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        button {
-            width: 100%;
-            padding: 16px 40px;
-            background: linear-gradient(135deg, var(--primary-accent-dark), var(--primary-accent));
-            color: var(--text-white);
-            border: none;
-            border-radius: 14px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 30px var(--button-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        button:hover::before {
-            left: 100%;
-        }
-
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px var(--button-hover-shadow);
-        }
-
-        button:active {
-            transform: translateY(-1px);
-        }
-
-        .success-message,
-        .error-message,
-        .waiting-message {
-            display: none;
-            background: linear-gradient(135deg, var(--success-gradient-start), var(--success-gradient-end));
-            padding: 50px 40px;
-            border-radius: 24px;
-            text-align: center;
-            margin-top: 30px;
-            animation: fadeInUp 0.5s ease-out;
-            color: var(--text-white);
-        }
-
-        .error-message {
-            background: linear-gradient(135deg, var(--error-gradient-start), var(--error-gradient-end));
-        }
-
-        .waiting-message {
-            background: linear-gradient(135deg, var(--waiting-gradient-start), var(--waiting-gradient-end));
-        }
-
-        .success-message.show,
-        .error-message.show,
-        .waiting-message.show {
-            display: block;
-        }
-
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--success-icon-background);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            margin: 0 auto 20px;
-            color: var(--success-icon-color);
-            animation: scaleIn 0.5s ease-out;
-        }
-
-        .success-message h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .success-message p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 20px 25px;
-            color: var(--text-light);
-        }
-
-        footer p {
-            opacity: 0.6;
-            font-size: 0.85rem;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes expandWidth {
-            from {
-                width: 0;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) translateX(0);
-            }
-
-            50% {
-                transform: translateY(-20px) translateX(10px);
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                transform: scale(0);
-            }
-
-            to {
-                transform: scale(1);
-            }
-        }
-
-        @media (max-width: 968px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero {
-                padding: 60px 40px;
-            }
-
-            .waitlist-section {
-                padding: 60px 40px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 640px) {
-            h1 {
-                font-size: 1.6rem;
-            }
-
-            .hero {
-                padding: 40px 25px;
-            }
-
-            .waitlist-section {
-                padding: 40px 25px;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-        }
-
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-
-        .tooltip-trigger {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 18px;
-            height: 18px;
-            background: var(--primary-accent);
-            color: var(--text-white);
-            border-radius: 50%;
-            font-size: 12px;
-            font-weight: 700;
-            line-height: 18px;
-            margin-left: 6px;
-            cursor: help;
-            transition: all 0.3s ease;
-        }
-
-        .tooltip-trigger:hover {
-            background: var(--secondary-accent);
-            transform: scale(1.1);
-        }
-
-        .tooltip-text {
-            visibility: hidden;
-            width: 220px;
-            background-color: var(--tooltip-background);
-            color: var(--tooltip-text);
-            text-align: center;
-            border-radius: 8px;
-            padding: 10px;
-            position: absolute;
-            z-index: 10;
-            bottom: 150%;
-            left: 50%;
-            margin-left: -110px;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            box-shadow: 0 5px 20px var(--tooltip-shadow);
-            transform: translateY(10px);
-        }
-
-        .tooltip:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .tooltip-text::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -6px;
-            border-width: 6px;
-            border-style: solid;
-            border-color: var(--tooltip-arrow) transparent transparent transparent;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="background-pattern"></div>
-
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <div class="logo">AI for <span class="logo-accent">Clinicians</span></div>
-                <div class="logo-underline"></div>
+---
+layout: circle-community
+title: AI for Clinicians Community
+---
+<div class="c-hero">
+    <div class="c-hero-content">
+        <span class="c-badge">
+            <!-- <span>🚀</span> -->
+            <span>Launching Soon</span>
+        </span>
+
+        <h1 class="c-main-heading">
+            Discounts on AI tools<br>
+            <span class="c-highlight">Join like-minded clinicans</span>
+            <br>Stay up to date on the latest issues<br>
+            <span class="c-highlight">Learn about the newest tools and features</span>
+            <br>Network with peers as interested in AI as you
+
+        </h1>
+        <div class="c-features">
+            <div class="c-feature">
+                <div class="c-feature-icon">💡</div>
+                <h3>Resources</h3>
+                <p>We are adding to a resource library so your subscription gets you more value over time.
+                    <strong>Coming Soon</strong>
+                </p>
             </div>
-            <div class="tagline">What you need to know about AI from other clinicians</div>
-        </header>
-
-        <main>
-            <div class="hero">
-                <div class="hero-content">
-                    <span class="badge">
-                        <!-- <span>🚀</span> -->
-                        <span>Launching Soon</span>
-                    </span>
-
-                    <h1>
-                        Discounts on AI tools<br>
-                        <span class="highlight">Join like-minded clinicans</span>
-                        <br>Stay up to date on the latest issues<br>
-                        <span class="highlight">Learn about the newest tools and features</span>
-                        <br>Network with peers as interested in AI as you
-
-                    </h1>
-                    <div class="features">
-                        <div class="feature">
-                            <div class="feature-icon">💡</div>
-                            <h3>Resources</h3>
-                            <p>We are adding to a resource library so your subscription gets you more value over time. <strong>Coming Soon</strong>
-                            </p>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">🤝</div>
-                            <h3>Collaborative Community</h3>
-                            <p>Learn from clinicians using the tools you are using and learn about exciting new ones. You
-                                will also be able to connect to founders, developers, IT and legal experts.</p>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">⚡</div>
-                            <h3>Courses and Events</h3>
-                            <p>Learn how to use AI, get started and develop mastery within the platform. Ask questions
-                                and access live or past events.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="c-feature">
+                <div class="c-feature-icon">🤝</div>
+                <h3>Collaborative Community</h3>
+                <p>Learn from clinicians using the tools you are using and learn about exciting new ones. You
+                    will also be able to connect to founders, developers, IT and legal experts.</p>
             </div>
-
-            <!-- <div class="stats-container">
-                <div class="stats">
-                    <div class="stat">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Professionals Ready</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">20+</span>
-                        <span class="stat-label">Expert Contributors</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">100+</span>
-                        <span class="stat-label">Resources Prepared</span>
-                    </div>
-                </div>
-            </div> -->
-
-            <div class="waitlist-section">
-                <h2>Secure Your Early Access</h2>
-                <p>This is just an expression of interest.<br>Waitlist signees get exclusive access to early bird membership.</p>
-
-                <form id="waitlistForm">
-                    <div class="form-wrapper">
-                        <input type="text" name="website" id="hp" style="position: absolute; left: -9999px;"
-                            autocomplete="off" tabindex="-1" />
-                        <div class="form-grid">
-                            <input type="text" id="name" placeholder="Your Name" required>
-                            <input type="email" id="email" placeholder="Your Email" required>
-                            <input type="text" id="phone" placeholder="Your Phone Number" required>
-                        </div>
-
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" id="contributorCheckbox">
-                            <label for="contributorCheckbox">
-                                I want to gain Exclusive Discounts and Join as a Super Member
-                                <span class="tooltip">
-                                    <span class="tooltip-trigger">?</span>
-                                    <span class="tooltip-text">Exclusive discounts and access to resources for members who actively help build the community. Spots are limited and subject to approval.</span>
-                                </span>
-                            </label>
-
-                        </div>
-
-                        <div class="contributor-fields" id="contributorFields">
-                            <h4>Super Member</h4>
-                            <div class="field-group">
-                                <label for="profession">What is your profession?</label>
-                                <select id="profession">
-                                    <option value="">Select your profession</option>
-                                    <option value="occupational-therapist">Occupational Therapist</option>
-                                    <option value="physiotherapist">Physiotherapist</option>
-                                    <option value="psychologist">Psychologist</option>
-                                    <option value="social-worker">Social Worker</option>
-                                    <option value="speech-pathologist">Speech Pathologist</option>
-                                    <!-- <option value="dietitian">Dietitian</option> -->
-                                    <!-- <option value="podiatrist">Podiatrist</option> -->
-                                    <option value="other">Other Clinical Professional</option>
-                                </select>
-                            </div>
-                            <div class="field-group">
-                                <label for="contentType">What content would you like to contribute?</label>
-                                <select id="contentType">
-                                    <option value="">Select content type</option>
-                                    <option value="courses-and-workshops">Courses and Workshops</option>
-                                    <option value="events-and-webinars">Events and Webinars</option>
-                                    <option value="regular-socials">Regular Posts and Discussions</option>
-                                    <option value="resources">Resources (Learning Materials, Articles, Best Practices)
-                                    </option>
-                                    <option value="products">Products</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <p>Please reach out to <a href="mailto:david@psychologysquared.com.au" style="color: var(--primary-accent);">david@psychologysquared.com.au</a> if you have any questions!</p>
-                        </div>
-                        <div class="button-wrapper">
-                            <button id="submitBtn" type="submit">Join the Waitlist</button>
-                        </div>
-                    </div>
-                </form>
-
-                <div class="success-message" id="successMessage">
-                    <div class="success-icon">✓</div>
-                    <h3>Welcome to the Community!</h3>
-                    <p>You're on the list.</p>
-                    <p>We have sent you an email to <strong id="address-entered">your address</strong>.</p>
-                    <p>If you haven’t received an email please check the address is correct, otherwise please get in touch with <a href="mailto:david@psychologysquared.com.au" style="color: var(--primary-accent);">david@psychologysquared.com.au</a></p>
-                </div>
-                <div class="error-message" id="errorMessage">
-                    <div class="error-icon">✗</div>
-                    <h3>Something went wrong</h3>
-                    <p>There was an error submitting your waitlist entry. Please contact our support team <a
-                            href="mailto:joshkeisler.au@gmail.com">here</a>.</p>
-                </div>
-                <div class="waiting-message" id="waitingMessage">
-                    <div class="waiting-icon">⏳</div>
-                    <h3>Processing your waitlist entry</h3>
-                    <p>Your entry is being processed but there is a delay from the server. Please leave this page open
-                        if you would like to see that the entry was successful.</p>
-                </div>
+            <div class="c-feature">
+                <div class="c-feature-icon">⚡</div>
+                <h3>Courses and Events</h3>
+                <p>Learn how to use AI, get started and develop mastery within the platform. Ask questions
+                    and access live or past events.</p>
             </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2025 AI for Clinicians. Empowering clinicians with AI innovation.</p>
-        </footer>
+        </div>
     </div>
+</div>
 
-    <script>
-        const form = document.getElementById('waitlistForm');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        const waitingMessage = document.getElementById('waitingMessage');
-        const contributorCheckbox = document.getElementById('contributorCheckbox');
-        const contributorFields = document.getElementById('contributorFields');
+<div class="c-waitlist-section">
+    <h2>Secure Your Early Access</h2>
+    <p>This is just an expression of interest.<br>Waitlist signees get exclusive access to early bird
+        membership.</p>
 
-        // Toggle contributor fields visibility
-        contributorCheckbox.addEventListener('change', function () {
-            if (this.checked) {
-                contributorFields.classList.add('show');
-            } else {
-                contributorFields.classList.remove('show');
-            }
-        });
+    <form id="waitlistForm">
+        <div class="c-form-wrapper">
+            <input type="text" name="website" id="hp" style="position: absolute; left: -9999px;" autocomplete="off"
+                tabindex="-1" />
+            <div class="c-form-grid">
+                <input type="text" id="name" class="c-text-input" placeholder="Your Name" required>
+                <input type="email" id="email" class="c-text-input" placeholder="Your Email" required>
+                <input type="text" id="phone" class="c-text-input" placeholder="Your Phone Number" required>
+            </div>
 
-        form.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.classList.add('disabled');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Processing...';
-            const waitingTImer = setTimeout(() => {
-                waitingMessage.classList.add('show');
-            }, 5000);
-            if (document.getElementById('hp').value) return;
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const isContributor = contributorCheckbox.checked;
+            <div class="c-checkbox-wrapper">
+                <input type="checkbox" id="contributorCheckbox">
+                <label for="contributorCheckbox">
+                    I want to gain Exclusive Discounts and Join as a Super Member
+                    <span class="tooltip">
+                        <span class="tooltip-trigger">?</span>
+                        <span class="tooltip-text">Exclusive discounts and access to resources for members who
+                            actively help build the community. Spots are limited and subject to approval.</span>
+                    </span>
+                </label>
 
-            const waitlistEntry = {
-                name: name,
-                email: email,
-                phone: phone,
-            };
-            if (isContributor) {
-                waitlistEntry.contributing = true;
-                waitlistEntry.profession = document.getElementById('profession').value;
-                waitlistEntry.content = document.getElementById('contentType').value;
-            }
+            </div>
 
-            try {
-                const response = await fetch('https://api.aiforclin.com/circle-waitlist', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(waitlistEntry)
-                })
+            <div class="c-contributor-fields" id="contributorFields">
+                <h4>Super Member</h4>
+                <div class="c-field-group">
+                    <label for="profession">What is your profession?</label>
+                    <select id="profession" class="c-select-input">
+                        <option value="">Select your profession</option>
+                        <option value="occupational-therapist">Occupational Therapist</option>
+                        <option value="physiotherapist">Physiotherapist</option>
+                        <option value="psychologist">Psychologist</option>
+                        <option value="social-worker">Social Worker</option>
+                        <option value="speech-pathologist">Speech Pathologist</option>
+                        <!-- <option value="dietitian">Dietitian</option> -->
+                        <!-- <option value="podiatrist">Podiatrist</option> -->
+                        <option value="other">Other Clinical Professional</option>
+                    </select>
+                </div>
+                <div class="c-field-group">
+                    <label for="contentType">What content would you like to contribute?</label>
+                    <select id="contentType" class="c-select-input">
+                        <option value="">Select content type</option>
+                        <option value="courses-and-workshops">Courses and Workshops</option>
+                        <option value="events-and-webinars">Events and Webinars</option>
+                        <option value="regular-socials">Regular Posts and Discussions</option>
+                        <option value="resources">Resources (Learning Materials, Articles, Best Practices)
+                        </option>
+                        <option value="products">Products</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <p>Please reach out to <a href="mailto:david@psychologysquared.com.au"
+                        style="color: var(--primary-accent);">david@psychologysquared.com.au</a> if you have any
+                    questions!</p>
+            </div>
+            <div class="c-button-wrapper">
+                <button id="submitBtn" class="c-submit-button" type="submit">Join the Waitlist</button>
+            </div>
+        </div>
+    </form>
 
-                if (response.ok && response.status === 200 && response.message === "Email sent successfully!") {
-                    form.style.display = 'none';
-                    waitingMessage.classList.remove('show');
-                    successMessage.classList.add('show');
-                    const addressEntered = document.getElementById('address-entered');
-                    addressEntered.textContent = email;
-                } else {
-                    throw new Error(response.statusText);
-                }
-            } catch (error) {
-                console.error('Error submitting waitlist entry:', error);
-                waitingMessage.classList.remove('show');
-                errorMessage.classList.add('show');
-            } finally {
-                clearTimeout(waitingTImer);
-                submitBtn.classList.remove('disabled');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Join the Waitlist';
-            }
-
-        });
-    </script>
-</body>
-
-</html>
+    <div class="success-message" id="successMessage">
+        <div class="success-icon">✓</div>
+        <h3>Welcome to the Community!</h3>
+        <p>You're on the list.</p>
+        <p>We have sent you an email to <strong id="address-entered">your address</strong>.</p>
+        <p>If you haven’t received an email please check the address is correct, otherwise please get in touch
+            with <a href="mailto:david@psychologysquared.com.au"
+                style="color: var(--primary-accent);">david@psychologysquared.com.au</a></p>
+    </div>
+    <div class="error-message" id="errorMessage">
+        <div class="error-icon">✗</div>
+        <h3>Something went wrong</h3>
+        <p>There was an error submitting your waitlist entry. Please contact our support team <a
+                href="mailto:joshkeisler.au@gmail.com">here</a>.</p>
+    </div>
+    <div class="waiting-message" id="waitingMessage">
+        <div class="waiting-icon">⏳</div>
+        <h3>Processing your waitlist entry</h3>
+        <p>Your entry is being processed but there is a delay from the server. Please leave this page open
+            if you would like to see that the entry was successful.</p>
+    </div>
+</div>
