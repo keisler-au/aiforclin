@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", function() {
         const closeBtn = document.getElementById("close-email-verified-modal");
         if (closeBtn) closeBtn.addEventListener("click", () => modal.style.display = "none");
 
-        fetch("https://api.aiforclin.com/email-verified?id=" + verifiedId)
+        fetch("https://api.aiforclin.com/circle-waitlist/email-verified?id=" + verifiedId)
             .then(res => res.json())
             .catch(err => console.error(err));
     }
