@@ -1,0 +1,17 @@
+.prov-psych-card {
+  width: 100%;
+  height: 380px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.prov-psych-item {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.prov-psych-item img {
+  max-width: 50%;
+  border-radius: 20px;
+}

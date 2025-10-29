@@ -79,12 +79,12 @@ description: "Events and articles on AI for clinicians"
     const container = document.getElementById("posts-container");
     posts.forEach((post) => {
       const article = document.createElement("article");
-      article.classList.add("flex", "items-center", "gap-1");
+      article.classList.add("flex", "items-center", "gap-1", "mt-2");
       article.innerHTML = `
         <div style="min-width: 80%;">
           <h3 class="mb-05">${post.title}</h3>
           <p class="card-text muted mb-075" style="max-width: 80%;">${post.description.join("<br />")}</p>
-          <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="media-link">View Post →</a>
+          <a href="${post.link}" target="_blank" rel="noopener noreferrer">View Post →</a>
         </div>
         <img src="${post.image}" alt="" style="width: 250px; height: auto;" />
       `;
@@ -99,16 +99,14 @@ description: "Events and articles on AI for clinicians"
 </script>
 
 <!-- Header -->
-<header class="title-container">
-  <div class="title-content title-content-centered">
-    <h1 class="main-title">Events and Articles</h1>
-  </div>
-</header>
+<div class="container">
+  <header class="page-header page-header--single">
+      <h1>
+        Events and Articles
+      </h1>
+  </header>
 
-<section class="section">
-  <div
-    id="posts-container"
-    class="container container-alt container-short"
-  >
-  </div>
-</section>
+  <section class="section">
+    <div id="posts-container"></div>
+  </section>
+</div>

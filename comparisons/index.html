@@ -3,25 +3,49 @@ layout: default
 title: AI Scribe Company Comparisons
 description: Compare AI scribe companies and find the best fit for your therapy and clinical needs. Compare features, pricing, and trials for 9+ AI documentation tools.
 ---
-
+<script>
+  
+ document.addEventListener("DOMContentLoaded", function () {
+    const companyDetailsGrid = document.getElementById("company-details-grid");
+    fetch("company-details.json")
+    .then(response => response.json())
+    .then(companyDetails => {
+      companyDetails.forEach(company => {
+        const card = document.createElement("article");
+        card.classList.add("card");
+        card.setAttribute("role", "listitem");
+        card.innerHTML = `
+          <div class="mb-1">
+            <h3>${company.name}</h3>
+            <p>${company.description}</p>
+          </div>
+          <a href="${company.link}" aria-describedby="${company.ariaDescription}">See Full Response</a>
+          <span id="${company.ariaDescription}" class="sr-only">${company.ariaDescription}</span>
+        `;
+        companyDetailsGrid.appendChild(card);
+    });
+  });
+});
+</script>
 <div class="container">
-  <header class="title-container">
-    <div class="title-content-centered">
-      <h1 class="main-title">
-        AI Scribe Company
-        <span style="text-decoration: underline">Comparisons</span>
+  <header class="page-header page-header--single">
+    <div>
+      <h1>
+        <span class="text-gold">AI ScribE </span>Company<br><span style="text-decoration: underline">Comparisons</span>
       </h1>
-      <p class="main-subtitle">
+      <p>
         Compare AI scribe companies and find the best fit for your therapy and
         clinical documentation needs.
       </p>
     </div>
   </header>
+</div>
 
+<div class="container">
   <section class="section table-section">
     <h2 id="comparison-table" class="sr-only">Comparison Table</h2>
     <iframe
-      src="table.html"
+      src="/comparisons/table/table.html"
       class="table-iframe"
       title="AI Scribe Company Comparison Table"
       loading="lazy"
@@ -41,154 +65,6 @@ description: Compare AI scribe companies and find the best fit for your therapy 
     <h2 id="company-details" class="section-title">
       AI Scribe Company Details
     </h2>
-    <div class="company-grid" role="list">
-      <article class="company-card" role="listitem">
-        <h3>ANTSA</h3>
-        <p>
-          AI-powered therapy and clinical scribe tools with jAImee chatbot.
-          Features 30-day free trial, Australian privacy compliance, and
-          $59/month unlimited access.
-        </p>
-        <a
-          href="companies/antsa.html"
-          class="company-button"
-          aria-describedby="antsa-desc"
-          >See Full Response</a
-        >
-        <span id="antsa-desc" class="sr-only"
-          >Learn more about ANTSA's AI scribe services and pricing</span
-        >
-      </article>
-
-      <article class="company-card" role="listitem">
-        <h3>BastionGPT</h3>
-        <p>
-          Powerful and easy-to-use AI assistant and scribe tailored for clinicians and mental health professionals. Powered by the AI models used by ChatGPT, Gemini and Claude, but adapted for clinical use and compliance with APP. Unlimited AI scribe access for only AUD $30/month.
-        </p>
-        <a
-          href="companies/bastiongpt.html"
-          class="company-button"
-          aria-describedby="bastion-desc"
-          >See Full Response</a
-        >
-        <span id="bastion-desc" class="sr-only"
-          >Learn more about BastionGPT's AI assistant for psychology
-          professionals</span
-        >
-      </article>
-
-      <article class="company-card" role="listitem">
-        <h3>Everbility</h3>
-        <p>
-          Clinical documentation with extensive context and research
-          integration. Supports long reports, PDF uploads, and unlimited
-          customer support. $10 off first 3 months.
-        </p>
-        <a
-          href="companies/everbility.html"
-          class="company-button"
-          aria-describedby="ever-desc"
-          >See Full Response</a
-        >
-        <span id="ever-desc" class="sr-only"
-          >Learn more about Everbility's research-integrated clinical
-          documentation</span
-        >
-      </article>
-
-      <article class="company-card" role="listitem">
-        <h3>Heidi Health</h3>
-        <p>
-          AI-powered medical documentation with SOC2 and ISO27001 security.
-          Multi-language support, PMS integrations, and dedicated telehealth
-          platform. Free tier to $1299/year.
-        </p>
-        <a
-          href="companies/heidi.html"
-          class="company-button"
-          aria-describedby="heidi-desc"
-          >See Full Response</a
-        >
-        <span id="heidi-desc" class="sr-only"
-          >Learn more about Heidi Health's secure AI medical documentation</span
-        >
-      </article>
-
-      <article class="company-card" role="listitem">
-        <h3>NovoPsych (NovoNote)</h3>
-        <p>
-          Mental health-specific AI scribe with psychometrics integration.
-          3-month free trial, template library by psychologists. Free until
-          March 2025!
-        </p>
-        <a
-          href="companies/novopsych.html"
-          class="company-button"
-          aria-describedby="novo-desc"
-          >See Full Response</a
-        >
-        <span id="novo-desc" class="sr-only"
-          >Learn more about NovoPsych's NovoNote AI scribe for mental
-          health</span
-        >
-      </article>
-
-      <article class="company-card" role="listitem">
-        <h3>Patient Notes</h3>
-        <p>
-          AI-powered clinical documentation and note generation. Real-time
-          transcription, clinical templates, and quality assurance features.
-          14-day free trial available.
-        </p>
-        <a
-          href="companies/patientnotes.html"
-          class="company-button"
-          aria-describedby="patient-desc"
-          >See Full Response</a
-        >
-        <span id="patient-desc" class="sr-only"
-          >Learn more about Patient Notes' AI clinical documentation
-          platform</span
-        >
-      </article>
-
-      <article class="company-card" role="listitem">
-        <h3>UpliftGroup (UpLift AI)</h3>
-        <p>
-          Fully AI-driven operating system combining AI therapy, practice
-          management, and patient engagement. AI co-therapist for human-AI
-          collaboration with open-ended early access.
-        </p>
-        <a
-          href="companies/upliftgroup.html"
-          class="company-button"
-          aria-describedby="uplift-desc"
-          >See Full Response</a
-        >
-        <span id="uplift-desc" class="sr-only"
-          >Learn more about UpliftGroup's comprehensive AI therapy
-          platform</span
-        >
-      </article>
-
-      <article class="company-card" role="listitem">
-        <h3>Zanda Health (BizzyAI)</h3>
-        <p>
-          AI-powered practice management with BizzyAI: Scribe for live session
-          transcription. Thoughtfully-built for allied health practices with
-          14-day free trial including 3 hours of AI scribe.
-        </p>
-        <a
-          href="companies/zanda.html"
-          class="company-button"
-          aria-describedby="zanda-desc"
-          >See Full Response</a
-        >
-        <span id="zanda-desc" class="sr-only"
-          >Learn more about Zanda Health's BizzyAI AI scribe services and
-          pricing</span
-        >
-      </article>
-    </div>
-  </section>
+    <div id="company-details-grid" class="company-grid" role="list"></div>
+   </section>
 </div>

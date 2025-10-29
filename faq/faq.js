@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sectionElement.className = `section bg${index}`;
 
         const container = document.createElement("div");
-        container.className = "container container-short";
+        container.className = "container";
 
         const sectionTitle = document.createElement("h2");
         sectionTitle.className = "section-title";
@@ -18,20 +18,20 @@ document.addEventListener("DOMContentLoaded", () => {
         container.appendChild(sectionTitle);
 
         const contentContainer = document.createElement("div");
-        contentContainer.className = "content-container";
+        contentContainer.className = "flex-col gap-2";
 
         section.faqs.forEach((faq) => {
           const article = document.createElement("article");
-          article.className = "content-section";
+          article.className = "card no-hover card--transparent";
 
           const summary = document.createElement("summary");
-          summary.className = "content-info-header-alt";
           summary.textContent = faq.question;
+          summary.className = "card-title";
           article.appendChild(summary);
 
           const answer = document.createElement("div");
-          answer.className = "content-section-text";
           answer.innerHTML = faq.answer;
+          answer.className = "card-text--bulk";
           article.appendChild(answer);
 
           contentContainer.appendChild(article);

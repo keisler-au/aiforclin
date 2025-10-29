@@ -1,0 +1,10 @@
+@media (max-width: 1024px) {
+  .title-content {
+    width: 100%;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

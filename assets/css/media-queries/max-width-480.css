@@ -1,0 +1,71 @@
+@media (max-width: 480px) {
+  .dropdown:hover .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu {
+    transform: translateX(-25%);
+  }
+
+  .company-links {
+    padding: var(--spacing-sm);
+    border-radius: var(--spacing-xs);
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .symbol {
+    padding: 1rem;
+  }
+
+  .pricing-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .legal-section {
+    padding: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: var(--font-md);
+  }
+
+  /* New page-header responsive */
+  .page-header--two-col {
+    flex-direction: column;
+  }
+  
+  .page-header {
+    padding: 2rem 1rem;
+  }
+  
+  /* Legacy support */
+  .title-container {
+    margin: 8rem auto 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .main-subtitle {
+    font-size: var(--font-md-plus);
+  }
+
+  .symbol {
+    font-size: var(--font-6xl);
+  }
+
+  .cta {
+    padding: 1rem 1.25rem;
+    font-size: var(--font-md);
+  }
+
+  .buy-button {
+    padding: 0.75rem 1.25rem;
+  }
+
+  /* Let tight price rows wrap on very small screens */
+  .row-between {
+    flex-wrap: wrap;
+  }
+  .row-between > * {
+    min-width: 0;
+  }
+}

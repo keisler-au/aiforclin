@@ -47,25 +47,23 @@ description: Carefully curated AI scribe tools to help provisional psychologists
     const container = document.getElementById("prov-psych-container");
     companies.forEach((company) => {
       const div = document.createElement("div");
-      div.classList.add("flex", "gap-2", "items-center");
+      div.classList.add("prov-psych-item");
       div.innerHTML = `
       <img
         src="${company.image}"
         alt="${company.name} Logo"
-        class="max-w-50"
-        style="border-radius: 20px;"
       />
-      <article class="card card-alt card-bordered prov-psych-card">
-        <div class="mb-8">
+      <article class="card card--transparent card-bordered prov-psych-card">
+        <div>
           <h3 class="card-title">${company.name}</h3>
           <ul class="card-list">
-            ${company.description.map((description) => `<li class="flex gap-05 mb-075"><span class="text-gold">✓</span>${description}</li>`).join("")}
+            ${company.description.map((description) => `<li class="flex gap-05"><span class="text-gold">✓</span>${description}</li>`).join("")}
           </ul>
         </div>
         <a
           href="${company.link}"
           data-affiliate="${company.name.toLowerCase()}"
-          class="btn js-affiliate"
+          class="btn mt-025"
           >Try it Free</a
         >
       </article>`;
@@ -76,17 +74,19 @@ description: Carefully curated AI scribe tools to help provisional psychologists
   document.addEventListener("DOMContentLoaded", renderCompanies);
 </script>
 
-<div class="container container-short">
-  <header class="title-container mb-05 mt-12">
-    <div class="title-content title-content-centered">
-      <h1 class="main-title main-title"><u>Free</u> AI Scribes</h1>
-      <p class="main-subtitle">for Provisional Psychologists</p>
+<div class="container">
+  <header class="page-header page-header--two-col">
+    <div class="page-header__content">
+      <h1><u>Free</u><span class="text-gold"> AI Scribes</span></h1>
+      <p>for Provisional Psychologists</p>
     </div>
-    <img src="../assets/images/affiliate/affiliate-header.png" alt="Affiliate Header" class="max-w-50">
+    <div class="page-header__media">
+      <img src="../assets/images/affiliate/affiliate-header.png" alt="Affiliate Header">
+    </div>
   </header>
 
-  <section class="card mb-24">
-    <h2 class="content-info-header-alt mb-1">🤝 Huge News!</h2>
+  <section class="card mb-6">
+    <h2 class="mb-2">🤝 Huge News!</h2>
     <p class="section-text-alt">
       I'm excited to announce that we can present to you <u>free</u> AI scribe tools
       for provisional psychologists<br />
@@ -95,6 +95,6 @@ description: Carefully curated AI scribe tools to help provisional psychologists
     </p>
   </section>
 
-  <section id="prov-psych-container" class="container-alt" style="margin-bottom: 5rem">
+  <section id="prov-psych-container" class="container flex-col gap-4">
   </section>
 </div>

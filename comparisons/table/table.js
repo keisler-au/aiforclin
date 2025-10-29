@@ -1007,7 +1007,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const toggleBtn = isExpandable
                     ? `<button
                     type="button"
-                    class="mt-1 text-xs underline hover:no-underline focus:outline-none"
+                    class="mt-025 text-xs underline hover:no-underline focus:outline-none"
                     data-row-toggle="${labelKey}"
                     aria-expanded="${isExpanded}">
                     ${isExpanded ? "Show less ↑" : "Show more ↓"}

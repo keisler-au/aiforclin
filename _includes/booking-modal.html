@@ -5,25 +5,17 @@ class="booking-modal-container"
 <div id="booking-modal" class="booking-modal">
 <button
   onclick="closeBookingForm()"
-  style="
-    position: absolute;
-    top: -40px;
-    right: 0;
-    background: none;
-    border: none;
-    color: #f6e05e;
-    font-size: 2rem;
-    cursor: pointer;
-  "
+  class="modal-close-btn"
+  aria-label="Close booking form"
 >
   ×
 </button>
-<form id="form" class="booking-form" style="display: block; width: 100%; margin-bottom: 20px">
-  <h3 style="color: #f6e05e; margin-bottom: 20px; text-align: center">
+<form id="form" class="booking-form">
+  <h3 class="form-title">
     Book Your Service
   </h3>
   <!-- Booking Consult only -->
-  <fieldset class="form-step" id="step-0" style="display: none; border: none; margin-bottom: 20px">
+  <fieldset class="form-step" id="step-0">
     <div class="form-group">
       <label for="selected-service-consult">Select Consultation Service: *</label>
       <select id="selected-service-consult">
@@ -267,17 +259,14 @@ class="booking-modal-container"
 </form>
 <div
   id="booking-modal-cliniko"
-  style="display: none; position: relative"
+  class="cliniko-container"
 >
   <iframe
     id="cliniko"
     src=""
     frameborder="0"
     scrolling="auto"
-    width="876px"
-    height="1000"
-    class="rounded"
-    style="pointer-events: auto; height: 364px; border-radius: 12px;"
+    class="cliniko-iframe"
     loading="lazy"
   ></iframe>
 </div>

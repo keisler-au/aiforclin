@@ -1,0 +1,34 @@
+
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  }
+
+.toc-button {
+  text-align: left;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--primary-gold);
+  font-family: inherit;
+  font-size: var(--font-sm-plus);
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.toc-button:hover {
+  background: var(--hover-bg);
+  border-color: var(--primary-gold);
+}
+
+.icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  width: 1rem;
+  height: 1rem;
+}

@@ -1,0 +1,83 @@
+.banner-container {
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 3px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+    background-size: 200% 200%;
+    border-radius: 50px;
+    animation: gradientRotate 3s linear infinite;
+}
+
+@keyframes gradientRotate {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+.banner {
+    background: var(--bg-primary);
+    border-radius: 48px;
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.banner-text {
+    color: var(--text-white);
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.banner-text .banner-highlight {
+    color: var(--focus-yellow);
+}
+
+.banner-cta-button {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+    color: var(--bg-primary);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.banner-cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px var(--gold-dark);
+}
+
+.banner-close-button {
+    background: transparent;
+    border: none;
+    color: #888;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+    margin-left: 8px;
+}
+
+.banner-close-button:hover {
+    color: #fff;
+}
+

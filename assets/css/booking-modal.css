@@ -1,0 +1,248 @@
+
+.booking-modal-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-dark);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.booking-modal {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  margin: 2.5rem auto;
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--primary-gold);
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: var(--transition);
+  z-index: 10;
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  color: var(--gold-light);
+  transform: scale(1.1);
+  outline: none;
+}
+
+.form-title {
+  color: var(--primary-gold);
+  font-size: var(--font-2xl-plus);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group:last-of-type {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  color: var(--primary-gold);
+  margin-bottom: 0.5rem;
+  font-size: var(--font-base);
+  font-weight: 500;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: var(--text-light);
+  font-size: var(--font-base);
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-gold);
+  background: var(--bg-secondary);
+  box-shadow: 0 0 0 3px var(--shadow-gold-light);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.booking-status {
+  margin: 1rem 5rem;
+  font-size: var(--font-base);
+  text-align: center;
+}
+
+.booking-form {
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+  border: 2px solid var(--border-dark);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px var(--shadow-darker);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+  border: none;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--primary-gold);
+  font-size: var(--font-base);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-dark);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-light);
+  font-size: var(--font-base);
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-gold);
+  background: var(--bg-secondary);
+  box-shadow: 0 0 0 3px var(--shadow-gold-light);
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-dark);
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--border-dark);
+  color: var(--text-light);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: var(--hover-bg);
+  border-color: var(--primary-gold);
+  color: var(--primary-gold);
+  transform: translateX(-5px);
+}
+
+
+.hp-field {
+  position: absolute;
+  left: -9999px;
+}
+
+.email-status {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: var(--font-base);
+  font-weight: 500;
+}
+
+.cliniko-container {
+  display: none;
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cliniko-iframe {
+  width: 100%;
+  max-width: 100%;
+  height: 600px;
+  border: 2px solid var(--border-dark);
+  border-radius: 12px;
+  background: var(--bg-primary);
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  .booking-modal {
+    margin: 1rem auto;
+  }
+  
+  .modal-close-btn {
+    top: -35px;
+    font-size: 2rem;
+  }
+  
+  .booking-form {
+    padding: 1.5rem;
+  }
+  
+  .form-title {
+    font-size: var(--font-xl-plus);
+  }
+  
+  .form-navigation {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .form-navigation .btn,
+  .form-navigation .btn-secondary {
+    width: 100%;
+  }
+  
+  .cliniko-iframe {
+    height: 500px;
+  }
+}
