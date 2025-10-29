@@ -911,7 +911,9 @@
                 <div class="success-message" id="successMessage">
                     <div class="success-icon">✓</div>
                     <h3>Welcome to the Community!</h3>
-                    <p>You're on the list. We'll send you an email confirmation and notify you the moment we launch.</p>
+                    <p>You're on the list.</p>
+                    <p>We have sent you an email to <strong id="address-entered">your address</strong>.</p>
+                    <p>If you haven’t received an email please check the address is correct, otherwise please get in touch with <a href="mailto:david@psychologysquared.com.au">david@psychologysquared.com.au</a></p>
                 </div>
                 <div class="error-message" id="errorMessage">
                     <div class="error-icon">✗</div>
@@ -987,6 +989,8 @@
                     form.style.display = 'none';
                     waitingMessage.classList.remove('show');
                     successMessage.classList.add('show');
+                    const addressEntered = document.getElementById('address-entered');
+                    addressEntered.textContent = email;
                 } else {
                     throw new Error(response.statusText);
                 }
