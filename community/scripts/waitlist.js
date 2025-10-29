@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(waitlistEntry)
             })
 
-            if (response.ok && response.status === 200 && response.message === "Email sent successfully!") {
+            if (response.ok && response.status === 200) {
                 form.style.display = 'none';
                 waitingMessage.classList.remove('show');
                 successMessage.classList.add('show');
