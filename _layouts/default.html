@@ -45,8 +45,9 @@
 
     <!-- Page Scripts -->
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/calculator.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/banner.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/calculator.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/email-verified.js' | relative_url }}"></script>
 
   </head>
   <body>
@@ -56,6 +57,7 @@
 
     <main id="main" role="main">
       {% include booking-modal.html %}
+      {% include email-verified.html %}
       {{ content }}
     </main>
 
