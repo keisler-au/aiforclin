@@ -5,7 +5,7 @@
     transform: translateX(-50%);
     z-index: 1000;
     padding: 3px;
-    background: linear-gradient(90deg, #00d4aa, #ff6b6b, #00d4aa);
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
     background-size: 200% 200%;
     border-radius: 50px;
     animation: gradientRotate 3s linear infinite;
@@ -22,7 +22,7 @@
 }
 
 .banner {
-    background: #0a1628;
+    background: var(--bg-primary);
     border-radius: 48px;
     padding: 12px 32px;
     display: flex;
@@ -32,7 +32,7 @@
 }
 
 .banner-text {
-    color: white;
+    color: var(--text-white);
     font-size: 15px;
     font-weight: 600;
     white-space: nowrap;
@@ -40,12 +40,12 @@
 }
 
 .banner-text .banner-highlight {
-    color: #00d4aa;
+    color: var(--focus-yellow);
 }
 
 .banner-cta-button {
-    background: linear-gradient(135deg, #00d4aa, #00b894);
-    color: #0a1628;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+    color: var(--bg-primary);
     border: none;
     padding: 8px 20px;
     border-radius: 25px;
@@ -58,7 +58,7 @@
 
 .banner-cta-button:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 16px rgba(0, 212, 170, 0.4);
+    box-shadow: 0 4px 16px var(--gold-dark);
 }
 
 .banner-close-button {
@@ -81,19 +81,3 @@
     color: #fff;
 }
 
-
-@media (max-width: 640px) {
-    .banner {
-        padding: 10px 20px;
-        gap: 12px;
-    }
-
-    .banner-text {
-        font-size: 13px;
-    }
-
-    .banner-cta-button {
-        padding: 6px 16px;
-        font-size: 13px;
-    }
-}
