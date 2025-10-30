@@ -17,6 +17,27 @@ window.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
+
+        if (document.getElementById('hp').value) return;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const isContributor = contributorCheckbox.checked;
+
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        const phoneRegex = /^\+?[0-9]+$/;
+
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        } else if (!phoneRegex.test(phone)) {
+            alert('Please enter a valid phone number');
+            return;
+        } else if (name.length < 2) {
+            alert('Please enter a valid name');
+            return;
+        }
+
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.classList.add('disabled');
         submitBtn.disabled = true;
@@ -24,11 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const waitingTImer = setTimeout(() => {
             waitingMessage.classList.add('show');
         }, 5000);
-        if (document.getElementById('hp').value) return;
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const isContributor = contributorCheckbox.checked;
+
 
         const waitlistEntry = {
             name: name,
