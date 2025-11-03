@@ -170,6 +170,12 @@
     right: 5px;
 }
 
+.c-badge.limited-badge-position-standard {
+    position: absolute;
+    top: 35px;
+    right: 5px;
+}
+
 .c-feature.featured {
     border: 3px solid var(--primary-accent);
     box-shadow: 0 15px 50px rgba(212, 175, 55, 0.25);
@@ -188,7 +194,7 @@
 
 /* Disabled Card */
 .c-feature.disabled {
-    filter: grayscale(100%);
+    filter: grayscale(60%);
     opacity: 0.7;
     pointer-events: none; /* Disables mouse events */
 }
