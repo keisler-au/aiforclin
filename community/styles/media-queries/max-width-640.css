@@ -1,7 +1,0 @@
-@media (max-width: 640px) {
-    .c-badge.limited-badge-position {
-        position: absolute;
-        top: 0px;
-        right: 0px;
-    }
-}

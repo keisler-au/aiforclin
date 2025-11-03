@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+    .desktop-toggle {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: flex;
+    }
+    .c-badge.limited-badge-position,
+    .c-badge.limited-badge-position-standard {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+}
