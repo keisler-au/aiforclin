@@ -225,6 +225,8 @@ body {
 }
 
 .c-feature {
+    display: flex;
+    flex-direction: column;
     padding: 25px 20px;
     background: var(--background-light);
     border-radius: 20px;
@@ -485,7 +487,8 @@ select:focus {
     position: relative;
     display: inline-block;
     width: 100%;
-    margin-top: 20px;
+    margin-top: auto;
+    padding-top: 20px;
 }
 
 .c-submit-button {
