@@ -1,0 +1,13 @@
+@media (max-width: 640px) {
+    .desktop-toggle {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: flex;
+    }
+
+    .c-toggle-label {
+        color: var(--text-dark);
+    }
+}

@@ -1,26 +1,35 @@
-.mobile-toggle {
-    display: none;
-}
-
 .c-toggle-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
+    gap: 15px;
+}
+
+.mobile-toggle {
+    display: none;
 }
 
 .c-toggle-label {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #333;
-    margin: 0 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.c-toggle-label.active {
+    opacity: 1;
+    color: var(--primary-accent-dark);
+    font-weight: 700;
 }
 
 .c-switch {
     position: relative;
     display: inline-block;
     width: 60px;
-    height: 34px;
+    height: 32px;
 }
 
 .c-switch input {
@@ -36,31 +45,39 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
+    background: linear-gradient(135deg, rgba(10, 29, 58, 0.1), rgba(10, 29, 58, 0.15));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 32px;
+    border: 2px solid var(--primary-accent);
 }
 
 .c-slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 2px;
+    background: linear-gradient(135deg, var(--primary-accent-light), var(--primary-accent));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
 }
 
 input:checked + .c-slider {
-    background-color: #2196F3;
-}
-
-input:focus + .c-slider {
-    box-shadow: 0 0 1px #2196F3;
+    background: linear-gradient(135deg, var(--primary-accent-dark), var(--primary-accent));
 }
 
 input:checked + .c-slider:before {
-    transform: translateX(26px);
+    transform: translateX(28px);
+    background: var(--background-light);
+    box-shadow: 0 2px 12px rgba(10, 29, 58, 0.2);
+}
+
+.c-switch:hover .c-slider {
+    border-color: var(--primary-accent);
+}
+
+.c-switch:hover .c-slider:before {
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
 }
