@@ -13,6 +13,8 @@
     margin-top: 25px;
     box-shadow: 0 8px 30px rgba(212, 175, 55, 0.25);
     animation: pulse 2s ease-in-out infinite;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .deadline-notice .icon {
@@ -67,9 +69,9 @@
 .price-container {
     margin: 25px 0;
     padding: 20px;
-    background: linear-gradient(135deg, var(--primary-accent-light), rgba(223, 189, 79, 0.1));
+    background: linear-gradient(135deg, var(--primary-accent-light), var(--primary-accent-dark));
     border-radius: 16px;
-    border: 2px solid var(--primary-accent);
+    /* border: 2px solid var(--primary-accent); */
 }
 
 .price {
