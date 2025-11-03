@@ -492,6 +492,7 @@ select:focus {
 }
 
 .c-submit-button {
+    display: inline-block;
     width: 100%;
     padding: 16px 40px;
     background: linear-gradient(135deg, var(--primary-accent-dark), var(--primary-accent));
@@ -505,9 +506,11 @@ select:focus {
     box-shadow: 0 8px 30px var(--button-shadow);
     position: relative;
     overflow: hidden;
+    text-align: center;
+    text-decoration: none;
 }
 
-button::before {
+.c-submit-button::before {
     content: '';
     position: absolute;
     top: 0;
@@ -518,16 +521,16 @@ button::before {
     transition: left 0.5s ease;
 }
 
-button:hover::before {
+.c-submit-button:hover::before {
     left: 100%;
 }
 
-button:hover {
+.c-submit-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 40px var(--button-hover-shadow);
 }
 
-button:active {
+.c-submit-button:active {
     transform: translateY(-1px);
 }
 
