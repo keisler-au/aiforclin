@@ -3,6 +3,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const allItems = [
         {
             id: 1,
+            name: "Ecko Health",
+            link: { label: "See more", url: "https://www.eckohealth.ai/" },
+            appCompliance: true,
+            dataStorage: "Australia",
+            freeMembership: true,
+            freeTrial: "Ongoing for now",
+            pmsIntegration:
+                "Can use it as a standalone AI-powered, all-inclusive PMS OR use it alongside your existing PMS",
+            uniqueFeatures: {
+                sections: [
+                    {
+                        category: "Inclusive Operating System",
+                        items: [
+                            "The Only Fully Inclusive AI-Driven Operating System – Combines AI therapy, practice management, and patient engagement in one seamless ecosystem.",
+                        ],
+                    },
+                ],
+            },
+            coreFeatures: {
+                sections: [
+                    {
+                        category: "AI-Powered",
+                        items: [
+                            "Scheduling, billing, workflow automation",
+                            "Clinical notes, session summaries, treatment plans, reports, diagnoses",
+                            "Patient risk alerts & insights",
+                            "Therapy support to patients between sessions to reduce dropout rates and maintain engagement",
+                        ],
+                    },
+                ],
+            },
+            pricing:
+                "Free. Future pricing packages to be determined end 2025/start 2026",
+            telehealth: true,
+            headphonesCompatible: true,
+            mobileCompatible: true,
+            multipleNotes:
+                "Can use as a standalone AI-powered, all-inclusive PMS OR use it alongside your existing PMS",
+            aiTrainableOverTime: true,
+            languagesSupported: "Not currently. It will in future development.",
+        },
+        {
+            id: 2,
             name: "PractaLuma",
             link: { label: "See more", url: "https://www.practaluma.com/" },
             appCompliance: true, // Australian Privacy Principles
@@ -73,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 2,
+            id: 3,
             name: "ANTSA",
             link: { label: "See more", url: "https://www.antsa.com.au/" },
             appCompliance: true, // Australian Privacy Principles
@@ -158,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 3,
+            id: 4,
             name: "Zanda Health",
             link: {
                 label: "See more",
@@ -215,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 4,
+            id: 5,
             name: "NovoNote by NovoPsych",
             link: { label: "See more", url: "https://novopsych.com/novonote/" },
             appCompliance: true,
@@ -278,7 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 5,
+            id: 6,
             name: "Bastion GPT",
             link: {
                 label: "30 day free trial",
@@ -335,7 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 6,
+            id: 7,
             name: "Patient Notes",
             link: {
                 label: "10% Discount",
@@ -442,7 +485,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         },
         {
-            id: 7,
+            id: 8,
             name: "Heidi Health",
             link: {
                 label: "30 day free trial",
@@ -537,49 +580,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Vietnamese",
                 ],
             },
-        },
-        {
-            id: 8,
-            name: "Ecko Health",
-            link: { label: "See more", url: "https://www.eckohealth.ai/" },
-            appCompliance: true,
-            dataStorage: "Australia",
-            freeMembership: true,
-            freeTrial: "Ongoing for now",
-            pmsIntegration:
-                "Can use it as a standalone AI-powered, all-inclusive PMS OR use it alongside your existing PMS",
-            uniqueFeatures: {
-                sections: [
-                    {
-                        category: "Inclusive Operating System",
-                        items: [
-                            "The Only Fully Inclusive AI-Driven Operating System – Combines AI therapy, practice management, and patient engagement in one seamless ecosystem.",
-                        ],
-                    },
-                ],
-            },
-            coreFeatures: {
-                sections: [
-                    {
-                        category: "AI-Powered",
-                        items: [
-                            "Scheduling, billing, workflow automation",
-                            "Clinical notes, session summaries, treatment plans, reports, diagnoses",
-                            "Patient risk alerts & insights",
-                            "Therapy support to patients between sessions to reduce dropout rates and maintain engagement",
-                        ],
-                    },
-                ],
-            },
-            pricing:
-                "Free. Future pricing packages to be determined end 2025/start 2026",
-            telehealth: true,
-            headphonesCompatible: true,
-            mobileCompatible: true,
-            multipleNotes:
-                "Can use as a standalone AI-powered, all-inclusive PMS OR use it alongside your existing PMS",
-            aiTrainableOverTime: true,
-            languagesSupported: "Not currently. It will in future development.",
         },
         {
             id: 9,
@@ -716,7 +716,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeFilters = Object.fromEntries(
         FILTER_GROUPS.map((g) => [g, []])
     );
-    let comparedItemIds = [8, 1, 2];
+    let comparedItemIds = [1, 2, 3];
 
     // --- DOM ---
     const filterBtn = document.getElementById("filter-btn");
