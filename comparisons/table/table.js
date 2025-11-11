@@ -540,8 +540,8 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             id: 8,
-            name: "Uplift AI",
-            link: { label: "See more", url: "https://www.upliftgroup.ai/" },
+            name: "Ecko Health",
+            link: { label: "See more", url: "https://www.eckohealth.ai/" },
             appCompliance: true,
             dataStorage: "Australia",
             freeMembership: true,
@@ -716,7 +716,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeFilters = Object.fromEntries(
         FILTER_GROUPS.map((g) => [g, []])
     );
-    let comparedItemIds = [1, 2, 3];
+    let comparedItemIds = [8, 1, 2];
 
     // --- DOM ---
     const filterBtn = document.getElementById("filter-btn");
