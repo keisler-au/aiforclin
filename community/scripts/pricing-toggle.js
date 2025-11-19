@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const pricingToggles = document.querySelectorAll('.pricingToggle');
-    const priceValues = document.querySelectorAll('.price-value');
+    const priceValues = document.querySelectorAll('.c-feature.featured .price-value, .c-feature.disabled .price-value');
     const priceOriginals = document.querySelectorAll('.price-original');
     // const pricePeriods = document.querySelectorAll('.price-period-annually');
     const toggleContainers = document.querySelectorAll('.c-toggle-container');
@@ -36,8 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     };
 
-    // Initialize labels on page load
-    updateLabels(false);
+    // Initialize to default state on page load
+    const isInitiallyAnnual = pricingToggles.length > 0 ? pricingToggles[0].checked : false;
+    updatePrices(isInitiallyAnnual);
+    updateLabels(isInitiallyAnnual);
 
     pricingToggles.forEach(toggle => {
         toggle.addEventListener('change', function (event) {
