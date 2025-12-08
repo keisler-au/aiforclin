@@ -36,6 +36,35 @@
     margin: 0;
 }
 
+.free-trial-notice {
+    background: linear-gradient(135deg, var(--primary-accent-light), var(--primary-accent));
+    border-radius: 16px;
+    padding: 20px 25px;
+    margin-top: 15px;
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.25);
+    max-width: 300px;
+    margin: 15px auto 0;
+}
+
+.free-trial-notice .icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.free-trial-notice h3 {
+    color: var(--text-dark);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.free-trial-notice p {
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin: 0;
+}
+
 /* Card Header */
 .card-header {
     margin-bottom: 20px;
@@ -74,12 +103,29 @@
 }
 
 /* Price Container */
+/* Free Trial Tag */
+.free-trial-tag {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--primary-accent-light), var(--primary-accent-dark));
+    color: var(--text-dark);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 .price-container {
-    margin: 25px 0;
+    position: relative;
+    margin: 40px 0 25px;
+    margin-top: 55px;
     padding: 20px;
     background: linear-gradient(135deg, var(--primary-accent-light), var(--primary-accent-dark));
     border-radius: 16px;
-    /* border: 2px solid var(--primary-accent); */
     min-height: 120px; /* Ensure all price containers have the same height */
     display: flex;
     align-items: center;
