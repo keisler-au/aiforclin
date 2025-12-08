@@ -80,6 +80,14 @@
     background: linear-gradient(135deg, var(--primary-accent-light), var(--primary-accent-dark));
     border-radius: 16px;
     /* border: 2px solid var(--primary-accent); */
+    min-height: 120px; /* Ensure all price containers have the same height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price-value-free {
+    font-size: 2rem; /* Smaller font size for 'Free Signup' */
 }
 
 .price {
