@@ -1,0 +1,82 @@
+/* Combination Page - Video and Benefits Section */
+
+/* CTA Buttons Container */
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-buttons .c-submit-button {
+    flex: 1;
+    max-width: 300px;
+}
+
+.section-header {
+    color: var(--text-light);
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    padding: 60px 0 30px;
+}
+
+.video-and-benefits-section {
+    /* padding: 40px 20px; */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.video-benefits-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.video-placeholder {
+    flex: 1;
+    min-width: 400px;
+    height: 340px; /* Adjust height as needed */
+    background-color: #f0f0f0; /* Placeholder background */
+    border-radius: 8px;
+}
+
+.benefits-list {
+    flex: 1;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.benefits-list li {
+    display: flex;
+    flex-direction: column;
+}
+
+.benefit-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.benefits-list .benefit-icon {
+    width: 30px;
+    object-fit: contain;
+}
+
+.benefit-title {
+    margin: 0;
+    font-size: 18px;
+    color: var(--primary-accent);
+}
+
+.benefit-description {
+    margin: 0 0 0 35px; /* Indent text to align with heading */
+    color: var(--text-light);
+    opacity: 0.8;
+}
