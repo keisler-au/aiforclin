@@ -10,4 +10,23 @@
     .c-toggle-label {
         color: var(--text-dark);
     }
+
+    /* CTA Buttons - Stack vertically on mobile */
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .cta-buttons .c-submit-button {
+        max-width: 100%;
+    }
+
+    /* What You'll Get as a Member - Stack benefits under image */
+    .video-benefits-content {
+        flex-direction: column;
+    }
+
+    .video-placeholder {
+        max-width: 100%;
+        width: 100%;
+    }
 }

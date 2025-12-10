@@ -27,7 +27,8 @@
 .video-and-benefits-section {
     /* padding: 40px 20px; */
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 50px auto;
+
 }
 
 .video-benefits-content {
@@ -38,10 +39,10 @@
 
 .video-placeholder {
     flex: 1;
-    min-width: 400px;
-    height: 340px; /* Adjust height as needed */
+    max-width: 600px;
     background-color: #f0f0f0; /* Placeholder background */
     border-radius: 8px;
+    align-self: center;
 }
 
 .benefits-list {
