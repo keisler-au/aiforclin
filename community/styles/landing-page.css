@@ -77,7 +77,7 @@
 }
 
 .benefit-description {
-    margin: 0 0 0 35px; /* Indent text to align with heading */
+    margin: 0 0 0 40px; /* Indent text to align with heading */
     color: var(--text-light);
     opacity: 0.8;
 }
