@@ -24,12 +24,47 @@ document.addEventListener("DOMContentLoaded", () => {
             coreFeatures: {
                 sections: [
                     {
-                        category: "",
+                        category: "Overview",
                         items: [
-                            "<strong>Personal Clinical Double™</strong> that learns your tone, therapeutic style and clinical approach",
-                            "Clinical notes, session summaries, treatment plans, reports, diagnoses",
-                            "Patient risk alerts & insights",
-                            "Therapy support to patients between sessions to reduce dropout rates and maintain engagement",
+                            "Personal Clinical Double™ that learns your tone, therapeutic style and clinical approach",
+                            "AI-First EHR designed around reasoning, not record-keeping",
+                            "All-in-one platform where everything talks to everything else — replaces separate scribe, notes, reports, CRM, telehealth and admin tools.",
+                            "Clinician-in-control AI (decision support, not automation without oversight)",
+                        ],
+                    },
+                    {
+                        category: "Clinical Intelligence",
+                        items: [
+                            "AI scribing & ambient listening (in-session, phone, video, in-person)",
+                            "Clinical notes, reports and letters in your voice",
+                            "Treatment planning, diagnostics & assessments",
+                            "Next-session guidance & clinical direction",
+                            "Clinically intelligent case reasoning & second-opinion support",
+                            "DSM-V informed and AHPRA-aligned by design",
+                        ],
+                    },
+                    {
+                        category: "Patient Care Between Sessions",
+                        items: [
+                            "Therapist-directed client support between sessions",
+                            "Homework, journalling and task delivery aligned to treatment plans",
+                            "Continuity of care without replacing the clinician",
+                        ],
+                    },
+                    {
+                        category: "Telehealth & Practice Operations",
+                        items: [
+                            "Built-in telehealth (phone & video)",
+                            "Full CRM if you want it — or use alongside your existing PMS",
+                            "Scheduling, admin and documentation powered by the same clinical intelligence",
+                        ],
+                    },
+                    {
+                        category: "Security & Data",
+                        items: [
+                            "Australian-based data hosting",
+                            "Clinician-controlled data settings",
+                            "Privacy, security and governance embedded from day one",
                         ],
                     },
                 ],
