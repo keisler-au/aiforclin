@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
             uniqueFeatures: {
                 sections: [
                     {
-                        category: "Inclusive Operating System",
+                        category: "Personal AI Clinical Double™ & AI-First Mental Health OS",
                         items: [
-                            "The Only Fully Inclusive AI-Driven Operating System – Combines AI therapy, practice management, and patient engagement in one seamless ecosystem.",
+                            "A clinician-built, AI-first operating system that replaces multiple fragmented subscription tools,  with one connected platform — supporting clinical thinking, documentation, client continuity, telehealth and practice operations in a single system.",
                         ],
                     },
                 ],
@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
             coreFeatures: {
                 sections: [
                     {
-                        category: "AI-Powered",
+                        category: "",
                         items: [
-                            "Scheduling, billing, workflow automation",
+                            "<strong>Personal Clinical Double™</strong> that learns your tone, therapeutic style and clinical approach",
                             "Clinical notes, session summaries, treatment plans, reports, diagnoses",
                             "Patient risk alerts & insights",
                             "Therapy support to patients between sessions to reduce dropout rates and maintain engagement",
@@ -35,14 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 ],
             },
             pricing:
-                "Free. Future pricing packages to be determined end 2025/start 2026",
+                "Free. Future pricing packages to be determined mid 2026",
             telehealth: true,
             headphonesCompatible: true,
             mobileCompatible: true,
             multipleNotes:
                 "Can use as a standalone AI-powered, all-inclusive PMS OR use it alongside your existing PMS",
             aiTrainableOverTime: true,
-            languagesSupported: "Not currently. It will in future development.",
+            languagesSupported: "It can produce all output in multiple languages. Need anything, email support@eckohealth.ai",
         },
         {
             id: 2,
@@ -996,7 +996,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 : "";
 
                         return `
-                    <td class="text-center px-6 py-4 border-t border-r border-[var(--primary-gold)]">
+                    <td class="text-center px-6 py-4 border-t border-r border-[var(--primary-gold)]" style="vertical-align: top;">
                       <div class="flex flex-col gap-4 ${limiterClass}" data-row-content="${labelKey}">
                         ${v ?? ""}
                       </div>
@@ -1016,7 +1016,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 return `
                 <tr class="hover:bg-[var(--hover-background)] duration-200 ease-in-out" role="row">
-                  <th scope="row" class="text-left font-semibold px-6 py-4 border-t border-r border-[var(--primary-gold)]">
+                  <th scope="row" class="text-left font-semibold px-6 py-4 border-t border-r border-[var(--primary-gold)]" style="vertical-align: top;">
                     <p>
                       <span class="capitalize">${label.title}</span>
                       ${label.note ? createTooltipElement("?", label.note) : ""}
