@@ -18,12 +18,6 @@
       "ariaDescription": "Learn more about Everbility's research-integrated clinical documentation"
     },
     { 
-      "name": "Heidi Health",
-      "description": "AI-powered medical documentation with SOC2 and ISO27001 security. Multi-language support, PMS integrations, and dedicated telehealth platform. Free tier to $1299/year.",
-      "link": "companies/heidi.html",
-      "ariaDescription": "Learn more about Heidi Health's secure AI medical documentation"  
-    },
-    { 
       "name": "NovoPsych (NovoNote)",
       "description": "Mental health-specific AI scribe with psychometrics integration. 3-month free trial, template library by psychologists. Free until March 2025!",
       "link": "companies/novopsych.html",
