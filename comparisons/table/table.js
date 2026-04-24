@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const TABLE_ACCESS_KEY = "hasTableAccess";
+
     // --- DATA SOURCE ---
     const allItems = [
         {
@@ -661,6 +663,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterDialog = document.getElementById("filter-dialog");
     const clearFiltersBtn = document.getElementById("clear-filters");
     const closeFiltersBtn = document.getElementById("close-filters");
+    const tableAccessDialog = document.getElementById("table-access-dialog");
+    const closeTableAccessBtn = document.getElementById("close-table-access");
+    const tableAccessForm = document.getElementById("table-access-form");
+    const accessPasswordInput = document.getElementById("access-password");
     const activeCount = document.getElementById("active-count");
     const chipsWrap = document.getElementById("active-chips");
 
@@ -674,6 +680,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const matchPill = document.getElementById("match-pill");
     const eligiblePill = document.getElementById("eligible-pill");
     const eligibleExtra = document.getElementById("eligible-extra");
+
+    const userHasTableAccess = () => {
+        try {
+            const storedValue = localStorage.getItem(TABLE_ACCESS_KEY);
+            return storedValue === "true" || storedValue === "1";
+        } catch {
+            return false;
+        }
+    };
 
     // --- MODAL helpers (native dialog) ---
     const openModal = () => {
@@ -700,6 +715,52 @@ document.addEventListener("DOMContentLoaded", () => {
             event.clientY <= rect.bottom;
         if (!inDialog) closeModal();
     });
+
+    const openTableAccessModal = () => {
+        if (!tableAccessDialog || tableAccessDialog.open) return;
+        tableAccessDialog.showModal();
+    };
+
+    const closeTableAccessModal = () => {
+        if (!tableAccessDialog || !tableAccessDialog.open) return;
+        tableAccessDialog.close();
+    };
+
+    if (closeTableAccessBtn) {
+        closeTableAccessBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeTableAccessModal();
+        });
+    }
+
+    if (tableAccessDialog) {
+        tableAccessDialog.addEventListener("click", (event) => {
+            const rect = tableAccessDialog.getBoundingClientRect();
+            const inDialog =
+                event.clientX >= rect.left &&
+                event.clientX <= rect.right &&
+                event.clientY >= rect.top &&
+                event.clientY <= rect.bottom;
+            if (!inDialog) closeTableAccessModal();
+        });
+    }
+
+    if (tableAccessForm) {
+
+        // TODO: add password validation here before granting access
+        
+        tableAccessForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            try {
+                localStorage.setItem(TABLE_ACCESS_KEY, "true");
+            } catch {
+                // ignore
+            }
+            if (accessPasswordInput) accessPasswordInput.value = "";
+            closeTableAccessModal();
+            update();
+        });
+    }
 
     // --- RENDERERS ---
     const renderActiveChips = () => {
@@ -1068,6 +1129,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!btn) return;
         const id = parseInt(btn.dataset.id, 10);
         const isSelected = comparedItemIds.includes(id);
+
+        if (!userHasTableAccess()) {
+            openTableAccessModal();
+            return;
+        }
+
         const atLimit = comparedItemIds.length >= MAX_COMPARE_ITEMS;
 
         if (isSelected) {

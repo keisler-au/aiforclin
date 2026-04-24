@@ -211,5 +211,56 @@
         </div>
       </form>
     </dialog>
+
+    <dialog
+      id="table-access-dialog"
+      class="w-full max-w-md rounded-2xl bg-[var(--navy-deepest)] text-[var(--primary-gold)] shadow-2xl border border-[var(--primary-gold)] p-0"
+      aria-labelledby="table-access-title"
+    >
+      <form id="table-access-form" method="dialog" class="flex flex-col">
+        <header
+          class="p-5 border-b border-[var(--primary-gold)] flex items-center justify-between"
+        >
+          <h3 id="table-access-title" class="text-lg font-semibold text-[var(--gold-lighter)]">
+            Table Access Required
+          </h3>
+          <button
+            id="close-table-access"
+            class="inline-flex items-center gap-2 rounded-lg font-semibold text-sm transition-all-smooth px-4 py-2 border border-[var(--primary-gold)] hover:bg-[var(--gold-dark)] text-[var(--primary-gold)] hover:text-white"
+          >
+            Close
+          </button>
+        </header>
+
+        <div class="p-5 space-y-3 flex flex-col items-center text-[var(--gold-lighter)]">
+          <a 
+            href="/community/index.html" 
+            target="_top"
+            class="inline-flex items-center gap-2 rounded-lg font-semibold text-sm transition-all-smooth px-4 py-2 border border-[var(--primary-gold)] bg-[var(--primary-gold)] text-white hover:bg-[var(--gold-dark)]"  
+          >
+            Join Our Community to Get Access
+          </a>
+
+          <span>or</span>
+
+
+          <div class="flex flex-col items-start gap-2">
+            <label for="access-password" class="font-medium text-sm">Enter Password:</label>
+            <input 
+              type="password" 
+              id="access-password" 
+              class="rounded-lg border border-[var(--primary-gold)] bg-[var(--navy-deepest)] text-white px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--primary-gold)]" 
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="mt-4 inline-flex items-center gap-2 rounded-lg font-semibold text-sm transition-all-smooth px-4 py-2 border border-[var(--primary-gold)] bg-[var(--primary-gold)] text-white hover:bg-[var(--gold-dark)]"
+          >
+            Submit
+          </button>
+      </div>
+      </form>
+    </dialog>
   </body>
 </html>
