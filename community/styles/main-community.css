@@ -515,6 +515,17 @@ select:focus {
     text-decoration: none;
 }
 
+.home-page-button {
+    position: absolute;
+    top: 2.5em;
+    left: 1.5em;
+    font-size: 0.9em;
+    width: auto;
+    min-width: 0;
+    padding: 0.3em 1em;
+    color: var(--text-dark);
+}
+
 .c-submit-button::before {
     content: '';
     position: absolute;
