@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const pricingToggles = document.querySelectorAll('.pricingToggle');
     const priceValues = document.querySelectorAll('.c-feature.featured .price-value, .c-feature.disabled .price-value');
     const priceOriginals = document.querySelectorAll('.price-original');
-    // const pricePeriods = document.querySelectorAll('.price-period-annually');
+    const pricePeriods = document.querySelectorAll('.price-period-annually');
     const toggleContainers = document.querySelectorAll('.c-toggle-container');
-
+    console.log("helo")
     const updatePrices = (isAnnual) => {
         priceOriginals.forEach(original => {
             original.textContent = isAnnual ? original.getAttribute('data-annually') : original.getAttribute('data-monthly');
@@ -12,9 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
         priceValues.forEach(price => {
             price.textContent = isAnnual ? price.getAttribute('data-annually') : price.getAttribute('data-monthly');
         });
-        // pricePeriods.forEach(period => {
-        //     period.textContent = isAnnual ? 'per year' : 'per month';
-        // });
+        console.log(isAnnual)
+        pricePeriods.forEach(period => {
+            period.textContent = isAnnual ? 'per year' : 'per month';
+        });
     };
 
     const updateLabels = (isAnnual) => {
