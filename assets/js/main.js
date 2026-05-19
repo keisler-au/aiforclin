@@ -218,7 +218,7 @@ async function submitFormContact() {
     "message",
     JSON.stringify({
       message: document.getElementById("message-contact").value,
-      organization: document.getElementById("organization-contact").value,
+      organisation: document.getElementById("organisation-contact").value,
     }),
   );
   renderTurnstile(formData, originalBtnText, "#cf-turnstile-contact");
@@ -241,7 +241,7 @@ async function submitFormBooking() {
       contactMethod: document.getElementById("contact-method")?.value || "",
 
       // Organisation
-      organization: document.getElementById("organization")?.value || "",
+      organisation: document.getElementById("organisation")?.value || "",
       role: document.getElementById("role")?.value || "",
       orgWebsite: document.getElementById("org-website")?.value || "",
       industry: document.getElementById("industry")?.value || "",
