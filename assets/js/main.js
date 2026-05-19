@@ -1,14 +1,16 @@
 const SERVER_CHECK_URL = "https://api.aiforclin.com/ping";
 const EMAIL_API_URL_PROD = "https://api.aiforclin.com/contact";
 const EMAIL_API_URL_DEV = "http://localhost:10000/contact";
-const EMAIL_API_URL = [
+const localAddresses = [ 
   "localhost",
   "127.0.0.1",
   "127.0.0.0",
   "0.0.0.0",
-].includes(window.location.hostname)
+];
+const EMAIL_API_URL = localAddresses.includes(window.location.hostname)
   ? EMAIL_API_URL_DEV
   : EMAIL_API_URL_PROD;
+
 
 
 let serviceTypeSelector = null;
@@ -136,7 +138,6 @@ function showSendStatus(type, message, id = null) {
 async function submitForm(token, formData, originalBtnText, formType) {
   formData.append("cf-turnstile-response", token);
   const emailStatusId = formType === "contact" ? "email-status-contact" : "email-status";
-
   try {
     hardTimeout = setTimeout(() => {
       showSendStatus(

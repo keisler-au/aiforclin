@@ -158,6 +158,20 @@ a:focus {
   outline: none;
 }
 
+.btn-secondary {
+  background: transparent;
+  border-color: var(--border-dark);
+  color: var(--text-light);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: var(--hover-bg);
+  border-color: var(--primary-gold);
+  color: var(--primary-gold);
+  transform: translateX(-5px);
+}
+
 .section {
   padding: 60px 20px;
 }

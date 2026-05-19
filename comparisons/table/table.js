@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const TABLE_ACCESS_KEY = "hasTableAccess";
     // --- DATA SOURCE ---
     const allItems = [
         {
@@ -81,33 +82,32 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             id: 2,
-            name: "PractaLuma",
-            link: { label: "See more", url: "https://www.practaluma.com/" },
-            appCompliance: true, // Australian Privacy Principles
-            dataStorage: "Secure Australian-based servers (with option for enterprise hosting)",
-            freeMembership: true,
-            freeTrial: "30 days",
-            pmsIntegration: "No external PMS integration (Internal PMS available)",
+            name: "Everbility",
+            link: {
+                label: "10% Discount",
+                url: "https://www.everbility.com/?via=david-lopis",
+            },
+            appCompliance: true,
+            dataStorage: "Australia",
+            freeMembership: false,
+            freeTrial: "7 days",
+            pmsIntegration:
+                "Everbility is building integrations with many Australian practice management softwares, reach out to us if you want an integration with yours.",
             uniqueFeatures: {
                 sections: [
                     {
-                        category: "Clinician-Centric Design",
+                        category: "Long-form capability",
                         items: [
-                            "Built by Psychologists for mental health practitioners",
-                            "AI-First EHR (coming soon)",
-                            "Private Slack channel with engineers & founders",
-                            "Reliability promise (98% uptime or your money back)",
-                            "Custom healthcare model built in, ensuring notes are clinically aligned and for documentation accuracy",
+                            "Everbility's ability to write very long reports from as much context as needed",
+                            "Find peer reviewed research",
+                            "Additional NDIS knowledge",
+                            "Upload PDFs (including handwriting)",
                         ],
                     },
                     {
-                        category: "Advanced Tools & Integrations",
+                        category: "Support",
                         items: [
-                            "5P case formulation template builder",
-                            "Customised treatment plan generator (based on selected approaches, clinician authored)",
-                            "Integration with Zoom/Teams/Google Meet via meeting bot for enhanced audio transcription and accuracy",
-                            "AI-powered client search",
-                            "Ability to create custom forms to send to clients (e.g. intake forms, parent/teacher info forms, coming soon)",
+                            "Everbility provides unlimited customer support with no additional fees for template creation and as much help as you need",
                         ],
                     },
                 ],
@@ -115,41 +115,29 @@ document.addEventListener("DOMContentLoaded", () => {
             coreFeatures: {
                 sections: [
                     {
-                        category: "Session & Documentation",
+                        category: "Clinical documentation",
                         items: [
-                            "Session transcription",
-                            "Clinical note generation (Therapy initial, progress notes, SOAP, DAP, EMDR, TF-CBT etc.)",
-                            "Automated psychometric scoring & classification",
-                            "Secure document storage",
-                            "Multiple session selection for letter / document generation",
-                        ],
-                    },
-                    {
-                        category: "Security & Compliance",
-                        items: [
-                            "Zero data retention",
-                            "Practitioner sets storage settings",
-                            "Triple-layered compliance - APP, GDPR, HIPAA (ISO27001 in progress)",
+                            "Everbility supports clinicians to use any amount of context to write any length documentation",
+                            "If you're writing a case note, you can transcribe and generate a note from that transcription",
+                            "If you're writing a long detailed report, you can use historical information about your client and provide as much additional context as required to generate a very detailed report",
                         ],
                     },
                 ],
             },
             pricing: {
                 prices: [
-                    "$99 AUD / month",
-                    "Integrated practice management software included free for users (email support@practaluma.com to switch on)",
+                    "Everbility has one subscription level: $50 AUD per month per clinician or $420 AUD per year per clinician (≈30% discount on monthly cost)",
+                    "There are no additional costs for template support, training calls, etc.",
                 ],
             },
-            telehealth: true, // integrates with Zoom, Teams, Google Meet via bot recording
-            headphonesCompatible: true, // works with any standard audio input
-            mobileCompatible: false, // not specified, assuming no mention
+            telehealth: true,
+            headphonesCompatible: true,
+            mobileCompatible: true,
             multipleNotes: true,
             aiTrainableOverTime: true,
-            languagesSupported: [
-                "No, but this is on our roadmap",
-            ],
+            languagesSupported:
+                "Everbility can be used in many other languages, reach out to us if you have any issues and we're happy to help.",
         },
-
         {
             id: 3,
             name: "ANTSA",
@@ -234,9 +222,78 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Message us at help@ANTSA.com.au for requests at this stage.",
             ],
         },
-
-        {
+        {       
             id: 4,
+            name: "PractaLuma",
+            link: { label: "See more", url: "https://www.practaluma.com/" },
+            appCompliance: true, // Australian Privacy Principles
+            dataStorage: "Secure Australian-based servers (with option for enterprise hosting)",
+            freeMembership: true,
+            freeTrial: "30 days",
+            pmsIntegration: "No external PMS integration (Internal PMS available)",
+            uniqueFeatures: {
+                sections: [
+                    {
+                        category: "Clinician-Centric Design",
+                        items: [
+                            "Built by Psychologists for mental health practitioners",
+                            "AI-First EHR (coming soon)",
+                            "Private Slack channel with engineers & founders",
+                            "Reliability promise (98% uptime or your money back)",
+                            "Custom healthcare model built in, ensuring notes are clinically aligned and for documentation accuracy",
+                        ],
+                    },
+                    {
+                        category: "Advanced Tools & Integrations",
+                        items: [
+                            "5P case formulation template builder",
+                            "Customised treatment plan generator (based on selected approaches, clinician authored)",
+                            "Integration with Zoom/Teams/Google Meet via meeting bot for enhanced audio transcription and accuracy",
+                            "AI-powered client search",
+                            "Ability to create custom forms to send to clients (e.g. intake forms, parent/teacher info forms, coming soon)",
+                        ],
+                    },
+                ],
+            },
+            coreFeatures: {
+                sections: [
+                    {
+                        category: "Session & Documentation",
+                        items: [
+                            "Session transcription",
+                            "Clinical note generation (Therapy initial, progress notes, SOAP, DAP, EMDR, TF-CBT etc.)",
+                            "Automated psychometric scoring & classification",
+                            "Secure document storage",
+                            "Multiple session selection for letter / document generation",
+                        ],
+                    },
+                    {
+                        category: "Security & Compliance",
+                        items: [
+                            "Zero data retention",
+                            "Practitioner sets storage settings",
+                            "Triple-layered compliance - APP, GDPR, HIPAA (ISO27001 in progress)",
+                        ],
+                    },
+                ],
+            },
+            pricing: {
+                prices: [
+                    "$99 AUD / month",
+                    "Integrated practice management software included free for users (email support@practaluma.com to switch on)",
+                ],
+            },
+            telehealth: true, // integrates with Zoom, Teams, Google Meet via bot recording
+            headphonesCompatible: true, // works with any standard audio input
+            mobileCompatible: false, // not specified, assuming no mention
+            multipleNotes: true,
+            aiTrainableOverTime: true,
+            languagesSupported: [
+                "No, but this is on our roadmap",
+            ],
+        },
+        {
+            id: 5,
             name: "Zanda Health",
             link: {
                 label: "See more",
@@ -293,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 5,
+            id: 6,
             name: "NovoNote by NovoPsych",
             link: { label: "See more", url: "https://novopsych.com/novonote/" },
             appCompliance: true,
@@ -356,7 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 6,
+            id: 7,
             name: "Bastion GPT",
             link: {
                 label: "30 day free trial",
@@ -413,7 +470,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 7,
+            id: 8,
             name: "Patient Notes",
             link: {
                 label: "10% Discount",
@@ -519,64 +576,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 ],
             },
         },
-        {
-            id: 8,
-            name: "Everbility",
-            link: {
-                label: "10% Discount",
-                url: "https://www.everbility.com/?via=david-lopis",
-            },
-            appCompliance: true,
-            dataStorage: "Australia",
-            freeMembership: false,
-            freeTrial: "7 days",
-            pmsIntegration:
-                "Everbility is building integrations with many Australian practice management softwares, reach out to us if you want an integration with yours.",
-            uniqueFeatures: {
-                sections: [
-                    {
-                        category: "Long-form capability",
-                        items: [
-                            "Everbility's ability to write very long reports from as much context as needed",
-                            "Find peer reviewed research",
-                            "Additional NDIS knowledge",
-                            "Upload PDFs (including handwriting)",
-                        ],
-                    },
-                    {
-                        category: "Support",
-                        items: [
-                            "Everbility provides unlimited customer support with no additional fees for template creation and as much help as you need",
-                        ],
-                    },
-                ],
-            },
-            coreFeatures: {
-                sections: [
-                    {
-                        category: "Clinical documentation",
-                        items: [
-                            "Everbility supports clinicians to use any amount of context to write any length documentation",
-                            "If you're writing a case note, you can transcribe and generate a note from that transcription",
-                            "If you're writing a long detailed report, you can use historical information about your client and provide as much additional context as required to generate a very detailed report",
-                        ],
-                    },
-                ],
-            },
-            pricing: {
-                prices: [
-                    "Everbility has one subscription level: $50 AUD per month per clinician or $420 AUD per year per clinician (≈30% discount on monthly cost)",
-                    "There are no additional costs for template support, training calls, etc.",
-                ],
-            },
-            telehealth: true,
-            headphonesCompatible: true,
-            mobileCompatible: true,
-            multipleNotes: true,
-            aiTrainableOverTime: true,
-            languagesSupported:
-                "Everbility can be used in many other languages, reach out to us if you have any issues and we're happy to help.",
-        },
     ];
 
     const MAX_COMPARE_ITEMS = 3;
@@ -661,6 +660,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterDialog = document.getElementById("filter-dialog");
     const clearFiltersBtn = document.getElementById("clear-filters");
     const closeFiltersBtn = document.getElementById("close-filters");
+    const tableAccessDialog = document.getElementById("table-access-dialog");
+    const closeTableAccessBtn = document.getElementById("close-table-access");
     const activeCount = document.getElementById("active-count");
     const chipsWrap = document.getElementById("active-chips");
 
@@ -674,6 +675,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const matchPill = document.getElementById("match-pill");
     const eligiblePill = document.getElementById("eligible-pill");
     const eligibleExtra = document.getElementById("eligible-extra");
+
+    const userHasTableAccess = () => {
+        try {
+            const storedValue = localStorage.getItem(TABLE_ACCESS_KEY);
+            return storedValue === "true" || storedValue === "1";
+        } catch {
+            return false;
+        }
+    };
 
     // --- MODAL helpers (native dialog) ---
     const openModal = () => {
@@ -700,6 +710,35 @@ document.addEventListener("DOMContentLoaded", () => {
             event.clientY <= rect.bottom;
         if (!inDialog) closeModal();
     });
+
+    const openTableAccessModal = () => {
+        if (!tableAccessDialog || tableAccessDialog.open) return;
+        tableAccessDialog.showModal();
+    };
+
+    const closeTableAccessModal = () => {
+        if (!tableAccessDialog || !tableAccessDialog.open) return;
+        tableAccessDialog.close();
+    };
+
+    if (closeTableAccessBtn) {
+        closeTableAccessBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeTableAccessModal();
+        });
+    }
+
+    if (tableAccessDialog) {
+        tableAccessDialog.addEventListener("click", (event) => {
+            const rect = tableAccessDialog.getBoundingClientRect();
+            const inDialog =
+                event.clientX >= rect.left &&
+                event.clientX <= rect.right &&
+                event.clientY >= rect.top &&
+                event.clientY <= rect.bottom;
+            if (!inDialog) closeTableAccessModal();
+        });
+    }
 
     // --- RENDERERS ---
     const renderActiveChips = () => {
@@ -1068,6 +1107,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!btn) return;
         const id = parseInt(btn.dataset.id, 10);
         const isSelected = comparedItemIds.includes(id);
+
+        if (!userHasTableAccess()) {
+            openTableAccessModal();
+            return;
+        }
+
         const atLimit = comparedItemIds.length >= MAX_COMPARE_ITEMS;
 
         if (isSelected) {
@@ -1080,6 +1125,119 @@ document.addEventListener("DOMContentLoaded", () => {
         update();
     });
 
+    
+
     // INIT
     update();
 });
+const localAddresses = [ 
+"localhost",
+"127.0.0.1",
+"127.0.0.0",
+"0.0.0.0",
+];
+const COMPARISONS_API_URL = localAddresses.includes(window.location.hostname)
+? "http://localhost:8000/contact/comparison-table"
+: "https://api.aiforclin.com/contact/comparison-table";
+function handleTableAccess() {
+        const tableAccessForm = document.getElementById("table-access-form");
+        const accessPasswordInput = document.getElementById("access-password");
+        if (tableAccessForm) {
+            tableAccessForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                try {
+                    localStorage.setItem(TABLE_ACCESS_KEY, "true");
+                } catch {
+                    // ignore
+                }
+                if (accessPasswordInput) accessPasswordInput.value = "";
+                closeTableAccessModal();
+                update();
+            });
+        }
+    }
+
+    function showSendStatus(type, message, id = null) {
+        const status = id && document.getElementById(id);
+        if (!status) return;
+        status.textContent = message;
+        let textColor = "#48bb78";
+        if (type === "warning") textColor = "#ed8936";
+        if (type === "error") textColor = "#f56565";
+        status.style.color = textColor;
+        }
+
+    async function submitForm(token, formData, originalBtnText, statusID="status-comparisons") {
+        formData.append("cf-turnstile-response", token);
+        try {
+            hardTimeout = setTimeout(() => {
+            showSendStatus(
+                'warning',
+                'Still working… it may take up to a minute on the free plan. You can keep this tab open.',
+                statusID
+            );
+            }, 3000);
+            const res = await fetch(COMPARISONS_API_URL, {
+            method: "POST",
+            body: formData,
+            });
+            if (!res.ok) {
+            const errorText = await res.text().catch(() => "");
+            throw new Error(errorText || `Request failed (${res.status})`);
+            }
+            handleTableAccess();
+        } catch (err) {
+            console.error("Error: ", err);
+            showSendStatus(
+            "error",
+            "Sorry, there was a problem submitting your request. Please try again later or email david@psychologysquared.com.au",
+            statusID
+            );
+        } finally {
+            clearTimeout(hardTimeout);
+            let submitBtn = document.getElementById("submit-btn-comparisons");
+            if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText || "Submit Request";
+            }
+        }
+    }
+
+    function setupFormSubmission() {
+        let honeypotField = document.getElementById("website-comparisons");
+        if (honeypotField.value) {
+            showSendStatus(
+            "success",
+            "Thank you! Your message was submitted successfully. We'll be in touch shortly.",
+            );
+            return;
+        }
+        const submitBtn =  document.getElementById("submit-btn-comparisons");
+        let originalBtnText;
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = "Submitting...";
+        }
+        return originalBtnText;
+    }
+
+    function renderTurnstile(formData, originalBtnText, id = "#cf-turnstile") {
+        turnstile.remove(id);
+        turnstile.render(id, {
+            sitekey: "0x4AAAAAABx7osAcNS_e9_7w",
+            size: "normal",
+            theme: "auto",
+            callback: async function (token) {
+            await submitForm(token, formData, originalBtnText);
+            },
+        });
+    }
+
+function submitComparisonsPassword() {
+    const originalBtnText = setupFormSubmission();
+    const formData = new FormData();
+    formData.append("password", document.getElementById("access-password").value);
+    renderTurnstile(formData, originalBtnText, "#cf-turnstile-comparisons");
+}
+
