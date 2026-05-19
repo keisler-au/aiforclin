@@ -1,15 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     const TABLE_ACCESS_KEY = "hasTableAccess";
-    const localAddresses = [ 
-    "localhost",
-    "127.0.0.1",
-    "127.0.0.0",
-    "0.0.0.0",
-    ];
-    const COMPARISONS_API_URL = localAddresses.includes(window.location.hostname)
-    ? "http://localhost:10000/contact/comparison-table"
-    : "https://api.aiforclin.com/contact/comparison-table";
-
     // --- DATA SOURCE ---
     const allItems = [
         {
@@ -1140,7 +1130,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // INIT
     update();
 });
-
+const localAddresses = [ 
+"localhost",
+"127.0.0.1",
+"127.0.0.0",
+"0.0.0.0",
+];
+const COMPARISONS_API_URL = localAddresses.includes(window.location.hostname)
+? "http://localhost:8000/contact/comparison-table"
+: "https://api.aiforclin.com/contact/comparison-table";
 function handleTableAccess() {
         const tableAccessForm = document.getElementById("table-access-form");
         const accessPasswordInput = document.getElementById("access-password");
