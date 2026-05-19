@@ -223,7 +223,7 @@
           class="p-5 border-b border-[var(--primary-gold)] flex items-center justify-between"
         >
           <h3 id="table-access-title" class="text-lg font-semibold text-[var(--gold-lighter)]">
-            Table Access Required
+            Community Membership Required
           </h3>
           <button
             id="close-table-access"
@@ -246,7 +246,7 @@
 
 
           <div class="flex flex-col items-start gap-2">
-            <label for="access-password" class="font-medium text-sm">Enter Password:</label>
+            <label for="access-password" class="font-medium text-sm">Enter Password:<br><i>accessible via 'Clinician Resources' space</i></label>
             <input 
               type="password" 
               id="access-password" 
@@ -254,12 +254,24 @@
               required
             />
           </div>
+          <input
+            type="text"
+            name="website"
+            id="website-comparisons"
+            class="hp-field"
+            autocomplete="off"
+            tabindex="-1"
+          />
+          <div id="cf-turnstile-comparisons"></div>
           <button
+            id="submit-btn-comparisons"
             type="submit"
             class="mt-4 inline-flex items-center gap-2 rounded-lg font-semibold text-sm transition-all-smooth px-4 py-2 border border-[var(--primary-gold)] bg-[var(--primary-gold)] text-white hover:bg-[var(--gold-dark)]"
+            onclick="submitComparisonsPassword()"
           >
             Submit
           </button>
+          <p id="email-status-comparisons" class="email-status"></p>
       </div>
       </form>
     </dialog>

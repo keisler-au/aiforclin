@@ -1,14 +1,18 @@
 const SERVER_CHECK_URL = "https://api.aiforclin.com/ping";
 const EMAIL_API_URL_PROD = "https://api.aiforclin.com/contact";
 const EMAIL_API_URL_DEV = "http://localhost:10000/contact";
-const EMAIL_API_URL = [
+const localAddresses = [ 
   "localhost",
   "127.0.0.1",
   "127.0.0.0",
   "0.0.0.0",
-].includes(window.location.hostname)
+];
+const EMAIL_API_URL = localAddresses.includes(window.location.hostname)
   ? EMAIL_API_URL_DEV
   : EMAIL_API_URL_PROD;
+const COMPARISONS_API_URL = localAddresses.includes(window.location.hostname)
+  ? "http://localhost:10000/contact/comparison-table"
+  : "https://api.aiforclin.com/contact/comparison-table";
 
 
 let serviceTypeSelector = null;
@@ -135,7 +139,11 @@ function showSendStatus(type, message, id = null) {
 
 async function submitForm(token, formData, originalBtnText, formType) {
   formData.append("cf-turnstile-response", token);
-  const emailStatusId = formType === "contact" ? "email-status-contact" : "email-status";
+  let emailStatusId = formType === "contact" ? "email-status-contact" : "email-status";
+  if (formType === "comparisons") {
+    emailStatusId = "email-status-comparisons";
+  }
+  const url = formType === "comparisons" ? COMPARISONS_API_URL : EMAIL_API_URL;
 
   try {
     hardTimeout = setTimeout(() => {
@@ -145,7 +153,7 @@ async function submitForm(token, formData, originalBtnText, formType) {
         emailStatusId
       );
     }, 3000);
-    const res = await fetch(EMAIL_API_URL, {
+    const res = await fetch(url, {
       method: "POST",
       body: formData,
     });
@@ -169,7 +177,10 @@ async function submitForm(token, formData, originalBtnText, formType) {
     );
   } finally {
     clearTimeout(hardTimeout);
-    const submitBtn = document.getElementById(formType === "contact" ? "submit-btn-contact" : "submit-btn");
+    let submitBtn = document.getElementById(formType === "contact" ? "submit-btn-contact" : "submit-btn");
+    if (formType === "comparisons") {
+      submitBtn = document.getElementById("submit-btn-comparisons");
+    }
     if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.textContent = originalBtnText || "Submit Request";
@@ -178,7 +189,10 @@ async function submitForm(token, formData, originalBtnText, formType) {
 }
 
 function setupFormSubmission(type = "booking") {
-  const honeypotField = document.getElementById(type === "contact" ? "website-contact" : "website");
+  let honeypotField = document.getElementById(type === "contact" ? "website-contact" : "website");
+  if (type === "comparisons") {
+    honeypotField = document.getElementById("website-comparisons");
+  }
   if (honeypotField.value) {
     showSendStatus(
       "success",
@@ -203,10 +217,20 @@ function renderTurnstile(formData, originalBtnText, id = "#cf-turnstile") {
     size: "normal",
     theme: "auto",
     callback: async function (token) {
-      const formType = id === "#cf-turnstile-contact" ? "contact" : "booking";
+      let formType = id === "#cf-turnstile-contact" ? "contact" : "booking";
+      if (id === "#cf-turnstile-comparisons") {
+        formType = "comparisons";
+      }
       await submitForm(token, formData, originalBtnText, formType);
     },
   });
+}
+
+async function submitComparisonsPassword() {
+  const originalBtnText = setupFormSubmission("comparisons");
+  const formData = new FormData();
+  formData.append("password", document.getElementById("access-password").value);
+  renderTurnstile(formData, originalBtnText, "#cf-turnstile-comparisons");
 }
 
 async function submitFormContact() {

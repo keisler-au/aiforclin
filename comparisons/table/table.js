@@ -83,33 +83,32 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             id: 2,
-            name: "PractaLuma",
-            link: { label: "See more", url: "https://www.practaluma.com/" },
-            appCompliance: true, // Australian Privacy Principles
-            dataStorage: "Secure Australian-based servers (with option for enterprise hosting)",
-            freeMembership: true,
-            freeTrial: "30 days",
-            pmsIntegration: "No external PMS integration (Internal PMS available)",
+            name: "Everbility",
+            link: {
+                label: "10% Discount",
+                url: "https://www.everbility.com/?via=david-lopis",
+            },
+            appCompliance: true,
+            dataStorage: "Australia",
+            freeMembership: false,
+            freeTrial: "7 days",
+            pmsIntegration:
+                "Everbility is building integrations with many Australian practice management softwares, reach out to us if you want an integration with yours.",
             uniqueFeatures: {
                 sections: [
                     {
-                        category: "Clinician-Centric Design",
+                        category: "Long-form capability",
                         items: [
-                            "Built by Psychologists for mental health practitioners",
-                            "AI-First EHR (coming soon)",
-                            "Private Slack channel with engineers & founders",
-                            "Reliability promise (98% uptime or your money back)",
-                            "Custom healthcare model built in, ensuring notes are clinically aligned and for documentation accuracy",
+                            "Everbility's ability to write very long reports from as much context as needed",
+                            "Find peer reviewed research",
+                            "Additional NDIS knowledge",
+                            "Upload PDFs (including handwriting)",
                         ],
                     },
                     {
-                        category: "Advanced Tools & Integrations",
+                        category: "Support",
                         items: [
-                            "5P case formulation template builder",
-                            "Customised treatment plan generator (based on selected approaches, clinician authored)",
-                            "Integration with Zoom/Teams/Google Meet via meeting bot for enhanced audio transcription and accuracy",
-                            "AI-powered client search",
-                            "Ability to create custom forms to send to clients (e.g. intake forms, parent/teacher info forms, coming soon)",
+                            "Everbility provides unlimited customer support with no additional fees for template creation and as much help as you need",
                         ],
                     },
                 ],
@@ -117,41 +116,29 @@ document.addEventListener("DOMContentLoaded", () => {
             coreFeatures: {
                 sections: [
                     {
-                        category: "Session & Documentation",
+                        category: "Clinical documentation",
                         items: [
-                            "Session transcription",
-                            "Clinical note generation (Therapy initial, progress notes, SOAP, DAP, EMDR, TF-CBT etc.)",
-                            "Automated psychometric scoring & classification",
-                            "Secure document storage",
-                            "Multiple session selection for letter / document generation",
-                        ],
-                    },
-                    {
-                        category: "Security & Compliance",
-                        items: [
-                            "Zero data retention",
-                            "Practitioner sets storage settings",
-                            "Triple-layered compliance - APP, GDPR, HIPAA (ISO27001 in progress)",
+                            "Everbility supports clinicians to use any amount of context to write any length documentation",
+                            "If you're writing a case note, you can transcribe and generate a note from that transcription",
+                            "If you're writing a long detailed report, you can use historical information about your client and provide as much additional context as required to generate a very detailed report",
                         ],
                     },
                 ],
             },
             pricing: {
                 prices: [
-                    "$99 AUD / month",
-                    "Integrated practice management software included free for users (email support@practaluma.com to switch on)",
+                    "Everbility has one subscription level: $50 AUD per month per clinician or $420 AUD per year per clinician (≈30% discount on monthly cost)",
+                    "There are no additional costs for template support, training calls, etc.",
                 ],
             },
-            telehealth: true, // integrates with Zoom, Teams, Google Meet via bot recording
-            headphonesCompatible: true, // works with any standard audio input
-            mobileCompatible: false, // not specified, assuming no mention
+            telehealth: true,
+            headphonesCompatible: true,
+            mobileCompatible: true,
             multipleNotes: true,
             aiTrainableOverTime: true,
-            languagesSupported: [
-                "No, but this is on our roadmap",
-            ],
+            languagesSupported:
+                "Everbility can be used in many other languages, reach out to us if you have any issues and we're happy to help.",
         },
-
         {
             id: 3,
             name: "ANTSA",
@@ -236,9 +223,78 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Message us at help@ANTSA.com.au for requests at this stage.",
             ],
         },
-
-        {
+        {       
             id: 4,
+            name: "PractaLuma",
+            link: { label: "See more", url: "https://www.practaluma.com/" },
+            appCompliance: true, // Australian Privacy Principles
+            dataStorage: "Secure Australian-based servers (with option for enterprise hosting)",
+            freeMembership: true,
+            freeTrial: "30 days",
+            pmsIntegration: "No external PMS integration (Internal PMS available)",
+            uniqueFeatures: {
+                sections: [
+                    {
+                        category: "Clinician-Centric Design",
+                        items: [
+                            "Built by Psychologists for mental health practitioners",
+                            "AI-First EHR (coming soon)",
+                            "Private Slack channel with engineers & founders",
+                            "Reliability promise (98% uptime or your money back)",
+                            "Custom healthcare model built in, ensuring notes are clinically aligned and for documentation accuracy",
+                        ],
+                    },
+                    {
+                        category: "Advanced Tools & Integrations",
+                        items: [
+                            "5P case formulation template builder",
+                            "Customised treatment plan generator (based on selected approaches, clinician authored)",
+                            "Integration with Zoom/Teams/Google Meet via meeting bot for enhanced audio transcription and accuracy",
+                            "AI-powered client search",
+                            "Ability to create custom forms to send to clients (e.g. intake forms, parent/teacher info forms, coming soon)",
+                        ],
+                    },
+                ],
+            },
+            coreFeatures: {
+                sections: [
+                    {
+                        category: "Session & Documentation",
+                        items: [
+                            "Session transcription",
+                            "Clinical note generation (Therapy initial, progress notes, SOAP, DAP, EMDR, TF-CBT etc.)",
+                            "Automated psychometric scoring & classification",
+                            "Secure document storage",
+                            "Multiple session selection for letter / document generation",
+                        ],
+                    },
+                    {
+                        category: "Security & Compliance",
+                        items: [
+                            "Zero data retention",
+                            "Practitioner sets storage settings",
+                            "Triple-layered compliance - APP, GDPR, HIPAA (ISO27001 in progress)",
+                        ],
+                    },
+                ],
+            },
+            pricing: {
+                prices: [
+                    "$99 AUD / month",
+                    "Integrated practice management software included free for users (email support@practaluma.com to switch on)",
+                ],
+            },
+            telehealth: true, // integrates with Zoom, Teams, Google Meet via bot recording
+            headphonesCompatible: true, // works with any standard audio input
+            mobileCompatible: false, // not specified, assuming no mention
+            multipleNotes: true,
+            aiTrainableOverTime: true,
+            languagesSupported: [
+                "No, but this is on our roadmap",
+            ],
+        },
+        {
+            id: 5,
             name: "Zanda Health",
             link: {
                 label: "See more",
@@ -295,7 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 5,
+            id: 6,
             name: "NovoNote by NovoPsych",
             link: { label: "See more", url: "https://novopsych.com/novonote/" },
             appCompliance: true,
@@ -358,7 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 6,
+            id: 7,
             name: "Bastion GPT",
             link: {
                 label: "30 day free trial",
@@ -415,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         {
-            id: 7,
+            id: 8,
             name: "Patient Notes",
             link: {
                 label: "10% Discount",
@@ -520,64 +576,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Vietnamese",
                 ],
             },
-        },
-        {
-            id: 8,
-            name: "Everbility",
-            link: {
-                label: "10% Discount",
-                url: "https://www.everbility.com/?via=david-lopis",
-            },
-            appCompliance: true,
-            dataStorage: "Australia",
-            freeMembership: false,
-            freeTrial: "7 days",
-            pmsIntegration:
-                "Everbility is building integrations with many Australian practice management softwares, reach out to us if you want an integration with yours.",
-            uniqueFeatures: {
-                sections: [
-                    {
-                        category: "Long-form capability",
-                        items: [
-                            "Everbility's ability to write very long reports from as much context as needed",
-                            "Find peer reviewed research",
-                            "Additional NDIS knowledge",
-                            "Upload PDFs (including handwriting)",
-                        ],
-                    },
-                    {
-                        category: "Support",
-                        items: [
-                            "Everbility provides unlimited customer support with no additional fees for template creation and as much help as you need",
-                        ],
-                    },
-                ],
-            },
-            coreFeatures: {
-                sections: [
-                    {
-                        category: "Clinical documentation",
-                        items: [
-                            "Everbility supports clinicians to use any amount of context to write any length documentation",
-                            "If you're writing a case note, you can transcribe and generate a note from that transcription",
-                            "If you're writing a long detailed report, you can use historical information about your client and provide as much additional context as required to generate a very detailed report",
-                        ],
-                    },
-                ],
-            },
-            pricing: {
-                prices: [
-                    "Everbility has one subscription level: $50 AUD per month per clinician or $420 AUD per year per clinician (≈30% discount on monthly cost)",
-                    "There are no additional costs for template support, training calls, etc.",
-                ],
-            },
-            telehealth: true,
-            headphonesCompatible: true,
-            mobileCompatible: true,
-            multipleNotes: true,
-            aiTrainableOverTime: true,
-            languagesSupported:
-                "Everbility can be used in many other languages, reach out to us if you have any issues and we're happy to help.",
         },
     ];
 
@@ -748,6 +746,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (tableAccessForm) {
 
         // TODO: add password validation here before granting access
+        
         
         tableAccessForm.addEventListener("submit", (event) => {
             event.preventDefault();
