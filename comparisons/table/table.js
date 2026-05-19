@@ -1,4 +1,6 @@
-const TABLE_ACCESS_KEY = "hasTableAccess";
+
+document.addEventListener("DOMContentLoaded", () => {
+    const TABLE_ACCESS_KEY = "hasTableAccess";
     // --- DATA SOURCE ---
     const allItems = [
         {
@@ -1126,34 +1128,28 @@ const TABLE_ACCESS_KEY = "hasTableAccess";
 
     
 
-    // INIT
-    update();
 
-const localAddresses = [ 
-"localhost",
-"127.0.0.1",
-"127.0.0.0",
-"0.0.0.0",
-];
-const COMPARISONS_API_URL = localAddresses.includes(window.location.hostname)
-? "http://localhost:8000/contact/comparison-table"
-: "https://api.aiforclin.com/contact/comparison-table";
-function handleTableAccess() {
-        const tableAccessForm = document.getElementById("table-access-form");
-        const accessPasswordInput = document.getElementById("access-password");
-        if (tableAccessForm) {
-            tableAccessForm.addEventListener("submit", (event) => {
-                event.preventDefault();
-                try {
-                    localStorage.setItem(TABLE_ACCESS_KEY, "true");
-                } catch {
-                    // ignore
-                }
-                if (accessPasswordInput) accessPasswordInput.value = "";
-                closeTableAccessModal();
-                update();
-            });
+    const localAddresses = [ 
+    "localhost",
+    "127.0.0.1",
+    "127.0.0.0",
+    "0.0.0.0",
+    ];
+    const COMPARISONS_API_URL = localAddresses.includes(window.location.hostname)
+    ? "http://localhost:8000/contact/comparison-table"
+    : "https://api.aiforclin.com/contact/comparison-table";
+    function handleTableAccess() {
+        try {
+            localStorage.setItem(TABLE_ACCESS_KEY, "true");
+        } catch {
+        // ignore
         }
+
+        const accessPasswordInput = document.getElementById("access-password");
+        if (accessPasswordInput) accessPasswordInput.value = "";
+
+        closeTableAccessModal();
+        update();
     }
 
     function showSendStatus(type, message, id = null) {
@@ -1224,7 +1220,7 @@ function handleTableAccess() {
     function renderTurnstile(formData, originalBtnText, id = "#cf-turnstile") {
         turnstile.remove(id);
         turnstile.render(id, {
-            sitekey: "0x4AAAAAABx7osAcNS_e9_7w",
+            sitekey: "1x00000000000000000000AA",
             size: "normal",
             theme: "auto",
             callback: async function (token) {
@@ -1233,10 +1229,16 @@ function handleTableAccess() {
         });
     }
 
-function submitComparisonsPassword() {
-    const originalBtnText = setupFormSubmission();
-    const formData = new FormData();
-    formData.append("password", document.getElementById("access-password").value);
-    renderTurnstile(formData, originalBtnText, "#cf-turnstile-comparisons");
-}
+    function submitComparisonsPassword() {
+        const originalBtnText = setupFormSubmission();
+        const formData = new FormData();
+        formData.append("password", document.getElementById("access-password").value);
+        renderTurnstile(formData, originalBtnText, "#cf-turnstile-comparisons");
+    }
 
+    // INIT
+    update();
+
+});
+
+window.submitComparisonsPassword = submitComparisonsPassword;
