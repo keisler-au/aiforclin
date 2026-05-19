@@ -142,7 +142,7 @@ async function submitForm(token, formData, originalBtnText, formType) {
     hardTimeout = setTimeout(() => {
       showSendStatus(
         'warning',
-        'Still working… it may take up to a minute on the free plan. You can keep this tab open.',
+        'Still working… it may take up to a minute. You can keep this tab open.',
         emailStatusId
       );
     }, 3000);

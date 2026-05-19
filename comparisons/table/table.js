@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const TABLE_ACCESS_KEY = "hasTableAccess";
+const TABLE_ACCESS_KEY = "hasTableAccess";
     // --- DATA SOURCE ---
     const allItems = [
         {
@@ -1129,7 +1128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // INIT
     update();
-});
+
 const localAddresses = [ 
 "localhost",
 "127.0.0.1",
@@ -1173,7 +1172,7 @@ function handleTableAccess() {
             hardTimeout = setTimeout(() => {
             showSendStatus(
                 'warning',
-                'Still working… it may take up to a minute on the free plan. You can keep this tab open.',
+                'Still sending... You can keep this tab open.',
                 statusID
             );
             }, 3000);
@@ -1190,7 +1189,7 @@ function handleTableAccess() {
             console.error("Error: ", err);
             showSendStatus(
             "error",
-            "Sorry, there was a problem submitting your request. Please try again later or email david@psychologysquared.com.au",
+            "Sorry, the password was incorrect or there was a problem submitting your request. Please try again or email david@psychologysquared.com.au",
             statusID
             );
         } finally {
