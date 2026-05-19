@@ -1235,10 +1235,9 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("password", document.getElementById("access-password").value);
         renderTurnstile(formData, originalBtnText, "#cf-turnstile-comparisons");
     }
-
+    window.submitComparisonsPassword = submitComparisonsPassword;
     // INIT
     update();
 
 });
 
-window.submitComparisonsPassword = submitComparisonsPassword;
