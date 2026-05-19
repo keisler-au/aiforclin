@@ -1,5 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     const TABLE_ACCESS_KEY = "hasTableAccess";
+    const localAddresses = [ 
+    "localhost",
+    "127.0.0.1",
+    "127.0.0.0",
+    "0.0.0.0",
+    ];
+    const COMPARISONS_API_URL = localAddresses.includes(window.location.hostname)
+    ? "http://localhost:10000/contact/comparison-table"
+    : "https://api.aiforclin.com/contact/comparison-table";
 
     // --- DATA SOURCE ---
     const allItems = [
@@ -663,8 +672,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeFiltersBtn = document.getElementById("close-filters");
     const tableAccessDialog = document.getElementById("table-access-dialog");
     const closeTableAccessBtn = document.getElementById("close-table-access");
-    const tableAccessForm = document.getElementById("table-access-form");
-    const accessPasswordInput = document.getElementById("access-password");
     const activeCount = document.getElementById("active-count");
     const chipsWrap = document.getElementById("active-chips");
 
@@ -740,24 +747,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.clientY >= rect.top &&
                 event.clientY <= rect.bottom;
             if (!inDialog) closeTableAccessModal();
-        });
-    }
-
-    if (tableAccessForm) {
-
-        // TODO: add password validation here before granting access
-        
-        
-        tableAccessForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            try {
-                localStorage.setItem(TABLE_ACCESS_KEY, "true");
-            } catch {
-                // ignore
-            }
-            if (accessPasswordInput) accessPasswordInput.value = "";
-            closeTableAccessModal();
-            update();
         });
     }
 
@@ -1146,6 +1135,111 @@ document.addEventListener("DOMContentLoaded", () => {
         update();
     });
 
+    
+
     // INIT
     update();
 });
+
+function handleTableAccess() {
+        const tableAccessForm = document.getElementById("table-access-form");
+        const accessPasswordInput = document.getElementById("access-password");
+        if (tableAccessForm) {
+            tableAccessForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                try {
+                    localStorage.setItem(TABLE_ACCESS_KEY, "true");
+                } catch {
+                    // ignore
+                }
+                if (accessPasswordInput) accessPasswordInput.value = "";
+                closeTableAccessModal();
+                update();
+            });
+        }
+    }
+
+    function showSendStatus(type, message, id = null) {
+        const status = id && document.getElementById(id);
+        if (!status) return;
+        status.textContent = message;
+        let textColor = "#48bb78";
+        if (type === "warning") textColor = "#ed8936";
+        if (type === "error") textColor = "#f56565";
+        status.style.color = textColor;
+        }
+
+    async function submitForm(token, formData, originalBtnText, statusID="status-comparisons") {
+        formData.append("cf-turnstile-response", token);
+        try {
+            hardTimeout = setTimeout(() => {
+            showSendStatus(
+                'warning',
+                'Still working… it may take up to a minute on the free plan. You can keep this tab open.',
+                statusID
+            );
+            }, 3000);
+            const res = await fetch(COMPARISONS_API_URL, {
+            method: "POST",
+            body: formData,
+            });
+            if (!res.ok) {
+            const errorText = await res.text().catch(() => "");
+            throw new Error(errorText || `Request failed (${res.status})`);
+            }
+            handleTableAccess();
+        } catch (err) {
+            console.error("Error: ", err);
+            showSendStatus(
+            "error",
+            "Sorry, there was a problem submitting your request. Please try again later or email david@psychologysquared.com.au",
+            statusID
+            );
+        } finally {
+            clearTimeout(hardTimeout);
+            let submitBtn = document.getElementById("submit-btn-comparisons");
+            if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText || "Submit Request";
+            }
+        }
+    }
+
+    function setupFormSubmission() {
+        let honeypotField = document.getElementById("website-comparisons");
+        if (honeypotField.value) {
+            showSendStatus(
+            "success",
+            "Thank you! Your message was submitted successfully. We'll be in touch shortly.",
+            );
+            return;
+        }
+        const submitBtn =  document.getElementById("submit-btn-comparisons");
+        let originalBtnText;
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = "Submitting...";
+        }
+        return originalBtnText;
+    }
+
+    function renderTurnstile(formData, originalBtnText, id = "#cf-turnstile") {
+        turnstile.remove(id);
+        turnstile.render(id, {
+            sitekey: "0x4AAAAAABx7osAcNS_e9_7w",
+            size: "normal",
+            theme: "auto",
+            callback: async function (token) {
+            await submitForm(token, formData, originalBtnText);
+            },
+        });
+    }
+
+function submitComparisonsPassword() {
+    const originalBtnText = setupFormSubmission();
+    const formData = new FormData();
+    formData.append("password", document.getElementById("access-password").value);
+    renderTurnstile(formData, originalBtnText, "#cf-turnstile-comparisons");
+}
+
