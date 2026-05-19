@@ -1220,7 +1220,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderTurnstile(formData, originalBtnText, id = "#cf-turnstile") {
         turnstile.remove(id);
         turnstile.render(id, {
-            sitekey: "1x00000000000000000000AA",
+            sitekey: "0x4AAAAAABx7osAcNS_e9_7w",
             size: "normal",
             theme: "auto",
             callback: async function (token) {
