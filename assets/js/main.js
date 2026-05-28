@@ -218,6 +218,7 @@ async function submitFormContact() {
   formData.append(
     "message",
     JSON.stringify({
+      "confirmed-email": document.getElementById("confirmed-email-contact").value,
       phone: document.getElementById("phone-contact").value,
       message: document.getElementById("message-contact").value,
       organisation: document.getElementById("organisation-contact").value,
