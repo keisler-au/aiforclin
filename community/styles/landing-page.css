@@ -40,9 +40,16 @@
 .video-placeholder {
     flex: 1;
     max-width: 600px;
-    background-color: #f0f0f0; /* Placeholder background */
-    border-radius: 8px;
+    background-color: #f0f0f0;
     align-self: center;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    
+}
+.video-placeholder:hover {
+    transform: scale(1.02);
 }
 
 .benefits-list {
@@ -81,3 +88,5 @@
     color: var(--text-light);
     opacity: 0.8;
 }
+
+
