@@ -1,0 +1,47 @@
+#sign-in-modal-container {
+  display: none;
+}
+
+#sign-in-modal-container.is-open {
+  display: flex;
+  animation: sign-in-overlay-fade 320ms ease-out;
+}
+
+#sign-in-modal {
+  max-width: 540px;
+  min-height: 220px;
+  background: var(--bg-primary, #1f2937);
+  border: 1px solid var(--border-dark, #374151);
+  border-radius: 12px;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+}
+
+#sign-in-modal-container.is-open #sign-in-modal {
+  animation: sign-in-modal-in 360ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.sign-in-modal-body {
+  min-height: 220px;
+}
+
+@keyframes sign-in-overlay-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sign-in-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

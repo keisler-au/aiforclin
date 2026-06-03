@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/community/styles/tooltip.css">
     <link rel="stylesheet" href="/community/styles/waitlist.css">
     <link rel="stylesheet" href="/community/styles/video-benefits.css">
+    <link rel="stylesheet" href="/assets/css/modal.css">
+    <link rel="stylesheet" href="/assets/css/sign-in-modal.css">
 
     <!-- Media Queries -->
     <link rel="stylesheet" href="/community/styles/media-queries/max-width-640.css">
@@ -29,10 +31,12 @@
     <script src="/assets/js/theme-switch.js"></script>
     <script src="/community/scripts/pricing-toggle.js"></script>
     <script src="/community/scripts/smooth-scroll.js"></script>
+    <script src="/assets/js/sign-in-modal.js"></script>
 </head>
 
 <body>
     <div class="background-pattern"></div>
+    {% include sign-in-modal.html %}
 
 <div class="container">
     <a href="/" class="c-submit-button home-page-button">← Home Page</a>
