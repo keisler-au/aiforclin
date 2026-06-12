@@ -1,0 +1,263 @@
+.commercial-section__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary-gold);
+  margin-bottom: 0.6rem;
+}
+
+.commercial-section__title {
+  text-align: left;
+}
+
+.commercial-hero {
+  background: var(--background);
+  color: #fff;
+  padding: 9.5rem 2rem 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.commercial-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(212,175,55,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.commercial-hero__eyebrow {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid var(--border-color);
+  color: var(--primary-gold);
+  font-size: var(--font-sm-plus);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+}
+
+.commercial-hero h1 {
+  font-family: var(--header-font-family);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.18;
+  max-width: 720px;
+  margin: 0 auto 1.4rem;
+  font-weight: 400;
+}
+.commercial-hero h1 em {
+  font-style: normal;
+  color: var(--primary-gold);
+}
+
+.commercial-hero__stats {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.8rem;
+}
+
+.commercial-hero__stat-n {
+  font-family: var(--header-font-family);
+  font-size: var(--font-6xl);
+  color: var(--white);
+  display: block;
+}
+
+.commercial-hero__stat-l {
+  font-size: var(--font-sm-plus);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.commercial-audience {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.commercial-audience li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: var(--font-base-plus);
+  color: var(--text-light);
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.commercial-audience li::before {
+  content: '\2713';
+  color: var(--primary-gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.commercial-benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.commercial-benefits__card {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.5rem 1.4rem;
+}
+
+.commercial-benefits__icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.commercial-benefits__card h3 {
+  font-size: var(--font-base);
+  color: var(--white);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.commercial-benefits__card p {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.commercial-pricing__card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 2.5rem 2.2rem;
+  max-width: 540px;
+  margin: 2rem auto 0;
+  text-align: center;
+}
+
+.commercial-pricing__badge {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid var(--border-color-light);
+  color: var(--primary-gold);
+  font-size: var(--font-sm);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.9rem;
+  border-radius: 100px;
+  margin-bottom: 1.2rem;
+}
+
+.commercial-pricing__price {
+  font-family: var(--header-font-family);
+  font-size: var(--font-9xl);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  color: var(--white);
+}
+
+.commercial-pricing__period {
+  font-size: var(--font-sm-plus);
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.commercial-pricing__divider {
+  border: none;
+  border-top: 1px solid var(--border-color-light);
+  margin: 1.5rem 0;
+}
+
+.commercial-pricing__features {
+  list-style: none;
+  text-align: left;
+  display: grid;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+
+.commercial-pricing__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: var(--font-base);
+  color: var(--text-light);
+}
+
+.commercial-pricing__features .check {
+  color: var(--primary-gold);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.commercial-pricing__note {
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
+.commercial-cta {
+  background: var(--bg-secondary);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.commercial-cta h2 {
+  font-family: var(--header-font-family);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.5vw, 2.2rem);
+  margin-bottom: 0.75rem;
+  color: var(--white);
+}
+
+.commercial-cta p {
+  color: var(--text-light);
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  font-size: var(--font-md);
+}
+
+.commercial-rules {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+  counter-reset: rules;
+}
+
+.commercial-rules li {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  font-size: var(--font-base);
+  color: var(--text-light);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color-light);
+  counter-increment: rules;
+}
+
+.commercial-rules li::before {
+  content: counter(rules);
+  background: var(--primary-gold);
+  color: var(--bg-primary);
+  font-weight: 700;
+  font-size: var(--font-sm);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
