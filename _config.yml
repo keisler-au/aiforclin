@@ -21,3 +21,7 @@ social:
 #     - https://twitter.com/your-handle
 # twitter:
 #   username: your-handle  
+
+## _archived folder: 
+exclude:
+  - provisional-psychologists/index.html
