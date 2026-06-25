@@ -177,7 +177,7 @@ a:focus {
 }
 
 .section-alt {
-  background: var(--card-bg);
+  background: var(--bg-secondary);
 }
 
 /* Background gradient utility - use with data-bg-from and data-bg-to attributes */
