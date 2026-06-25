@@ -146,4 +146,8 @@
     white-space: normal;
     text-align: center;
   }
+
+  .commercial-hero__stats { gap: 1.5rem; }
+  .commercial-pricing__card { padding: 2rem 1.4rem; }
+  .commercial-hero__btn { margin-left: 0; margin-top: 0.5rem; }
 }
