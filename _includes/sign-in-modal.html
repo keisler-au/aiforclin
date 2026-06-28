@@ -1,0 +1,27 @@
+<dialog
+  id="sign-in-modal-container"
+  class="modal-container"
+  aria-labelledby="sign-in-modal-title"
+  aria-modal="true"
+>
+  <div id="sign-in-modal" class="modal-content">
+    <button
+      onclick="closeSignInModal()"
+      class="modal-close-btn"
+      aria-label="Close sign in modal"
+    >
+      ×
+    </button>
+
+    <div class="sign-in-modal-body" aria-hidden="true">
+      <iframe
+        class="sign-in-modal-form"
+        src="https://aiforclin.circle.so/forms/4da7fe51"
+        title="Sign in form"
+        loading="eager"
+        frameborder="0"
+        scrolling="no"
+      ></iframe>
+    </div>
+  </div>
+</dialog>
