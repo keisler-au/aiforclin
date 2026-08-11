@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    const TABLE_ACCESS_KEY = "hasTableAccess";
+    const TABLE_AUTH_TOKEN_KEY = "comparisonAuthToken";
     // --- DATA SOURCE ---
     const allItems = [
         {
@@ -655,6 +655,8 @@ document.addEventListener("DOMContentLoaded", () => {
         FILTER_GROUPS.map((g) => [g, []])
     );
     let comparedItemIds = [1, 2, 3];
+    let hasAccess = false;
+    let hardTimeout;
 
     // --- DOM ---
     const filterBtn = document.getElementById("filter-btn");
@@ -677,13 +679,114 @@ document.addEventListener("DOMContentLoaded", () => {
     const eligiblePill = document.getElementById("eligible-pill");
     const eligibleExtra = document.getElementById("eligible-extra");
 
-    const userHasTableAccess = () => {
+    const localAddresses = [
+        "localhost",
+        "127.0.0.1",
+        "127.0.0.0",
+        "0.0.0.0",
+    ];
+    const COMPARISONS_API_BASE_URL = localAddresses.includes(
+        window.location.hostname
+    )
+        ? "http://localhost:8000"
+        : "https://api.aiforclin.com";
+
+
+    // TODO: update COMPARISONS_VERIFY_URL with real url
+    const COMPARISONS_AUTH_URL = `${COMPARISONS_API_BASE_URL}/contact/comparison-table`;
+    const COMPARISONS_VERIFY_URL = `${COMPARISONS_API_BASE_URL}/contact/comparison-table/verify`;
+
+    const getStoredToken = () => {
         try {
-            const storedValue = localStorage.getItem(TABLE_ACCESS_KEY);
-            return storedValue === "true" || storedValue === "1";
+            return localStorage.getItem(TABLE_AUTH_TOKEN_KEY) || "";
         } catch {
+            return "";
+        }
+    };
+
+    const storeToken = (token) => {
+        if (!token || typeof token !== "string") return;
+        try {
+            localStorage.setItem(TABLE_AUTH_TOKEN_KEY, token);
+        } catch {
+            // ignore
+        }
+    };
+
+    const clearStoredToken = () => {
+        try {
+            localStorage.removeItem(TABLE_AUTH_TOKEN_KEY);
+        } catch {
+            // ignore
+        }
+    };
+
+    const setAccessState = (allowed) => {
+        hasAccess = allowed;
+    };
+
+    const verifyTokenWithBackend = async (token) => {
+        if (!token) return false;
+        try {
+            const res = await fetch(COMPARISONS_VERIFY_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ token }),
+            });
+            if (!res.ok) return false;
+            if (res.status === 204) return true;
+            const payload = await res.text().catch(() => "");
+            if (!payload) return true;
+            try {
+                const data = JSON.parse(payload);
+                if (typeof data.valid === "boolean") return data.valid;
+                if (typeof data.authorized === "boolean") return data.authorized;
+                if (typeof data.ok === "boolean") return data.ok;
+                return true;
+            } catch {
+                const normalized = payload.trim().toLowerCase();
+                return normalized === "true" || normalized === "ok";
+            }
+        } catch (err) {
+            console.error("Token verification failed: ", err);
             return false;
         }
+    };
+
+    const verifyStoredToken = async ({ showError = false } = {}) => {
+        const token = getStoredToken();
+        const wasAccess = hasAccess;
+        if (!token) {
+            setAccessState(false);
+            if (wasAccess) update();
+            if (showError) {
+                showSendStatus(
+                    "error",
+                    "Please enter the password to continue.",
+                    "status-comparisons"
+                );
+            }
+            openTableAccessModal();
+            return false;
+        }
+
+        const isValid = await verifyTokenWithBackend(token);
+        if (!isValid) {
+            clearStoredToken();
+            setAccessState(false);
+            if (wasAccess) update();
+            showSendStatus(
+                "error",
+                "Your access has expired. Please enter the password again.",
+                "status-comparisons"
+            );
+            openTableAccessModal();
+            return false;
+        }
+
+        setAccessState(true);
+        if (!wasAccess) update();
+        return true;
     };
 
     // --- MODAL helpers (native dialog) ---
@@ -1103,16 +1206,14 @@ document.addEventListener("DOMContentLoaded", () => {
         update();
     });
 
-    selectableItemsContainer.addEventListener("click", (e) => {
+    selectableItemsContainer.addEventListener("click", async (e) => {
         const btn = e.target.closest(".add-to-compare-btn");
         if (!btn) return;
         const id = parseInt(btn.dataset.id, 10);
         const isSelected = comparedItemIds.includes(id);
 
-        if (!userHasTableAccess()) {
-            openTableAccessModal();
-            return;
-        }
+        const isValid = await verifyStoredToken({ showError: true });
+        if (!isValid) return;
 
         const atLimit = comparedItemIds.length >= MAX_COMPARE_ITEMS;
 
@@ -1126,28 +1227,15 @@ document.addEventListener("DOMContentLoaded", () => {
         update();
     });
 
-    
-
-
-    const localAddresses = [ 
-    "localhost",
-    "127.0.0.1",
-    "127.0.0.0",
-    "0.0.0.0",
-    ];
-    const COMPARISONS_API_URL = localAddresses.includes(window.location.hostname)
-    ? "http://localhost:8000/contact/comparison-table"
-    : "https://api.aiforclin.com/contact/comparison-table";
-    function handleTableAccess() {
-        try {
-            localStorage.setItem(TABLE_ACCESS_KEY, "true");
-        } catch {
-        // ignore
-        }
+    function handleTableAccess(token) {
+        if (!token) return;
+        storeToken(token);
+        setAccessState(true);
 
         const accessPasswordInput = document.getElementById("access-password");
         if (accessPasswordInput) accessPasswordInput.value = "";
 
+        showSendStatus("success", "", "status-comparisons");
         closeTableAccessModal();
         update();
     }
@@ -1160,7 +1248,18 @@ document.addEventListener("DOMContentLoaded", () => {
         if (type === "warning") textColor = "#ed8936";
         if (type === "error") textColor = "#f56565";
         status.style.color = textColor;
+    }
+
+    async function extractAuthToken(res) {
+        const raw = await res.text().catch(() => "");
+        if (!raw) return "";
+        try {
+            const data = JSON.parse(raw);
+            return data.token || data.sessionToken || data.accessToken || "";
+        } catch {
+            return raw.trim();
         }
+    }
 
     async function submitForm(token, formData, originalBtnText, statusID="status-comparisons") {
         formData.append("cf-turnstile-response", token);
@@ -1172,7 +1271,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 statusID
             );
             }, 3000);
-            const res = await fetch(COMPARISONS_API_URL, {
+            const res = await fetch(COMPARISONS_AUTH_URL, {
             method: "POST",
             body: formData,
             });
@@ -1180,7 +1279,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const errorText = await res.text().catch(() => "");
             throw new Error(errorText || `Request failed (${res.status})`);
             }
-            handleTableAccess();
+            const authToken = await extractAuthToken(res);
+            if (!authToken) {
+                throw new Error("Missing auth token");
+            }
+            handleTableAccess(authToken);
         } catch (err) {
             console.error("Error: ", err);
             showSendStatus(
